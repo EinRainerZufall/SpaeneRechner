@@ -55,6 +55,20 @@ private slots:
 
     void on_BeStabilTpc_clicked();
 
+    void on_MaterialAuswahlBohren_currentIndexChanged(int index);
+
+    void on_BeInstabilBohren_clicked();
+
+    void on_BeNormalBohren_clicked();
+
+    void on_BeStabilBohren_clicked();
+
+    void on_SchnHssBohren_clicked();
+
+    void on_SchnVhmBohren_clicked();
+
+    void on_BtnCalcBohren_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -23,13 +23,14 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //Release things
-//    ui->tabWidget->setTabVisible(2, false);
-//    ui->tabWidget->setTabVisible(3, false);
-//    ui->tabWidget->setTabVisible(4, false);
-//    ui->tabWidget->setTabVisible(5, false);
-//    ui->tabWidget->setTabVisible(6, false);
-//    ui->tabWidget->setTabVisible(7, false);
-//    ui->tabWidget->setTabVisible(8, false);
+//    ui->tabWidget->setTabVisible(1, false);   //Dynamisch
+//    ui->tabWidget->setTabVisible(2, false);   //Nutfraesen
+//    ui->tabWidget->setTabVisible(3, false);   //Planfraesen
+//    ui->tabWidget->setTabVisible(4, false);   //Bohren
+//    ui->tabWidget->setTabVisible(5, false);   //Laengsdrehen
+//    ui->tabWidget->setTabVisible(6, false);   //Plandrehen
+//    ui->tabWidget->setTabVisible(7, false);   //Gewinde
+//    ui->tabWidget->setTabVisible(8, false);   //Extras
 //    ui->tabWidget->setCurrentIndex(0);
 
 
@@ -37,10 +38,10 @@ MainWindow::MainWindow(QWidget *parent)
     if(Settings::xlsxCheck()) {
         createDatabase::createSimple();
         createDatabase::createDynamic();
+        createDatabase::createDrill();
         //createDatabase::createSlot();
         //createDatabase::createPlan90();
         //createDatabase::createPlan45();
-        //createDatabase::createDrill();
 
         createDatabase::createSettings();
     }
@@ -80,7 +81,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->SchnKeramikTpc->setChecked(true);
         ui->SchnKeramikNut->setChecked(true);
         ui->SchnKeramikPlan->setChecked(true);
-        ui->SchnKeramikBohren->setChecked(true);
+        ui->SchnVhmBohren->setChecked(true);
         break;
     case 1:
         ui->SchnVhmTpc->setChecked(true);
@@ -137,10 +138,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->MaterialAuswahlTpc->addItems(Dynamic::matList());
 
     //Slot calc
-    ui->MaterialAuswahlNut->addItems(Slot::matList());
+    //ui->MaterialAuswahlNut->addItems(Slot::matList());
 
     //Plan90 calc
-    ui->MaterialAuswahlPlan->addItems(Plan90::matList());
+    //ui->MaterialAuswahlPlan->addItems(Plan90::matList());
 
     //Drill calc
     ui->MaterialAuswahlBohren->addItems(Drill::matList());
@@ -216,6 +217,8 @@ void MainWindow::on_btnCreateAll_clicked()
 {
     createDatabase::createSimple();
     createDatabase::createDynamic();
+    createDatabase::createDrill();
+
     createDatabase::createSettings();
 }
 
@@ -340,5 +343,224 @@ void MainWindow::on_BeStabilTpc_clicked()
 {
     int index = ui->MaterialAuswahlTpc->currentIndex();
     ui->VcOutTpc->setText(QString::number(Dynamic::Vc(index, 2)) + " m/min");
+}
+
+
+void MainWindow::on_MaterialAuswahlBohren_currentIndexChanged(int index)
+{
+    int bed;
+    int schn;
+
+    if(ui->BeStabilBohren->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalBohren->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    if(ui->SchnVhmBohren->isChecked()) {
+        schn = 1;
+    }else {
+        schn = 0;
+    }
+
+    ui->VcOutBohren->setText(QString::number(Drill::Vc(index, bed, schn)) + " m/min");
+}
+
+
+void MainWindow::on_BeInstabilBohren_clicked()
+{
+    int bed;
+    int schn;
+
+    if(ui->BeStabilBohren->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalBohren->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    if(ui->SchnVhmBohren->isChecked()) {
+        schn = 1;
+    }else {
+        schn = 0;
+    }
+
+    ui->VcOutBohren->setText(QString::number(Drill::Vc(ui->MaterialAuswahlBohren->currentIndex(), bed, schn)) + " m/min");
+}
+
+
+void MainWindow::on_BeNormalBohren_clicked()
+{
+    int bed;
+    int schn;
+
+    if(ui->BeStabilBohren->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalBohren->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    if(ui->SchnVhmBohren->isChecked()) {
+        schn = 1;
+    }else {
+        schn = 0;
+    }
+
+    ui->VcOutBohren->setText(QString::number(Drill::Vc(ui->MaterialAuswahlBohren->currentIndex(), bed, schn)) + " m/min");
+}
+
+
+void MainWindow::on_BeStabilBohren_clicked()
+{
+    int bed;
+    int schn;
+
+    if(ui->BeStabilBohren->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalBohren->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    if(ui->SchnVhmBohren->isChecked()) {
+        schn = 1;
+    }else {
+        schn = 0;
+    }
+
+    ui->VcOutBohren->setText(QString::number(Drill::Vc(ui->MaterialAuswahlBohren->currentIndex(), bed, schn)) + " m/min");
+}
+
+
+void MainWindow::on_SchnHssBohren_clicked()
+{
+    int bed;
+    int schn;
+
+    if(ui->BeStabilBohren->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalBohren->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    if(ui->SchnVhmBohren->isChecked()) {
+        schn = 1;
+    }else {
+        schn = 0;
+    }
+
+    ui->VcOutBohren->setText(QString::number(Drill::Vc(ui->MaterialAuswahlBohren->currentIndex(), bed, schn)) + " m/min");
+}
+
+
+void MainWindow::on_SchnVhmBohren_clicked()
+{
+    int bed;
+    int schn;
+
+    if(ui->BeStabilBohren->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalBohren->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    if(ui->SchnVhmBohren->isChecked()) {
+        schn = 1;
+    }else {
+        schn = 0;
+    }
+
+    ui->VcOutBohren->setText(QString::number(Drill::Vc(ui->MaterialAuswahlBohren->currentIndex(), bed, schn)) + " m/min");
+}
+
+
+void MainWindow::on_BtnCalcBohren_clicked()
+{
+    const double pi = M_PI;
+    double D = ui->FraeserdurchmesserAuswahlBohren->value();
+    int maxN = ui->MaxDrehzahlAuswahlBohren->value();
+    double fu = Drill::fu(ui->MaterialAuswahlBohren->currentIndex(), D);
+    int Kc = Drill::Kc(ui->MaterialAuswahlBohren->currentIndex());
+    double Mc = Drill::Mc(ui->MaterialAuswahlBohren->currentIndex());
+    double C4 = 1.3;  //Verschleiss
+    double C1;        //Kuehlung
+    double C2;        //Schneidstoff
+    double C3;        //Vc
+    double Vc;
+    double Pc;
+    double h;
+    int N;
+    int spWi;
+    int schn;
+    int bed;
+
+    if(ui->BeStabilBohren->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalBohren->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    if(ui->SchnVhmBohren->isChecked()) {
+        schn = 1;
+        C2 = 1;
+    }else {
+        schn = 0;
+        C2 = 1.2;
+    }
+
+    if(ui->SpitzenWinkel140->isChecked()) {
+        spWi = 140;
+    }else if(ui->SpitzenWinkel130->isChecked()) {
+        spWi = 130;
+    }else {
+        spWi = 118;
+    }
+
+    Vc = Drill::Vc(ui->MaterialAuswahlBohren->currentIndex(), bed, schn);
+
+    N = (Vc * 1000) / (pi * D);
+    if(N > maxN) {
+        N = maxN;
+    }
+
+    if(ui->OilBohren->isChecked()) {
+        C1 = 0.85;
+    }else if (ui->KssBohren->isChecked()) {
+        C1 = 0.9;
+    }else {
+        C1 = 1;
+    }
+
+    if(Vc > 250) {
+        C3 = pow((100 / Vc), 0.1);
+    }else if(Vc > 80) {
+        C3 = 1.03 - ((3 * Vc) / pow(10, 4));
+    }else {
+        C3 = 1.15;
+    }
+
+    h = (fu / 2) * sin(spWi / 2);
+    //(2 * ((Kc / (h ^ Mc)) * ((D * fu) / 2) * C1 * C2 * C3 * C4) * Vc) / 2 / 85 / 1000
+
+    Pc = (2 * ((Kc / pow(h, Mc)) * ((D * fu) / 2) * C1 * C2 * C3 * C4) * Vc) / 2 / 85 / 1000;
+
+    ui->RealVcOutBohren->setText(QString::number(round((N * pi * D) / 1000)) + " m/min");
+
+    ui->VorschubOutBohren->setText(QString::number(fu * N) + " mm/min");
+    ui->VorschubUOutBohren->setText(QString::number(fu) + " mm/U");
+    ui->DrehzahlOutBohren->setText(QString::number(N));
+    ui->PcOutBohren->setText(QString::number(Pc, 'g', 3) + " kW");
 }
 

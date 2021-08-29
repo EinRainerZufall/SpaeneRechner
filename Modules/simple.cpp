@@ -48,8 +48,8 @@ public:
         return D;
     }
 
-    static int Vc(int row) {
-        int Vc;
+    static double Vc(int row) {
+        double Vc;
 
         row = row + 2;
 
@@ -57,7 +57,7 @@ public:
         wb.load(simplePath);
         xlnt::worksheet ws = wb.sheet_by_index(simpleIndex);
 
-        Vc = std::stoi(ws.cell(2, row).to_string());
+        Vc = ws.cell(2, row).value<double>();
 
         return Vc;
     }
@@ -72,7 +72,7 @@ public:
         wb.load(simplePath);
         xlnt::worksheet ws = wb.sheet_by_index(simpleIndex);
 
-        fz = std::stod(ws.cell(column, row).to_string());
+        fz = ws.cell(column, row).value<double>();
 
         return fz;
     }

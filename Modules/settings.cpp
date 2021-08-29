@@ -50,7 +50,7 @@ public:
         index = (wb.sheet_count() - 1);
         xlnt::worksheet ws = wb.sheet_by_index(index);
 
-        rpm = std::stoi(ws.cell("B3").to_string());
+        rpm = ws.cell("B3").value<int>();
 
         return rpm;
     }
@@ -64,7 +64,7 @@ public:
         index = (wb.sheet_count() - 1);
         xlnt::worksheet ws = wb.sheet_by_index(index);
 
-        pc = std::stod(ws.cell("B4").to_string());
+        pc = ws.cell("B4").value<double>();
 
         return pc;
     }
@@ -81,7 +81,7 @@ public:
 
         temp = ws.cell("B5").to_string();
 
-        if(temp == "stabil") {
+        if(temp == "stabil" or temp == "stable") {
             con = 2;
         }else if(temp == "normal") {
             con = 1;

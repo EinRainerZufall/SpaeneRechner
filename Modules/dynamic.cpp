@@ -31,7 +31,7 @@ public:
         wb.load(dynamicPath);
         xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
 
-        Vc = std::stod(ws.cell(column, mat).to_string());
+        Vc = ws.cell(column, mat).value<double>();
 
         return Vc;
     }
@@ -52,7 +52,7 @@ public:
         wb.load(dynamicPath);
         xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
 
-        fz = std::stod(ws.cell(column, mat).to_string());
+        fz = ws.cell(column, mat).value<double>();
 
         return fz;
     }
@@ -73,7 +73,7 @@ public:
         wb.load(dynamicPath);
         xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
 
-        ae = std::stod(ws.cell(column, mat).to_string());
+        ae = ws.cell(column, mat).value<double>();
 
         return ae;
     }
@@ -87,7 +87,7 @@ public:
         wb.load(dynamicPath);
         xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
 
-        Kc = std::stoi(ws.cell(17, mat).to_string());
+        Kc = ws.cell(17, mat).value<int>();
 
         return Kc;
     }
@@ -101,7 +101,7 @@ public:
         wb.load(dynamicPath);
         xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
 
-        Mc = std::stod(ws.cell(18, mat).to_string());
+        Mc = ws.cell(18, mat).value<double>();
 
         return Mc;
     }

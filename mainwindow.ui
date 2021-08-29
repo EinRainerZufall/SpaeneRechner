@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -3199,25 +3199,6 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QRadioButton" name="SchnKeramikBohren">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>50</y>
-         <width>90</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Keramik</string>
-       </property>
-      </widget>
      </widget>
      <widget class="QLabel" name="VcOutBohren">
       <property name="geometry">
@@ -3472,7 +3453,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>0,00 mm/U</string>
+       <string>0.00 mm/U</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
