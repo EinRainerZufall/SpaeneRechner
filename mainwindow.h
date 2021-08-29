@@ -43,6 +43,18 @@ private slots:
 
     void on_btnCreateAll_clicked();
 
+    void on_BtnCalcTpc_clicked();
+
+    void on_MaterialAuswahlTpc_currentIndexChanged(int index);
+
+    void on_FraeserdurchmesserAuswahlTpc_valueChanged(double arg1);
+
+    void on_BeInstabilTpc_clicked();
+
+    void on_BeNormalTpc_clicked();
+
+    void on_BeStabilTpc_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

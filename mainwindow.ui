@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>9</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -173,7 +173,7 @@
        <rect>
         <x>450</x>
         <y>70</y>
-        <width>50</width>
+        <width>65</width>
         <height>25</height>
        </rect>
       </property>
@@ -844,7 +844,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>0 mm³/min</string>
+       <string>0 cm³/min</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -858,7 +858,7 @@
        <rect>
         <x>450</x>
         <y>425</y>
-        <width>115</width>
+        <width>150</width>
         <height>25</height>
        </rect>
       </property>
@@ -1267,7 +1267,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>0,000 mm</string>
+       <string>0.000 mm</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1765,7 +1765,7 @@
        <rect>
         <x>450</x>
         <y>425</y>
-        <width>115</width>
+        <width>150</width>
         <height>25</height>
        </rect>
       </property>
@@ -2110,7 +2110,7 @@
        <rect>
         <x>450</x>
         <y>425</y>
-        <width>115</width>
+        <width>150</width>
         <height>25</height>
        </rect>
       </property>
@@ -2864,7 +2864,7 @@
        <rect>
         <x>450</x>
         <y>425</y>
-        <width>115</width>
+        <width>150</width>
         <height>25</height>
        </rect>
       </property>
@@ -3465,9 +3465,9 @@
      <widget class="QLineEdit" name="VorschubUOutBohren">
       <property name="geometry">
        <rect>
-        <x>600</x>
+        <x>625</x>
         <y>425</y>
-        <width>100</width>
+        <width>125</width>
         <height>25</height>
        </rect>
       </property>

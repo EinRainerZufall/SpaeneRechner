@@ -23,21 +23,20 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //Release things
-    ui->tabWidget->setTabVisible(1, false);
-    ui->tabWidget->setTabVisible(2, false);
-    ui->tabWidget->setTabVisible(3, false);
-    ui->tabWidget->setTabVisible(4, false);
-    ui->tabWidget->setTabVisible(5, false);
-    ui->tabWidget->setTabVisible(6, false);
-    ui->tabWidget->setTabVisible(7, false);
-    ui->tabWidget->setTabVisible(8, false);
-    ui->tabWidget->setCurrentIndex(0);
+//    ui->tabWidget->setTabVisible(2, false);
+//    ui->tabWidget->setTabVisible(3, false);
+//    ui->tabWidget->setTabVisible(4, false);
+//    ui->tabWidget->setTabVisible(5, false);
+//    ui->tabWidget->setTabVisible(6, false);
+//    ui->tabWidget->setTabVisible(7, false);
+//    ui->tabWidget->setTabVisible(8, false);
+//    ui->tabWidget->setCurrentIndex(0);
 
 
     //check if the xlsx exist
     if(Settings::xlsxCheck()) {
         createDatabase::createSimple();
-        //createDatabase::createDynamic();
+        createDatabase::createDynamic();
         //createDatabase::createSlot();
         //createDatabase::createPlan90();
         //createDatabase::createPlan45();
@@ -135,16 +134,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->FraeserDurchmesserAuswahlEinfach->addItems(Simple::dList());
 
     //dynamic calc
-    //ui->MaterialAuswahlTpc->addItems(Dynamic::matList());
+    ui->MaterialAuswahlTpc->addItems(Dynamic::matList());
 
     //Slot calc
-    //ui->MaterialAuswahlNut->addItems(Slot::matList());
+    ui->MaterialAuswahlNut->addItems(Slot::matList());
 
     //Plan90 calc
-    //ui->MaterialAuswahlPlan->addItems(Plan90::matList());
+    ui->MaterialAuswahlPlan->addItems(Plan90::matList());
 
     //Drill calc
-    //ui->MaterialAuswahlBohren->addItems(Drill::matList());
+    ui->MaterialAuswahlBohren->addItems(Drill::matList());
 }
 
 MainWindow::~MainWindow()
@@ -166,7 +165,7 @@ void MainWindow::on_BtnCalcEinfach_clicked()
     int N;
     int maxN = ui->MaxDrehzahlAuswahlEinfach->value();
     int z = ui->SchneidenAuswahlEinfach->value();
-    int Vc = Simple::Vc(ui->MaterialAuswahlEinfach->currentIndex());
+    double Vc = Simple::Vc(ui->MaterialAuswahlEinfach->currentIndex());
     double fz = Simple::fz(ui->FraeserDurchmesserAuswahlEinfach->currentIndex(),ui->MaterialAuswahlEinfach->currentIndex());
 
     N = (Vc * 1000) / (pi * D);
@@ -216,6 +215,130 @@ void MainWindow::on_btnQT_clicked()
 void MainWindow::on_btnCreateAll_clicked()
 {
     createDatabase::createSimple();
+    createDatabase::createDynamic();
     createDatabase::createSettings();
+}
+
+
+void MainWindow::on_BtnCalcTpc_clicked()
+{
+    const double pi = M_PI;
+    double D = ui->FraeserdurchmesserAuswahlTpc->value();
+    double ap = ui->ApAuswahlTpc->value();
+    int maxN = ui->MaxDrehzahlAuswahlTpc->value();
+    int z = ui->SchneidenAuswahlTpc->value();
+    int Kc = Dynamic::Kc(ui->MaterialAuswahlTpc->currentIndex());
+    double Mc = Dynamic::Mc(ui->MaterialAuswahlTpc->currentIndex());
+    int maxKw = Settings::maxKw();
+    double C4 = 1.5;  //Verschleiss
+    double C1;        //Kuehlung
+    double C2;        //Schneidstoff
+    double C3;        //Vc
+    double Vc;
+    double fz;
+    double ae;
+    double Pc;
+    double def;
+    int eTool;
+    int N;
+
+    if(ui->BeStabilTpc->isChecked()) {
+        Vc = Dynamic::Vc(ui->MaterialAuswahlTpc->currentIndex(), 2);
+        fz = Dynamic::fz(ui->MaterialAuswahlTpc->currentIndex(), 2, D);
+        ae = Dynamic::ae(ui->MaterialAuswahlTpc->currentIndex(), 2, D);
+    }else if (ui->BeNormalTpc->isChecked()) {
+        Vc = Dynamic::Vc(ui->MaterialAuswahlTpc->currentIndex(), 1);
+        fz = Dynamic::fz(ui->MaterialAuswahlTpc->currentIndex(), 1, D);
+        ae = Dynamic::ae(ui->MaterialAuswahlTpc->currentIndex(), 1, D);
+    }else {
+        Vc = Dynamic::Vc(ui->MaterialAuswahlTpc->currentIndex(), 0);
+        fz = Dynamic::fz(ui->MaterialAuswahlTpc->currentIndex(), 0, D);
+        ae = Dynamic::ae(ui->MaterialAuswahlTpc->currentIndex(), 0, D);
+    }
+
+    if(ui->OilTpc->isChecked()) {
+        C1 = 0.85;
+    }else if (ui->KssTpc->isChecked()) {
+        C1 = 0.9;
+    }else {
+        C1 = 1;
+    }
+
+    if(ui->SchnKeramikTpc->isChecked()) {
+        C2 = 0.9;
+        eTool = 300; //???
+    }else if (ui->SchnVhmTpc->isChecked()) {
+        C2 = 1;
+        eTool = 300;
+    }else {
+        C2 = 1.2;
+        eTool = 200;
+    }
+
+    if(Vc > 250) {
+        C3 = pow((100 / Vc), 0.1);
+    }else if(Vc > 80) {
+        C3 = 1.03 - ((3 * Vc) / pow(10, 4));
+    }else {
+        C3 = 1.15;
+    }
+
+    N = (Vc * 1000) / (pi * D);
+    if(N > maxN) {
+        N = maxN;
+    }
+
+    //tpcPc = tpcZ * (90 + Math.Asin((tpcAe - (tpcFd / 2)) / (tpcFd / 2))) / 360 * (tpcKc / (tpcFz ^ tpcMc) * (tpcAp * tpcFz) * tpcC1 * tpcC2) * tpcVc / 60 / 85 / 1000
+    Pc = z * (90 + asin((ae - (D / 2)) / (D / 2))) / 360 * (Kc / pow(fz, Mc) * (ap * fz) * C1 * C2 * C3 * C4) * Vc / 60 / 85 / 1000;
+
+    double Fcut = Pc * ((2 * (maxKw * 1000)) / (D * N));
+    def = (Fcut * pow((ap + 10), 3)) / (3 * eTool * 0.66 * (pow(D, 4) / 64));
+
+    ui->RealVcOutTpc->setText(QString::number(round((N * pi * D) / 1000)) + " m/min");
+
+    ui->DrehzahlOutTpc->setText(QString::number(N));
+    ui->VorschubOutTpc->setText(QString::number(N * z * fz) + " mm/min");
+    ui->AeOutTpc->setText(QString::number(ae) + " mm");
+    ui->QOutTpc->setText(QString::number(ap * ae * (N * z * fz) / 1000) + " cm³/min");
+    ui->PcOutTpc->setText(QString::number(Pc, 'g', 1) + " kW");
+    ui->DeflevtionOutTpc->setText(QString::number(def, 'g', 1) + " mm");
+}
+
+
+void MainWindow::on_MaterialAuswahlTpc_currentIndexChanged(int index)
+{
+    if(ui->BeStabilTpc->isChecked()) {
+        ui->VcOutTpc->setText(QString::number(Dynamic::Vc(index, 2)) + " m/min");
+    }else if (ui->BeNormalTpc->isChecked()) {
+        ui->VcOutTpc->setText(QString::number(Dynamic::Vc(index, 1)) + " m/min");
+    }else {
+        ui->VcOutTpc->setText(QString::number(Dynamic::Vc(index, 0)) + " m/min");
+    }
+}
+
+void MainWindow::on_FraeserdurchmesserAuswahlTpc_valueChanged(double arg1)
+{
+    ui->ApAuswahlTpc->setValue(arg1 * 2);
+}
+
+
+void MainWindow::on_BeInstabilTpc_clicked()
+{
+    int index = ui->MaterialAuswahlTpc->currentIndex();
+    ui->VcOutTpc->setText(QString::number(Dynamic::Vc(index, 0)) + " m/min");
+}
+
+
+void MainWindow::on_BeNormalTpc_clicked()
+{
+    int index = ui->MaterialAuswahlTpc->currentIndex();
+    ui->VcOutTpc->setText(QString::number(Dynamic::Vc(index, 1)) + " m/min");
+}
+
+
+void MainWindow::on_BeStabilTpc_clicked()
+{
+    int index = ui->MaterialAuswahlTpc->currentIndex();
+    ui->VcOutTpc->setText(QString::number(Dynamic::Vc(index, 2)) + " m/min");
 }
 
