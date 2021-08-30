@@ -1,7 +1,7 @@
 #include "Modules/module.h"
 
-//std::string name = "Daten.xlsx";
-std::string name = "Test.xlsx";
+std::string name = "Daten.xlsx";
+//std::string name = "Test.xlsx";
 std::filesystem::path createPath = std::filesystem::current_path() / name;
 
 class createDatabase {
@@ -265,14 +265,6 @@ public:
         xlnt::worksheet ws = wb.create_sheet(3);
 
         //create table
-        while (row <= 11) {
-            while (column <= 11) {
-                ws.cell(column, row).value(array[row-1][column-1]);
-                column++;
-            }
-            column = 1;
-            row++;
-        }
 
         ws.title("Slot");
 
@@ -292,14 +284,6 @@ public:
         xlnt::worksheet ws = wb.create_sheet(4);
 
         //create table
-        while (row <= 11) {
-            while (column <= 11) {
-                ws.cell(column, row).value(array[row-1][column-1]);
-                column++;
-            }
-            column = 1;
-            row++;
-        }
 
         ws.title("Plan90");
 
@@ -319,14 +303,6 @@ public:
         xlnt::worksheet ws = wb.create_sheet(5);
 
         //create table
-        while (row <= 11) {
-            while (column <= 11) {
-                ws.cell(column, row).value(array[row-1][column-1]);
-                column++;
-            }
-            column = 1;
-            row++;
-        }
 
         ws.title("Plan45");
 
@@ -343,11 +319,11 @@ public:
         std::string array[8][3] = {
             {"Name",            "Wert",     "Hilfe"},
             {"Warnung",         "Ja",       "Ob beim Programm start der Disclaimer angezeigt werden soll (Ja|Nein)"},
-            {"max RPM",         "24000",    "Die maximale Drehzal der Machine"},
-            {"max Leistung",    "2.2",      "Die maximale Spindelleistung der Maschine (in kW)"},
+            {"max RPM",         "77",    "Die maximale Drehzal der Machine"},
+            {"max Leistung",    "77",      "Die maximale Spindelleistung der Maschine (in kW)"},
             {"Bedingungen",     "normal",   "die Bedingungen der Bearbeitung (auspanung, Werkzeuglaenge und Stabilitaet der Maschine) (instabil|normal|stabil)"},
             {"Schneidstoff",    "VHM",      "Der standart Schneidstoff für Werkzeuge (HSS|VHM|Keramik)"},
-            {"Spitzenwinkel",   "118",      "Der standart Spitzenwinkel fuer Bohrer (118|130|140)"},
+            {"Spitzenwinkel",   "77",      "Der standart Spitzenwinkel fuer Bohrer (118|130|140)"},
             {"Kuehlung",        "Trocken",  "Die standart Kuehlung der Werkzeuge (Trocken|KSS|Oel)"}
 
         };
@@ -379,6 +355,10 @@ public:
             color = 242;
             column = 1;
         }
+
+        ws.cell(2, 3).value(24000);
+        ws.cell(2, 4).value(2.2);
+        ws.cell(2, 7).value(118);
 
         ws.title("Einstellungen");
 

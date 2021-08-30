@@ -24,14 +24,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Release things
 //    ui->tabWidget->setTabVisible(1, false);   //Dynamisch
-//    ui->tabWidget->setTabVisible(2, false);   //Nutfraesen
-//    ui->tabWidget->setTabVisible(3, false);   //Planfraesen
+    ui->tabWidget->setTabVisible(2, false);   //Nutfraesen
+    ui->tabWidget->setTabVisible(3, false);   //Planfraesen
 //    ui->tabWidget->setTabVisible(4, false);   //Bohren
-//    ui->tabWidget->setTabVisible(5, false);   //Laengsdrehen
-//    ui->tabWidget->setTabVisible(6, false);   //Plandrehen
-//    ui->tabWidget->setTabVisible(7, false);   //Gewinde
-//    ui->tabWidget->setTabVisible(8, false);   //Extras
-//    ui->tabWidget->setCurrentIndex(0);
+    ui->tabWidget->setTabVisible(5, false);   //Laengsdrehen
+    ui->tabWidget->setTabVisible(6, false);   //Plandrehen
+    ui->tabWidget->setTabVisible(7, false);   //Gewinde
+    ui->tabWidget->setTabVisible(8, false);   //Extras
+    ui->tabWidget->setCurrentIndex(0);
 
 
     //check if the xlsx exist

@@ -168,7 +168,7 @@ public:
             return temp;
         }else {
             QMessageBox box;
-            box.setText(QObject::tr("Die Datei Daten.xlsx wurde nicht gefunden soll sie erstellt werden?"));
+            box.setText(QObject::tr("Die Datei 'Daten.xlsx' wurde nicht gefunden soll sie erstellt werden?"));
             box.setWindowTitle(QObject::tr("Kritischer Fehler"));
             box.setIcon(QMessageBox::Critical);
             box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
