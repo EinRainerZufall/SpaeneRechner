@@ -69,6 +69,20 @@ private slots:
 
     void on_BtnCalcBohren_clicked();
 
+    void on_MaterialAuswahlPlan_currentIndexChanged(int index);
+
+    void on_SchneidenGeometryPlan_currentIndexChanged(int index);
+
+    void on_BeInstabilPlan_clicked();
+
+    void on_BeNormalPlan_clicked();
+
+    void on_BeStabilPlan_clicked();
+
+    void on_BtnCalcPlan_clicked();
+
+    void on_FraeserdurchmesserAuswahlPlan_valueChanged(double arg1);
+
 private:
     Ui::MainWindow *ui;
 };

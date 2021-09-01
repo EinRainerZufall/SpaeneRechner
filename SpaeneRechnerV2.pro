@@ -37,8 +37,7 @@ SOURCES += \
     Modules/createDatabase.cpp \
     Modules/drill.cpp \
     Modules/dynamic.cpp \
-    Modules/plan45.cpp \
-    Modules/plan90.cpp \
+    Modules/plan.cpp \
     Modules/settings.cpp \
     Modules/simple.cpp \
     Modules/slot.cpp \

@@ -20,7 +20,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QTabWidget" name="mainTabWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>10</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -2748,7 +2748,7 @@
        <number>1</number>
       </property>
       <property name="minimum">
-       <double>1.000000000000000</double>
+       <double>0.500000000000000</double>
       </property>
       <property name="value">
        <double>1.000000000000000</double>
@@ -2766,6 +2766,26 @@
       <property name="text">
        <string>Seitenzustellung</string>
       </property>
+     </widget>
+     <widget class="QComboBox" name="SchneidenGeometryPlan">
+      <property name="geometry">
+       <rect>
+        <x>565</x>
+        <y>70</y>
+        <width>60</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>90°</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>45°</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_bohren">
@@ -3567,7 +3587,7 @@
         <rect>
          <x>10</x>
          <y>65</y>
-         <width>180</width>
+         <width>220</width>
          <height>25</height>
         </rect>
        </property>
@@ -3582,7 +3602,7 @@
 text-align: left;</string>
        </property>
        <property name="text">
-        <string>info@spaenerecher.de</string>
+        <string>contact@spaenerechner.de</string>
        </property>
        <property name="flat">
         <bool>true</bool>

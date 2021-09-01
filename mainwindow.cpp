@@ -7,8 +7,7 @@
 #include "Modules/simple.cpp"
 #include "Modules/dynamic.cpp"
 #include "Modules/slot.cpp"
-#include "Modules/plan90.cpp"
-#include "Modules/plan45.cpp"
+#include "Modules/plan.cpp"
 #include "Modules/drill.cpp"
 #include "Modules/createDatabase.cpp"
 
@@ -19,19 +18,19 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setFixedSize(1000,700);
-    this->setCentralWidget(ui->tabWidget);
+    this->setCentralWidget(ui->mainTabWidget);
 
 
     //Release things
-//    ui->tabWidget->setTabVisible(1, false);   //Dynamisch
-//    ui->tabWidget->setTabVisible(2, false);   //Nutfraesen
-//    ui->tabWidget->setTabVisible(3, false);   //Planfraesen
-//    ui->tabWidget->setTabVisible(4, false);   //Bohren
-//    ui->tabWidget->setTabVisible(5, false);   //Laengsdrehen
-//    ui->tabWidget->setTabVisible(6, false);   //Plandrehen
-//    ui->tabWidget->setTabVisible(7, false);   //Gewinde
-//    ui->tabWidget->setTabVisible(8, false);   //Extras
-//    ui->tabWidget->setCurrentIndex(0);
+//    ui->mainTabWidget->setTabVisible(1, false);   //Dynamisch
+//    ui->mainTabWidget->setTabVisible(2, false);   //Nutfraesen
+//    ui->mainTabWidget->setTabVisible(3, false);   //Planfraesen
+//    ui->mainTabWidget->setTabVisible(4, false);   //Bohren
+//    ui->mainTabWidget->setTabVisible(5, false);   //Laengsdrehen
+//    ui->mainTabWidget->setTabVisible(6, false);   //Plandrehen
+//    ui->mainTabWidget->setTabVisible(7, false);   //Gewinde
+//    ui->mainTabWidget->setTabVisible(8, false);   //Extras
+//    ui->mainTabWidget->setCurrentIndex(0);
 
 
     //check if the xlsx exist
@@ -141,7 +140,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->MaterialAuswahlNut->addItems(Slot::matList());
 
     //Plan90 calc
-    ui->MaterialAuswahlPlan->addItems(Plan90::matList());
+    ui->MaterialAuswahlPlan->addItems(Plan::matList(ui->SchneidenGeometryPlan->currentIndex()));
 
     //Drill calc
     ui->MaterialAuswahlBohren->addItems(Drill::matList());
@@ -190,7 +189,7 @@ void MainWindow::on_BtnCalcEinfach_clicked()
 
 void MainWindow::on_btnEmail_clicked()
 {
-    QDesktopServices::openUrl(QUrl("mailto:?to=info@spaenerechner.de&subject=Betreff&body=Hi, \nich habe folgendes Problem...", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("mailto:?to=contact@spaenerechner.de&subject=Betreff&body=Hi, \nich habe folgendes Problem...", QUrl::TolerantMode));
     //this->setStyleSheet("color: hotpink");
 }
 
@@ -565,5 +564,196 @@ void MainWindow::on_BtnCalcBohren_clicked()
     ui->VorschubUOutBohren->setText(QString::number(fu) + " mm/U");
     ui->DrehzahlOutBohren->setText(QString::number(N));
     ui->PcOutBohren->setText(QString::number(Pc, 'g', 3) + " kW");
+}
+
+
+void MainWindow::on_MaterialAuswahlPlan_currentIndexChanged(int index)
+{
+    int bed;
+    int schn = ui->SchneidenGeometryPlan->currentIndex();
+
+    if(ui->BeStabilPlan->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalPlan->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    ui->VcOutPlan->setText(QString::number(Plan::Vc(index, bed, schn)) + " m/min");
+}
+
+
+void MainWindow::on_SchneidenGeometryPlan_currentIndexChanged(int index)
+{
+    int bed;
+    int mat = ui->MaterialAuswahlPlan->currentIndex();
+
+    if(ui->BeStabilPlan->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalPlan->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    ui->VcOutPlan->setText(QString::number(Plan::Vc(mat, bed, index)) + " m/min");
+}
+
+
+void MainWindow::on_BeInstabilPlan_clicked()
+{
+    int bed;
+    int mat = ui->MaterialAuswahlPlan->currentIndex();
+    int schn = ui->SchneidenGeometryPlan->currentIndex();
+
+    if(ui->BeStabilPlan->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalPlan->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    ui->VcOutPlan->setText(QString::number(Plan::Vc(mat, bed, schn)) + " m/min");
+}
+
+
+void MainWindow::on_BeNormalPlan_clicked()
+{
+    int bed;
+    int mat = ui->MaterialAuswahlPlan->currentIndex();
+    int schn = ui->SchneidenGeometryPlan->currentIndex();
+
+    if(ui->BeStabilPlan->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalPlan->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    ui->VcOutPlan->setText(QString::number(Plan::Vc(mat, bed, schn)) + " m/min");
+}
+
+
+void MainWindow::on_BeStabilPlan_clicked()
+{
+    int bed;
+    int mat = ui->MaterialAuswahlPlan->currentIndex();
+    int schn = ui->SchneidenGeometryPlan->currentIndex();
+
+    if(ui->BeStabilPlan->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalPlan->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    ui->VcOutPlan->setText(QString::number(Plan::Vc(mat, bed, schn)) + " m/min");
+}
+
+
+void MainWindow::on_BtnCalcPlan_clicked()
+{
+    const double pi = M_PI;
+    double D = ui->FraeserdurchmesserAuswahlPlan->value();
+    int maxN = ui->MaxDrehzahlAuswahlPlan->value();
+    int schnGeo = ui->SchneidenGeometryPlan->currentIndex();
+    int z = ui->SchneidenAuswahlPlan->value();
+    int Kc = Plan::Kc(ui->MaterialAuswahlPlan->currentIndex(), schnGeo);
+    double Mc = Plan::Mc(ui->MaterialAuswahlPlan->currentIndex(), schnGeo);
+    double ae = ui->AeAuswahlPlan->value();
+    double ap = ui->ApAuswahlPlan->value();
+    double C4 = 1.3;  //Verschleiss
+    double C1;        //Kuehlung
+    double C2;        //Schneidstoff
+    double C3;        //Vc
+    double Vc;
+    double Pc;
+    double K;
+    double Q;
+    double h;
+    double y;
+    double einstellWinkel;
+    double phi;
+    int N;
+    int bed;
+
+    if(ui->BeStabilPlan->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalPlan->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    double fz = Plan::fz(ui->MaterialAuswahlPlan->currentIndex(), bed, schnGeo, D, ae);
+
+    if(ui->SchnKeramikPlan->isChecked()) {
+        C2 = 0.9;
+    }else if(ui->SchnVhmPlan->isChecked()) {
+        C2 = 1;
+    }else {
+        C2 = 1.2;
+    }
+
+    Vc = Plan::Vc(ui->MaterialAuswahlPlan->currentIndex(), bed, schnGeo);
+
+    N = (Vc * 1000) / (pi * D);
+    if(N > maxN) {
+        N = maxN;
+    }
+
+    if(ui->OilPlan->isChecked()) {
+        C1 = 0.85;
+    }else if (ui->KssPlan->isChecked()) {
+        C1 = 0.9;
+    }else {
+        C1 = 1;
+    }
+
+    if(Vc > 250) {
+        C3 = pow((100 / Vc), 0.1);
+    }else if(Vc > 80) {
+        C3 = 1.03 - ((3 * Vc) / pow(10, 4));
+    }else {
+        C3 = 1.15;
+    }
+
+    if(ui->SchneidenGeometryPlan->currentIndex() == 1) {
+        einstellWinkel = 45;
+    }else {
+        einstellWinkel = 90;
+    }
+
+    Q = (ae * ap * (fz * N * z)) / 1000;
+
+    //Aussermittige Stellung des Fraesers
+    phi = 90 + sin((ae - (D / 2)) / (D / 2));
+    //bei mittiger Stellung
+    //phi = 2 * asin(ae / D);
+
+    h = (114.7 * fz * sin(einstellWinkel) * (ae / D)) / phi;
+
+    y = ae - (D / 2);
+
+    K = (1 - (0.01 * y)) / ( pow(h, Mc)) * Kc * C1 * C2 * C3 * C4;
+
+    Pc = (Q * K) / (60000 * 0.85);
+
+    ui->RealVcOutPlan->setText(QString::number(round((N * pi * D) / 1000)) + " m/min");
+
+    ui->VorschubOutPlan->setText(QString::number(fz * N * z) + " mm/min");
+    ui->DrehzahlOutPlan->setText(QString::number(N));
+    ui->PcOutPlan->setText(QString::number(Pc, 'g', 3) + " kW");
+    ui->QOutPlan->setText(QString::number(Q) + " cm³/min");
+}
+
+
+void MainWindow::on_FraeserdurchmesserAuswahlPlan_valueChanged(double arg1)
+{
+    ui->AeAuswahlPlan->setMaximum(arg1);
 }
 
