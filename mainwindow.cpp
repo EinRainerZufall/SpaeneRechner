@@ -24,14 +24,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Release things
 //    ui->tabWidget->setTabVisible(1, false);   //Dynamisch
-    ui->tabWidget->setTabVisible(2, false);   //Nutfraesen
-    ui->tabWidget->setTabVisible(3, false);   //Planfraesen
+//    ui->tabWidget->setTabVisible(2, false);   //Nutfraesen
+//    ui->tabWidget->setTabVisible(3, false);   //Planfraesen
 //    ui->tabWidget->setTabVisible(4, false);   //Bohren
-    ui->tabWidget->setTabVisible(5, false);   //Laengsdrehen
-    ui->tabWidget->setTabVisible(6, false);   //Plandrehen
-    ui->tabWidget->setTabVisible(7, false);   //Gewinde
-    ui->tabWidget->setTabVisible(8, false);   //Extras
-    ui->tabWidget->setCurrentIndex(0);
+//    ui->tabWidget->setTabVisible(5, false);   //Laengsdrehen
+//    ui->tabWidget->setTabVisible(6, false);   //Plandrehen
+//    ui->tabWidget->setTabVisible(7, false);   //Gewinde
+//    ui->tabWidget->setTabVisible(8, false);   //Extras
+//    ui->tabWidget->setCurrentIndex(0);
 
 
     //check if the xlsx exist
@@ -39,9 +39,9 @@ MainWindow::MainWindow(QWidget *parent)
         createDatabase::createSimple();
         createDatabase::createDynamic();
         createDatabase::createDrill();
-        //createDatabase::createSlot();
-        //createDatabase::createPlan90();
-        //createDatabase::createPlan45();
+        createDatabase::createSlot();
+        createDatabase::createPlan90();
+        createDatabase::createPlan45();
 
         createDatabase::createSettings();
     }
@@ -138,10 +138,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->MaterialAuswahlTpc->addItems(Dynamic::matList());
 
     //Slot calc
-    //ui->MaterialAuswahlNut->addItems(Slot::matList());
+    ui->MaterialAuswahlNut->addItems(Slot::matList());
 
     //Plan90 calc
-    //ui->MaterialAuswahlPlan->addItems(Plan90::matList());
+    ui->MaterialAuswahlPlan->addItems(Plan90::matList());
 
     //Drill calc
     ui->MaterialAuswahlBohren->addItems(Drill::matList());
@@ -218,6 +218,9 @@ void MainWindow::on_btnCreateAll_clicked()
     createDatabase::createSimple();
     createDatabase::createDynamic();
     createDatabase::createDrill();
+    createDatabase::createSlot();
+    createDatabase::createPlan90();
+    createDatabase::createPlan45();
 
     createDatabase::createSettings();
 }

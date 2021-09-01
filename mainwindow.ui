@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -3542,7 +3542,7 @@
        <rect>
         <x>10</x>
         <y>220</y>
-        <width>250</width>
+        <width>280</width>
         <height>155</height>
        </rect>
       </property>
@@ -3634,7 +3634,7 @@ text-align: left;</string>
      <widget class="QPushButton" name="btnXlnt">
       <property name="geometry">
        <rect>
-        <x>810</x>
+        <x>805</x>
         <y>560</y>
         <width>180</width>
         <height>55</height>
