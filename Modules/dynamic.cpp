@@ -1,7 +1,10 @@
 #include "Modules/module.h"
 
-std::filesystem::path dynamicPath = std::filesystem::current_path() / "Daten.xlsx";
-int dynamicIndex = 1;
+namespace {
+    std::filesystem::path dynamicPath = std::filesystem::current_path() / "Daten.xlsx";
+    int dynamicIndex = 1;
+}
+
 
 class Dynamic {
 public:

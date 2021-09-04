@@ -1,9 +1,12 @@
 #include "Modules/module.h"
 
-std::filesystem::path planPath = std::filesystem::current_path() / "Daten.xlsx";
-int planIndex;
-int plan90Index = 4;
-int plan45Index = 5;
+namespace {
+    std::filesystem::path planPath = std::filesystem::current_path() / "Daten.xlsx";
+    int planIndex;
+    int plan90Index = 4;
+    int plan45Index = 5;
+}
+
 
 class Plan {
 public:

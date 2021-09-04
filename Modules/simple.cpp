@@ -1,7 +1,10 @@
 #include "Modules/module.h"
 
-std::filesystem::path simplePath = std::filesystem::current_path() / "Daten.xlsx";
-int simpleIndex = 0;
+namespace {
+    std::filesystem::path simplePath = std::filesystem::current_path() / "Daten.xlsx";
+    int simpleIndex = 0;
+}
+
 
 class Simple {
 public:

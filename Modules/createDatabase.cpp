@@ -1,8 +1,11 @@
 #include "Modules/module.h"
 
-//const std::string name = "Daten.xlsx";
-const std::string name = "Test.xlsx";
-const std::filesystem::path createPath = std::filesystem::current_path() / name;
+namespace {
+    //const std::string name = "Daten.xlsx";
+    const std::string name = "Test.xlsx";
+    const std::filesystem::path createPath = std::filesystem::current_path() / name;
+}
+
 
 class createDatabase {
 public:
@@ -490,20 +493,126 @@ public:
         return;
     }
 
+    static void createTurn() {
+        int column = 1;
+        int row = 1;
+        int color = 191;
+
+        std::string header[1][12] = {{"Material","Plan Vc min","Plan Vc typ","Plan Vc max","Laengs Vc min SR","Laengs Vc typ SR","Laengs Vc max SR",
+                                      "Laengs Vc min SL","Laengs Vc typ SL","Laengs Vc max SL","Kc","Mc"}};
+        const std::string mat[1][32] = {{"Gusseisen mit Kugelgrafit <= 250 HB","Gusseisen mit Kugelgrafit > 250 HB","Gusseisen mit Lamellengrafit <= 200 HB","Gusseisen mit Lamellengrafit > 200 HB",
+                                   "Temperguss <= 230 HB","Temperguss > 230 HB","Nichtrostenderstahl, austenitisch Rm <= 680","Nichtrostenderstahl, austenitisch Rm > 680",
+                                   "Nichtrostenderstahl, ferritisch Rm <= 700","Nichtrostenderstahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
+                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuZn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
+                                   "Faserverstärkte Kunststoffe","Thermoplast, Duroplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500",
+                                   "Einsatzstahl Rm <= 570","Einsatzstahl Rm > 570","Stahlguss Rm <= 700","Stahlguss Rm > 700","Verguetungsstahl, legiert Rm <= 750","Verguetungsstahl, legiert Rm > 750",
+                                   "Verguetungsstahl, unlegiert Rm <= 650","Verguetungsstahl, unlegiert Rm > 650","Werkzeugstahl Rm <= 750","Werkzeugstahl Rm > 750"}};
+        double numbers[32][11] = {
+            {210, 270, 330, 160, 210, 260, 250, 320, 410, 1005, 0.25},
+            {160, 200, 250, 140, 170, 210, 180, 230, 300, 1132, 0.44},
+            {300, 370, 440, 230, 280, 330, 380, 450, 520, 950,  0.21},
+            {195, 250, 305, 140, 190, 240, 230, 300, 370, 1470, 0.26},
+            {190, 235, 280, 140, 170, 200, 240, 300, 370, 1313, 0.2},
+            {150, 190, 230, 100, 130, 160, 200, 260, 330, 1313, 0.2},
+            {140, 170, 200, 90,  110, 130, 200, 230, 260, 1820, 0.26},
+            {100, 120, 140, 70,  90,  110, 130, 150, 170, 1820, 0.26},
+            {180, 215, 240, 160, 180, 200, 230, 250, 270, 2350, 0.21},
+            {130, 160, 190, 110, 130, 150, 150, 190, 230, 1820, 0.26},
+            {310, 400, 490, 300, 360, 420, 450, 550, 650, 830,  0.23},
+            {290, 330, 420, 200, 270, 340, 300, 400, 500, 544,  0.24},
+            {350, 450, 560, 380, 450, 520, 600, 700, 800, 830,  0.23},
+            {200, 320, 440, 240, 300, 360, 400, 500, 600, 780,  0.23},
+            {200, 230, 260, 130, 150, 170, 280, 310, 340, 780,  0.18},
+            {320, 355, 390, 250, 270, 300, 400, 440, 480, 640,  0.25},
+            {230, 320, 410, 190, 220, 310, 340, 420, 500, 1,    0.1},
+            {340, 430, 520, 270, 360, 450, 400, 500, 600, 1,    0.1},
+            {180, 250, 320, 130, 200, 270, 240, 300, 360, 1200, 0.18},
+            {130, 200, 270, 100, 160, 220, 200, 250, 360, 1200, 0.18},
+            {210, 280, 350, 150, 220, 300, 280, 340, 400, 1780, 0.17},
+            {160, 230, 300, 100, 170, 240, 220, 290, 350, 2260, 0.3},
+            {200, 270, 320, 150, 210, 260, 250, 320, 360, 1820, 0.22},
+            {160, 220, 270, 110, 160, 210, 200, 270, 340, 2290, 0.17},
+            {140, 180, 220, 105, 155, 180, 160, 200, 240, 1313, 0.2},
+            {100, 135, 170, 80,  110, 140, 130, 160, 190, 1313, 0.2},
+            {100, 160, 220, 90,  130, 180, 125, 185, 245, 2500, 0.26},
+            {80,  130, 180, 70,  110, 160, 100, 150, 200, 2220, 0.26},
+            {180, 250, 320, 120, 190, 240, 220, 300, 380, 1516, 0.27},
+            {110, 200, 280, 110, 150, 200, 190, 250, 310, 2130, 0.18},
+            {95,  145, 195, 85,  125, 170, 115, 165, 215, 1410, 0.39},
+            {60,  110, 160, 40,  80,  120, 100, 140, 180, 1820, 0.26}
+        };
+        xlnt::workbook wb;
+        wb.load(createPath);
+        xlnt::worksheet ws = wb.create_sheet(6);
+
+        //create table
+        while (column <= 12) {
+            ws.cell(column, 1).value(header[0][column-1]);
+            ws.cell(column, 1).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
+            ws.cell(column, 1).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
+            column++;
+        }
+
+        while (row <= 33) {
+            ws.cell(1, row).value(mat[0][row-2]);
+            ws.cell(1, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
+            row++;
+        }
+
+        column = 2;
+        row = 2;
+        while (row <= 33) {
+            while (column <= 12) {
+                ws.cell(column, row).value(numbers[row-2][column-2]);
+                ws.cell(column, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
+                column++;
+            }
+            column = 2;
+            row++;
+        }
+
+        column = 1;
+        row = 3;
+        color = 242;
+        while (row <= 33) {
+            while (column <= 12) {
+                ws.cell(column, row).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
+                column++;
+            }
+            column = 1;
+            row = row + 2;
+        }
+
+        ws.title("Drehen");
+        column = 2;
+        while (column <= 10) {
+            ws.column_properties(column).width = 15;
+            column++;
+        }
+        ws.column_properties(1).width = 45;
+        ws.column_properties(11).width = 10;
+        ws.column_properties(12).width = 10;
+
+        wb.save(name);
+
+        return;
+    }
+
     static void createSettings() {
         int column = 1;
         int row = 1;
         int color = 191;
 
-        const std::string array[8][3] = {
+        const std::string array[9][3] = {
             {"Name",            "Wert",     "Hilfe"},
-            {"Warnung",         "Ja",       "Ob beim Programm start der Disclaimer angezeigt werden soll (Ja|Nein)"},
-            {"max RPM",         "77",    "Die maximale Drehzal der Machine"},
-            {"max Leistung",    "77",      "Die maximale Spindelleistung der Maschine (in kW)"},
-            {"Bedingungen",     "normal",   "die Bedingungen der Bearbeitung (auspanung, Werkzeuglaenge und Stabilitaet der Maschine) (instabil|normal|stabil)"},
-            {"Schneidstoff",    "VHM",      "Der standart Schneidstoff für Werkzeuge (HSS|VHM|Keramik)"},
-            {"Spitzenwinkel",   "77",      "Der standart Spitzenwinkel fuer Bohrer (118|130|140)"},
-            {"Kuehlung",        "Trocken",  "Die standart Kuehlung der Werkzeuge (Trocken|KSS|Oel)"}
+            {"disclaimer",      "Ja",       "Ob beim Programm start der Disclaimer angezeigt werden soll (Ja|Nein)"},
+            {"maxRpmFr",        "77",       "Die maximale Drehzal der Fraesmachine"},
+            {"maxPc",           "77",       "Die maximale Spindelleistung der Maschine (in kW)"},
+            {"bed",             "normal",   "die Bedingungen der Bearbeitung (auspanung, Werkzeuglaenge und Stabilitaet der Maschine) (instabil|normal|stabil)"},
+            {"schn",            "VHM",      "Der standart Schneidstoff für Werkzeuge (HSS|VHM|Keramik)"},
+            {"spiWi",           "77",       "Der standart Spitzenwinkel fuer Bohrer (118|130|140)"},
+            {"cooling",         "Trocken",  "Die standart Kuehlung der Werkzeuge (Trocken|KSS|Oel)"},
+            {"maxRpmDr",        "77",       "Die maximale Drehzal der Drehmachine"}
 
         };
 
@@ -512,7 +621,7 @@ public:
         xlnt::worksheet ws = wb.create_sheet(wb.sheet_count());
 
         //create table
-        while (row <= 8) {
+        while (row <= 9) {
             while (column <= 3) {
                 ws.cell(column, row).value(array[row-1][column-1]);
                 ws.cell(column, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
@@ -525,7 +634,7 @@ public:
 
         column = 1;
         row = 1;
-        while (row <= 8) {
+        while (row <= 9) {
             while (column <= 3) {
                 ws.cell(column, row).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
                 column++;
@@ -538,6 +647,7 @@ public:
         ws.cell(2, 3).value(24000);
         ws.cell(2, 4).value(2.2);
         ws.cell(2, 7).value(118);
+        ws.cell(2, 9).value(5000);
 
         ws.title("Einstellungen");
 

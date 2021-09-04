@@ -1,19 +1,36 @@
 #include "Modules/module.h"
 
-std::filesystem::path settingsPath = std::filesystem::current_path() / "Daten.xlsx";
+namespace {
+    std::filesystem::path settingsPath = std::filesystem::current_path() / "Daten.xlsx";
+}
 
 class Settings {
 public:
     static void showDis() {
         QString temp;
         size_t index;
+        int row = 2;
 
         xlnt::workbook wb;
         wb.load(settingsPath);
         index = (wb.sheet_count() - 1);
         xlnt::worksheet ws = wb.sheet_by_index(index);
 
-        temp = QString::fromStdString(ws.cell("B2").to_string());
+        while (ws.cell(1, row).to_string() != "disclaimer") {
+            row++;
+            if(row == 64000) {
+                QMessageBox msg;
+                msg.setText(QObject::tr("Es konnte keine abfrage für den Disclaimer in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
+                msg.setIcon(QMessageBox::Critical);
+                msg.setStandardButtons(QMessageBox::Close);
+                msg.setDefaultButton(QMessageBox::Close);
+                msg.exec();
+                exit(2);
+            }
+        }
+
+        temp = QString::fromStdString(ws.cell(2, row).to_string());
 
         if(temp == "Nein") {
             return;
@@ -41,16 +58,60 @@ public:
         return;
     }
 
-    static int maxRpm() {
+    static int maxRpmFr() {
         int rpm;
         size_t index;
+        int row = 2;
 
         xlnt::workbook wb;
         wb.load(settingsPath);
         index = (wb.sheet_count() - 1);
         xlnt::worksheet ws = wb.sheet_by_index(index);
 
-        rpm = ws.cell("B3").value<int>();
+        while (ws.cell(1, row).to_string() != "maxRpmFr") {
+            row++;
+            if(row == 64000) {
+                QMessageBox msg;
+                msg.setText(QObject::tr("Es konnte keine abfrage für den Maximale Drehzahl in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
+                msg.setIcon(QMessageBox::Critical);
+                msg.setStandardButtons(QMessageBox::Close);
+                msg.setDefaultButton(QMessageBox::Close);
+                msg.exec();
+                exit(2);
+            }
+        }
+
+        rpm = ws.cell(2, row).value<int>();
+
+        return rpm;
+    }
+
+    static int maxRpmDr() {
+        int rpm;
+        size_t index;
+        int row = 2;
+
+        xlnt::workbook wb;
+        wb.load(settingsPath);
+        index = (wb.sheet_count() - 1);
+        xlnt::worksheet ws = wb.sheet_by_index(index);
+
+        while (ws.cell(1, row).to_string() != "maxRpmDr") {
+            row++;
+            if(row == 64000) {
+                QMessageBox msg;
+                msg.setText(QObject::tr("Es konnte keine abfrage für den Maximale Drehzahl in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
+                msg.setIcon(QMessageBox::Critical);
+                msg.setStandardButtons(QMessageBox::Close);
+                msg.setDefaultButton(QMessageBox::Close);
+                msg.exec();
+                exit(2);
+            }
+        }
+
+        rpm = ws.cell(2, row).value<int>();
 
         return rpm;
     }
@@ -58,13 +119,28 @@ public:
     static double maxKw() {
         double pc;
         size_t index;
+        int row = 2;
 
         xlnt::workbook wb;
         wb.load(settingsPath);
         index = (wb.sheet_count() - 1);
         xlnt::worksheet ws = wb.sheet_by_index(index);
 
-        pc = ws.cell("B4").value<double>();
+        while (ws.cell(1, row).to_string() != "maxPc") {
+            row++;
+            if(row == 64000) {
+                QMessageBox msg;
+                msg.setText(QObject::tr("Es konnte keine abfrage für die Spindelleistung in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
+                msg.setIcon(QMessageBox::Critical);
+                msg.setStandardButtons(QMessageBox::Close);
+                msg.setDefaultButton(QMessageBox::Close);
+                msg.exec();
+                exit(2);
+            }
+        }
+
+        pc = ws.cell(2, row).value<double>();
 
         return pc;
     }
@@ -73,13 +149,28 @@ public:
         std::string temp;
         int con;
         size_t index;
+        int row = 2;
 
         xlnt::workbook wb;
         wb.load(settingsPath);
         index = (wb.sheet_count() - 1);
         xlnt::worksheet ws = wb.sheet_by_index(index);
 
-        temp = ws.cell("B5").to_string();
+        while (ws.cell(1, row).to_string() != "bed") {
+            row++;
+            if(row == 64000) {
+                QMessageBox msg;
+                msg.setText(QObject::tr("Es konnte keine abfrage für die standart Bedingung in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
+                msg.setIcon(QMessageBox::Critical);
+                msg.setStandardButtons(QMessageBox::Close);
+                msg.setDefaultButton(QMessageBox::Close);
+                msg.exec();
+                exit(2);
+            }
+        }
+
+        temp = ws.cell(2, row).to_string();
 
         if(temp == "stabil" or temp == "stable") {
             con = 2;
@@ -96,13 +187,28 @@ public:
         std::string temp;
         int mat;
         size_t index;
+        int row = 2;
 
         xlnt::workbook wb;
         wb.load(settingsPath);
         index = (wb.sheet_count() - 1);
         xlnt::worksheet ws = wb.sheet_by_index(index);
 
-        temp = ws.cell("B6").to_string();
+        while (ws.cell(1, row).to_string() != "schn") {
+            row++;
+            if(row == 64000) {
+                QMessageBox msg;
+                msg.setText(QObject::tr("Es konnte keine abfrage für den standart Schneidstoff in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
+                msg.setIcon(QMessageBox::Critical);
+                msg.setStandardButtons(QMessageBox::Close);
+                msg.setDefaultButton(QMessageBox::Close);
+                msg.exec();
+                exit(2);
+            }
+        }
+
+        temp = ws.cell(2, row).to_string();
 
         if(temp == "Keramik") {
             mat = 2;
@@ -119,13 +225,28 @@ public:
         std::string temp;
         int angle;
         size_t index;
+        int row = 2;
 
         xlnt::workbook wb;
         wb.load(settingsPath);
         index = (wb.sheet_count() - 1);
         xlnt::worksheet ws = wb.sheet_by_index(index);
 
-        temp = ws.cell("B7").to_string();
+        while (ws.cell(1, row).to_string() != "spiWi") {
+            row++;
+            if(row == 64000) {
+                QMessageBox msg;
+                msg.setText(QObject::tr("Es konnte keine abfrage für den standart Spitzenwinkel an Bohrern in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
+                msg.setIcon(QMessageBox::Critical);
+                msg.setStandardButtons(QMessageBox::Close);
+                msg.setDefaultButton(QMessageBox::Close);
+                msg.exec();
+                exit(2);
+            }
+        }
+
+        temp = ws.cell(2, row).to_string();
 
         if(temp == "140") {
             angle = 2;
@@ -142,13 +263,28 @@ public:
         std::string temp;
         int cool;
         size_t index;
+        int row = 2;
 
         xlnt::workbook wb;
         wb.load(settingsPath);
         index = (wb.sheet_count() - 1);
         xlnt::worksheet ws = wb.sheet_by_index(index);
 
-        temp = ws.cell("B8").to_string();
+        while (ws.cell(1, row).to_string() != "cooling") {
+            row++;
+            if(row == 64000) {
+                QMessageBox msg;
+                msg.setText(QObject::tr("Es konnte keine abfrage für die standart Kuehlung in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
+                msg.setIcon(QMessageBox::Critical);
+                msg.setStandardButtons(QMessageBox::Close);
+                msg.setDefaultButton(QMessageBox::Close);
+                msg.exec();
+                exit(2);
+            }
+        }
+
+        temp = ws.cell(2, row).to_string();
 
         if(temp == "Oel") {
             cool = 2;

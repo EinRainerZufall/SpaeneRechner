@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>10</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -1560,7 +1560,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>0 mm³/min</string>
+       <string>0 cm³/min</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2405,7 +2405,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>0 mm³/min</string>
+       <string>0 cm³/min</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -3483,15 +3483,745 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_laengsdrehen">
+    <widget class="QWidget" name="tab_drehen">
      <attribute name="title">
-      <string>Längsdrehen</string>
+      <string>Drehen</string>
      </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_plandrehen">
-     <attribute name="title">
-      <string>Plandrehen</string>
-     </attribute>
+     <widget class="QSpinBox" name="MaxDrehzahlAuswahlTurn">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>70</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>1000</number>
+      </property>
+      <property name="maximum">
+       <number>64000</number>
+      </property>
+      <property name="value">
+       <number>1000</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_104">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>225</y>
+        <width>100</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Bedingung</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_105">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>45</y>
+        <width>200</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Werkstückdruchmesser</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_106">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>45</y>
+        <width>150</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Material auswahl</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_107">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>135</y>
+        <width>50</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vc</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_16">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>250</y>
+        <width>120</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QRadioButton" name="TrockenTurn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Trocken</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="KssTurn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>25</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>KSS</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="OilTurn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Öl</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_108">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>135</y>
+        <width>150</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>max. Drehzahl</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="DrehzahlOutTurn">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>425</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_109">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>225</y>
+        <width>150</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vorschub</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VcOutTurn">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>160</y>
+        <width>90</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0 m/min</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_17">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>250</y>
+        <width>120</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QRadioButton" name="BeInstabilTurn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>instabil</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="BeNormalTurn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>25</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>normal</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="BeStabilTurn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>stabil</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_110">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>490</y>
+        <width>140</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Zeitspanvolumen</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_111">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>400</y>
+        <width>100</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Drehzahl</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_112">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>100</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <underline>true</underline>
+       </font>
+      </property>
+      <property name="text">
+       <string>Eingaben:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_113">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>375</y>
+        <width>175</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <underline>true</underline>
+       </font>
+      </property>
+      <property name="text">
+       <string>fertige Berechnungen:</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="WerkstueckDurchmesserAuswahl">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>70</y>
+        <width>90</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="minimum">
+       <double>0.010000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>160.990000000000009</double>
+      </property>
+      <property name="value">
+       <double>1.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BtnCalcTurn">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>625</y>
+        <width>125</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Berechnen</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="MaterialAuswahlTurn">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>350</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="maxVisibleItems">
+       <number>25</number>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="ApAuswahlTurn">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>250</y>
+        <width>70</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="decimals">
+       <number>1</number>
+      </property>
+      <property name="minimum">
+       <double>1.000000000000000</double>
+      </property>
+      <property name="value">
+       <double>1.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_114">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>490</y>
+        <width>150</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Spindelleistung</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_115">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>400</y>
+        <width>100</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vorschub</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="RealVcOutTurn">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>160</y>
+        <width>90</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0 m/min</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_116">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>135</y>
+        <width>100</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>reale Vc</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_117">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>225</y>
+        <width>150</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Zustellung</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="PcOutTurn">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>515</y>
+        <width>90</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0 kW</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_118">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>225</y>
+        <width>120</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Kühlung</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="FuAuswahlTurn">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>250</y>
+        <width>70</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="decimals">
+       <number>3</number>
+      </property>
+      <property name="minimum">
+       <double>0.050000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>2.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.001000000000000</double>
+      </property>
+      <property name="value">
+       <double>0.050000000000000</double>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_18">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>250</y>
+        <width>120</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none
+</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QRadioButton" name="SchnHssTurn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>HSS</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="SchnVhmTurn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>25</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>VHM</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="SchnKeramikTurn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Keramik</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_119">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>225</y>
+        <width>100</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Schneidstoff</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="VorschubOutTurn">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>425</y>
+        <width>150</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0 mm/min</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="QOutTurn">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>515</y>
+        <width>130</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0 cm³/min</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="turnstyle">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>70</y>
+        <width>175</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Plandrehen</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Längsschruppdrehen</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Längsschlichtdrehen</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_46">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>45</y>
+        <width>47</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Bearbeitung</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_gewinde">
      <attribute name="title">

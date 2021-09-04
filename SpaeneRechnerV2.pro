@@ -41,6 +41,7 @@ SOURCES += \
     Modules/settings.cpp \
     Modules/simple.cpp \
     Modules/slot.cpp \
+    Modules/turn.cpp \
     main.cpp \
     mainwindow.cpp
 

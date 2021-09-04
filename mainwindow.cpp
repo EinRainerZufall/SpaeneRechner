@@ -10,6 +10,7 @@
 #include "Modules/plan.cpp"
 #include "Modules/drill.cpp"
 #include "Modules/createDatabase.cpp"
+#include "Modules/turn.cpp"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -26,10 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
 //    ui->mainTabWidget->setTabVisible(2, false);   //Nutfraesen
 //    ui->mainTabWidget->setTabVisible(3, false);   //Planfraesen
 //    ui->mainTabWidget->setTabVisible(4, false);   //Bohren
-//    ui->mainTabWidget->setTabVisible(5, false);   //Laengsdrehen
-//    ui->mainTabWidget->setTabVisible(6, false);   //Plandrehen
-//    ui->mainTabWidget->setTabVisible(7, false);   //Gewinde
-//    ui->mainTabWidget->setTabVisible(8, false);   //Extras
+//    ui->mainTabWidget->setTabVisible(5, false);   //Drehen
+//    ui->mainTabWidget->setTabVisible(6, false);   //Gewinde
+//    ui->mainTabWidget->setTabVisible(7, false);   //Extras
 //    ui->mainTabWidget->setCurrentIndex(0);
 
 
@@ -41,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
         createDatabase::createSlot();
         createDatabase::createPlan90();
         createDatabase::createPlan45();
+        createDatabase::createTurn();
 
         createDatabase::createSettings();
     }
@@ -48,11 +49,13 @@ MainWindow::MainWindow(QWidget *parent)
     Settings::showDis();
     //Einstellungen Lesen
     //max RPM
-    ui->MaxDrehzahlAuswahlEinfach->setValue(Settings::maxRpm());
-    ui->MaxDrehzahlAuswahlTpc->setValue(Settings::maxRpm());
-    ui->MaxDrehzahlAuswahlBohren->setValue(Settings::maxRpm());
-    ui->MaxDrehzahlAuswahlNut->setValue(Settings::maxRpm());
-    ui->MaxDrehzahlAuswahlPlan->setValue(Settings::maxRpm());
+    ui->MaxDrehzahlAuswahlEinfach->setValue(Settings::maxRpmFr());
+    ui->MaxDrehzahlAuswahlTpc->setValue(Settings::maxRpmFr());
+    ui->MaxDrehzahlAuswahlBohren->setValue(Settings::maxRpmFr());
+    ui->MaxDrehzahlAuswahlNut->setValue(Settings::maxRpmFr());
+    ui->MaxDrehzahlAuswahlPlan->setValue(Settings::maxRpmFr());
+    ui->MaxDrehzahlAuswahlTurn->setValue(Settings::maxRpmDr());
+
     //mashine condition
     switch (Settings::condition()) {
     case 2:
@@ -60,18 +63,21 @@ MainWindow::MainWindow(QWidget *parent)
         ui->BeStabilNut->setChecked(true);
         ui->BeStabilPlan->setChecked(true);
         ui->BeStabilBohren->setChecked(true);
+        ui->BeStabilTurn->setChecked(true);
         break;
     case 1:
         ui->BeNormalTpc->setChecked(true);
         ui->BeNormalNut->setChecked(true);
         ui->BeNormalPlan->setChecked(true);
         ui->BeNormalBohren->setChecked(true);
+        ui->BeNormalTurn->setChecked(true);
         break;
     case 0:
         ui->BeInstabilTpc->setChecked(true);
         ui->BeInstabilNut->setChecked(true);
         ui->BeInstabilPlan->setChecked(true);
         ui->BeInstabilBohren->setChecked(true);
+        ui->BeInstabilTurn->setChecked(true);
         break;
     }
     //cuting material  
@@ -81,18 +87,21 @@ MainWindow::MainWindow(QWidget *parent)
         ui->SchnKeramikNut->setChecked(true);
         ui->SchnKeramikPlan->setChecked(true);
         ui->SchnVhmBohren->setChecked(true);
+        ui->SchnVhmTurn->setChecked(true);
         break;
     case 1:
         ui->SchnVhmTpc->setChecked(true);
         ui->SchnVhmNut->setChecked(true);
         ui->SchnVhmPlan->setChecked(true);
         ui->SchnVhmBohren->setChecked(true);
+        ui->SchnVhmTurn->setChecked(true);
         break;
     case 0:
         ui->SchnHssTpc->setChecked(true);
         ui->SchnHssNut->setChecked(true);
         ui->SchnHssPlan->setChecked(true);
         ui->SchnHssBohren->setChecked(true);
+        ui->SchnHssTurn->setChecked(true);
         break;
     }
     //drill angle
@@ -114,18 +123,21 @@ MainWindow::MainWindow(QWidget *parent)
         ui->OilNut->setChecked(true);
         ui->OilPlan->setChecked(true);
         ui->OilBohren->setChecked(true);
+        ui->OilTurn->setChecked(true);
         break;
     case 1:
         ui->KssTpc->setChecked(true);
         ui->KssNut->setChecked(true);
         ui->KssPlan->setChecked(true);
         ui->KssBohren->setChecked(true);
+        ui->KssTurn->setChecked(true);
         break;
     case 0:
         ui->TrockenTpc->setChecked(true);
         ui->TrockenNut->setChecked(true);
         ui->TrockenPlan->setChecked(true);
         ui->TrockenBohren->setChecked(true);
+        ui->TrockenTurn->setChecked(true);
         break;
     }
 
@@ -144,6 +156,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Drill calc
     ui->MaterialAuswahlBohren->addItems(Drill::matList());
+
+    //Turn calc
+    ui->MaterialAuswahlTurn->addItems(Turn::matList());
 }
 
 MainWindow::~MainWindow()
@@ -220,6 +235,7 @@ void MainWindow::on_btnCreateAll_clicked()
     createDatabase::createSlot();
     createDatabase::createPlan90();
     createDatabase::createPlan45();
+    createDatabase::createTurn();
 
     createDatabase::createSettings();
 }
@@ -757,3 +773,159 @@ void MainWindow::on_FraeserdurchmesserAuswahlPlan_valueChanged(double arg1)
     ui->AeAuswahlPlan->setMaximum(arg1);
 }
 
+
+void MainWindow::on_MaterialAuswahlTurn_currentIndexChanged(int index)
+{
+    int bed;
+
+    if(ui->BeStabilTurn->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalTurn->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    ui->VcOutTurn->setText(QString::number(Turn::Vc(index, bed, ui->turnstyle->currentIndex())) + " m/min");
+}
+
+
+void MainWindow::on_turnstyle_currentIndexChanged(int index)
+{
+    int bed;
+
+    if(ui->BeStabilTurn->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalTurn->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    ui->VcOutTurn->setText(QString::number(Turn::Vc(ui->MaterialAuswahlTurn->currentIndex(), bed, index)) + " m/min");
+}
+
+
+void MainWindow::on_BeInstabilTurn_clicked()
+{
+    int bed;
+
+    if(ui->BeStabilTurn->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalTurn->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    ui->VcOutTurn->setText(QString::number(Turn::Vc(ui->MaterialAuswahlTurn->currentIndex(), bed, ui->turnstyle->currentIndex())) + " m/min");
+}
+
+
+void MainWindow::on_BeNormalTurn_clicked()
+{
+    int bed;
+
+    if(ui->BeStabilTurn->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalTurn->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    ui->VcOutTurn->setText(QString::number(Turn::Vc(ui->MaterialAuswahlTurn->currentIndex(), bed, ui->turnstyle->currentIndex())) + " m/min");
+}
+
+
+void MainWindow::on_BeStabilTurn_clicked()
+{
+    int bed;
+
+    if(ui->BeStabilTurn->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalTurn->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    ui->VcOutTurn->setText(QString::number(Turn::Vc(ui->MaterialAuswahlTurn->currentIndex(), bed, ui->turnstyle->currentIndex())) + " m/min");
+}
+
+
+void MainWindow::on_BtnCalcTurn_clicked()
+{
+    const double pi = M_PI;
+    double D = ui->WerkstueckDurchmesserAuswahl->value();
+    int maxN = ui->MaxDrehzahlAuswahlTurn->value();
+    int Kc = Turn::Kc(ui->MaterialAuswahlTurn->currentIndex());
+    double Mc = Turn::Mc(ui->MaterialAuswahlTurn->currentIndex());
+    double ap = ui->ApAuswahlTurn->value();
+    double fu = ui->FuAuswahlTurn->value();
+    double C4 = 1.3;  //Verschleiss
+    double C1;        //Kuehlung
+    double C2;        //Schneidstoff
+    double C3;        //Vc
+    double Vc;
+    double Pc;
+    double K;
+    double Q;
+    double h;
+    int N;
+    int bed;
+
+    if(ui->BeStabilTurn->isChecked()) {
+        bed = 2;
+    }else if(ui->BeNormalTurn->isChecked()) {
+        bed = 1;
+    }else {
+        bed = 0;
+    }
+
+    Vc = Turn::Vc(ui->MaterialAuswahlTurn->currentIndex(), bed, ui->turnstyle->currentIndex());
+
+    if(ui->SchnKeramikTurn->isChecked()) {
+        C2 = 0.9;
+    }else if(ui->SchnVhmTurn->isChecked()) {
+        C2 = 1;
+    }else {
+        C2 = 1.2;
+    }
+
+    N = (Vc * 1000) / (pi * D);
+    if(N > maxN) {
+        N = maxN;
+    }
+
+    if(ui->OilTurn->isChecked()) {
+        C1 = 0.85;
+    }else if (ui->KssTurn->isChecked()) {
+        C1 = 0.9;
+    }else {
+        C1 = 1;
+    }
+
+    if(Vc > 250) {
+        C3 = pow((100 / Vc), 0.1);
+    }else if(Vc > 80) {
+        C3 = 1.03 - ((3 * Vc) / pow(10, 4));
+    }else {
+        C3 = 1.15;
+    }
+
+    Q = Vc * ap * fu * (1 - (ap / D));
+
+    h = fu * sin(45); //Einstellwinkel
+
+    K = (Kc / pow(h, Mc)) * C1 * C2 * C3 * C4;
+
+    Pc = (Q * K) / (60000 * 0.85);
+
+    ui->RealVcOutTurn->setText(QString::number(round((N * pi * D) / 1000)) + " m/min");
+
+    ui->DrehzahlOutTurn->setText(QString::number(N));
+    ui->VorschubOutTurn->setText(QString::number(N * fu) + " mm/min");
+    ui->QOutTurn->setText(QString::number(Q) + " cm³/min");
+    ui->PcOutTurn->setText(QString::number(Pc, 'g', 1) + " kW");
+}

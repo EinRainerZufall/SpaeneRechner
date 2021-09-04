@@ -83,6 +83,18 @@ private slots:
 
     void on_FraeserdurchmesserAuswahlPlan_valueChanged(double arg1);
 
+    void on_MaterialAuswahlTurn_currentIndexChanged(int index);
+
+    void on_BtnCalcTurn_clicked();
+
+    void on_turnstyle_currentIndexChanged(int index);
+
+    void on_BeInstabilTurn_clicked();
+
+    void on_BeNormalTurn_clicked();
+
+    void on_BeStabilTurn_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
