@@ -17,7 +17,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Späne Rechner</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="mainTabWidget">
@@ -1326,7 +1326,7 @@
        <rect>
         <x>450</x>
         <y>515</y>
-        <width>91</width>
+        <width>90</width>
         <height>25</height>
        </rect>
       </property>
@@ -1338,6 +1338,41 @@
       </property>
       <property name="readOnly">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBarTpc">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>541</y>
+        <width>113</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar::chunk {
+background-color: rgb(0, 179, 0);
+width: 1px;
+}
+
+QProgressBar {
+border: 1px solid #acacac;
+border-radius: 0px;
+text-align: center;
+background: #dfdfdf;
+}</string>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
+      </property>
+      <property name="invertedAppearance">
+       <bool>false</bool>
+      </property>
+      <property name="format">
+       <string>%v</string>
       </property>
      </widget>
     </widget>
@@ -2034,6 +2069,41 @@
       </property>
       <property name="readOnly">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBarNut">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>541</y>
+        <width>113</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar::chunk {
+background-color: rgb(0, 179, 0);
+width: 1px;
+}
+
+QProgressBar {
+border: 1px solid #acacac;
+border-radius: 0px;
+text-align: center;
+background: #dfdfdf;
+}</string>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
+      </property>
+      <property name="invertedAppearance">
+       <bool>false</bool>
+      </property>
+      <property name="format">
+       <string>%v</string>
       </property>
      </widget>
     </widget>
@@ -2787,6 +2857,41 @@
        </property>
       </item>
      </widget>
+     <widget class="QProgressBar" name="progressBarPlan">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>541</y>
+        <width>113</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar::chunk {
+background-color: rgb(0, 179, 0);
+width: 1px;
+}
+
+QProgressBar {
+border: 1px solid #acacac;
+border-radius: 0px;
+text-align: center;
+background: #dfdfdf;
+}</string>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
+      </property>
+      <property name="invertedAppearance">
+       <bool>false</bool>
+      </property>
+      <property name="format">
+       <string>%v</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_bohren">
      <attribute name="title">
@@ -3482,6 +3587,41 @@
        <bool>true</bool>
       </property>
      </widget>
+     <widget class="QProgressBar" name="progressBarBohren">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>541</y>
+        <width>113</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar::chunk {
+background-color: rgb(0, 179, 0);
+width: 1px;
+}
+
+QProgressBar {
+border: 1px solid #acacac;
+border-radius: 0px;
+text-align: center;
+background: #dfdfdf;
+}</string>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
+      </property>
+      <property name="invertedAppearance">
+       <bool>false</bool>
+      </property>
+      <property name="format">
+       <string>%v</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_drehen">
      <attribute name="title">
@@ -3913,10 +4053,16 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
       <property name="decimals">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="minimum">
-       <double>1.000000000000000</double>
+       <double>0.050000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>100.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.010000000000000</double>
       </property>
       <property name="value">
        <double>1.000000000000000</double>
@@ -4214,12 +4360,47 @@
        <rect>
         <x>700</x>
         <y>45</y>
-        <width>47</width>
+        <width>100</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
        <string>Bearbeitung</string>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBarTurn">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>541</y>
+        <width>113</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar::chunk {
+background-color: rgb(0, 179, 0);
+width: 1px;
+}
+
+QProgressBar {
+border: 1px solid #acacac;
+border-radius: 0px;
+text-align: center;
+background: #dfdfdf;
+}</string>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
+      </property>
+      <property name="invertedAppearance">
+       <bool>false</bool>
+      </property>
+      <property name="format">
+       <string>%v</string>
       </property>
      </widget>
     </widget>

@@ -1,9 +1,10 @@
 #include "Modules/module.h"
 
-namespace {
-    std::filesystem::path slotPath = std::filesystem::current_path() / "Daten.xlsx";
-    int slotIndex = 3;
+namespace  {
+std::filesystem::path slotPath = std::filesystem::current_path() / "Daten.xlsx";
+int slotIndex = 3;
 }
+
 
 class Slot {
 public:

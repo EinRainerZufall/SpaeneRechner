@@ -1,8 +1,9 @@
 #include "Modules/module.h"
 
-namespace {
-    std::filesystem::path settingsPath = std::filesystem::current_path() / "Daten.xlsx";
+namespace  {
+std::filesystem::path settingsPath = std::filesystem::current_path() / "Daten.xlsx";
 }
+
 
 class Settings {
 public:
@@ -130,7 +131,36 @@ public:
             row++;
             if(row == 64000) {
                 QMessageBox msg;
-                msg.setText(QObject::tr("Es konnte keine abfrage für die Spindelleistung in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                msg.setText(QObject::tr("Es konnte keine abfrage für die Spindelleistung der Fraesmaschine in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
+                msg.setIcon(QMessageBox::Critical);
+                msg.setStandardButtons(QMessageBox::Close);
+                msg.setDefaultButton(QMessageBox::Close);
+                msg.exec();
+                exit(2);
+            }
+        }
+
+        pc = ws.cell(2, row).value<double>();
+
+        return pc;
+    }
+
+    static double maxKwDr() {
+        double pc;
+        size_t index;
+        int row = 2;
+
+        xlnt::workbook wb;
+        wb.load(settingsPath);
+        index = (wb.sheet_count() - 1);
+        xlnt::worksheet ws = wb.sheet_by_index(index);
+
+        while (ws.cell(1, row).to_string() != "maxPcDr") {
+            row++;
+            if(row == 64000) {
+                QMessageBox msg;
+                msg.setText(QObject::tr("Es konnte keine abfrage für die Spindelleistung der Drehmaschine in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
                 msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
                 msg.setIcon(QMessageBox::Critical);
                 msg.setStandardButtons(QMessageBox::Close);

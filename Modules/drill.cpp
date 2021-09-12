@@ -1,8 +1,8 @@
 #include "Modules/module.h"
 
-namespace {
-    std::filesystem::path drillPath = std::filesystem::current_path() / "Daten.xlsx";
-    int drillIndex = 2;
+namespace  {
+std::filesystem::path drillPath = std::filesystem::current_path() / "Daten.xlsx";
+int drillIndex = 2;
 }
 
 

@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 
-
 #include <iostream>
 #include <xlnt/xlnt.hpp>
 #include <QCoreApplication>
@@ -13,6 +12,7 @@
 #include <cmath>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QCursor>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -94,6 +94,16 @@ private slots:
     void on_BeNormalTurn_clicked();
 
     void on_BeStabilTurn_clicked();
+
+    void on_progressBarTpc_valueChanged(int value);
+
+    void on_progressBarNut_valueChanged(int value);
+
+    void on_progressBarPlan_valueChanged(int value);
+
+    void on_progressBarBohren_valueChanged(int value);
+
+    void on_progressBarTurn_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;

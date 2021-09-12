@@ -18,20 +18,22 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->setFixedSize(1000,700);
+    this->setFixedSize(1000, 700);
     this->setCentralWidget(ui->mainTabWidget);
 
-
+#ifdef QT_DEBUG
+    //Debug things
+#else
     //Release things
 //    ui->mainTabWidget->setTabVisible(1, false);   //Dynamisch
-//    ui->mainTabWidget->setTabVisible(2, false);   //Nutfraesen
+    ui->mainTabWidget->setTabVisible(2, false);   //Nutfraesen
 //    ui->mainTabWidget->setTabVisible(3, false);   //Planfraesen
 //    ui->mainTabWidget->setTabVisible(4, false);   //Bohren
 //    ui->mainTabWidget->setTabVisible(5, false);   //Drehen
-//    ui->mainTabWidget->setTabVisible(6, false);   //Gewinde
-//    ui->mainTabWidget->setTabVisible(7, false);   //Extras
-//    ui->mainTabWidget->setCurrentIndex(0);
-
+    ui->mainTabWidget->setTabVisible(6, false);   //Gewinde
+    ui->mainTabWidget->setTabVisible(7, false);   //Extras
+    ui->mainTabWidget->setCurrentIndex(0);
+#endif
 
     //check if the xlsx exist
     if(Settings::xlsxCheck()) {
@@ -45,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         createDatabase::createSettings();
     }
+
     //Disclaimer
     Settings::showDis();
     //Einstellungen Lesen
@@ -141,23 +144,23 @@ MainWindow::MainWindow(QWidget *parent)
         break;
     }
 
-    //simple calc
+    //simple mat
     ui->MaterialAuswahlEinfach->addItems(Simple::matList());
     ui->FraeserDurchmesserAuswahlEinfach->addItems(Simple::dList());
 
-    //dynamic calc
+    //dynamic mat
     ui->MaterialAuswahlTpc->addItems(Dynamic::matList());
 
-    //Slot calc
+    //Slot mat
     ui->MaterialAuswahlNut->addItems(Slot::matList());
 
-    //Plan90 calc
+    //Plan90 mat
     ui->MaterialAuswahlPlan->addItems(Plan::matList(ui->SchneidenGeometryPlan->currentIndex()));
 
-    //Drill calc
+    //Drill mat
     ui->MaterialAuswahlBohren->addItems(Drill::matList());
 
-    //Turn calc
+    //Turn mat
     ui->MaterialAuswahlTurn->addItems(Turn::matList());
 }
 
@@ -183,6 +186,8 @@ void MainWindow::on_BtnCalcEinfach_clicked()
     double Vc = Simple::Vc(ui->MaterialAuswahlEinfach->currentIndex());
     double fz = Simple::fz(ui->FraeserDurchmesserAuswahlEinfach->currentIndex(),ui->MaterialAuswahlEinfach->currentIndex());
 
+    setCursor(Qt::CursorShape::WaitCursor);
+
     N = (Vc * 1000) / (pi * D);
     if(N > maxN) {
         N = maxN;
@@ -200,6 +205,8 @@ void MainWindow::on_BtnCalcEinfach_clicked()
     ui->ApTpcAluOutEinfach->setText(QString::number(D * 2) + " mm");
     ui->AeAluOutEinfach->setText(QString::number(D * 0.125) + " mm");
     ui->AeTpcAluOutEinfach->setText(QString::number(D * 0.2) + " mm");
+
+    setCursor(Qt::CursorShape::ArrowCursor);
 }
 
 void MainWindow::on_btnEmail_clicked()
@@ -250,7 +257,7 @@ void MainWindow::on_BtnCalcTpc_clicked()
     int z = ui->SchneidenAuswahlTpc->value();
     int Kc = Dynamic::Kc(ui->MaterialAuswahlTpc->currentIndex());
     double Mc = Dynamic::Mc(ui->MaterialAuswahlTpc->currentIndex());
-    int maxKw = Settings::maxKw();
+    double maxKw = Settings::maxKw();
     double C4 = 1.5;  //Verschleiss
     double C1;        //Kuehlung
     double C2;        //Schneidstoff
@@ -261,7 +268,10 @@ void MainWindow::on_BtnCalcTpc_clicked()
     double Pc;
     double def;
     int eTool;
+    double Fcut;
     int N;
+
+    setCursor(Qt::CursorShape::WaitCursor);
 
     if(ui->BeStabilTpc->isChecked()) {
         Vc = Dynamic::Vc(ui->MaterialAuswahlTpc->currentIndex(), 2);
@@ -312,7 +322,7 @@ void MainWindow::on_BtnCalcTpc_clicked()
     //tpcPc = tpcZ * (90 + Math.Asin((tpcAe - (tpcFd / 2)) / (tpcFd / 2))) / 360 * (tpcKc / (tpcFz ^ tpcMc) * (tpcAp * tpcFz) * tpcC1 * tpcC2) * tpcVc / 60 / 85 / 1000
     Pc = z * (90 + asin((ae - (D / 2)) / (D / 2))) / 360 * (Kc / pow(fz, Mc) * (ap * fz) * C1 * C2 * C3 * C4) * Vc / 60 / 85 / 1000;
 
-    double Fcut = Pc * ((2 * (maxKw * 1000)) / (D * N));
+    Fcut = Pc * ((2 * (maxKw * 1000)) / (D * N));
     def = (Fcut * pow((ap + 10), 3)) / (3 * eTool * 0.66 * (pow(D, 4) / 64));
 
     ui->RealVcOutTpc->setText(QString::number(round((N * pi * D) / 1000)) + " m/min");
@@ -321,8 +331,18 @@ void MainWindow::on_BtnCalcTpc_clicked()
     ui->VorschubOutTpc->setText(QString::number(N * z * fz) + " mm/min");
     ui->AeOutTpc->setText(QString::number(ae) + " mm");
     ui->QOutTpc->setText(QString::number(ap * ae * (N * z * fz) / 1000) + " cm³/min");
-    ui->PcOutTpc->setText(QString::number(Pc, 'g', 1) + " kW");
-    ui->DeflevtionOutTpc->setText(QString::number(def, 'g', 1) + " mm");
+    ui->PcOutTpc->setText(QString::number(Pc, 'g', 3) + " kW");
+    ui->DeflevtionOutTpc->setText(QString::number(def, 'g', 3) + " mm");
+
+    ui->progressBarTpc->setMaximum((maxKw * 1.25) * 1000);
+
+    if(Pc > (maxKw * 1.25)) {
+        Pc = maxKw * 1.25;
+    }
+
+    ui->progressBarTpc->setValue(Pc * 1000);
+
+    setCursor(Qt::CursorShape::ArrowCursor);
 }
 
 
@@ -510,6 +530,7 @@ void MainWindow::on_BtnCalcBohren_clicked()
     double fu = Drill::fu(ui->MaterialAuswahlBohren->currentIndex(), D);
     int Kc = Drill::Kc(ui->MaterialAuswahlBohren->currentIndex());
     double Mc = Drill::Mc(ui->MaterialAuswahlBohren->currentIndex());
+    double maxKw = Settings::maxKw();
     double C4 = 1.3;  //Verschleiss
     double C1;        //Kuehlung
     double C2;        //Schneidstoff
@@ -521,6 +542,8 @@ void MainWindow::on_BtnCalcBohren_clicked()
     int spWi;
     int schn;
     int bed;
+
+    setCursor(Qt::CursorShape::WaitCursor);
 
     if(ui->BeStabilBohren->isChecked()) {
         bed = 2;
@@ -580,6 +603,16 @@ void MainWindow::on_BtnCalcBohren_clicked()
     ui->VorschubUOutBohren->setText(QString::number(fu) + " mm/U");
     ui->DrehzahlOutBohren->setText(QString::number(N));
     ui->PcOutBohren->setText(QString::number(Pc, 'g', 3) + " kW");
+
+    ui->progressBarBohren->setMaximum((maxKw * 1.25) * 1000);
+
+    if(Pc > (maxKw * 1.25)) {
+        Pc = maxKw * 1.25;
+    }
+
+    ui->progressBarBohren->setValue(Pc * 1000);
+
+    setCursor(Qt::CursorShape::ArrowCursor);
 }
 
 
@@ -682,6 +715,7 @@ void MainWindow::on_BtnCalcPlan_clicked()
     double Mc = Plan::Mc(ui->MaterialAuswahlPlan->currentIndex(), schnGeo);
     double ae = ui->AeAuswahlPlan->value();
     double ap = ui->ApAuswahlPlan->value();
+    double maxKw = Settings::maxKw();
     double C4 = 1.3;  //Verschleiss
     double C1;        //Kuehlung
     double C2;        //Schneidstoff
@@ -696,6 +730,8 @@ void MainWindow::on_BtnCalcPlan_clicked()
     double phi;
     int N;
     int bed;
+
+    setCursor(Qt::CursorShape::WaitCursor);
 
     if(ui->BeStabilPlan->isChecked()) {
         bed = 2;
@@ -765,6 +801,16 @@ void MainWindow::on_BtnCalcPlan_clicked()
     ui->DrehzahlOutPlan->setText(QString::number(N));
     ui->PcOutPlan->setText(QString::number(Pc, 'g', 3) + " kW");
     ui->QOutPlan->setText(QString::number(Q) + " cm³/min");
+
+    ui->progressBarPlan->setMaximum((maxKw * 1.25) * 1000);
+
+    if(Pc > (maxKw * 1.25)) {
+        Pc = maxKw * 1.25;
+    }
+
+    ui->progressBarPlan->setValue(Pc * 1000);
+
+    setCursor(Qt::CursorShape::ArrowCursor);
 }
 
 
@@ -863,6 +909,7 @@ void MainWindow::on_BtnCalcTurn_clicked()
     double Mc = Turn::Mc(ui->MaterialAuswahlTurn->currentIndex());
     double ap = ui->ApAuswahlTurn->value();
     double fu = ui->FuAuswahlTurn->value();
+    double maxKw = Settings::maxKwDr();
     double C4 = 1.3;  //Verschleiss
     double C1;        //Kuehlung
     double C2;        //Schneidstoff
@@ -874,6 +921,8 @@ void MainWindow::on_BtnCalcTurn_clicked()
     double h;
     int N;
     int bed;
+
+    setCursor(Qt::CursorShape::WaitCursor);
 
     if(ui->BeStabilTurn->isChecked()) {
         bed = 2;
@@ -928,4 +977,64 @@ void MainWindow::on_BtnCalcTurn_clicked()
     ui->VorschubOutTurn->setText(QString::number(N * fu) + " mm/min");
     ui->QOutTurn->setText(QString::number(Q) + " cm³/min");
     ui->PcOutTurn->setText(QString::number(Pc, 'g', 1) + " kW");
+
+    ui->progressBarTurn->setMaximum((maxKw * 1.25) * 1000);
+
+    if(Pc > (maxKw * 1.25)) {
+        Pc = maxKw * 1.25;
+    }
+
+    ui->progressBarTurn->setValue(Pc * 1000);
+
+    setCursor(Qt::CursorShape::ArrowCursor);
 }
+
+void MainWindow::on_progressBarTpc_valueChanged(int value)
+{
+    if(value >= (Settings::maxKw() * 1000)) {
+        ui->progressBarTpc->setStyleSheet("QProgressBar::chunk {background-color: rgb(179, 0, 0);}");
+    }else {
+        ui->progressBarTpc->setStyleSheet("QProgressBar::chunk {background-color: rgb(0, 179, 0);}");
+    }
+}
+
+
+void MainWindow::on_progressBarNut_valueChanged(int value)
+{
+    if(value >= (Settings::maxKw() * 1000)) {
+        ui->progressBarNut->setStyleSheet("QProgressBar::chunk {background-color: rgb(179, 0, 0);}");
+    }else {
+        ui->progressBarNut->setStyleSheet("QProgressBar::chunk {background-color: rgb(0, 179, 0);}");
+    }
+}
+
+
+void MainWindow::on_progressBarPlan_valueChanged(int value)
+{
+    if(value >= (Settings::maxKw() * 1000)) {
+        ui->progressBarPlan->setStyleSheet("QProgressBar::chunk {background-color: rgb(179, 0, 0);}");
+    }else {
+        ui->progressBarPlan->setStyleSheet("QProgressBar::chunk {background-color: rgb(0, 179, 0);}");
+    }
+}
+
+
+void MainWindow::on_progressBarBohren_valueChanged(int value)
+{
+    if(value >= (Settings::maxKw() * 1000)) {
+        ui->progressBarBohren->setStyleSheet("QProgressBar::chunk {background-color: rgb(179, 0, 0);}");
+    }else {
+        ui->progressBarBohren->setStyleSheet("QProgressBar::chunk {background-color: rgb(0, 179, 0);}");
+    }
+}
+
+
+void MainWindow::on_progressBarTurn_valueChanged(int value)
+{
+    if(value >= (Settings::maxKw() * 1000)) {
+        ui->progressBarTurn->setStyleSheet("QProgressBar::chunk {background-color: rgb(179, 0, 0);}");
+    }else {
+        ui->progressBarTurn->setStyleSheet("QProgressBar::chunk {background-color: rgb(0, 179, 0);}");
+    }
+}
+

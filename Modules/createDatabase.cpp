@@ -1,10 +1,12 @@
 #include "Modules/module.h"
 
-namespace {
-    //const std::string name = "Daten.xlsx";
-    const std::string name = "Test.xlsx";
-    const std::filesystem::path createPath = std::filesystem::current_path() / name;
-}
+#ifdef QT_DEBUG
+const std::string name = "Test.xlsx";
+#else
+const std::string name = "Daten.xlsx";
+#endif
+
+const std::filesystem::path createPath = std::filesystem::current_path() / name;
 
 
 class createDatabase {
@@ -257,8 +259,8 @@ public:
     }
 
     static void createSlot() {
-        int column = 1;
-        int row = 1;
+        //int column = 1;
+        //int row = 1;
 
         std::string array[11][11] = {};
 
@@ -603,17 +605,17 @@ public:
         int row = 1;
         int color = 191;
 
-        const std::string array[9][3] = {
+        const std::string array[10][3] = {
             {"Name",            "Wert",     "Hilfe"},
             {"disclaimer",      "Ja",       "Ob beim Programm start der Disclaimer angezeigt werden soll (Ja|Nein)"},
             {"maxRpmFr",        "77",       "Die maximale Drehzal der Fraesmachine"},
-            {"maxPc",           "77",       "Die maximale Spindelleistung der Maschine (in kW)"},
+            {"maxPc",           "77",       "Die maximale Spindelleistung der Fraesmaschine (in kW)"},
             {"bed",             "normal",   "die Bedingungen der Bearbeitung (auspanung, Werkzeuglaenge und Stabilitaet der Maschine) (instabil|normal|stabil)"},
             {"schn",            "VHM",      "Der standart Schneidstoff für Werkzeuge (HSS|VHM|Keramik)"},
             {"spiWi",           "77",       "Der standart Spitzenwinkel fuer Bohrer (118|130|140)"},
             {"cooling",         "Trocken",  "Die standart Kuehlung der Werkzeuge (Trocken|KSS|Oel)"},
-            {"maxRpmDr",        "77",       "Die maximale Drehzal der Drehmachine"}
-
+            {"maxRpmDr",        "77",       "Die maximale Drehzal der Drehmachine"},
+            {"maxPcDr",         "77",       "Die maximale Spindelleistung der Drehmaschine (in kW)"}
         };
 
         xlnt::workbook wb;
@@ -621,7 +623,7 @@ public:
         xlnt::worksheet ws = wb.create_sheet(wb.sheet_count());
 
         //create table
-        while (row <= 9) {
+        while (row <= 10) {
             while (column <= 3) {
                 ws.cell(column, row).value(array[row-1][column-1]);
                 ws.cell(column, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
@@ -634,7 +636,7 @@ public:
 
         column = 1;
         row = 1;
-        while (row <= 9) {
+        while (row <= 10) {
             while (column <= 3) {
                 ws.cell(column, row).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
                 column++;
@@ -648,6 +650,7 @@ public:
         ws.cell(2, 4).value(2.2);
         ws.cell(2, 7).value(118);
         ws.cell(2, 9).value(5000);
+        ws.cell(2, 10).value(2.2);
 
         ws.title("Einstellungen");
 

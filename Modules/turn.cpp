@@ -1,9 +1,10 @@
 #include "Modules/module.h"
 
-namespace{
-    std::filesystem::path turnPath = std::filesystem::current_path() / "Daten.xlsx";
-    int turnIndex = 6;
+namespace  {
+std::filesystem::path turnPath = std::filesystem::current_path() / "Daten.xlsx";
+int turnIndex = 6;
 }
+
 
 class Turn {
 public:

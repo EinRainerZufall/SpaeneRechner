@@ -18,6 +18,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpinBox>
@@ -111,6 +112,7 @@ public:
     QLabel *VcOutTpc;
     QLabel *RealVcOutTpc;
     QLineEdit *PcOutTpc;
+    QProgressBar *progressBarTpc;
     QWidget *tab_nutfraesen;
     QLabel *label_33;
     QLabel *label_34;
@@ -152,6 +154,7 @@ public:
     QRadioButton *BeNormalNut;
     QRadioButton *BeStabilNut;
     QLineEdit *DrehzahlOutNut;
+    QProgressBar *progressBarNut;
     QWidget *tab_planfraesen;
     QLineEdit *PcOutPlan;
     QSpinBox *MaxDrehzahlAuswahlPlan;
@@ -196,6 +199,7 @@ public:
     QDoubleSpinBox *AeAuswahlPlan;
     QLabel *label_88;
     QComboBox *SchneidenGeometryPlan;
+    QProgressBar *progressBarPlan;
     QWidget *tab_bohren;
     QLabel *RealVcOutBohren;
     QLabel *label_76;
@@ -236,6 +240,7 @@ public:
     QRadioButton *SpitzenWinkel130;
     QRadioButton *SpitzenWinkel140;
     QLineEdit *VorschubUOutBohren;
+    QProgressBar *progressBarBohren;
     QWidget *tab_drehen;
     QSpinBox *MaxDrehzahlAuswahlTurn;
     QLabel *label_104;
@@ -279,6 +284,7 @@ public:
     QLineEdit *QOutTurn;
     QComboBox *turnstyle;
     QLabel *label_46;
+    QProgressBar *progressBarTurn;
     QWidget *tab_gewinde;
     QWidget *tab_extra;
     QWidget *tab_database;
@@ -639,9 +645,26 @@ public:
         RealVcOutTpc->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         PcOutTpc = new QLineEdit(tab_dynamisch);
         PcOutTpc->setObjectName(QString::fromUtf8("PcOutTpc"));
-        PcOutTpc->setGeometry(QRect(450, 515, 91, 25));
+        PcOutTpc->setGeometry(QRect(450, 515, 90, 25));
         PcOutTpc->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         PcOutTpc->setReadOnly(true);
+        progressBarTpc = new QProgressBar(tab_dynamisch);
+        progressBarTpc->setObjectName(QString::fromUtf8("progressBarTpc"));
+        progressBarTpc->setGeometry(QRect(450, 541, 113, 23));
+        progressBarTpc->setStyleSheet(QString::fromUtf8("QProgressBar::chunk {\n"
+"background-color: rgb(0, 179, 0);\n"
+"width: 1px;\n"
+"}\n"
+"\n"
+"QProgressBar {\n"
+"border: 1px solid #acacac;\n"
+"border-radius: 0px;\n"
+"text-align: center;\n"
+"background: #dfdfdf;\n"
+"}"));
+        progressBarTpc->setValue(0);
+        progressBarTpc->setTextVisible(false);
+        progressBarTpc->setInvertedAppearance(false);
         mainTabWidget->addTab(tab_dynamisch, QString());
         tab_nutfraesen = new QWidget();
         tab_nutfraesen->setObjectName(QString::fromUtf8("tab_nutfraesen"));
@@ -816,6 +839,23 @@ public:
         DrehzahlOutNut->setGeometry(QRect(10, 425, 80, 25));
         DrehzahlOutNut->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         DrehzahlOutNut->setReadOnly(true);
+        progressBarNut = new QProgressBar(tab_nutfraesen);
+        progressBarNut->setObjectName(QString::fromUtf8("progressBarNut"));
+        progressBarNut->setGeometry(QRect(450, 541, 113, 23));
+        progressBarNut->setStyleSheet(QString::fromUtf8("QProgressBar::chunk {\n"
+"background-color: rgb(0, 179, 0);\n"
+"width: 1px;\n"
+"}\n"
+"\n"
+"QProgressBar {\n"
+"border: 1px solid #acacac;\n"
+"border-radius: 0px;\n"
+"text-align: center;\n"
+"background: #dfdfdf;\n"
+"}"));
+        progressBarNut->setValue(0);
+        progressBarNut->setTextVisible(false);
+        progressBarNut->setInvertedAppearance(false);
         mainTabWidget->addTab(tab_nutfraesen, QString());
         tab_planfraesen = new QWidget();
         tab_planfraesen->setObjectName(QString::fromUtf8("tab_planfraesen"));
@@ -1005,6 +1045,23 @@ public:
         SchneidenGeometryPlan->addItem(QString());
         SchneidenGeometryPlan->setObjectName(QString::fromUtf8("SchneidenGeometryPlan"));
         SchneidenGeometryPlan->setGeometry(QRect(565, 70, 60, 25));
+        progressBarPlan = new QProgressBar(tab_planfraesen);
+        progressBarPlan->setObjectName(QString::fromUtf8("progressBarPlan"));
+        progressBarPlan->setGeometry(QRect(450, 541, 113, 23));
+        progressBarPlan->setStyleSheet(QString::fromUtf8("QProgressBar::chunk {\n"
+"background-color: rgb(0, 179, 0);\n"
+"width: 1px;\n"
+"}\n"
+"\n"
+"QProgressBar {\n"
+"border: 1px solid #acacac;\n"
+"border-radius: 0px;\n"
+"text-align: center;\n"
+"background: #dfdfdf;\n"
+"}"));
+        progressBarPlan->setValue(0);
+        progressBarPlan->setTextVisible(false);
+        progressBarPlan->setInvertedAppearance(false);
         mainTabWidget->addTab(tab_planfraesen, QString());
         tab_bohren = new QWidget();
         tab_bohren->setObjectName(QString::fromUtf8("tab_bohren"));
@@ -1175,6 +1232,23 @@ public:
         VorschubUOutBohren->setGeometry(QRect(625, 425, 125, 25));
         VorschubUOutBohren->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         VorschubUOutBohren->setReadOnly(true);
+        progressBarBohren = new QProgressBar(tab_bohren);
+        progressBarBohren->setObjectName(QString::fromUtf8("progressBarBohren"));
+        progressBarBohren->setGeometry(QRect(450, 541, 113, 23));
+        progressBarBohren->setStyleSheet(QString::fromUtf8("QProgressBar::chunk {\n"
+"background-color: rgb(0, 179, 0);\n"
+"width: 1px;\n"
+"}\n"
+"\n"
+"QProgressBar {\n"
+"border: 1px solid #acacac;\n"
+"border-radius: 0px;\n"
+"text-align: center;\n"
+"background: #dfdfdf;\n"
+"}"));
+        progressBarBohren->setValue(0);
+        progressBarBohren->setTextVisible(false);
+        progressBarBohren->setInvertedAppearance(false);
         mainTabWidget->addTab(tab_bohren, QString());
         tab_drehen = new QWidget();
         tab_drehen->setObjectName(QString::fromUtf8("tab_drehen"));
@@ -1282,8 +1356,10 @@ public:
         ApAuswahlTurn->setObjectName(QString::fromUtf8("ApAuswahlTurn"));
         ApAuswahlTurn->setGeometry(QRect(10, 250, 70, 25));
         ApAuswahlTurn->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        ApAuswahlTurn->setDecimals(1);
-        ApAuswahlTurn->setMinimum(1.000000000000000);
+        ApAuswahlTurn->setDecimals(2);
+        ApAuswahlTurn->setMinimum(0.050000000000000);
+        ApAuswahlTurn->setMaximum(100.000000000000000);
+        ApAuswahlTurn->setSingleStep(0.010000000000000);
         ApAuswahlTurn->setValue(1.000000000000000);
         label_114 = new QLabel(tab_drehen);
         label_114->setObjectName(QString::fromUtf8("label_114"));
@@ -1359,7 +1435,24 @@ public:
         turnstyle->setGeometry(QRect(700, 70, 175, 25));
         label_46 = new QLabel(tab_drehen);
         label_46->setObjectName(QString::fromUtf8("label_46"));
-        label_46->setGeometry(QRect(700, 45, 47, 25));
+        label_46->setGeometry(QRect(700, 45, 100, 25));
+        progressBarTurn = new QProgressBar(tab_drehen);
+        progressBarTurn->setObjectName(QString::fromUtf8("progressBarTurn"));
+        progressBarTurn->setGeometry(QRect(450, 541, 113, 23));
+        progressBarTurn->setStyleSheet(QString::fromUtf8("QProgressBar::chunk {\n"
+"background-color: rgb(0, 179, 0);\n"
+"width: 1px;\n"
+"}\n"
+"\n"
+"QProgressBar {\n"
+"border: 1px solid #acacac;\n"
+"border-radius: 0px;\n"
+"text-align: center;\n"
+"background: #dfdfdf;\n"
+"}"));
+        progressBarTurn->setValue(0);
+        progressBarTurn->setTextVisible(false);
+        progressBarTurn->setInvertedAppearance(false);
         mainTabWidget->addTab(tab_drehen, QString());
         tab_gewinde = new QWidget();
         tab_gewinde->setObjectName(QString::fromUtf8("tab_gewinde"));
@@ -1437,7 +1530,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Sp\303\244ne Rechner", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Material auswahl", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Fr\303\244serdruchmesser", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Schneiden", nullptr));
@@ -1508,6 +1601,7 @@ public:
         VcOutTpc->setText(QCoreApplication::translate("MainWindow", "0 m/min", nullptr));
         RealVcOutTpc->setText(QCoreApplication::translate("MainWindow", "0 m/min", nullptr));
         PcOutTpc->setText(QCoreApplication::translate("MainWindow", "0 kW", nullptr));
+        progressBarTpc->setFormat(QCoreApplication::translate("MainWindow", "%v", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_dynamisch), QCoreApplication::translate("MainWindow", "Dynamisch", nullptr));
         label_33->setText(QCoreApplication::translate("MainWindow", "Bedingung", nullptr));
         label_34->setText(QCoreApplication::translate("MainWindow", "Zeitspanvolumen", nullptr));
@@ -1544,6 +1638,7 @@ public:
         BeNormalNut->setText(QCoreApplication::translate("MainWindow", "normal", nullptr));
         BeStabilNut->setText(QCoreApplication::translate("MainWindow", "stabil", nullptr));
         DrehzahlOutNut->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        progressBarNut->setFormat(QCoreApplication::translate("MainWindow", "%v", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_nutfraesen), QCoreApplication::translate("MainWindow", "Nutfr\303\244sen", nullptr));
         PcOutPlan->setText(QCoreApplication::translate("MainWindow", "0 kW", nullptr));
         label_70->setText(QCoreApplication::translate("MainWindow", "Fr\303\244serdruchmesser", nullptr));
@@ -1584,6 +1679,7 @@ public:
         SchneidenGeometryPlan->setItemText(0, QCoreApplication::translate("MainWindow", "90\302\260", nullptr));
         SchneidenGeometryPlan->setItemText(1, QCoreApplication::translate("MainWindow", "45\302\260", nullptr));
 
+        progressBarPlan->setFormat(QCoreApplication::translate("MainWindow", "%v", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_planfraesen), QCoreApplication::translate("MainWindow", "Planfr\303\244sen", nullptr));
         RealVcOutBohren->setText(QCoreApplication::translate("MainWindow", "0 m/min", nullptr));
         label_76->setText(QCoreApplication::translate("MainWindow", "Schneidstoff", nullptr));
@@ -1621,6 +1717,7 @@ public:
         SpitzenWinkel130->setText(QCoreApplication::translate("MainWindow", "130", nullptr));
         SpitzenWinkel140->setText(QCoreApplication::translate("MainWindow", "140", nullptr));
         VorschubUOutBohren->setText(QCoreApplication::translate("MainWindow", "0.00 mm/U", nullptr));
+        progressBarBohren->setFormat(QCoreApplication::translate("MainWindow", "%v", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_bohren), QCoreApplication::translate("MainWindow", "Bohren", nullptr));
         label_104->setText(QCoreApplication::translate("MainWindow", "Bedingung", nullptr));
         label_105->setText(QCoreApplication::translate("MainWindow", "Werkst\303\274ckdruchmesser", nullptr));
@@ -1662,6 +1759,7 @@ public:
         turnstyle->setItemText(2, QCoreApplication::translate("MainWindow", "L\303\244ngsschlichtdrehen", nullptr));
 
         label_46->setText(QCoreApplication::translate("MainWindow", "Bearbeitung", nullptr));
+        progressBarTurn->setFormat(QCoreApplication::translate("MainWindow", "%v", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_drehen), QCoreApplication::translate("MainWindow", "Drehen", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_gewinde), QCoreApplication::translate("MainWindow", "Gewinde", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_extra), QCoreApplication::translate("MainWindow", "Extra", nullptr));
