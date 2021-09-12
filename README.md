@@ -2,6 +2,7 @@
 
 Das wird ein Schnittdaten Rechner der Dynamisch Anzahl und Vorschubwerte aus einer Tabelle liest und zum rechnen berreitstellt.
 
+---
 zum selber Compilieren:
   - Win 10
   - qt Creator 5.0.0 (Den benutze ich)
