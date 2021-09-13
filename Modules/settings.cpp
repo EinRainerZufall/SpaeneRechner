@@ -11,6 +11,13 @@ public:
         QString temp;
         size_t index;
         int row = 2;
+        int OSX;
+
+        if(QSysInfo::productType() == "osx") {
+            OSX = 1;
+        }else {
+            OSX = 0;
+        }
 
         xlnt::workbook wb;
         wb.load(settingsPath);
@@ -20,9 +27,14 @@ public:
         while (ws.cell(1, row).to_string() != "disclaimer") {
             row++;
             if(row == 64000) {
-                QMessageBox msg;
-                msg.setText(QObject::tr("Es konnte keine abfrage für den Disclaimer in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
-                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
+                QMessageBox msg;             
+                if(OSX) {
+                    msg.setText(QObject::tr("Kritischer Fehler"));
+                    msg.setInformativeText(QObject::tr("Es konnte keine abfrage für den Disclaimer in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                }else {
+                    msg.setText(QObject::tr("Es konnte keine abfrage für den Disclaimer in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                    msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
+                }
                 msg.setIcon(QMessageBox::Critical);
                 msg.setStandardButtons(QMessageBox::Close);
                 msg.setDefaultButton(QMessageBox::Close);
@@ -37,20 +49,30 @@ public:
             return;
         } else {
             QMessageBox disBox;
-            disBox.setText(QObject::tr("Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung "
-                                        "für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. "
-                                        "Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche "
-                                        "Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust "
-                                        "o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes "
-                                        "entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?"));
-            disBox.setWindowTitle(QObject::tr("Disclaimer"));
-            disBox.setStandardButtons(QMessageBox::Ok | QMessageBox::No);
-            disBox.setDefaultButton(QMessageBox::Ok);
+            if(OSX) {
+                disBox.setInformativeText(QObject::tr("Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung "
+                                            "für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. "
+                                            "Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche "
+                                            "Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust "
+                                            "o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes "
+                                            "entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?"));
+                disBox.setText(QObject::tr("Disclaimer"));
+            }else {
+                disBox.setText(QObject::tr("Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung "
+                                            "für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. "
+                                            "Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche "
+                                            "Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust "
+                                            "o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes "
+                                            "entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?"));
+                disBox.setWindowTitle(QObject::tr("Disclaimer"));
+            }
+            disBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            disBox.setDefaultButton(QMessageBox::Yes);
             disBox.setEscapeButton(QMessageBox::No);
             int dis = disBox.exec();
 
             switch (dis) {
-            case QMessageBox::Ok:
+            case QMessageBox::Yes:
                 return;
             case QMessageBox::No:
                 exit(0);

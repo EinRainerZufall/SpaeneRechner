@@ -9,5 +9,6 @@
 #include <QTranslator>
 #include <filesystem>
 #include <array>
+#include <QSysInfo>
 
 #endif // MODULE_H
