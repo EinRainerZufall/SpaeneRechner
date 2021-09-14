@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -4414,22 +4414,398 @@ background: #dfdfdf;
       <string>Extra</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_database">
+    <widget class="QWidget" name="tab_settings">
      <attribute name="title">
-      <string>Database</string>
+      <string>Einstellungen</string>
      </attribute>
-     <widget class="QPushButton" name="btnCreateAll">
+     <widget class="QGroupBox" name="groupBox_19">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>50</y>
-        <width>180</width>
-        <height>25</height>
+        <x>10</x>
+        <y>20</y>
+        <width>975</width>
+        <height>430</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Daten Tabelle erstellen</string>
+      <property name="title">
+       <string>Einstellungen</string>
       </property>
+      <widget class="QComboBox" name="DisclaimerIn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Ja</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Nein</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_47">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>30</y>
+         <width>855</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ob beim Programm start der Disclaimer angezeigt werden soll</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="MaxMillPcIn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="decimals">
+        <number>1</number>
+       </property>
+       <property name="minimum">
+        <double>0.500000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>15.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.500000000000000</double>
+       </property>
+       <property name="value">
+        <double>2.200000000000000</double>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="maxMillSpeedIn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="minimum">
+        <number>5000</number>
+       </property>
+       <property name="maximum">
+        <number>64000</number>
+       </property>
+       <property name="value">
+        <number>24000</number>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="conditionIn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>150</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>instabil</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>normal</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>stabil</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="cutMatIn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>190</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>HSS</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>VHM</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Keramik</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="drillAngleIn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>230</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>118</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>130</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>140</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="coolingTypeIn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>270</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Trocken</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>KSS</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Oil</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QSpinBox" name="maxTurnSpeedIn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>310</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="minimum">
+        <number>5000</number>
+       </property>
+       <property name="maximum">
+        <number>64000</number>
+       </property>
+       <property name="value">
+        <number>5000</number>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="maxTurnPcIn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>350</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="decimals">
+        <number>1</number>
+       </property>
+       <property name="minimum">
+        <double>0.500000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>15.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.500000000000000</double>
+       </property>
+       <property name="value">
+        <double>2.200000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_50">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>70</y>
+         <width>855</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Die maximale Drehzal der Fräsmachine</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_51">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>110</y>
+         <width>855</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Die maximale Spindelleistung der Fräsmaschine (in kW)</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_52">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>150</y>
+         <width>855</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>die Bedingungen der Bearbeitung (Auspanung, Werkzeuglänge und Stabilität der Maschine)</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_53">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>190</y>
+         <width>855</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Der standart Schneidstoff für Werkzeuge</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_54">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>230</y>
+         <width>855</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Der standart Spitzenwinkel für Bohrer</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_55">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>270</y>
+         <width>855</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Die standart Kühlung der Werkzeuge</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_56">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>310</y>
+         <width>855</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Die maximale Drehzal der Drehmachine</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_57">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>350</y>
+         <width>855</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Die maximale Spindelleistung der Drehmaschine (in kW)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnSettingsWrite">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>390</y>
+         <width>210</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Einstellungen übernehmen</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_20">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>580</y>
+        <width>201</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Tabelle</string>
+      </property>
+      <widget class="QPushButton" name="btnCreateAll">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>180</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Daten Tabelle erstellen</string>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_info">

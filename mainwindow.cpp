@@ -1038,3 +1038,19 @@ void MainWindow::on_progressBarTurn_valueChanged(int value)
     }
 }
 
+
+void MainWindow::on_btnSettingsWrite_clicked()
+{
+    bool dis = ui->DisclaimerIn->currentIndex();
+    int FrN = ui->maxMillSpeedIn->text().toInt();
+    double FrPc = ui->MaxMillPcIn->value();
+    int bed = ui->conditionIn->currentIndex();
+    int cutMat = ui->cutMatIn->currentIndex();
+    int BoWinkel = ui->drillAngleIn->currentText().toInt();
+    int cooling = ui->coolingTypeIn->currentIndex();
+    int TurN = ui->maxTurnSpeedIn->text().toInt();
+    double TurPc = ui->maxTurnPcIn->value();
+
+    Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc);
+}
+

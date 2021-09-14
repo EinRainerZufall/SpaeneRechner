@@ -105,6 +105,8 @@ private slots:
 
     void on_progressBarTurn_valueChanged(int value);
 
+    void on_btnSettingsWrite_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

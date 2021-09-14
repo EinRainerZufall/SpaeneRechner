@@ -251,6 +251,7 @@
         <location filename="mainwindow.ui" line="2397"/>
         <location filename="mainwindow.ui" line="3187"/>
         <location filename="mainwindow.ui" line="3878"/>
+        <location filename="mainwindow.ui" line="4527"/>
         <source>instabil</source>
         <translation type="unfinished"></translation>
     </message>
@@ -260,6 +261,7 @@
         <location filename="mainwindow.ui" line="2419"/>
         <location filename="mainwindow.ui" line="3209"/>
         <location filename="mainwindow.ui" line="3900"/>
+        <location filename="mainwindow.ui" line="4532"/>
         <source>normal</source>
         <translation type="unfinished"></translation>
     </message>
@@ -269,6 +271,7 @@
         <location filename="mainwindow.ui" line="2438"/>
         <location filename="mainwindow.ui" line="3228"/>
         <location filename="mainwindow.ui" line="3919"/>
+        <location filename="mainwindow.ui" line="4537"/>
         <source>stabil</source>
         <translation type="unfinished"></translation>
     </message>
@@ -287,6 +290,7 @@
         <location filename="mainwindow.ui" line="2250"/>
         <location filename="mainwindow.ui" line="3040"/>
         <location filename="mainwindow.ui" line="3735"/>
+        <location filename="mainwindow.ui" line="4602"/>
         <source>Trocken</source>
         <translation type="unfinished"></translation>
     </message>
@@ -296,6 +300,7 @@
         <location filename="mainwindow.ui" line="2272"/>
         <location filename="mainwindow.ui" line="3062"/>
         <location filename="mainwindow.ui" line="3757"/>
+        <location filename="mainwindow.ui" line="4607"/>
         <source>KSS</source>
         <translation type="unfinished"></translation>
     </message>
@@ -323,6 +328,7 @@
         <location filename="mainwindow.ui" line="2725"/>
         <location filename="mainwindow.ui" line="3299"/>
         <location filename="mainwindow.ui" line="4234"/>
+        <location filename="mainwindow.ui" line="4552"/>
         <source>HSS</source>
         <translation type="unfinished"></translation>
     </message>
@@ -332,6 +338,7 @@
         <location filename="mainwindow.ui" line="2747"/>
         <location filename="mainwindow.ui" line="3321"/>
         <location filename="mainwindow.ui" line="4256"/>
+        <location filename="mainwindow.ui" line="4557"/>
         <source>VHM</source>
         <translation type="unfinished"></translation>
     </message>
@@ -340,6 +347,7 @@
         <location filename="mainwindow.ui" line="1520"/>
         <location filename="mainwindow.ui" line="2769"/>
         <location filename="mainwindow.ui" line="4278"/>
+        <location filename="mainwindow.ui" line="4562"/>
         <source>Keramik</source>
         <translation type="unfinished"></translation>
     </message>
@@ -423,16 +431,19 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="3523"/>
+        <location filename="mainwindow.ui" line="4577"/>
         <source>118</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="3545"/>
+        <location filename="mainwindow.ui" line="4582"/>
         <source>130</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="3567"/>
+        <location filename="mainwindow.ui" line="4587"/>
         <source>140</source>
         <translation type="unfinished"></translation>
     </message>
@@ -488,51 +499,122 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="4419"/>
-        <source>Database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="4431"/>
-        <source>Daten Tabelle erstellen</source>
+        <source>Einstellungen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4437"/>
-        <source>Info</source>
+        <location filename="mainwindow.ui" line="4444"/>
+        <source>Ja</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="4449"/>
+        <source>Nein</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4463"/>
+        <source>Ob beim Programm start der Disclaimer angezeigt werden soll</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4612"/>
+        <source>Oil</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4676"/>
+        <source>Die maximale Drehzal der Fräsmachine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4689"/>
+        <source>Die maximale Spindelleistung der Fräsmaschine (in kW)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4702"/>
+        <source>die Bedingungen der Bearbeitung (Auspanung, Werkzeuglänge und Stabilität der Maschine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4715"/>
+        <source>Der standart Schneidstoff für Werkzeuge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4728"/>
+        <source>Der standart Spitzenwinkel für Bohrer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4741"/>
+        <source>Die standart Kühlung der Werkzeuge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4754"/>
+        <source>Die maximale Drehzal der Drehmachine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4767"/>
+        <source>Die maximale Spindelleistung der Drehmaschine (in kW)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4780"/>
+        <source>Einstellungen übernehmen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4794"/>
+        <source>Tabelle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4806"/>
+        <source>Daten Tabelle erstellen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4813"/>
+        <source>Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4825"/>
         <source>Haftungsausschluss</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4461"/>
+        <location filename="mainwindow.ui" line="4837"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes entstehen sollten, ist ausgeschlossen.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4481"/>
+        <location filename="mainwindow.ui" line="4857"/>
         <source>Vorschläge oder Fehler gefunden:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4493"/>
+        <location filename="mainwindow.ui" line="4869"/>
         <source>Email:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4516"/>
+        <location filename="mainwindow.ui" line="4892"/>
         <source>contact@spaenerechner.de</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4532"/>
+        <location filename="mainwindow.ui" line="4908"/>
         <source>Bugs auf github melden:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4555"/>
+        <location filename="mainwindow.ui" line="4931"/>
         <source>Git issues</source>
         <translation type="unfinished"></translation>
     </message>
@@ -540,72 +622,72 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="Modules/settings.cpp" line="24"/>
+        <location filename="Modules/settings.cpp" line="38"/>
         <source>Es konnte keine abfrage für den Disclaimer in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="25"/>
-        <location filename="Modules/settings.cpp" line="77"/>
-        <location filename="Modules/settings.cpp" line="106"/>
-        <location filename="Modules/settings.cpp" line="135"/>
-        <location filename="Modules/settings.cpp" line="164"/>
-        <location filename="Modules/settings.cpp" line="194"/>
-        <location filename="Modules/settings.cpp" line="232"/>
-        <location filename="Modules/settings.cpp" line="270"/>
-        <location filename="Modules/settings.cpp" line="308"/>
-        <location filename="Modules/settings.cpp" line="338"/>
+        <location filename="Modules/settings.cpp" line="37"/>
+        <location filename="Modules/settings.cpp" line="105"/>
+        <location filename="Modules/settings.cpp" line="134"/>
+        <location filename="Modules/settings.cpp" line="163"/>
+        <location filename="Modules/settings.cpp" line="192"/>
+        <location filename="Modules/settings.cpp" line="222"/>
+        <location filename="Modules/settings.cpp" line="260"/>
+        <location filename="Modules/settings.cpp" line="298"/>
+        <location filename="Modules/settings.cpp" line="336"/>
+        <location filename="Modules/settings.cpp" line="366"/>
         <source>Kritischer Fehler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="40"/>
+        <location filename="Modules/settings.cpp" line="61"/>
         <source>Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="46"/>
+        <location filename="Modules/settings.cpp" line="60"/>
         <source>Disclaimer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="76"/>
-        <location filename="Modules/settings.cpp" line="105"/>
+        <location filename="Modules/settings.cpp" line="104"/>
+        <location filename="Modules/settings.cpp" line="133"/>
         <source>Es konnte keine abfrage für den Maximale Drehzahl in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="134"/>
+        <location filename="Modules/settings.cpp" line="162"/>
         <source>Es konnte keine abfrage für die Spindelleistung der Fraesmaschine in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="163"/>
+        <location filename="Modules/settings.cpp" line="191"/>
         <source>Es konnte keine abfrage für die Spindelleistung der Drehmaschine in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="193"/>
+        <location filename="Modules/settings.cpp" line="221"/>
         <source>Es konnte keine abfrage für die standart Bedingung in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="231"/>
+        <location filename="Modules/settings.cpp" line="259"/>
         <source>Es konnte keine abfrage für den standart Schneidstoff in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="269"/>
+        <location filename="Modules/settings.cpp" line="297"/>
         <source>Es konnte keine abfrage für den standart Spitzenwinkel an Bohrern in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="307"/>
+        <location filename="Modules/settings.cpp" line="335"/>
         <source>Es konnte keine abfrage für die standart Kuehlung in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="337"/>
+        <location filename="Modules/settings.cpp" line="365"/>
         <source>Die Datei &apos;Daten.xlsx&apos; wurde nicht gefunden soll sie erstellt werden?</source>
         <translation type="unfinished"></translation>
     </message>

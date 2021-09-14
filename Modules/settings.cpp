@@ -2,6 +2,12 @@
 
 namespace  {
 std::filesystem::path settingsPath = std::filesystem::current_path() / "Daten.xlsx";
+int maxRow = 50;
+#ifdef QT_DEBUG
+const std::string settingsName = "Test.xlsx";
+#else
+const std::string settingsName = "Daten.xlsx";
+#endif
 }
 
 
@@ -26,14 +32,16 @@ public:
 
         while (ws.cell(1, row).to_string() != "disclaimer") {
             row++;
-            if(row == 64000) {
+            if(row == maxRow) {
                 QMessageBox msg;             
+                QString title = QObject::tr("Kritischer Fehler");
+                QString text = QObject::tr("Es konnte keine abfrage für den Disclaimer in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!");
                 if(OSX) {
-                    msg.setText(QObject::tr("Kritischer Fehler"));
-                    msg.setInformativeText(QObject::tr("Es konnte keine abfrage für den Disclaimer in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
+                    msg.setText(title);
+                    msg.setInformativeText(text);
                 }else {
-                    msg.setText(QObject::tr("Es konnte keine abfrage für den Disclaimer in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
-                    msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
+                    msg.setText(text);
+                    msg.setWindowTitle(title);
                 }
                 msg.setIcon(QMessageBox::Critical);
                 msg.setStandardButtons(QMessageBox::Close);
@@ -49,23 +57,21 @@ public:
             return;
         } else {
             QMessageBox disBox;
+            QString title = QObject::tr("Disclaimer");
+            QString text = QObject::tr("Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung "
+                                       "für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. "
+                                       "Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche "
+                                       "Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust "
+                                       "o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes "
+                                       "entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?");
             if(OSX) {
-                disBox.setInformativeText(QObject::tr("Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung "
-                                            "für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. "
-                                            "Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche "
-                                            "Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust "
-                                            "o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes "
-                                            "entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?"));
-                disBox.setText(QObject::tr("Disclaimer"));
+                disBox.setInformativeText(text);
+                disBox.setText(title);
             }else {
-                disBox.setText(QObject::tr("Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung "
-                                            "für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. "
-                                            "Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche "
-                                            "Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust "
-                                            "o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes "
-                                            "entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?"));
-                disBox.setWindowTitle(QObject::tr("Disclaimer"));
+                disBox.setText(text);
+                disBox.setWindowTitle(title);
             }
+            disBox.setIcon(QMessageBox::Information);
             disBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
             disBox.setDefaultButton(QMessageBox::Yes);
             disBox.setEscapeButton(QMessageBox::No);
@@ -93,7 +99,7 @@ public:
 
         while (ws.cell(1, row).to_string() != "maxRpmFr") {
             row++;
-            if(row == 64000) {
+            if(row == maxRow) {
                 QMessageBox msg;
                 msg.setText(QObject::tr("Es konnte keine abfrage für den Maximale Drehzahl in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
                 msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
@@ -122,7 +128,7 @@ public:
 
         while (ws.cell(1, row).to_string() != "maxRpmDr") {
             row++;
-            if(row == 64000) {
+            if(row == maxRow) {
                 QMessageBox msg;
                 msg.setText(QObject::tr("Es konnte keine abfrage für den Maximale Drehzahl in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
                 msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
@@ -151,7 +157,7 @@ public:
 
         while (ws.cell(1, row).to_string() != "maxPc") {
             row++;
-            if(row == 64000) {
+            if(row == maxRow) {
                 QMessageBox msg;
                 msg.setText(QObject::tr("Es konnte keine abfrage für die Spindelleistung der Fraesmaschine in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
                 msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
@@ -180,7 +186,7 @@ public:
 
         while (ws.cell(1, row).to_string() != "maxPcDr") {
             row++;
-            if(row == 64000) {
+            if(row == maxRow) {
                 QMessageBox msg;
                 msg.setText(QObject::tr("Es konnte keine abfrage für die Spindelleistung der Drehmaschine in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
                 msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
@@ -210,7 +216,7 @@ public:
 
         while (ws.cell(1, row).to_string() != "bed") {
             row++;
-            if(row == 64000) {
+            if(row == maxRow) {
                 QMessageBox msg;
                 msg.setText(QObject::tr("Es konnte keine abfrage für die standart Bedingung in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
                 msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
@@ -248,7 +254,7 @@ public:
 
         while (ws.cell(1, row).to_string() != "schn") {
             row++;
-            if(row == 64000) {
+            if(row == maxRow) {
                 QMessageBox msg;
                 msg.setText(QObject::tr("Es konnte keine abfrage für den standart Schneidstoff in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
                 msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
@@ -286,7 +292,7 @@ public:
 
         while (ws.cell(1, row).to_string() != "spiWi") {
             row++;
-            if(row == 64000) {
+            if(row == maxRow) {
                 QMessageBox msg;
                 msg.setText(QObject::tr("Es konnte keine abfrage für den standart Spitzenwinkel an Bohrern in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
                 msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
@@ -324,7 +330,7 @@ public:
 
         while (ws.cell(1, row).to_string() != "cooling") {
             row++;
-            if(row == 64000) {
+            if(row == maxRow) {
                 QMessageBox msg;
                 msg.setText(QObject::tr("Es konnte keine abfrage für die standart Kuehlung in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
                 msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
@@ -374,5 +380,130 @@ public:
         }
 
         return temp;
+    }
+
+    static void write(bool dis, int FrN, double FrPc, int bed, int cutMat, int BoWinkel, int cooling, int TurN, double TurPc) {
+        size_t index;
+        int row = 2;
+
+        xlnt::workbook wb;
+        wb.load(settingsPath);
+        index = (wb.sheet_count() - 1);
+        xlnt::worksheet ws = wb.sheet_by_index(index);
+
+        //dis
+        while (ws.cell(1, row).to_string() != "disclaimer") {
+            row++;
+            if(row == maxRow) {
+                exit(2);
+            }
+        }
+        if(dis) {
+            ws.cell(2, row).value("Nein");
+        }else {
+            ws.cell(2, row).value("Ja");
+        }
+
+        //FrN
+        row = 2;
+        while (ws.cell(1, row).to_string() != "maxRpmFr") {
+            row++;
+            if(row == maxRow) {
+                exit(2);
+            }
+        }
+        ws.cell(2, row).value(FrN);
+
+        //FrPc
+        row = 2;
+        while (ws.cell(1, row).to_string() != "maxPc") {
+            row++;
+            if(row == maxRow) {
+                exit(2);
+            }
+        }
+        ws.cell(2, row).value(FrPc);
+
+        //bed
+        row = 2;
+        while (ws.cell(1, row).to_string() != "bed") {
+            row++;
+            if(row == maxRow) {
+                exit(2);
+            }
+        }
+        if(bed == 2) {
+            ws.cell(2, row).value("stabil");
+        }else if(bed == 1) {
+            ws.cell(2, row).value("normal");
+        }else {
+            ws.cell(2, row).value("instabil");
+        }
+
+        //cutMat
+        row = 2;
+        while (ws.cell(1, row).to_string() != "schn") {
+            row++;
+            if(row == maxRow) {
+                exit(2);
+            }
+        }
+        if(cutMat == 2) {
+            ws.cell(2, row).value("Keramik");
+        }else if(cutMat == 1) {
+            ws.cell(2, row).value("VHM");
+        }else {
+            ws.cell(2, row).value("HSS");
+        }
+
+        //BoWinkel
+        row = 2;
+        while (ws.cell(1, row).to_string() != "spiWi") {
+            row++;
+            if(row == maxRow) {
+                exit(2);
+            }
+        }
+        ws.cell(2, row).value(BoWinkel);
+
+        //cooling
+        row = 2;
+        while (ws.cell(1, row).to_string() != "cooling") {
+            row++;
+            if(row == maxRow) {
+                exit(2);
+            }
+        }
+        if(cooling == 2) {
+            ws.cell(2, row).value("Oel");
+        }else if(cooling == 1) {
+            ws.cell(2, row).value("KSS");
+        }else {
+            ws.cell(2, row).value("Trocken");
+        }
+
+        //TurN
+        row = 2;
+        while (ws.cell(1, row).to_string() != "maxRpmDr") {
+            row++;
+            if(row == maxRow) {
+                exit(2);
+            }
+        }
+        ws.cell(2, row).value(TurN);
+
+        //TurPc
+        row = 2;
+        while (ws.cell(1, row).to_string() != "maxPcDr") {
+            row++;
+            if(row == maxRow) {
+                exit(2);
+            }
+        }
+        ws.cell(2, row).value(TurPc);
+
+        wb.save(settingsName);
+
+        return;
     }
 };
