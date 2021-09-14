@@ -59,7 +59,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Material auswahl</string>
+       <string>Materialauswahl</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_2">
@@ -72,7 +72,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Fräserdruchmesser</string>
+       <string>Fräserdurchmesser</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_3">
@@ -686,7 +686,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Material auswahl</string>
+       <string>Materialauswahl</string>
       </property>
      </widget>
      <widget class="QComboBox" name="MaterialAuswahlTpc">
@@ -812,7 +812,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Fräserdruchmesser</string>
+       <string>Fräserdurchmesser</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BtnCalcTpc">
@@ -1614,7 +1614,7 @@ background: #dfdfdf;
        </rect>
       </property>
       <property name="text">
-       <string>Material auswahl</string>
+       <string>Materialauswahl</string>
       </property>
      </widget>
      <widget class="QComboBox" name="MaterialAuswahlNut">
@@ -1733,7 +1733,7 @@ background: #dfdfdf;
        </rect>
       </property>
       <property name="text">
-       <string>Fräserdruchmesser</string>
+       <string>Fräserdurchmesser</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_40">
@@ -2159,7 +2159,7 @@ background: #dfdfdf;
        </rect>
       </property>
       <property name="text">
-       <string>Fräserdruchmesser</string>
+       <string>Fräserdurchmesser</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_71">
@@ -2318,7 +2318,7 @@ background: #dfdfdf;
        </rect>
       </property>
       <property name="text">
-       <string>Material auswahl</string>
+       <string>Materialauswahl</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_75">
@@ -2968,7 +2968,7 @@ background: #dfdfdf;
        </rect>
       </property>
       <property name="text">
-       <string>Material auswahl</string>
+       <string>Materialauswahl</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_91">
@@ -3438,7 +3438,7 @@ background: #dfdfdf;
        </rect>
       </property>
       <property name="text">
-       <string>Bohrerdruchmesser</string>
+       <string>Bohrerdurchmesser</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_98">
@@ -3669,7 +3669,7 @@ background: #dfdfdf;
        </rect>
       </property>
       <property name="text">
-       <string>Werkstückdruchmesser</string>
+       <string>Werkstückdurchmesser</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_106">
@@ -3682,7 +3682,7 @@ background: #dfdfdf;
        </rect>
       </property>
       <property name="text">
-       <string>Material auswahl</string>
+       <string>Materialauswahl</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_107">

@@ -20,7 +20,7 @@
         <location filename="mainwindow.ui" line="2321"/>
         <location filename="mainwindow.ui" line="2971"/>
         <location filename="mainwindow.ui" line="3685"/>
-        <source>Material auswahl</source>
+        <source>Materialauswahl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -28,7 +28,7 @@
         <location filename="mainwindow.ui" line="815"/>
         <location filename="mainwindow.ui" line="1736"/>
         <location filename="mainwindow.ui" line="2162"/>
-        <source>Fräserdruchmesser</source>
+        <source>Fräserdurchmesser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -413,7 +413,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="3441"/>
-        <source>Bohrerdruchmesser</source>
+        <source>Bohrerdurchmesser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -448,7 +448,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="3672"/>
-        <source>Werkstückdruchmesser</source>
+        <source>Werkstückdurchmesser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

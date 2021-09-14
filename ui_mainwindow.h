@@ -1531,8 +1531,8 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Sp\303\244ne Rechner", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "Material auswahl", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "Fr\303\244serdruchmesser", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Materialauswahl", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "Fr\303\244serdurchmesser", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Schneiden", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "max. Drehzahl", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "reale Vc", nullptr));
@@ -1567,13 +1567,13 @@ public:
         label_22->setText(QCoreApplication::translate("MainWindow", "Zeitspanvolumen", nullptr));
         label_23->setText(QCoreApplication::translate("MainWindow", "Eingaben:", nullptr));
         label_24->setText(QCoreApplication::translate("MainWindow", "Schneiden", nullptr));
-        label_25->setText(QCoreApplication::translate("MainWindow", "Material auswahl", nullptr));
+        label_25->setText(QCoreApplication::translate("MainWindow", "Materialauswahl", nullptr));
         label_26->setText(QCoreApplication::translate("MainWindow", "max. Drehzahl", nullptr));
         label_27->setText(QCoreApplication::translate("MainWindow", "reale Vc", nullptr));
         label_28->setText(QCoreApplication::translate("MainWindow", "fertige Berechnungen:", nullptr));
         DrehzahlOutTpc->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         label_29->setText(QCoreApplication::translate("MainWindow", "Vorschub", nullptr));
-        label_30->setText(QCoreApplication::translate("MainWindow", "Fr\303\244serdruchmesser", nullptr));
+        label_30->setText(QCoreApplication::translate("MainWindow", "Fr\303\244serdurchmesser", nullptr));
         BtnCalcTpc->setText(QCoreApplication::translate("MainWindow", "Berechnen", nullptr));
         QOutTpc->setText(QCoreApplication::translate("MainWindow", "0 cm\302\263/min", nullptr));
         VorschubOutTpc->setText(QCoreApplication::translate("MainWindow", "0 mm/min", nullptr));
@@ -1615,13 +1615,13 @@ public:
         RealVcOutNut->setText(QCoreApplication::translate("MainWindow", "0 m/min", nullptr));
         label_102->setText(QCoreApplication::translate("MainWindow", "Schneidstoff", nullptr));
         QOutNut->setText(QCoreApplication::translate("MainWindow", "0 cm\302\263/min", nullptr));
-        label_36->setText(QCoreApplication::translate("MainWindow", "Material auswahl", nullptr));
+        label_36->setText(QCoreApplication::translate("MainWindow", "Materialauswahl", nullptr));
         VcOutNut->setText(QCoreApplication::translate("MainWindow", "0 m/min", nullptr));
         label_103->setText(QCoreApplication::translate("MainWindow", "K\303\274hlung", nullptr));
         BtnCalcNut->setText(QCoreApplication::translate("MainWindow", "Berechnen", nullptr));
         label_37->setText(QCoreApplication::translate("MainWindow", "reale Vc", nullptr));
         label_38->setText(QCoreApplication::translate("MainWindow", "Drehzahl", nullptr));
-        label_39->setText(QCoreApplication::translate("MainWindow", "Fr\303\244serdruchmesser", nullptr));
+        label_39->setText(QCoreApplication::translate("MainWindow", "Fr\303\244serdurchmesser", nullptr));
         label_40->setText(QCoreApplication::translate("MainWindow", "Vc", nullptr));
         label_41->setText(QCoreApplication::translate("MainWindow", "max. Drehzahl", nullptr));
         label_42->setText(QCoreApplication::translate("MainWindow", "Eingaben:", nullptr));
@@ -1641,7 +1641,7 @@ public:
         progressBarNut->setFormat(QCoreApplication::translate("MainWindow", "%v", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_nutfraesen), QCoreApplication::translate("MainWindow", "Nutfr\303\244sen", nullptr));
         PcOutPlan->setText(QCoreApplication::translate("MainWindow", "0 kW", nullptr));
-        label_70->setText(QCoreApplication::translate("MainWindow", "Fr\303\244serdruchmesser", nullptr));
+        label_70->setText(QCoreApplication::translate("MainWindow", "Fr\303\244serdurchmesser", nullptr));
         label_71->setText(QCoreApplication::translate("MainWindow", "Vc", nullptr));
         VorschubOutPlan->setText(QCoreApplication::translate("MainWindow", "0 mm/min", nullptr));
         BtnCalcPlan->setText(QCoreApplication::translate("MainWindow", "Berechnen", nullptr));
@@ -1650,7 +1650,7 @@ public:
         KssPlan->setText(QCoreApplication::translate("MainWindow", "KSS", nullptr));
         OilPlan->setText(QCoreApplication::translate("MainWindow", "\303\226l", nullptr));
         label_73->setText(QCoreApplication::translate("MainWindow", "Vorschub", nullptr));
-        label_74->setText(QCoreApplication::translate("MainWindow", "Material auswahl", nullptr));
+        label_74->setText(QCoreApplication::translate("MainWindow", "Materialauswahl", nullptr));
         label_75->setText(QCoreApplication::translate("MainWindow", "Schneidstoff", nullptr));
         label_77->setText(QCoreApplication::translate("MainWindow", "Zeitspanvolumen", nullptr));
         groupBox_6->setTitle(QString());
@@ -1685,7 +1685,7 @@ public:
         label_76->setText(QCoreApplication::translate("MainWindow", "Schneidstoff", nullptr));
         label_89->setText(QCoreApplication::translate("MainWindow", "max. Drehzahl", nullptr));
         PcOutBohren->setText(QCoreApplication::translate("MainWindow", "0 kW", nullptr));
-        label_90->setText(QCoreApplication::translate("MainWindow", "Material auswahl", nullptr));
+        label_90->setText(QCoreApplication::translate("MainWindow", "Materialauswahl", nullptr));
         label_91->setText(QCoreApplication::translate("MainWindow", "K\303\274hlung", nullptr));
         VorschubOutBohren->setText(QCoreApplication::translate("MainWindow", "0 mm/min", nullptr));
         groupBox_8->setTitle(QString());
@@ -1708,7 +1708,7 @@ public:
         label_95->setText(QCoreApplication::translate("MainWindow", "fertige Berechnungen:", nullptr));
         label_72->setText(QCoreApplication::translate("MainWindow", "Vc", nullptr));
         label_96->setText(QCoreApplication::translate("MainWindow", "reale Vc", nullptr));
-        label_97->setText(QCoreApplication::translate("MainWindow", "Bohrerdruchmesser", nullptr));
+        label_97->setText(QCoreApplication::translate("MainWindow", "Bohrerdurchmesser", nullptr));
         label_98->setText(QCoreApplication::translate("MainWindow", "Bedingung", nullptr));
         label_99->setText(QCoreApplication::translate("MainWindow", "Vorschub", nullptr));
         label_100->setText(QCoreApplication::translate("MainWindow", "Spitzenwinkel", nullptr));
@@ -1720,8 +1720,8 @@ public:
         progressBarBohren->setFormat(QCoreApplication::translate("MainWindow", "%v", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_bohren), QCoreApplication::translate("MainWindow", "Bohren", nullptr));
         label_104->setText(QCoreApplication::translate("MainWindow", "Bedingung", nullptr));
-        label_105->setText(QCoreApplication::translate("MainWindow", "Werkst\303\274ckdruchmesser", nullptr));
-        label_106->setText(QCoreApplication::translate("MainWindow", "Material auswahl", nullptr));
+        label_105->setText(QCoreApplication::translate("MainWindow", "Werkst\303\274ckdurchmesser", nullptr));
+        label_106->setText(QCoreApplication::translate("MainWindow", "Materialauswahl", nullptr));
         label_107->setText(QCoreApplication::translate("MainWindow", "Vc", nullptr));
         groupBox_16->setTitle(QString());
         TrockenTurn->setText(QCoreApplication::translate("MainWindow", "Trocken", nullptr));
