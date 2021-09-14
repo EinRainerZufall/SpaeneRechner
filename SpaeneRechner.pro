@@ -27,6 +27,12 @@ win32 {
     #Icon unter Win
     RC_ICONS = endmill_altin.ico
     message("building for Windows")
+
+    #die xlnt.dll in den release Ordner kopieren
+    copydata.commands = $(COPY_FILE) \"$$shell_path($$PWD\\x64-Release\source\xlnt.dll)\" \"$$shell_path($$OUT_PWD\release)\"
+    first.depends = $(first) copydata
+    export(first.depends)
+    export(copydata.commands)
 }
 
 macx {
@@ -60,6 +66,7 @@ FORMS += \
 
 TRANSLATIONS += \
     SpaeneRechner_de_DE.ts
+
 CONFIG += lrelease
 CONFIG += embed_translations
 
@@ -74,3 +81,5 @@ DISTFILES += \
 
 RESOURCES += \
     ressources.qrc
+
+QMAKE_EXTRA_TARGETS += first copydata
