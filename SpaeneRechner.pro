@@ -59,7 +59,7 @@ FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
-    SpaeneRechnerV2_de_DE.ts
+    SpaeneRechner_de_DE.ts
 CONFIG += lrelease
 CONFIG += embed_translations
 
@@ -70,7 +70,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     Daten.xlsx \
-    SpaeneRechnerV2_de_DE.ts
+    SpaeneRechner_de_DE.ts
 
 RESOURCES += \
     ressources.qrc
