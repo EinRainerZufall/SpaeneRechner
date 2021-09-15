@@ -8,7 +8,8 @@
 
 # SpaeneRechner
 
-Das wird ein Schnittdaten Rechner zum berrechnen aller wichtigen Daten beim Fräsen und Drehen.
+Das ist ein Schnittdaten Rechner zum berrechnen aller wichtigen Daten beim Fräsen und Drehen.
+Sowie weitere nützliche Features.
 
 
 ---
