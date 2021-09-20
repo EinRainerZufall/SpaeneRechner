@@ -1,5 +1,4 @@
 
-*.xlsx
 debug/**
 release/**
 x64-Debug/**
@@ -10,3 +9,4 @@ Makefile
 Makefile.Debug
 Makefile.Release
 SpaeneRechner.pro.user
+Daten.xlsx
