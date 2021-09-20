@@ -2,8 +2,6 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/EinRainerZufall/SpaeneRechner)
 ![GitHub branch checks state](https://img.shields.io/github/checks-status/EinRainerZufall/SpaeneRechner/main)
 ![GitHub all releases](https://img.shields.io/github/downloads/EinRainerZufall/SpaeneRechner/total)
-
-![GitHub repo file count](https://img.shields.io/github/directory-file-count/EinRainerZufall/SpaeneRechner)
 ![GitHub repo size](https://img.shields.io/github/repo-size/EinRainerZufall/SpaeneRechner)
 
 # SpaeneRechner
