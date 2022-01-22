@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 6.0.4
+** Created by: Qt User Interface Compiler version 6.2.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -327,7 +327,6 @@ public:
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(1000, 700);
         QFont font;
-        font.setFamily(QString::fromUtf8("Arial"));
         font.setPointSize(12);
         MainWindow->setFont(font);
         centralwidget = new QWidget(MainWindow);
@@ -403,7 +402,6 @@ public:
         label_10->setObjectName(QString::fromUtf8("label_10"));
         label_10->setGeometry(QRect(10, 400, 200, 25));
         QFont font1;
-        font1.setFamily(QString::fromUtf8("Arial"));
         font1.setPointSize(12);
         font1.setUnderline(true);
         label_10->setFont(font1);
@@ -580,7 +578,6 @@ public:
         BeInstabilTpc->setObjectName(QString::fromUtf8("BeInstabilTpc"));
         BeInstabilTpc->setGeometry(QRect(10, 0, 90, 25));
         QFont font2;
-        font2.setFamily(QString::fromUtf8("Arial"));
         font2.setPointSize(10);
         BeInstabilTpc->setFont(font2);
         BeInstabilTpc->setChecked(true);
@@ -1639,7 +1636,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(0);
+        mainTabWidget->setCurrentIndex(5);
         BtnCalcEinfach->setDefault(true);
 
 

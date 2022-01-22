@@ -13,6 +13,21 @@
 #include "Modules/turn.cpp"
 
 
+/*
+ *  todo
+ *  - Drehen koplet
+ *  - Nutfraesen koplet + Tabelle
+ *  - Gewinde klomplet + Tabelle
+ *  - Extras komplett
+ *  - Einstellungen verbessern
+ *  - Lizens hinzufuegen
+ *  - Tabelle verbessern
+ *  - Komentare hinzufuegen
+ *  - MacOS kompatibilität pruefen
+ *  - Linux kompatibilität pruefen
+*/
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)

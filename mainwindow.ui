@@ -12,7 +12,6 @@
   </property>
   <property name="font">
    <font>
-    <family>Arial</family>
     <pointsize>12</pointsize>
    </font>
   </property>
@@ -30,7 +29,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -285,7 +284,6 @@
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -497,7 +495,6 @@
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -517,7 +514,6 @@
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -654,7 +650,6 @@
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -761,7 +756,6 @@
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -971,7 +965,6 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -993,7 +986,6 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1012,7 +1004,6 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1063,7 +1054,6 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1085,7 +1075,6 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1107,7 +1096,6 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1159,7 +1147,6 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1181,7 +1168,6 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1203,7 +1189,6 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1468,7 +1453,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1490,7 +1474,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1512,7 +1495,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1773,7 +1755,6 @@ background: #dfdfdf;
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -1843,7 +1824,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1865,7 +1845,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1887,7 +1866,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -1951,7 +1929,6 @@ background: #dfdfdf;
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -2002,7 +1979,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -2024,7 +2000,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -2043,7 +2018,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -2242,7 +2216,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -2264,7 +2237,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -2286,7 +2258,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -2389,7 +2360,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -2411,7 +2381,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -2430,7 +2399,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -2517,7 +2485,6 @@ background: #dfdfdf;
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -2537,7 +2504,6 @@ background: #dfdfdf;
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -2717,7 +2683,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -2739,7 +2704,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -2761,7 +2725,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3032,7 +2995,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3054,7 +3016,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3076,7 +3037,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3096,7 +3056,6 @@ background: #dfdfdf;
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -3179,7 +3138,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3201,7 +3159,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3220,7 +3177,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3291,7 +3247,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3313,7 +3268,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3352,7 +3306,6 @@ background: #dfdfdf;
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -3478,7 +3431,6 @@ background: #dfdfdf;
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
        </font>
       </property>
@@ -3515,7 +3467,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3537,7 +3488,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3559,7 +3509,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3727,7 +3676,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3749,7 +3697,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3771,7 +3718,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3870,7 +3816,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3892,7 +3837,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3911,7 +3855,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -3957,7 +3900,6 @@ background: #dfdfdf;
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -3977,7 +3919,6 @@ background: #dfdfdf;
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>12</pointsize>
         <underline>true</underline>
        </font>
@@ -4226,7 +4167,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -4248,7 +4188,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -4270,7 +4209,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -4880,7 +4818,6 @@ background: #dfdfdf;
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>12</pointsize>
         </font>
        </property>
@@ -4919,7 +4856,6 @@ text-align: left;</string>
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>12</pointsize>
         </font>
        </property>
