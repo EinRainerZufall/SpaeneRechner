@@ -4,4 +4,5 @@
         <file>Built_with_Qt_logos_final-2.jpeg</file>
         <file>xlnt_logo.png</file>
     </qresource>
+    <qresource prefix="/cursor"/>
 </RCC>

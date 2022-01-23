@@ -71,6 +71,16 @@ public:
             color = 242;
         }
 
+        ws.cell(2,1).comment("Vorschubgeschwindigkeit in m/min");
+
+        column = 3;
+        int i = 1;
+        while (column <= 11) {
+            ws.cell(column, 1).comment("Durchmesser " + std::to_string(i) + " in mm");
+            i++;
+            column++;
+        }
+
         wb.save(name);
 
         return;

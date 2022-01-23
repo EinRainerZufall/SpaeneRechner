@@ -15,7 +15,6 @@
 
 /*
  *  todo
- *  - Drehen koplet
  *  - Nutfraesen koplet + Tabelle
  *  - Gewinde klomplet + Tabelle
  *  - Extras komplett
@@ -251,6 +250,8 @@ void MainWindow::on_btnQT_clicked()
 
 void MainWindow::on_btnCreateAll_clicked()
 {
+    setCursor(Qt::CursorShape::WaitCursor);
+
     createDatabase::createSimple();
     createDatabase::createDynamic();
     createDatabase::createDrill();
@@ -260,6 +261,8 @@ void MainWindow::on_btnCreateAll_clicked()
     createDatabase::createTurn();
 
     createDatabase::createSettings();
+
+    setCursor(Qt::CursorShape::ArrowCursor);
 }
 
 
@@ -1056,6 +1059,8 @@ void MainWindow::on_progressBarTurn_valueChanged(int value)
 
 void MainWindow::on_btnSettingsWrite_clicked()
 {
+    setCursor(Qt::CursorShape::WaitCursor);
+
     bool dis = ui->DisclaimerIn->currentIndex();
     int FrN = ui->maxMillSpeedIn->text().toInt();
     double FrPc = ui->MaxMillPcIn->value();
@@ -1067,5 +1072,7 @@ void MainWindow::on_btnSettingsWrite_clicked()
     double TurPc = ui->maxTurnPcIn->value();
 
     Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc);
+
+    setCursor(Qt::CursorShape::ArrowCursor);
 }
 
