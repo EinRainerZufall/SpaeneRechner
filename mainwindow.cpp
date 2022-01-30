@@ -176,6 +176,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Turn mat
     ui->MaterialAuswahlTurn->addItems(Turn::matList());
+    ui->FraeserDurchmesserAuswahlNut->addItems(Slot::dList());
 }
 
 MainWindow::~MainWindow()
@@ -1076,3 +1077,86 @@ void MainWindow::on_btnSettingsWrite_clicked()
     setCursor(Qt::CursorShape::ArrowCursor);
 }
 
+
+void MainWindow::on_BtnCalcNut_clicked()
+{
+    const double pi = M_PI;
+    double D = (ui->FraeserDurchmesserAuswahlNut->currentText()).toDouble();
+    int N;
+    int maxN = ui->MaxDrehzahlAuswahlNut->value();
+    int z = ui->SchneidenAuswahlNut->value();
+    double Vc = Slot::Vc(ui->MaterialAuswahlNut->currentIndex());
+    double fz = Slot::fz(ui->FraeserDurchmesserAuswahlNut->currentIndex(),ui->MaterialAuswahlNut->currentIndex());
+    double maxKw = Settings::maxKwDr();
+    double C4 = 1.3;  //Verschleiss
+    double C1;        //Kuehlung
+    double C2;        //Schneidstoff
+    double C3;        //Vc
+    double Pc;
+    double Q;
+
+    setCursor(Qt::CursorShape::WaitCursor);
+
+    N = (Vc * 1000) / (pi * D);
+    if(N > maxN) {
+        N = maxN;
+    }
+
+    if(ui->OilNut->isChecked()) {
+        C1 = 0.85;
+    }else if (ui->KssNut->isChecked()) {
+        C1 = 0.9;
+    }else {
+        C1 = 1;
+    }
+
+    if(ui->SchnKeramikNut->isChecked()) {
+        C2 = 0.9;
+    }else if(ui->SchnVhmNut->isChecked()) {
+        C2 = 1;
+    }else {
+        C2 = 1.2;
+    }
+
+    if(Vc > 250) {
+        C3 = pow((100 / Vc), 0.1);
+    }else if(Vc > 80) {
+        C3 = 1.03 - ((3 * Vc) / pow(10, 4));
+    }else {
+        C3 = 1.15;
+    }
+
+    if(ui->BeStabilNut->isChecked()) {
+        fz = fz * 1.25;
+    }else if(ui->BeNormalNut->isChecked()) {
+        fz = fz * 1;
+    }else {
+        fz = fz * 0.75;
+    }
+
+    Pc = C1 * C2 * C3 * C4 * 1;
+    Q = (D * (ui->ApAuswahlNut->value()) * (fz * N * z)) / 1000;
+
+    ui->RealVcOutNut->setText(QString::number(round((N * pi * D) / 1000)) + " m/min");
+
+    ui->DrehzahlOutNut->setText(QString::number(N));
+    ui->VorschubOutNut->setText(QString::number(N * z * fz) + " mm/min");
+    ui->QOutNut->setText(QString::number(Q) + " cm³/min");
+    ui->PcOutNut->setText(QString::number(Pc, 'g', 1) + " kW");
+
+    ui->progressBarNut->setMaximum((maxKw * 1.25) * 1000);
+
+    if(Pc > (maxKw * 1.25)) {
+        Pc = maxKw * 1.25;
+    }
+
+    ui->progressBarNut->setValue(Pc * 1000);
+
+    setCursor(Qt::CursorShape::ArrowCursor);
+}
+
+
+void MainWindow::on_MaterialAuswahlNut_currentIndexChanged(int index)
+{
+    ui->VcOutNut->setText(QString::number(Slot::Vc(index)) + " m/min");
+}

@@ -29,7 +29,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -1896,28 +1896,6 @@ background: #dfdfdf;
        <number>1</number>
       </property>
      </widget>
-     <widget class="QDoubleSpinBox" name="FraeserdurchmesserAuswahlNut">
-      <property name="geometry">
-       <rect>
-        <x>450</x>
-        <y>70</y>
-        <width>90</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="minimum">
-       <double>0.010000000000000</double>
-      </property>
-      <property name="maximum">
-       <double>160.990000000000009</double>
-      </property>
-      <property name="value">
-       <double>1.000000000000000</double>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_44">
       <property name="geometry">
        <rect>
@@ -2078,6 +2056,16 @@ background: #dfdfdf;
       </property>
       <property name="format">
        <string>%v</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="FraeserDurchmesserAuswahlNut">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>70</y>
+        <width>65</width>
+        <height>25</height>
+       </rect>
       </property>
      </widget>
     </widget>

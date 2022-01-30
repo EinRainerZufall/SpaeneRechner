@@ -146,7 +146,6 @@ public:
     QRadioButton *KssNut;
     QRadioButton *OilNut;
     QSpinBox *SchneidenAuswahlNut;
-    QDoubleSpinBox *FraeserdurchmesserAuswahlNut;
     QLabel *label_44;
     QLabel *label_45;
     QGroupBox *groupBox_2;
@@ -155,6 +154,7 @@ public:
     QRadioButton *BeStabilNut;
     QLineEdit *DrehzahlOutNut;
     QProgressBar *progressBarNut;
+    QComboBox *FraeserDurchmesserAuswahlNut;
     QWidget *tab_planfraesen;
     QLineEdit *PcOutPlan;
     QSpinBox *MaxDrehzahlAuswahlPlan;
@@ -820,13 +820,6 @@ public:
         SchneidenAuswahlNut->setMinimum(1);
         SchneidenAuswahlNut->setMaximum(24);
         SchneidenAuswahlNut->setValue(1);
-        FraeserdurchmesserAuswahlNut = new QDoubleSpinBox(tab_nutfraesen);
-        FraeserdurchmesserAuswahlNut->setObjectName(QString::fromUtf8("FraeserdurchmesserAuswahlNut"));
-        FraeserdurchmesserAuswahlNut->setGeometry(QRect(450, 70, 90, 25));
-        FraeserdurchmesserAuswahlNut->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        FraeserdurchmesserAuswahlNut->setMinimum(0.010000000000000);
-        FraeserdurchmesserAuswahlNut->setMaximum(160.990000000000009);
-        FraeserdurchmesserAuswahlNut->setValue(1.000000000000000);
         label_44 = new QLabel(tab_nutfraesen);
         label_44->setObjectName(QString::fromUtf8("label_44"));
         label_44->setGeometry(QRect(10, 375, 175, 25));
@@ -874,6 +867,9 @@ public:
         progressBarNut->setValue(0);
         progressBarNut->setTextVisible(false);
         progressBarNut->setInvertedAppearance(false);
+        FraeserDurchmesserAuswahlNut = new QComboBox(tab_nutfraesen);
+        FraeserDurchmesserAuswahlNut->setObjectName(QString::fromUtf8("FraeserDurchmesserAuswahlNut"));
+        FraeserDurchmesserAuswahlNut->setGeometry(QRect(450, 70, 65, 25));
         mainTabWidget->addTab(tab_nutfraesen, QString());
         tab_planfraesen = new QWidget();
         tab_planfraesen->setObjectName(QString::fromUtf8("tab_planfraesen"));
@@ -1636,7 +1632,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(5);
+        mainTabWidget->setCurrentIndex(2);
         BtnCalcEinfach->setDefault(true);
 
 

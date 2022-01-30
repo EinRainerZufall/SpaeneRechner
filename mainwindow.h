@@ -107,6 +107,10 @@ private slots:
 
     void on_btnSettingsWrite_clicked();
 
+    void on_BtnCalcNut_clicked();
+
+    void on_MaterialAuswahlNut_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
 };

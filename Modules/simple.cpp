@@ -8,17 +8,6 @@ int simpleIndex = 0;
 
 class Simple {
 public:
-    static QString test() {
-        QString temp;
-
-        xlnt::workbook wb;
-        wb.load(simplePath);
-
-        temp = QString::number(wb.sheet_count() - 1);
-
-        return temp;
-    }
-
     static QStringList matList() {
         QStringList mat;
         int row = 2;
