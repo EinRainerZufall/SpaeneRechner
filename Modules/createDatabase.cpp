@@ -269,18 +269,63 @@ public:
     }
 
     static void createSlot() {
-        //int column = 1;
-        //int row = 1;
+        int column = 2;
+        int row = 1;
+        int color = 191;
 
-        std::string array[11][11] = {};
+        const std::string mat[1][8] = {{"Material","Stahl","Al Knetlegierung","Al Guss","Weichholz","Hartholz","Kunststoff","Messing"}};
+
+        const double numbers[8][10] = {
+            {77,    1,      2,      3,      4,      5,      6,      8,      10,     12},
+            {90,    0.01,   0.01,   0.012,  0.025,  0.03,   0.038,  0.045,  0.05,   0.08},
+            {500,   0.01,   0.02,   0.025,  0.05,   0.05,   0.05,   0.064,  0.08,   0.1},
+            {200,   0.01,   0.01,   0.01,   0.015,  0.015,  0.025,  0.03,   0.038,  0.05},
+            {500,   0.025,  0.03,   0.035,  0.06,   0.07,   0.09,   0.1,    0.11,   0.16},
+            {450,   0.02,   0.025,  0.03,   0.055,  0.065,  0.085,  0.095,  0.095,  0.155},
+            {550,   0.02,   0.025,  0.03,   0.045,  0.06,   0.085,  0.09,   0.15,   0.25},
+            {350,   0.015,  0.02,   0.025,  0.025,  0.03,   0.05,   0.056,  0.065,  0.08}
+
+        };
 
         xlnt::workbook wb;
         wb.load(createPath);
         xlnt::worksheet ws = wb.create_sheet(3);
 
         //create table
+        while (row <= 8) {
+            ws.cell(1, row).value(mat[0][row-1]);
+            ws.cell(1, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
+            row++;
+        }
 
+        row = 1;
+        while (column <= 11) {
+            while (row <= 8) {
+                ws.cell(column, row).value(numbers[row-1][column-2]);
+                ws.cell(column, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
+                row++;
+            }
+            ws.column_properties(column).width = 10;
+            row = 1;
+            column++;
+        }
+
+        ws.cell("B1").value("Vc");
         ws.title("Slot");
+
+        ws.column_properties(1).width = 23.55;
+
+        row = 1;
+        column = 1;
+        while (row <= 8) {
+            while (column <= 11) {
+                ws.cell(column, row).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
+                column++;
+            }
+            column = 1;
+            row = row +2;
+            color = 242;
+        }
 
         wb.save(name);
 
@@ -604,6 +649,30 @@ public:
         ws.column_properties(1).width = 45;
         ws.column_properties(11).width = 10;
         ws.column_properties(12).width = 10;
+
+        wb.save(name);
+
+        return;
+    }
+
+    static void createGewinde() {
+        int column = 2;
+        int row = 1;
+        int color = 191;
+
+        const std::string mat[1][8] = {{}};
+
+        const double numbers[8][10] = {
+
+        };
+
+        xlnt::workbook wb;
+        wb.load(createPath);
+        xlnt::worksheet ws = wb.create_sheet(7);
+
+        //create table
+
+        ws.title("Gewinde");
 
         wb.save(name);
 
