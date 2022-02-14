@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
 //    ui->mainTabWidget->setTabVisible(3, false);   //Planfraesen
 //    ui->mainTabWidget->setTabVisible(4, false);   //Bohren
 //    ui->mainTabWidget->setTabVisible(5, false);   //Drehen
-    ui->mainTabWidget->setTabVisible(6, false);   //Gewinde
+//    ui->mainTabWidget->setTabVisible(6, false);   //Gewinde
     ui->mainTabWidget->setTabVisible(7, false);   //Extras
     ui->mainTabWidget->setCurrentIndex(0);
 #endif

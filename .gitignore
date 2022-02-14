@@ -10,6 +10,7 @@ Makefile.Debug
 Makefile.Release
 SpaeneRechner.pro.user
 Daten.xlsx
-license.xml
 ~$Daten.xlsx
+license.xml
 Test.xlsx
+~$Test.xlsx
