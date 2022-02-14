@@ -11,11 +11,11 @@
 #include "Modules/drill.cpp"
 #include "Modules/createDatabase.cpp"
 #include "Modules/turn.cpp"
+#include "Modules/thread.cpp"
 
 
 /*
  *  todo
- *  - Nutfraesen koplet + Tabelle
  *  - Gewinde klomplet + Tabelle
  *  - Extras komplett
  *  - Einstellungen verbessern
@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
 #else
     //Release things
 //    ui->mainTabWidget->setTabVisible(1, false);   //Dynamisch
-    ui->mainTabWidget->setTabVisible(2, false);   //Nutfraesen
+//    ui->mainTabWidget->setTabVisible(2, false);   //Nutfraesen
 //    ui->mainTabWidget->setTabVisible(3, false);   //Planfraesen
 //    ui->mainTabWidget->setTabVisible(4, false);   //Bohren
 //    ui->mainTabWidget->setTabVisible(5, false);   //Drehen
@@ -58,6 +58,7 @@ MainWindow::MainWindow(QWidget *parent)
         createDatabase::createPlan90();
         createDatabase::createPlan45();
         createDatabase::createTurn();
+        createDatabase::createThread();
 
         createDatabase::createSettings();
     }
@@ -72,6 +73,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->MaxDrehzahlAuswahlNut->setValue(Settings::maxRpmFr());
     ui->MaxDrehzahlAuswahlPlan->setValue(Settings::maxRpmFr());
     ui->MaxDrehzahlAuswahlTurn->setValue(Settings::maxRpmDr());
+    ui->MaxDrehzahlAuswahlGewinde->setValue(Settings::maxRpmFr());
 
     //mashine condition
     switch (Settings::condition()) {
@@ -177,6 +179,11 @@ MainWindow::MainWindow(QWidget *parent)
     //Turn mat
     ui->MaterialAuswahlTurn->addItems(Turn::matList());
     ui->FraeserDurchmesserAuswahlNut->addItems(Slot::dList());
+
+    //Thread mat
+    ui->MaterialAuswahlGewinde->addItems(Thread::matList());
+    ui->DurchmesserAuswahlGewinde->addItems(Thread::dList());
+
 }
 
 MainWindow::~MainWindow()
@@ -260,6 +267,7 @@ void MainWindow::on_btnCreateAll_clicked()
     createDatabase::createPlan90();
     createDatabase::createPlan45();
     createDatabase::createTurn();
+    createDatabase::createThread();
 
     createDatabase::createSettings();
 
@@ -1159,4 +1167,45 @@ void MainWindow::on_BtnCalcNut_clicked()
 void MainWindow::on_MaterialAuswahlNut_currentIndexChanged(int index)
 {
     ui->VcOutNut->setText(QString::number(Slot::Vc(index)) + " m/min");
+}
+
+void MainWindow::on_DurchmesserAuswahlGewinde_currentIndexChanged(int index)
+{
+    ui->DurchmesserGewinde->setText(QString::number(Thread::Diameter(index))+" mm");
+    ui->SteigungGewinde->setText(QString::number(Thread::threadPitch(index))+" mm");
+    ui->VcOutGewinde->setText(QString::number(Thread::Vc(ui->MaterialAuswahlGewinde->currentIndex(),index))+" m/min");
+}
+
+
+void MainWindow::on_MaterialAuswahlGewinde_currentIndexChanged(int index)
+{
+    //ui->VcOutGewinde->setText(QString::number(Thread::Vc(index,ui->DurchmesserAuswahlGewinde->currentIndex()))+" m/min");
+    // Im Moment nicht Möglich -> Warum? mögliche Loesungen?
+}
+
+
+void MainWindow::on_BtnCalcGewinde_clicked()
+{
+    const double pi = M_PI;
+    double D = Thread::Diameter(ui->DurchmesserAuswahlGewinde->currentIndex());
+    int N;
+    int maxN = ui->MaxDrehzahlAuswahlGewinde->value();
+    double Vc = Thread::Vc(ui->MaterialAuswahlGewinde->currentIndex(),ui->DurchmesserAuswahlGewinde->currentIndex());
+    double P = Thread::threadPitch(ui->DurchmesserAuswahlGewinde->currentIndex());
+
+    setCursor(Qt::CursorShape::WaitCursor);
+
+    N = (Vc * 1000) / (pi * D);
+    if(N > maxN) {
+        N = maxN;
+    }
+
+    ui->RealVcOutGewinde->setText(QString::number(round((N * pi * D) / 1000)) + " m/min");
+
+    ui->DrehzahlOutGewinde->setText(QString::number(N));
+    ui->VorschubOutGewinde->setText(QString::number(round(N * P)) + " mm/min");
+    ui->VorschubUOutGewinde->setText(QString::number(P) + " mm/U");
+
+
+    setCursor(Qt::CursorShape::ArrowCursor);
 }

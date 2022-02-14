@@ -4334,6 +4334,342 @@ background: #dfdfdf;
      <attribute name="title">
       <string>Gewinde</string>
      </attribute>
+     <widget class="QLabel" name="label_58">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>400</y>
+        <width>100</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Drehzahl</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="VorschubOutGewinde">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>425</y>
+        <width>150</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0 mm/min</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="DrehzahlOutGewinde">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>425</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_59">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>400</y>
+        <width>100</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vorschub</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_60">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>135</y>
+        <width>150</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>max. Drehzahl</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="RealVcOutGewinde">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>160</y>
+        <width>90</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0 m/min</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_61">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>135</y>
+        <width>100</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>reale Vc</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_62">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>375</y>
+        <width>175</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <underline>true</underline>
+       </font>
+      </property>
+      <property name="text">
+       <string>fertige Berechnungen:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_63">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>45</y>
+        <width>150</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Materialauswahl</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="MaterialAuswahlGewinde">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>350</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="maxVisibleItems">
+       <number>25</number>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BtnCalcGewinde">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>625</y>
+        <width>125</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Berechnen</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_123">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>100</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <underline>true</underline>
+       </font>
+      </property>
+      <property name="text">
+       <string>Eingaben:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_124">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>135</y>
+        <width>50</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vc</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="DurchmesserAuswahlGewinde">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>70</y>
+        <width>65</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="MaxDrehzahlAuswahlGewinde">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>70</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>1000</number>
+      </property>
+      <property name="maximum">
+       <number>64000</number>
+      </property>
+      <property name="value">
+       <number>1000</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VcOutGewinde">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>160</y>
+        <width>90</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0 m/min</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_126">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>45</y>
+        <width>150</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Gewindebohrer</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="VorschubUOutGewinde">
+      <property name="geometry">
+       <rect>
+        <x>625</x>
+        <y>425</y>
+        <width>125</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0.00 mm/U</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="DurchmesserGewinde">
+      <property name="geometry">
+       <rect>
+        <x>545</x>
+        <y>70</y>
+        <width>55</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string>0 mm</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="SteigungGewinde">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>70</y>
+        <width>70</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string>0 mm</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_127">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>45</y>
+        <width>150</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Steigung</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_extra">
      <attribute name="title">
@@ -4814,7 +5150,7 @@ background: #dfdfdf;
 text-align: left;</string>
        </property>
        <property name="text">
-        <string>contact@spaenerechner.de</string>
+        <string>support@spaenerechner.de</string>
        </property>
        <property name="flat">
         <bool>true</bool>
