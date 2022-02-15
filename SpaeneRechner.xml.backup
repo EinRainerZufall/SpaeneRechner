@@ -1,7 +1,13 @@
 <project>
     <shortName>SpaeneRechner</shortName>
-    <fullName>SpaeneRechner</fullName>
-    <version>1.0</version>
+    <fullName>Spaene Rechner</fullName>
+    <version>0.5.4</version>
+    <installerFilename>${product_shortname}-v${product_version}-${platform_name}-installer.${platform_exec_suffix}</installerFilename>
+    <licenseFile>LICENSE</licenseFile>
+    <wrapLicenseFileText>0</wrapLicenseFileText>
+    <logoImage>endmill_altin.png</logoImage>
+    <splashImage>endmill_altin.png</splashImage>
+    <defaultLanguage>de</defaultLanguage>
     <componentList>
         <component>
             <name>default</name>
@@ -9,6 +15,22 @@
             <canBeEdited>1</canBeEdited>
             <selected>1</selected>
             <show>1</show>
+            <desktopShortcutList>
+                <shortcut>
+                    <comment>SpaeneRechner</comment>
+                    <exec></exec>
+                    <icon></icon>
+                    <name>SpaeneRechner</name>
+                    <path></path>
+                    <platforms>all</platforms>
+                    <runAsAdmin>0</runAsAdmin>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/SpaeneRechner.exe</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon></windowsIcon>
+                    <windowsPath>${installdir}/</windowsPath>
+                </shortcut>
+            </desktopShortcutList>
             <folderList>
                 <folder>
                     <description>Program Files</description>
@@ -49,6 +71,47 @@
                     <destination>${installdir}</destination>
                     <name>programfileswindows</name>
                     <platforms>windows</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>../../../../../release/iconengines</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>../../../../../release/imageformats</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>../../../../../release/platforms</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>../../../../../release/styles</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>../../../../../release/translations</origin>
+                        </distributionDirectory>
+                        <distributionFile>
+                            <origin>../../../../../release/D3Dcompiler_47.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../../../../../release/opengl32sw.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../../../../../release/Qt6Core.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../../../../../release/Qt6Gui.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../../../../../release/Qt6Svg.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../../../../../release/Qt6Widgets.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../../../../../release/SpaeneRechner.exe</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>../../../../../release/xlnt.dll</origin>
+                        </distributionFile>
+                    </distributionFileList>
                 </folder>
                 <folder>
                     <description>Program Files</description>
@@ -74,26 +137,56 @@
                     <windowsIcon></windowsIcon>
                     <windowsPath>${installdir}/</windowsPath>
                 </startMenuShortcut>
+                <startMenuShortcut>
+                    <comment>${product_fullname}</comment>
+                    <name>${product_fullname}</name>
+                    <runAsAdmin>0</runAsAdmin>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/SpaeneRechner.exe</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon></windowsIcon>
+                    <windowsPath>${installdir}/</windowsPath>
+                </startMenuShortcut>
             </startMenuShortcutList>
         </component>
     </componentList>
+    <postInstallationActionList>
+        <runProgram>
+            <program>\release\VC_redist.x64.exe</program>
+            <programArguments></programArguments>
+        </runProgram>
+    </postInstallationActionList>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
+    <licenseFileEncoding>utf-8</licenseFileEncoding>
+    <readmeFileEncoding>utf-8</readmeFileEncoding>
+    <saveRelativePaths>1</saveRelativePaths>
     <vendor></vendor>
+    <licenseFileList>
+        <licenseFile>
+            <code>de</code>
+            <encoding>utf-8</encoding>
+            <file>LICENSE</file>
+        </licenseFile>
+    </licenseFileList>
     <parameterList>
         <directoryParameter>
             <name>installdir</name>
             <description>Installer.Parameter.installdir.description</description>
             <explanation>Installer.Parameter.installdir.explanation</explanation>
             <value></value>
-            <default>${platform_install_prefix}/${product_shortname}-${product_version}</default>
+            <default>${platform_install_prefix}/${product_shortname}-v ${product_version}</default>
             <allowEmptyValue>0</allowEmptyValue>
-            <ask>yes</ask>
             <cliOptionName>prefix</cliOptionName>
-            <mustBeWritable>yes</mustBeWritable>
+            <mustBeWritable>1</mustBeWritable>
             <mustExist>0</mustExist>
             <width>40</width>
         </directoryParameter>
     </parameterList>
+    <platformOptionsList>
+        <platformOptions>
+            <platform>windows</platform>
+        </platformOptions>
+    </platformOptionsList>
 </project>
 

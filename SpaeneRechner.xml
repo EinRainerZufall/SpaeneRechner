@@ -2,7 +2,12 @@
     <shortName>SpaeneRechner</shortName>
     <fullName>Spaene Rechner</fullName>
     <version>0.5.4</version>
+    <installerFilename>${product_shortname}-v${product_version}-${platform_name}-installer.${platform_exec_suffix}</installerFilename>
     <licenseFile>LICENSE</licenseFile>
+    <wrapLicenseFileText>0</wrapLicenseFileText>
+    <logoImage>endmill_altin.png</logoImage>
+    <splashImage>endmill_altin.png</splashImage>
+    <defaultLanguage>de</defaultLanguage>
     <componentList>
         <component>
             <name>default</name>
@@ -12,18 +17,18 @@
             <show>1</show>
             <desktopShortcutList>
                 <shortcut>
-                    <comment></comment>
+                    <comment>SpaeneRechner</comment>
                     <exec></exec>
                     <icon></icon>
-                    <name>SpaeneRechner v${installer_builder_version}</name>
+                    <name>SpaeneRechner</name>
                     <path></path>
-                    <platforms>windows-x64</platforms>
+                    <platforms>all</platforms>
                     <runAsAdmin>0</runAsAdmin>
                     <runInTerminal>0</runInTerminal>
-                    <windowsExec>SpaeneRechner.exe</windowsExec>
+                    <windowsExec>${installdir}/SpaeneRechner.exe</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
                     <windowsIcon></windowsIcon>
-                    <windowsPath></windowsPath>
+                    <windowsPath>${installdir}/</windowsPath>
                 </shortcut>
             </desktopShortcutList>
             <folderList>
@@ -66,12 +71,6 @@
                     <destination>${installdir}</destination>
                     <name>programfileswindows</name>
                     <platforms>windows</platforms>
-                </folder>
-                <folder>
-                    <description>Program Files</description>
-                    <destination>${installdir}</destination>
-                    <name>programfileswindows64</name>
-                    <platforms>windows-x64</platforms>
                     <distributionFileList>
                         <distributionDirectory>
                             <origin>release/iconengines</origin>
@@ -113,114 +112,15 @@
                             <origin>release/xlnt.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>release/iconengines/qsvgicon.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/imageformats/qgif.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/imageformats/qico.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/imageformats/qjpeg.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/imageformats/qsvg.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/platforms/qwindows.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/styles/qwindowsvistastyle.dll</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_ar.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_bg.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_ca.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_cs.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_da.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_de.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_en.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_es.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_fa.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_fi.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_fr.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_gd.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_he.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_hr.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_hu.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_it.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_ja.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_ko.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_lv.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_nl.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_nn.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_pl.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_pt_BR.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_ru.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_sk.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_tr.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_uk.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_zh_CN.qm</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>release/translations/qt_zh_TW.qm</origin>
+                            <origin>release/VC_redist.x64.exe</origin>
                         </distributionFile>
                     </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfileswindows64</name>
+                    <platforms>windows-x64</platforms>
                 </folder>
                 <folder>
                     <description>Program Files</description>
@@ -240,16 +140,35 @@
                     <windowsIcon></windowsIcon>
                     <windowsPath>${installdir}/</windowsPath>
                 </startMenuShortcut>
+                <startMenuShortcut>
+                    <comment>${product_fullname}</comment>
+                    <name>${product_fullname}</name>
+                    <runAsAdmin>0</runAsAdmin>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/SpaeneRechner.exe</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon></windowsIcon>
+                    <windowsPath>${installdir}/</windowsPath>
+                </startMenuShortcut>
             </startMenuShortcutList>
         </component>
     </componentList>
+    <postInstallationActionList>
+        <runProgram>
+            <program>${installdir}/VC_redist.x64.exe</program>
+            <programArguments></programArguments>
+        </runProgram>
+    </postInstallationActionList>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
+    <licenseFileEncoding>utf-8</licenseFileEncoding>
+    <readmeFileEncoding>utf-8</readmeFileEncoding>
     <saveRelativePaths>1</saveRelativePaths>
     <vendor></vendor>
     <licenseFileList>
         <licenseFile>
-            <code>en</code>
+            <code>de</code>
+            <encoding>utf-8</encoding>
             <file>LICENSE</file>
         </licenseFile>
     </licenseFileList>
@@ -259,14 +178,18 @@
             <description>Installer.Parameter.installdir.description</description>
             <explanation>Installer.Parameter.installdir.explanation</explanation>
             <value></value>
-            <default>${platform_install_prefix}/${product_shortname}-${product_version}</default>
+            <default>${platform_install_prefix}/${product_shortname}-v ${product_version}</default>
             <allowEmptyValue>0</allowEmptyValue>
-            <ask>yes</ask>
             <cliOptionName>prefix</cliOptionName>
-            <mustBeWritable>yes</mustBeWritable>
+            <mustBeWritable>1</mustBeWritable>
             <mustExist>0</mustExist>
             <width>40</width>
         </directoryParameter>
     </parameterList>
+    <platformOptionsList>
+        <platformOptions>
+            <platform>windows</platform>
+        </platformOptions>
+    </platformOptionsList>
 </project>
 
