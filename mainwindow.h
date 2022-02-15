@@ -105,6 +105,18 @@ private slots:
 
     void on_progressBarTurn_valueChanged(int value);
 
+    void on_btnSettingsWrite_clicked();
+
+    void on_BtnCalcNut_clicked();
+
+    void on_MaterialAuswahlNut_currentIndexChanged(int index);
+
+    void on_DurchmesserAuswahlGewinde_currentIndexChanged(int index);
+
+    void on_MaterialAuswahlGewinde_currentIndexChanged(int index);
+
+    void on_BtnCalcGewinde_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

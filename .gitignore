@@ -1,0 +1,16 @@
+
+debug/**
+release/**
+x64-Debug/**
+x64-Release/**
+xlnt/**
+.qmake.stash
+Makefile
+Makefile.Debug
+Makefile.Release
+SpaeneRechner.pro.user
+Daten.xlsx
+~$Daten.xlsx
+license.xml
+Test.xlsx
+~$Test.xlsx

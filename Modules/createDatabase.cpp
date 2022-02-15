@@ -71,6 +71,16 @@ public:
             color = 242;
         }
 
+        ws.cell(2,1).comment("Vorschubgeschwindigkeit in m/min");
+
+        column = 3;
+        int i = 1;
+        while (column <= 11) {
+            ws.cell(column, 1).comment("Durchmesser " + std::to_string(i) + " in mm");
+            i++;
+            column++;
+        }
+
         wb.save(name);
 
         return;
@@ -259,18 +269,63 @@ public:
     }
 
     static void createSlot() {
-        //int column = 1;
-        //int row = 1;
+        int column = 2;
+        int row = 1;
+        int color = 191;
 
-        std::string array[11][11] = {};
+        const std::string mat[1][8] = {{"Material","Stahl","Al Knetlegierung","Al Guss","Weichholz","Hartholz","Kunststoff","Messing"}};
+
+        const double numbers[8][10] = {
+            {77,    1,      2,      3,      4,      5,      6,      8,      10,     12},
+            {90,    0.01,   0.01,   0.012,  0.025,  0.03,   0.038,  0.045,  0.05,   0.08},
+            {500,   0.01,   0.02,   0.025,  0.05,   0.05,   0.05,   0.064,  0.08,   0.1},
+            {200,   0.01,   0.01,   0.01,   0.015,  0.015,  0.025,  0.03,   0.038,  0.05},
+            {500,   0.025,  0.03,   0.035,  0.06,   0.07,   0.09,   0.1,    0.11,   0.16},
+            {450,   0.02,   0.025,  0.03,   0.055,  0.065,  0.085,  0.095,  0.095,  0.155},
+            {550,   0.02,   0.025,  0.03,   0.045,  0.06,   0.085,  0.09,   0.15,   0.25},
+            {350,   0.015,  0.02,   0.025,  0.025,  0.03,   0.05,   0.056,  0.065,  0.08}
+
+        };
 
         xlnt::workbook wb;
         wb.load(createPath);
         xlnt::worksheet ws = wb.create_sheet(3);
 
         //create table
+        while (row <= 8) {
+            ws.cell(1, row).value(mat[0][row-1]);
+            ws.cell(1, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
+            row++;
+        }
 
+        row = 1;
+        while (column <= 11) {
+            while (row <= 8) {
+                ws.cell(column, row).value(numbers[row-1][column-2]);
+                ws.cell(column, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
+                row++;
+            }
+            ws.column_properties(column).width = 10;
+            row = 1;
+            column++;
+        }
+
+        ws.cell("B1").value("Vc");
         ws.title("Slot");
+
+        ws.column_properties(1).width = 23.55;
+
+        row = 1;
+        column = 1;
+        while (row <= 8) {
+            while (column <= 11) {
+                ws.cell(column, row).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
+                column++;
+            }
+            column = 1;
+            row = row +2;
+            color = 242;
+        }
 
         wb.save(name);
 
@@ -389,7 +444,7 @@ public:
 
     static void createPlan45() {
         int column = 1;
-        int row = 1;
+        int row = 2;
         int color = 191;
 
         const std::string header[1][12] = {{"Material","Vc min","Vc typ","Vc max","fz (bei ae 0,1 * D) min","fz (bei ae 0,1 * D) typ","fz (bei ae 0,1 * D) max",
@@ -497,7 +552,7 @@ public:
 
     static void createTurn() {
         int column = 1;
-        int row = 1;
+        int row = 2;
         int color = 191;
 
         std::string header[1][12] = {{"Material","Plan Vc min","Plan Vc typ","Plan Vc max","Laengs Vc min SR","Laengs Vc typ SR","Laengs Vc max SR",
@@ -594,6 +649,76 @@ public:
         ws.column_properties(1).width = 45;
         ws.column_properties(11).width = 10;
         ws.column_properties(12).width = 10;
+
+        wb.save(name);
+
+        return;
+    }
+
+    static void createThread() {
+        int column = 2;
+        int row = 1;
+        int color = 191;
+
+        const std::string mat[1][8] = {{"˅ Material ˅","Steigung ->","Aluminium Knetlegierung","Guss-Aluminium > 6% Si","Messing, Bronze, Kupfer","Stahl","INOX","Testmaterial 6"}};
+
+        const std::string gewD[1][11] = {{"M2","M2.5","M3","M4","M5","M6","M8","M10","M12","M14","M16"}};
+
+        const double numbers[7][11] = {
+            {0.4, 0.45, 0.5, 0.7, 0.8, 1,  1.25, 1.5, 1.75, 2,  2},
+            {12,  12,   12,  12,  12,  12, 12,   12,  12,   12, 12},
+            {11,  11,   11,  11,  11,  11, 11,   11,  11,   11, 11},
+            {12,  12,   12,  12,  12,  12, 12,   12,  12,   12, 12},
+            {7,   7,    7,   7,   7,   7,  7,    7,   7,    7,  7},
+            {4,   4,    4,   4,   4,   4,  4,    4,   4,    4,  4},
+            {15,  15,   15,  15,  15,  15, 15,   15,  15,   15, 15}
+
+        };
+
+        xlnt::workbook wb;
+        wb.load(createPath);
+        xlnt::worksheet ws = wb.create_sheet(7);
+
+        //create table
+        while(row <= 8) {
+            ws.cell(1, row).value(mat[0][row]);
+            ws.cell(1, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
+            row++;
+        }
+        while(column <= 12) {
+            ws.cell(column, 1).value(gewD[0][column-2]);
+            ws.cell(column, 1).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
+            ws.column_properties(column).width = 10;
+            ws.cell(column, 1).comment("Das Komma muss als Punkt geschrieben werden!");
+            column++;
+        }
+        column = 2;
+        row = 2;
+        while(column <= 12){
+            while(row <= 8){
+                ws.cell(column, row).value(numbers[row-2][column-2]);
+                ws.cell(column, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
+                row++;
+            }
+            row = 2;
+            column++;
+        }
+
+        ws.title("Gewinde Metrisch");
+
+        ws.range(xlnt::range_reference(1,1,12,2)).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
+
+        row = 4;
+        color = 242;
+        while(row <= 8){
+            ws.range(xlnt::range_reference(1,row,12,row)).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
+            row = row + 2;
+        }
+
+        color = 217;
+        ws.range(xlnt::range_reference(2,2,12,2)).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
+
+        ws.column_properties(1).width = 23.55;
 
         wb.save(name);
 

@@ -27,6 +27,12 @@ win32 {
     #Icon unter Win
     RC_ICONS = endmill_altin.ico
     message("building for Windows")
+
+    #die xlnt.dll in den release Ordner kopieren
+    copydata.commands = $(COPY_FILE) \"$$shell_path($$PWD\\x64-Release\source\xlnt.dll)\" \"$$shell_path($$OUT_PWD\release)\"
+    first.depends = $(first) copydata
+    export(first.depends)
+    export(copydata.commands)
 }
 
 macx {
@@ -47,6 +53,7 @@ SOURCES += \
     Modules/settings.cpp \
     Modules/simple.cpp \
     Modules/slot.cpp \
+    Modules/thread.cpp \
     Modules/turn.cpp \
     main.cpp \
     mainwindow.cpp
@@ -59,7 +66,8 @@ FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
-    SpaeneRechnerV2_de_DE.ts
+    SpaeneRechner_de_DE.ts
+
 CONFIG += lrelease
 CONFIG += embed_translations
 
@@ -70,7 +78,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     Daten.xlsx \
-    SpaeneRechnerV2_de_DE.ts
+    SpaeneRechner_de_DE.ts
 
 RESOURCES += \
     ressources.qrc
+
+QMAKE_EXTRA_TARGETS += first copydata
