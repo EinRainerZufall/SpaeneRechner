@@ -4,617 +4,643 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="20"/>
+        <location filename="mainwindow.ui" line="19"/>
         <source>Späne Rechner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="37"/>
+        <location filename="mainwindow.ui" line="36"/>
         <source>Einfach</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="62"/>
-        <location filename="mainwindow.ui" line="689"/>
-        <location filename="mainwindow.ui" line="1617"/>
-        <location filename="mainwindow.ui" line="2321"/>
-        <location filename="mainwindow.ui" line="2971"/>
-        <location filename="mainwindow.ui" line="3685"/>
+        <location filename="mainwindow.ui" line="61"/>
+        <location filename="mainwindow.ui" line="684"/>
+        <location filename="mainwindow.ui" line="1599"/>
+        <location filename="mainwindow.ui" line="2280"/>
+        <location filename="mainwindow.ui" line="2922"/>
+        <location filename="mainwindow.ui" line="3622"/>
+        <location filename="mainwindow.ui" line="4472"/>
         <source>Materialauswahl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="75"/>
-        <location filename="mainwindow.ui" line="815"/>
-        <location filename="mainwindow.ui" line="1736"/>
-        <location filename="mainwindow.ui" line="2162"/>
+        <location filename="mainwindow.ui" line="74"/>
+        <location filename="mainwindow.ui" line="809"/>
+        <location filename="mainwindow.ui" line="1718"/>
+        <location filename="mainwindow.ui" line="2124"/>
         <source>Fräserdurchmesser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="88"/>
-        <location filename="mainwindow.ui" line="676"/>
-        <location filename="mainwindow.ui" line="1556"/>
-        <location filename="mainwindow.ui" line="2452"/>
+        <location filename="mainwindow.ui" line="87"/>
+        <location filename="mainwindow.ui" line="671"/>
+        <location filename="mainwindow.ui" line="1538"/>
+        <location filename="mainwindow.ui" line="2408"/>
         <source>Schneiden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="123"/>
-        <location filename="mainwindow.ui" line="715"/>
-        <location filename="mainwindow.ui" line="1762"/>
-        <location filename="mainwindow.ui" line="2665"/>
-        <location filename="mainwindow.ui" line="2939"/>
-        <location filename="mainwindow.ui" line="3793"/>
+        <location filename="mainwindow.ui" line="122"/>
+        <location filename="mainwindow.ui" line="710"/>
+        <location filename="mainwindow.ui" line="1744"/>
+        <location filename="mainwindow.ui" line="2619"/>
+        <location filename="mainwindow.ui" line="2890"/>
+        <location filename="mainwindow.ui" line="3727"/>
+        <location filename="mainwindow.ui" line="4411"/>
         <source>max. Drehzahl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="155"/>
-        <location filename="mainwindow.ui" line="728"/>
-        <location filename="mainwindow.ui" line="1710"/>
-        <location filename="mainwindow.ui" line="2620"/>
-        <location filename="mainwindow.ui" line="3428"/>
-        <location filename="mainwindow.ui" line="4123"/>
+        <location filename="mainwindow.ui" line="154"/>
+        <location filename="mainwindow.ui" line="723"/>
+        <location filename="mainwindow.ui" line="1692"/>
+        <location filename="mainwindow.ui" line="2574"/>
+        <location filename="mainwindow.ui" line="3369"/>
+        <location filename="mainwindow.ui" line="4052"/>
+        <location filename="mainwindow.ui" line="4440"/>
         <source>reale Vc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="168"/>
-        <location filename="mainwindow.ui" line="598"/>
-        <location filename="mainwindow.ui" line="1749"/>
-        <location filename="mainwindow.ui" line="2175"/>
-        <location filename="mainwindow.ui" line="3415"/>
-        <location filename="mainwindow.ui" line="3698"/>
+        <location filename="mainwindow.ui" line="167"/>
+        <location filename="mainwindow.ui" line="594"/>
+        <location filename="mainwindow.ui" line="1731"/>
+        <location filename="mainwindow.ui" line="2137"/>
+        <location filename="mainwindow.ui" line="3356"/>
+        <location filename="mainwindow.ui" line="3635"/>
+        <location filename="mainwindow.ui" line="4536"/>
         <source>Vc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="191"/>
-        <location filename="mainwindow.ui" line="611"/>
-        <location filename="mainwindow.ui" line="1723"/>
-        <location filename="mainwindow.ui" line="2633"/>
-        <location filename="mainwindow.ui" line="3137"/>
-        <location filename="mainwindow.ui" line="3946"/>
+        <location filename="mainwindow.ui" line="190"/>
+        <location filename="mainwindow.ui" line="607"/>
+        <location filename="mainwindow.ui" line="1705"/>
+        <location filename="mainwindow.ui" line="2587"/>
+        <location filename="mainwindow.ui" line="3084"/>
+        <location filename="mainwindow.ui" line="3877"/>
+        <location filename="mainwindow.ui" line="4347"/>
         <source>Drehzahl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="204"/>
-        <location filename="mainwindow.ui" line="783"/>
-        <location filename="mainwindow.ui" line="2065"/>
-        <location filename="mainwindow.ui" line="2646"/>
-        <location filename="mainwindow.ui" line="3118"/>
-        <location filename="mainwindow.ui" line="3806"/>
+        <location filename="mainwindow.ui" line="203"/>
+        <location filename="mainwindow.ui" line="777"/>
+        <location filename="mainwindow.ui" line="2017"/>
+        <location filename="mainwindow.ui" line="2600"/>
+        <location filename="mainwindow.ui" line="3065"/>
+        <location filename="mainwindow.ui" line="3740"/>
+        <location filename="mainwindow.ui" line="4379"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="223"/>
-        <location filename="mainwindow.ui" line="802"/>
-        <location filename="mainwindow.ui" line="1973"/>
-        <location filename="mainwindow.ui" line="2308"/>
-        <location filename="mainwindow.ui" line="3467"/>
-        <location filename="mainwindow.ui" line="3825"/>
-        <location filename="mainwindow.ui" line="4094"/>
+        <location filename="mainwindow.ui" line="222"/>
+        <location filename="mainwindow.ui" line="796"/>
+        <location filename="mainwindow.ui" line="1928"/>
+        <location filename="mainwindow.ui" line="2267"/>
+        <location filename="mainwindow.ui" line="3408"/>
+        <location filename="mainwindow.ui" line="3759"/>
+        <location filename="mainwindow.ui" line="4023"/>
+        <location filename="mainwindow.ui" line="4398"/>
         <source>Vorschub</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="236"/>
-        <location filename="mainwindow.ui" line="268"/>
-        <location filename="mainwindow.ui" line="866"/>
-        <location filename="mainwindow.ui" line="1808"/>
-        <location filename="mainwindow.ui" line="2188"/>
-        <location filename="mainwindow.ui" line="2997"/>
-        <location filename="mainwindow.ui" line="4305"/>
+        <location filename="mainwindow.ui" line="235"/>
+        <location filename="mainwindow.ui" line="267"/>
+        <location filename="mainwindow.ui" line="860"/>
+        <location filename="mainwindow.ui" line="1789"/>
+        <location filename="mainwindow.ui" line="2150"/>
+        <location filename="mainwindow.ui" line="2948"/>
+        <location filename="mainwindow.ui" line="4231"/>
+        <location filename="mainwindow.ui" line="4360"/>
         <source>0 mm/min</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="255"/>
+        <location filename="mainwindow.ui" line="254"/>
         <source>Eintauchvorschub</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="294"/>
+        <location filename="mainwindow.ui" line="292"/>
         <source>Ap und Ae empfehlungen:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="307"/>
+        <location filename="mainwindow.ui" line="305"/>
         <source>Tiefenzustellung Nut (Alu)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="320"/>
+        <location filename="mainwindow.ui" line="318"/>
         <source>Tiefenzustellung Nut (Holz)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="333"/>
+        <location filename="mainwindow.ui" line="331"/>
         <source>Tiefenzustellung Nut (Kunststoffe)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="346"/>
+        <location filename="mainwindow.ui" line="344"/>
         <source>Tiefenzustellung trochoidal (Alu)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="359"/>
+        <location filename="mainwindow.ui" line="357"/>
         <source>Seitenzustellung (max. Alu)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="372"/>
+        <location filename="mainwindow.ui" line="370"/>
         <source>Seitenzustellung trochoidal (max. Alu)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="385"/>
-        <location filename="mainwindow.ui" line="404"/>
-        <location filename="mainwindow.ui" line="423"/>
-        <location filename="mainwindow.ui" line="442"/>
-        <location filename="mainwindow.ui" line="461"/>
-        <location filename="mainwindow.ui" line="480"/>
-        <location filename="mainwindow.ui" line="1238"/>
+        <location filename="mainwindow.ui" line="383"/>
+        <location filename="mainwindow.ui" line="402"/>
+        <location filename="mainwindow.ui" line="421"/>
+        <location filename="mainwindow.ui" line="440"/>
+        <location filename="mainwindow.ui" line="459"/>
+        <location filename="mainwindow.ui" line="478"/>
+        <location filename="mainwindow.ui" line="1223"/>
+        <location filename="mainwindow.ui" line="4629"/>
+        <location filename="mainwindow.ui" line="4651"/>
         <source>0 mm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="506"/>
-        <location filename="mainwindow.ui" line="663"/>
-        <location filename="mainwindow.ui" line="1782"/>
-        <location filename="mainwindow.ui" line="2526"/>
-        <location filename="mainwindow.ui" line="3105"/>
-        <location filename="mainwindow.ui" line="3966"/>
+        <location filename="mainwindow.ui" line="503"/>
+        <location filename="mainwindow.ui" line="658"/>
+        <location filename="mainwindow.ui" line="1763"/>
+        <location filename="mainwindow.ui" line="2481"/>
+        <location filename="mainwindow.ui" line="3052"/>
+        <location filename="mainwindow.ui" line="3896"/>
+        <location filename="mainwindow.ui" line="4523"/>
         <source>Eingaben:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="526"/>
-        <location filename="mainwindow.ui" line="770"/>
-        <location filename="mainwindow.ui" line="1960"/>
-        <location filename="mainwindow.ui" line="2546"/>
-        <location filename="mainwindow.ui" line="3361"/>
-        <location filename="mainwindow.ui" line="3986"/>
+        <location filename="mainwindow.ui" line="522"/>
+        <location filename="mainwindow.ui" line="764"/>
+        <location filename="mainwindow.ui" line="1915"/>
+        <location filename="mainwindow.ui" line="2500"/>
+        <location filename="mainwindow.ui" line="3302"/>
+        <location filename="mainwindow.ui" line="3915"/>
+        <location filename="mainwindow.ui" line="4459"/>
         <source>fertige Berechnungen:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="539"/>
-        <location filename="mainwindow.ui" line="828"/>
-        <location filename="mainwindow.ui" line="1672"/>
-        <location filename="mainwindow.ui" line="2207"/>
-        <location filename="mainwindow.ui" line="3242"/>
-        <location filename="mainwindow.ui" line="4021"/>
+        <location filename="mainwindow.ui" line="535"/>
+        <location filename="mainwindow.ui" line="822"/>
+        <location filename="mainwindow.ui" line="1654"/>
+        <location filename="mainwindow.ui" line="2169"/>
+        <location filename="mainwindow.ui" line="3186"/>
+        <location filename="mainwindow.ui" line="3950"/>
+        <location filename="mainwindow.ui" line="4498"/>
         <source>Berechnen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="561"/>
-        <location filename="mainwindow.ui" line="577"/>
-        <location filename="mainwindow.ui" line="1302"/>
-        <location filename="mainwindow.ui" line="1318"/>
-        <location filename="mainwindow.ui" line="1569"/>
-        <location filename="mainwindow.ui" line="1643"/>
-        <location filename="mainwindow.ui" line="2783"/>
-        <location filename="mainwindow.ui" line="2799"/>
-        <location filename="mainwindow.ui" line="2910"/>
-        <location filename="mainwindow.ui" line="3338"/>
-        <location filename="mainwindow.ui" line="3838"/>
-        <location filename="mainwindow.ui" line="4107"/>
+        <location filename="mainwindow.ui" line="557"/>
+        <location filename="mainwindow.ui" line="573"/>
+        <location filename="mainwindow.ui" line="1287"/>
+        <location filename="mainwindow.ui" line="1303"/>
+        <location filename="mainwindow.ui" line="1551"/>
+        <location filename="mainwindow.ui" line="1625"/>
+        <location filename="mainwindow.ui" line="2734"/>
+        <location filename="mainwindow.ui" line="2750"/>
+        <location filename="mainwindow.ui" line="2861"/>
+        <location filename="mainwindow.ui" line="3280"/>
+        <location filename="mainwindow.ui" line="3772"/>
+        <location filename="mainwindow.ui" line="4036"/>
+        <location filename="mainwindow.ui" line="4424"/>
+        <location filename="mainwindow.ui" line="4578"/>
         <source>0 m/min</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="586"/>
+        <location filename="mainwindow.ui" line="582"/>
         <source>Dynamisch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="624"/>
-        <location filename="mainwindow.ui" line="1406"/>
-        <location filename="mainwindow.ui" line="2360"/>
-        <location filename="mainwindow.ui" line="3933"/>
+        <location filename="mainwindow.ui" line="620"/>
+        <location filename="mainwindow.ui" line="1391"/>
+        <location filename="mainwindow.ui" line="2319"/>
+        <location filename="mainwindow.ui" line="3864"/>
         <source>Zeitspanvolumen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="847"/>
-        <location filename="mainwindow.ui" line="1598"/>
-        <location filename="mainwindow.ui" line="2478"/>
-        <location filename="mainwindow.ui" line="4324"/>
+        <location filename="mainwindow.ui" line="841"/>
+        <location filename="mainwindow.ui" line="1580"/>
+        <location filename="mainwindow.ui" line="2434"/>
+        <location filename="mainwindow.ui" line="4250"/>
         <source>0 cm³/min</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="907"/>
-        <location filename="mainwindow.ui" line="1795"/>
-        <location filename="mainwindow.ui" line="2572"/>
+        <location filename="mainwindow.ui" line="901"/>
+        <location filename="mainwindow.ui" line="1776"/>
+        <location filename="mainwindow.ui" line="2526"/>
         <source>Tiefenzustellung</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="942"/>
-        <location filename="mainwindow.ui" line="1393"/>
-        <location filename="mainwindow.ui" line="2585"/>
-        <location filename="mainwindow.ui" line="3454"/>
-        <location filename="mainwindow.ui" line="3659"/>
+        <location filename="mainwindow.ui" line="936"/>
+        <location filename="mainwindow.ui" line="1378"/>
+        <location filename="mainwindow.ui" line="2539"/>
+        <location filename="mainwindow.ui" line="3395"/>
+        <location filename="mainwindow.ui" line="3596"/>
         <source>Bedingung</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="979"/>
-        <location filename="mainwindow.ui" line="2010"/>
-        <location filename="mainwindow.ui" line="2397"/>
-        <location filename="mainwindow.ui" line="3187"/>
-        <location filename="mainwindow.ui" line="3878"/>
-        <location filename="mainwindow.ui" line="4527"/>
+        <location filename="mainwindow.ui" line="972"/>
+        <location filename="mainwindow.ui" line="1964"/>
+        <location filename="mainwindow.ui" line="2355"/>
+        <location filename="mainwindow.ui" line="3133"/>
+        <location filename="mainwindow.ui" line="3811"/>
+        <location filename="mainwindow.ui" line="4789"/>
         <source>instabil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1001"/>
-        <location filename="mainwindow.ui" line="2032"/>
-        <location filename="mainwindow.ui" line="2419"/>
-        <location filename="mainwindow.ui" line="3209"/>
-        <location filename="mainwindow.ui" line="3900"/>
-        <location filename="mainwindow.ui" line="4532"/>
+        <location filename="mainwindow.ui" line="993"/>
+        <location filename="mainwindow.ui" line="1985"/>
+        <location filename="mainwindow.ui" line="2376"/>
+        <location filename="mainwindow.ui" line="3154"/>
+        <location filename="mainwindow.ui" line="3832"/>
+        <location filename="mainwindow.ui" line="4794"/>
         <source>normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1020"/>
-        <location filename="mainwindow.ui" line="2051"/>
-        <location filename="mainwindow.ui" line="2438"/>
-        <location filename="mainwindow.ui" line="3228"/>
-        <location filename="mainwindow.ui" line="3919"/>
-        <location filename="mainwindow.ui" line="4537"/>
+        <location filename="mainwindow.ui" line="1011"/>
+        <location filename="mainwindow.ui" line="2003"/>
+        <location filename="mainwindow.ui" line="2394"/>
+        <location filename="mainwindow.ui" line="3172"/>
+        <location filename="mainwindow.ui" line="3850"/>
+        <location filename="mainwindow.ui" line="4799"/>
         <source>stabil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1034"/>
-        <location filename="mainwindow.ui" line="1659"/>
-        <location filename="mainwindow.ui" line="2559"/>
-        <location filename="mainwindow.ui" line="2984"/>
-        <location filename="mainwindow.ui" line="4168"/>
+        <location filename="mainwindow.ui" line="1025"/>
+        <location filename="mainwindow.ui" line="1641"/>
+        <location filename="mainwindow.ui" line="2513"/>
+        <location filename="mainwindow.ui" line="2935"/>
+        <location filename="mainwindow.ui" line="4097"/>
         <source>Kühlung</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1071"/>
-        <location filename="mainwindow.ui" line="1851"/>
-        <location filename="mainwindow.ui" line="2250"/>
-        <location filename="mainwindow.ui" line="3040"/>
-        <location filename="mainwindow.ui" line="3735"/>
-        <location filename="mainwindow.ui" line="4602"/>
+        <location filename="mainwindow.ui" line="1061"/>
+        <location filename="mainwindow.ui" line="1831"/>
+        <location filename="mainwindow.ui" line="2211"/>
+        <location filename="mainwindow.ui" line="2990"/>
+        <location filename="mainwindow.ui" line="3671"/>
+        <location filename="mainwindow.ui" line="4864"/>
         <source>Trocken</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1093"/>
-        <location filename="mainwindow.ui" line="1873"/>
-        <location filename="mainwindow.ui" line="2272"/>
-        <location filename="mainwindow.ui" line="3062"/>
-        <location filename="mainwindow.ui" line="3757"/>
-        <location filename="mainwindow.ui" line="4607"/>
+        <location filename="mainwindow.ui" line="1082"/>
+        <location filename="mainwindow.ui" line="1852"/>
+        <location filename="mainwindow.ui" line="2232"/>
+        <location filename="mainwindow.ui" line="3011"/>
+        <location filename="mainwindow.ui" line="3692"/>
+        <location filename="mainwindow.ui" line="4869"/>
         <source>KSS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1115"/>
-        <location filename="mainwindow.ui" line="1895"/>
-        <location filename="mainwindow.ui" line="2294"/>
-        <location filename="mainwindow.ui" line="3084"/>
-        <location filename="mainwindow.ui" line="3779"/>
+        <location filename="mainwindow.ui" line="1103"/>
+        <location filename="mainwindow.ui" line="1873"/>
+        <location filename="mainwindow.ui" line="2253"/>
+        <location filename="mainwindow.ui" line="3032"/>
+        <location filename="mainwindow.ui" line="3713"/>
         <source>Öl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1129"/>
-        <location filename="mainwindow.ui" line="1585"/>
-        <location filename="mainwindow.ui" line="2334"/>
-        <location filename="mainwindow.ui" line="2926"/>
-        <location filename="mainwindow.ui" line="4292"/>
+        <location filename="mainwindow.ui" line="1117"/>
+        <location filename="mainwindow.ui" line="1567"/>
+        <location filename="mainwindow.ui" line="2293"/>
+        <location filename="mainwindow.ui" line="2877"/>
+        <location filename="mainwindow.ui" line="4218"/>
         <source>Schneidstoff</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1167"/>
-        <location filename="mainwindow.ui" line="1476"/>
-        <location filename="mainwindow.ui" line="2725"/>
-        <location filename="mainwindow.ui" line="3299"/>
-        <location filename="mainwindow.ui" line="4234"/>
-        <location filename="mainwindow.ui" line="4552"/>
+        <location filename="mainwindow.ui" line="1154"/>
+        <location filename="mainwindow.ui" line="1460"/>
+        <location filename="mainwindow.ui" line="2678"/>
+        <location filename="mainwindow.ui" line="3242"/>
+        <location filename="mainwindow.ui" line="4162"/>
+        <location filename="mainwindow.ui" line="4814"/>
         <source>HSS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1189"/>
-        <location filename="mainwindow.ui" line="1498"/>
-        <location filename="mainwindow.ui" line="2747"/>
-        <location filename="mainwindow.ui" line="3321"/>
-        <location filename="mainwindow.ui" line="4256"/>
-        <location filename="mainwindow.ui" line="4557"/>
+        <location filename="mainwindow.ui" line="1175"/>
+        <location filename="mainwindow.ui" line="1481"/>
+        <location filename="mainwindow.ui" line="2699"/>
+        <location filename="mainwindow.ui" line="3263"/>
+        <location filename="mainwindow.ui" line="4183"/>
+        <location filename="mainwindow.ui" line="4819"/>
         <source>VHM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1211"/>
-        <location filename="mainwindow.ui" line="1520"/>
-        <location filename="mainwindow.ui" line="2769"/>
-        <location filename="mainwindow.ui" line="4278"/>
-        <location filename="mainwindow.ui" line="4562"/>
+        <location filename="mainwindow.ui" line="1196"/>
+        <location filename="mainwindow.ui" line="1502"/>
+        <location filename="mainwindow.ui" line="2720"/>
+        <location filename="mainwindow.ui" line="4204"/>
+        <location filename="mainwindow.ui" line="4824"/>
         <source>Keramik</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1225"/>
-        <location filename="mainwindow.ui" line="2837"/>
+        <location filename="mainwindow.ui" line="1210"/>
+        <location filename="mainwindow.ui" line="2788"/>
         <source>Seitenzustellung</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1257"/>
+        <location filename="mainwindow.ui" line="1242"/>
         <source>Deflection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1270"/>
+        <location filename="mainwindow.ui" line="1255"/>
         <source>0.000 mm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1289"/>
-        <location filename="mainwindow.ui" line="1419"/>
-        <location filename="mainwindow.ui" line="2465"/>
-        <location filename="mainwindow.ui" line="3150"/>
-        <location filename="mainwindow.ui" line="4081"/>
+        <location filename="mainwindow.ui" line="1274"/>
+        <location filename="mainwindow.ui" line="1404"/>
+        <location filename="mainwindow.ui" line="2421"/>
+        <location filename="mainwindow.ui" line="3097"/>
+        <location filename="mainwindow.ui" line="4010"/>
         <source>Spindelleistung</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1334"/>
-        <location filename="mainwindow.ui" line="1432"/>
-        <location filename="mainwindow.ui" line="2124"/>
-        <location filename="mainwindow.ui" line="2952"/>
-        <location filename="mainwindow.ui" line="4149"/>
+        <location filename="mainwindow.ui" line="1319"/>
+        <location filename="mainwindow.ui" line="1417"/>
+        <location filename="mainwindow.ui" line="2086"/>
+        <location filename="mainwindow.ui" line="2903"/>
+        <location filename="mainwindow.ui" line="4078"/>
         <source>0 kW</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1375"/>
-        <location filename="mainwindow.ui" line="2106"/>
-        <location filename="mainwindow.ui" line="2892"/>
-        <location filename="mainwindow.ui" line="3622"/>
-        <location filename="mainwindow.ui" line="4403"/>
+        <location filename="mainwindow.ui" line="1360"/>
+        <location filename="mainwindow.ui" line="2058"/>
+        <location filename="mainwindow.ui" line="2843"/>
+        <location filename="mainwindow.ui" line="3559"/>
+        <location filename="mainwindow.ui" line="4329"/>
         <source>%v</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1381"/>
+        <location filename="mainwindow.ui" line="1366"/>
         <source>Nutfräsen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2112"/>
+        <location filename="mainwindow.ui" line="2074"/>
         <source>Planfräsen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2851"/>
+        <location filename="mainwindow.ui" line="2802"/>
         <source>90°</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2856"/>
+        <location filename="mainwindow.ui" line="2807"/>
         <source>45°</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2898"/>
+        <location filename="mainwindow.ui" line="2849"/>
         <source>Bohren</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3441"/>
+        <location filename="mainwindow.ui" line="3382"/>
         <source>Bohrerdurchmesser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3486"/>
+        <location filename="mainwindow.ui" line="3426"/>
         <source>Spitzenwinkel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3523"/>
-        <location filename="mainwindow.ui" line="4577"/>
+        <location filename="mainwindow.ui" line="3462"/>
+        <location filename="mainwindow.ui" line="4839"/>
         <source>118</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3545"/>
-        <location filename="mainwindow.ui" line="4582"/>
+        <location filename="mainwindow.ui" line="3483"/>
+        <location filename="mainwindow.ui" line="4844"/>
         <source>130</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3567"/>
-        <location filename="mainwindow.ui" line="4587"/>
+        <location filename="mainwindow.ui" line="3504"/>
+        <location filename="mainwindow.ui" line="4849"/>
         <source>140</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3581"/>
+        <location filename="mainwindow.ui" line="3518"/>
+        <location filename="mainwindow.ui" line="4607"/>
         <source>0.00 mm/U</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3628"/>
+        <location filename="mainwindow.ui" line="3565"/>
         <source>Drehen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3672"/>
+        <location filename="mainwindow.ui" line="3609"/>
         <source>Werkstückdurchmesser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4136"/>
+        <location filename="mainwindow.ui" line="4065"/>
         <source>Zustellung</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4344"/>
+        <location filename="mainwindow.ui" line="4270"/>
         <source>Plandrehen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4349"/>
+        <location filename="mainwindow.ui" line="4275"/>
         <source>Längsschruppdrehen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4354"/>
+        <location filename="mainwindow.ui" line="4280"/>
         <source>Längsschlichtdrehen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4368"/>
+        <location filename="mainwindow.ui" line="4294"/>
         <source>Bearbeitung</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4409"/>
+        <location filename="mainwindow.ui" line="4335"/>
         <source>Gewinde</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4414"/>
-        <source>Extra</source>
+        <location filename="mainwindow.ui" line="4594"/>
+        <source>Gewindebohrer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4419"/>
-        <location filename="mainwindow.ui" line="4431"/>
-        <source>Einstellungen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="4444"/>
-        <source>Ja</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="4449"/>
-        <source>Nein</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="4463"/>
-        <source>Ob beim Programm start der Disclaimer angezeigt werden soll</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="4612"/>
-        <source>Oil</source>
+        <location filename="mainwindow.ui" line="4670"/>
+        <source>Steigung</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="4676"/>
+        <source>Extra</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4681"/>
+        <location filename="mainwindow.ui" line="4693"/>
+        <source>Einstellungen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4706"/>
+        <source>Ja</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4711"/>
+        <source>Nein</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4725"/>
+        <source>Ob beim Programm start der Disclaimer angezeigt werden soll</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4874"/>
+        <source>Oil</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4938"/>
         <source>Die maximale Drehzal der Fräsmachine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4689"/>
+        <location filename="mainwindow.ui" line="4951"/>
         <source>Die maximale Spindelleistung der Fräsmaschine (in kW)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4702"/>
+        <location filename="mainwindow.ui" line="4964"/>
         <source>die Bedingungen der Bearbeitung (Auspanung, Werkzeuglänge und Stabilität der Maschine)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4715"/>
+        <location filename="mainwindow.ui" line="4977"/>
         <source>Der standart Schneidstoff für Werkzeuge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4728"/>
+        <location filename="mainwindow.ui" line="4990"/>
         <source>Der standart Spitzenwinkel für Bohrer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4741"/>
+        <location filename="mainwindow.ui" line="5003"/>
         <source>Die standart Kühlung der Werkzeuge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4754"/>
+        <location filename="mainwindow.ui" line="5016"/>
         <source>Die maximale Drehzal der Drehmachine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4767"/>
+        <location filename="mainwindow.ui" line="5029"/>
         <source>Die maximale Spindelleistung der Drehmaschine (in kW)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4780"/>
+        <location filename="mainwindow.ui" line="5042"/>
         <source>Einstellungen übernehmen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4794"/>
+        <location filename="mainwindow.ui" line="5056"/>
         <source>Tabelle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4806"/>
+        <location filename="mainwindow.ui" line="5068"/>
         <source>Daten Tabelle erstellen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4813"/>
+        <location filename="mainwindow.ui" line="5075"/>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4825"/>
+        <location filename="mainwindow.ui" line="5087"/>
         <source>Haftungsausschluss</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4837"/>
+        <location filename="mainwindow.ui" line="5099"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes entstehen sollten, ist ausgeschlossen.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4857"/>
+        <location filename="mainwindow.ui" line="5119"/>
         <source>Vorschläge oder Fehler gefunden:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4869"/>
+        <location filename="mainwindow.ui" line="5131"/>
         <source>Email:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4892"/>
-        <source>contact@spaenerechner.de</source>
+        <location filename="mainwindow.ui" line="5153"/>
+        <source>support@spaenerechner.de</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4908"/>
+        <location filename="mainwindow.ui" line="5169"/>
         <source>Bugs auf github melden:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4931"/>
+        <location filename="mainwindow.ui" line="5191"/>
         <source>Git issues</source>
         <translation type="unfinished"></translation>
     </message>
@@ -622,72 +648,82 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="Modules/settings.cpp" line="38"/>
-        <source>Es konnte keine abfrage für den Disclaimer in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Modules/settings.cpp" line="37"/>
-        <location filename="Modules/settings.cpp" line="105"/>
-        <location filename="Modules/settings.cpp" line="134"/>
-        <location filename="Modules/settings.cpp" line="163"/>
-        <location filename="Modules/settings.cpp" line="192"/>
-        <location filename="Modules/settings.cpp" line="222"/>
-        <location filename="Modules/settings.cpp" line="260"/>
-        <location filename="Modules/settings.cpp" line="298"/>
-        <location filename="Modules/settings.cpp" line="336"/>
-        <location filename="Modules/settings.cpp" line="366"/>
+        <location filename="Modules/settings.cpp" line="86"/>
+        <location filename="Modules/settings.cpp" line="133"/>
+        <location filename="Modules/settings.cpp" line="180"/>
+        <location filename="Modules/settings.cpp" line="227"/>
+        <location filename="Modules/settings.cpp" line="274"/>
+        <location filename="Modules/settings.cpp" line="321"/>
+        <location filename="Modules/settings.cpp" line="368"/>
+        <location filename="Modules/settings.cpp" line="415"/>
+        <location filename="Modules/settings.cpp" line="462"/>
         <source>Kritischer Fehler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="61"/>
+        <location filename="Modules/settings.cpp" line="59"/>
         <source>Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="60"/>
+        <location filename="Modules/settings.cpp" line="58"/>
         <source>Disclaimer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="104"/>
-        <location filename="Modules/settings.cpp" line="133"/>
-        <source>Es konnte keine abfrage für den Maximale Drehzahl in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
+        <location filename="Modules/settings.cpp" line="87"/>
+        <source>Es konnte keine gültige abfrage für den Disclaimer in der &apos;config.ini&apos; Datei gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="162"/>
-        <source>Es konnte keine abfrage für die Spindelleistung der Fraesmaschine in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
+        <location filename="Modules/settings.cpp" line="134"/>
+        <location filename="Modules/settings.cpp" line="181"/>
+        <source>Es konnte keine maximale Drehzahl in der Datei &apos;config.ini&apos; gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="191"/>
-        <source>Es konnte keine abfrage für die Spindelleistung der Drehmaschine in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
+        <location filename="Modules/settings.cpp" line="228"/>
+        <source>Es konnte keine gültige abfrage für die Spindelleistung der Fräsmaschine in der Datei &apos;config.ini&apos; gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="221"/>
-        <source>Es konnte keine abfrage für die standart Bedingung in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
+        <location filename="Modules/settings.cpp" line="275"/>
+        <source>Es konnte keine gültige abfrage für die Spindelleistung der Drehmaschine in der Datei &apos;config.ini&apos; gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="259"/>
-        <source>Es konnte keine abfrage für den standart Schneidstoff in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
+        <location filename="Modules/settings.cpp" line="322"/>
+        <source>Es konnte keine gültige abfrage für die standart Bedingung in der &apos;config.ini&apos; Datei gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="297"/>
-        <source>Es konnte keine abfrage für den standart Spitzenwinkel an Bohrern in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
+        <location filename="Modules/settings.cpp" line="369"/>
+        <source>Es konnte keine gültige abfrage für den standart Schneidstoff in der &apos;config.ini&apos; Datei gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="335"/>
-        <source>Es konnte keine abfrage für die standart Kuehlung in der Datei &apos;Daten.xlsx&apos; unter dem Einstellungs Tab gefunden werden!</source>
+        <location filename="Modules/settings.cpp" line="416"/>
+        <source>Es konnte keine gültige abfrage für den standart Spitzenwinkel in der &apos;config.ini&apos; Datei gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="365"/>
+        <location filename="Modules/settings.cpp" line="463"/>
+        <source>Es konnte keine gültige abfrage für die standart Kühlung in der &apos;config.ini&apos; Datei gefunden werden!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Modules/settings.cpp" line="497"/>
+        <location filename="Modules/settings.cpp" line="583"/>
+        <source>Fehler</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Modules/settings.cpp" line="584"/>
+        <source>Die Datei &apos;config.ini&apos; wurde nicht gefunden soll sie erstellt werden?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Modules/settings.cpp" line="498"/>
         <source>Die Datei &apos;Daten.xlsx&apos; wurde nicht gefunden soll sie erstellt werden?</source>
         <translation type="unfinished"></translation>
     </message>
