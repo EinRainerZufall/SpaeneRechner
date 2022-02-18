@@ -1,19 +1,32 @@
 #include "Modules/module.h"
 
 namespace  {
-std::filesystem::path settingsPath = std::filesystem::current_path() / "Daten.xlsx";
+const std::filesystem::path settingsPath = std::filesystem::current_path() / "Daten.xlsx";
 int maxRow = 50;
+
 #ifdef QT_DEBUG
 const std::string settingsName = "Test.xlsx";
 #else
 const std::string settingsName = "Daten.xlsx";
 #endif
 }
-
+/*
+ * showDis      <- muss noch neu werden
+ * maxKw        <- muss noch neu werden
+ * maxKwDr      <- muss noch neu werden
+ * condition    <- muss noch neu werden
+ * cutMat       <- muss noch neu werden
+ * angleDrill   <- muss noch neu werden
+ * angleDrill   <- muss noch neu werden
+ * xlsxCheck    <- muss noch neu werden
+ * write        <- muss noch neu werden
+ * INIcheck     <- neu, pruefen ob die .ini existiert
+ * create       <- neu jetzt hier und nicht mehr in createDatabase
+*/
 
 class Settings {
 public:
-    static void showDis() {
+    static void showDis(){
         QString temp;
         size_t index;
         int row = 2;
@@ -23,7 +36,8 @@ public:
             OSX = 1;
         }else {
             OSX = 0;
-        }
+        }        
+
 
         xlnt::workbook wb;
         wb.load(settingsPath);
@@ -87,65 +101,99 @@ public:
         return;
     }
 
-    static int maxRpmFr() {
-        int rpm;
-        size_t index;
-        int row = 2;
+    static int maxRpmFr(){
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        int rpm = 0;
+        bool OSX;
 
-        xlnt::workbook wb;
-        wb.load(settingsPath);
-        index = (wb.sheet_count() - 1);
-        xlnt::worksheet ws = wb.sheet_by_index(index);
-
-        while (ws.cell(1, row).to_string() != "maxRpmFr") {
-            row++;
-            if(row == maxRow) {
-                QMessageBox msg;
-                msg.setText(QObject::tr("Es konnte keine abfrage für den Maximale Drehzahl in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
-                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
-                msg.setIcon(QMessageBox::Critical);
-                msg.setStandardButtons(QMessageBox::Close);
-                msg.setDefaultButton(QMessageBox::Close);
-                msg.exec();
-                exit(2);
-            }
+        if(QSysInfo::productType() == "osx") {
+            OSX = true;
+        }else {
+            OSX = false;
         }
 
-        rpm = ws.cell(2, row).value<int>();
+        file.open(QIODevice::ReadOnly);
+
+        QTextStream in(&file);
+        QString line = in.readLine();
+        QString lineOut = line;
+        while(!line.isNull()){
+            if(line.remove(8,99) == "maxRpmFr"){
+                rpm = (lineOut.remove("maxRpmFr=")).toInt();
+            }
+            line = in.readLine();
+            lineOut = line;
+        }
+
+        if(rpm == 0){
+            QMessageBox msg;
+            QString title = QObject::tr("Kritischer Fehler");
+            QString text = QObject::tr("Es konnte keine maximale Drehzahl in der Datei 'config.ini' gefunden werden!");
+            if(OSX) {
+                msg.setText(title);
+                msg.setInformativeText(text);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setDefaultButton(QMessageBox::Close);
+            msg.exec();
+            exit(2);
+        }
 
         return rpm;
     }
 
-    static int maxRpmDr() {
-        int rpm;
-        size_t index;
-        int row = 2;
+    static int maxRpmDr(){
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        int rpm = 0;
+        bool OSX;
 
-        xlnt::workbook wb;
-        wb.load(settingsPath);
-        index = (wb.sheet_count() - 1);
-        xlnt::worksheet ws = wb.sheet_by_index(index);
-
-        while (ws.cell(1, row).to_string() != "maxRpmDr") {
-            row++;
-            if(row == maxRow) {
-                QMessageBox msg;
-                msg.setText(QObject::tr("Es konnte keine abfrage für den Maximale Drehzahl in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
-                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
-                msg.setIcon(QMessageBox::Critical);
-                msg.setStandardButtons(QMessageBox::Close);
-                msg.setDefaultButton(QMessageBox::Close);
-                msg.exec();
-                exit(2);
-            }
+        if(QSysInfo::productType() == "osx") {
+            OSX = true;
+        }else {
+            OSX = false;
         }
 
-        rpm = ws.cell(2, row).value<int>();
+        file.open(QIODevice::ReadOnly);
+
+        QTextStream in(&file);
+        QString line = in.readLine();
+        QString lineOut = line;
+        while(!line.isNull()){
+            if(line.remove(8,99) == "maxRpmDr"){
+                rpm = (lineOut.remove("maxRpmDr=")).toInt();
+            }
+            line = in.readLine();
+            lineOut = line;
+        }
+
+        if(rpm == 0){
+            QMessageBox msg;
+            QString title = QObject::tr("Kritischer Fehler");
+            QString text = QObject::tr("Es konnte keine maximale Drehzahl in der Datei 'config.ini' gefunden werden!");
+            if(OSX) {
+                msg.setText(title);
+                msg.setInformativeText(text);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setDefaultButton(QMessageBox::Close);
+            msg.exec();
+            exit(2);
+        }
 
         return rpm;
     }
 
-    static double maxKw() {
+    static double maxKw(){
         double pc;
         size_t index;
         int row = 2;
@@ -174,7 +222,7 @@ public:
         return pc;
     }
 
-    static double maxKwDr() {
+    static double maxKwDr(){
         double pc;
         size_t index;
         int row = 2;
@@ -203,7 +251,7 @@ public:
         return pc;
     }
 
-    static int condition() {
+    static int condition(){
         std::string temp;
         int con;
         size_t index;
@@ -241,7 +289,7 @@ public:
         return con;
     }
 
-    static int cutMat() {
+    static int cutMat(){
         std::string temp;
         int mat;
         size_t index;
@@ -279,7 +327,7 @@ public:
         return mat;
     }
 
-    static int angleDrill() {
+    static int angleDrill(){
         std::string temp;
         int angle;
         size_t index;
@@ -317,7 +365,7 @@ public:
         return angle;
     }
 
-    static int cooling() {
+    static int cooling(){
         std::string temp;
         int cool;
         size_t index;
@@ -355,7 +403,7 @@ public:
         return cool;
     }
 
-    static bool xlsxCheck() {
+    static bool xlsxCheck(){
         bool temp = false;
 
         if(std::filesystem::exists(settingsPath)) {
@@ -363,7 +411,7 @@ public:
         }else {
             QMessageBox box;
             box.setText(QObject::tr("Die Datei 'Daten.xlsx' wurde nicht gefunden soll sie erstellt werden?"));
-            box.setWindowTitle(QObject::tr("Kritischer Fehler"));
+            box.setWindowTitle(QObject::tr("Fehler"));
             box.setIcon(QMessageBox::Critical);
             box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
             box.setDefaultButton(QMessageBox::Yes);
@@ -382,7 +430,7 @@ public:
         return temp;
     }
 
-    static void write(bool dis, int FrN, double FrPc, int bed, int cutMat, int BoWinkel, int cooling, int TurN, double TurPc) {
+    static void write(bool dis, int FrN, double FrPc, int bed, int cutMat, int BoWinkel, int cooling, int TurN, double TurPc){
         size_t index;
         int row = 2;
 
@@ -503,6 +551,120 @@ public:
         ws.cell(2, row).value(TurPc);
 
         wb.save(settingsName);
+
+        return;
+    }
+
+    static bool INIcheck(){
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        bool temp = false;
+        int OSX;
+
+        if(QSysInfo::productType() == "osx") {
+            OSX = 1;
+        }else {
+            OSX = 0;
+        }
+
+        QFile file = (path + "/config.ini");
+        if(file.exists()){
+            return temp;
+        }else{
+            QMessageBox msg;
+            QString title = QObject::tr("Fehler");
+            QString text = QObject::tr("Die Datei 'config.ini' wurde nicht gefunden soll sie erstellt werden?");
+            if(OSX) {
+                msg.setText(title);
+                msg.setInformativeText(text);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            msg.setDefaultButton(QMessageBox::Yes);
+            msg.setEscapeButton(QMessageBox::No);
+            int x = msg.exec();
+
+            switch (x) {
+            case QMessageBox::Yes:
+                temp = true;
+                return temp;
+            case QMessageBox::No:
+                exit(2);
+            }
+        }
+
+        return temp;
+    }
+
+    static void create(){
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        const QDir dir;
+        const char data[] = "disclaimer=true\n" // ob am Anfang der Disclaimer angezeigt werden soll
+                            "maxRpmFr=24000\n"  // die max Drehzahl der Fraes Spindel
+                            "maxPc=2.2\n"       // die max leistung der Fraes Spindel
+                            "bed=1\n"           // die Zerspanbedingung                     (0=instabiel|1=normal|2=stabil)
+                            "schn=1\n"          // der standard Schneidstoff von Bohrern    (0=HSS|1=VHM|2=Keramik)
+                            "spiWi=0\n"         // der Spitzenwinkel von Bohrern            (0=188G|1=130G|2=140G)
+                            "cooling=0\n"       // die Kuehlungsart                         (0=trocken|1=KSS|2=Oel)
+                            "maxRpmDr=5000\n"   // die max Drehzahl der Dreh Spindel
+                            "maxPcDr=2.2\n";    // die max leistung der Dreh Spindel
+
+        if (!dir.exists(path)){
+            dir.mkpath(path);
+        }
+
+        file.open(QIODevice::WriteOnly);
+
+        file.write(data);
+
+        return;
+    }
+
+    static void test(){
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        int rpm = 0;
+        bool OSX;
+
+        if(QSysInfo::productType() == "osx") {
+            OSX = true;
+        }else {
+            OSX = false;
+        }
+
+        file.open(QIODevice::ReadOnly);
+
+        QTextStream in(&file);
+        QString line = in.readLine();
+        QString lineOut = line;
+        while(!line.isNull()){
+            if(line.remove(8,99) == "maxRpmFr"){
+                rpm = (lineOut.remove("maxRpmFr=")).toInt();
+            }
+            line = in.readLine();
+            lineOut = line;
+        }
+
+        if(rpm == 0){
+            QMessageBox msg;
+            QString title = QObject::tr("Kritischer Fehler");
+            QString text = QObject::tr("Es konnte keine maximale Drehzahl in der Datei 'config.ini' gefunden werden!");
+            if(OSX) {
+                msg.setText(title);
+                msg.setInformativeText(text);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setDefaultButton(QMessageBox::Close);
+            msg.exec();
+            exit(2);
+        }
 
         return;
     }

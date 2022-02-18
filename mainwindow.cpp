@@ -49,7 +49,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->mainTabWidget->setCurrentIndex(0);
 #endif
 
-    //check if the xlsx exist
+    //check ob die .ini da ist
+    if(Settings::INIcheck()){
+        Settings::create();
+    };
+
+    //check ob die .xlsx da ist
     if(Settings::xlsxCheck()) {
         createDatabase::createSimple();
         createDatabase::createDynamic();
@@ -60,8 +65,10 @@ MainWindow::MainWindow(QWidget *parent)
         createDatabase::createTurn();
         createDatabase::createThread();
 
-        createDatabase::createSettings();
+        createDatabase::createSettings();   // <- muss spaeter noch entfernt werden
     }
+
+    Settings::test();   // zum Testen
 
     //Disclaimer
     Settings::showDis();
@@ -1150,7 +1157,9 @@ void MainWindow::on_BtnCalcNut_clicked()
     ui->DrehzahlOutNut->setText(QString::number(N));
     ui->VorschubOutNut->setText(QString::number(N * z * fz) + " mm/min");
     ui->QOutNut->setText(QString::number(Q) + " cm³/min");
-    ui->PcOutNut->setText(QString::number(Pc, 'g', 1) + " kW");
+    //ui->PcOutNut->setText(QString::number(Pc, 'g', 1) + " kW");
+    Pc = round(Pc*100)/100;
+    ui->PcOutNut->setText(QString::number(Pc)+" kW");
 
     ui->progressBarNut->setMaximum((maxKw * 1.25) * 1000);
 
