@@ -1,17 +1,16 @@
 #include "Modules/module.h"
 
 #ifdef QT_DEBUG
-const std::string name = "Test.xlsx";
+const std::string name = "/Test.xlsx";
 #else
-const std::string name = "Daten.xlsx";
+const std::string name = "/Daten.xlsx";
 #endif
-
-const std::filesystem::path createPath = std::filesystem::current_path() / name;
 
 
 class createDatabase {
 public:
     static void createSimple() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 2;
         int row = 1;
         int color = 191;
@@ -81,12 +80,13 @@ public:
             column++;
         }
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createDynamic() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 1;
         int row = 2;
         int color = 191;
@@ -107,7 +107,7 @@ public:
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(1);
 
         //create table
@@ -161,12 +161,13 @@ public:
         }
 
         ws.title("Dynamic");
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createDrill() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 1;
         int row = 2;
         int color = 191;
@@ -211,7 +212,7 @@ public:
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(2);
 
         //create table
@@ -263,12 +264,13 @@ public:
         ws.column_properties(14).width = 10;
 
         ws.title("Drill");
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createSlot() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 2;
         int row = 1;
         int color = 191;
@@ -288,7 +290,7 @@ public:
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(3);
 
         //create table
@@ -327,12 +329,13 @@ public:
             color = 242;
         }
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createPlan90() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 1;
         int row = 2;
         int color = 191;
@@ -382,7 +385,7 @@ public:
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(4);
 
         //create table
@@ -437,12 +440,13 @@ public:
         ws.column_properties(11).width = 10;
         ws.column_properties(12).width = 10;
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createPlan45() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 1;
         int row = 2;
         int color = 191;
@@ -492,7 +496,7 @@ public:
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(5);
 
         //create table
@@ -545,12 +549,13 @@ public:
         ws.column_properties(11).width = 10;
         ws.column_properties(12).width = 10;
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createTurn() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 1;
         int row = 2;
         int color = 191;
@@ -599,7 +604,7 @@ public:
             {60,  110, 160, 40,  80,  120, 100, 140, 180, 1820, 0.26}
         };
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(6);
 
         //create table
@@ -650,12 +655,13 @@ public:
         ws.column_properties(11).width = 10;
         ws.column_properties(12).width = 10;
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createThread() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 2;
         int row = 1;
         int color = 191;
@@ -676,7 +682,7 @@ public:
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(7);
 
         //create table
@@ -720,12 +726,13 @@ public:
 
         ws.column_properties(1).width = 23.55;
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createSettings() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 1;
         int row = 1;
         int color = 191;
@@ -744,7 +751,7 @@ public:
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(wb.sheet_count());
 
         //create table
@@ -783,7 +790,7 @@ public:
         ws.column_properties(2).width = 8;
         ws.column_properties(3).width = 100;
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }

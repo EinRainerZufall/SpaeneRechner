@@ -1,8 +1,6 @@
 #include "Modules/module.h"
 
 namespace  {
-const std::filesystem::path settingsPath = std::filesystem::current_path() / "Daten.xlsx";
-int maxRow = 50;
 
 #ifdef QT_DEBUG
 const std::string settingsName = "Test.xlsx";
@@ -11,7 +9,6 @@ const std::string settingsName = "Daten.xlsx";
 #endif
 }
 /*
- * xlsxCheck    <- muss noch neu werden
  * write        <- muss noch neu werden
  * INIcheck     <- neu, pruefen ob die .ini existiert
  * create       <- neu, jetzt hier und nicht mehr in createDatabase
@@ -482,19 +479,35 @@ public:
     }
 
     static bool xlsxCheck(){
+        QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/Daten.xlsx");
         bool temp = false;
+        bool OSX;
 
-        if(std::filesystem::exists(settingsPath)) {
+        if(QSysInfo::productType() == "osx") {
+            OSX = true;
+        }else {
+            OSX = false;
+        }
+
+        if(file.exists()) {
             return temp;
         }else {
-            QMessageBox box;
-            box.setText(QObject::tr("Die Datei 'Daten.xlsx' wurde nicht gefunden soll sie erstellt werden?"));
-            box.setWindowTitle(QObject::tr("Fehler"));
-            box.setIcon(QMessageBox::Critical);
-            box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-            box.setDefaultButton(QMessageBox::Yes);
-            box.setEscapeButton(QMessageBox::No);
-            int x = box.exec();
+            QMessageBox msg;
+            QString title = QObject::tr("Fehler");
+            QString text = QObject::tr("Die Datei 'Daten.xlsx' wurde nicht gefunden soll sie erstellt werden?");
+            if(OSX) {
+                msg.setInformativeText(text);
+                msg.setText(title);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            msg.setDefaultButton(QMessageBox::Yes);
+            msg.setEscapeButton(QMessageBox::No);
+            int x = msg.exec();
 
             switch (x) {
             case QMessageBox::Yes:
@@ -508,127 +521,45 @@ public:
         return temp;
     }
 
-    static void write(bool dis, int FrN, double FrPc, int bed, int cutMat, int BoWinkel, int cooling, int TurN, double TurPc){
-        size_t index;
-        int row = 2;
+    static void write(int dis, int maxRpmFr, double maxKw, int con, int cutMat, int spiWi, int cooling, int maxRpmDr, double maxKwDr){
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        const QDir dir;
+        QString tempDis;
+        QString line;
 
-        xlnt::workbook wb;
-        wb.load(settingsPath);
-        index = (wb.sheet_count() - 1);
-        xlnt::worksheet ws = wb.sheet_by_index(index);
-
-        //dis
-        while (ws.cell(1, row).to_string() != "disclaimer") {
-            row++;
-            if(row == maxRow) {
-                exit(2);
-            }
-        }
-        if(dis) {
-            ws.cell(2, row).value("Nein");
-        }else {
-            ws.cell(2, row).value("Ja");
+        if(dis == 0){
+            tempDis = "true";
+        }else{
+            tempDis = "false";
         }
 
-        //FrN
-        row = 2;
-        while (ws.cell(1, row).to_string() != "maxRpmFr") {
-            row++;
-            if(row == maxRow) {
-                exit(2);
-            }
-        }
-        ws.cell(2, row).value(FrN);
-
-        //FrPc
-        row = 2;
-        while (ws.cell(1, row).to_string() != "maxPc") {
-            row++;
-            if(row == maxRow) {
-                exit(2);
-            }
-        }
-        ws.cell(2, row).value(FrPc);
-
-        //bed
-        row = 2;
-        while (ws.cell(1, row).to_string() != "bed") {
-            row++;
-            if(row == maxRow) {
-                exit(2);
-            }
-        }
-        if(bed == 2) {
-            ws.cell(2, row).value("stabil");
-        }else if(bed == 1) {
-            ws.cell(2, row).value("normal");
-        }else {
-            ws.cell(2, row).value("instabil");
+        if (!dir.exists(path)){
+            dir.mkpath(path);
         }
 
-        //cutMat
-        row = 2;
-        while (ws.cell(1, row).to_string() != "schn") {
-            row++;
-            if(row == maxRow) {
-                exit(2);
-            }
-        }
-        if(cutMat == 2) {
-            ws.cell(2, row).value("Keramik");
-        }else if(cutMat == 1) {
-            ws.cell(2, row).value("VHM");
-        }else {
-            ws.cell(2, row).value("HSS");
-        }
+        file.open(QIODevice::WriteOnly);
 
-        //BoWinkel
-        row = 2;
-        while (ws.cell(1, row).to_string() != "spiWi") {
-            row++;
-            if(row == maxRow) {
-                exit(2);
-            }
-        }
-        ws.cell(2, row).value(BoWinkel);
+        line = "disclaimer=" + tempDis + "\n";
+        file.write(line.toUtf8());
+        line = "maxRpmFr=" + QString::number(maxRpmFr) + "\n";
+        file.write(line.toUtf8());
+        line = "maxPcFr=" + QString::number(maxKw) + "\n";
+        file.write(line.toUtf8());
+        line = "con=" + QString::number(con) + "\n";
+        file.write(line.toUtf8());
+        line = "cutMat=" + QString::number(cutMat) + "\n";
+        file.write(line.toUtf8());
+        line = "spiWi=" + QString::number(spiWi) + "\n";
+        file.write(line.toUtf8());
+        line = "cooling=" + QString::number(cooling) + "\n";
+        file.write(line.toUtf8());
+        line = "maxRpmDr=" + QString::number(maxRpmDr) + "\n";
+        file.write(line.toUtf8());
+        line = "maxPcDr=" + QString::number(maxKwDr) + "\n";
+        file.write(line.toUtf8());
 
-        //cooling
-        row = 2;
-        while (ws.cell(1, row).to_string() != "cooling") {
-            row++;
-            if(row == maxRow) {
-                exit(2);
-            }
-        }
-        if(cooling == 2) {
-            ws.cell(2, row).value("Oel");
-        }else if(cooling == 1) {
-            ws.cell(2, row).value("KSS");
-        }else {
-            ws.cell(2, row).value("Trocken");
-        }
-
-        //TurN
-        row = 2;
-        while (ws.cell(1, row).to_string() != "maxRpmDr") {
-            row++;
-            if(row == maxRow) {
-                exit(2);
-            }
-        }
-        ws.cell(2, row).value(TurN);
-
-        //TurPc
-        row = 2;
-        while (ws.cell(1, row).to_string() != "maxPcDr") {
-            row++;
-            if(row == maxRow) {
-                exit(2);
-            }
-        }
-        ws.cell(2, row).value(TurPc);
-
-        wb.save(settingsName);
+        file.close();
 
         return;
     }
@@ -702,15 +633,14 @@ public:
     }
 
     static void test(){
-        QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        xlnt::path test = xlnt::path(path.toStdString() + "/" + settingsName);
+        //const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);// + "/";
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
 
         xlnt::workbook wb;
-        wb.abs_path(path.toStdString());
+
         wb.empty();
 
-        wb.save(test);
-
+        wb.save(file);
         return;
     }
 };

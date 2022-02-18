@@ -64,11 +64,9 @@ MainWindow::MainWindow(QWidget *parent)
         createDatabase::createPlan45();
         createDatabase::createTurn();
         createDatabase::createThread();
-
-        createDatabase::createSettings();   // <- muss spaeter noch entfernt werden
     }
 
-    Settings::test();   // zum Testen
+    //Settings::test();   // zum Testen
 
     //Disclaimer
     Settings::showDis();
@@ -83,7 +81,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->MaxDrehzahlAuswahlGewinde->setValue(Settings::maxRpmFr());
 
     //mashine condition
-    switch (Settings::condition()) {
+    switch (Settings::condition()){
     case 2:
         ui->BeStabilTpc->setChecked(true);
         ui->BeStabilNut->setChecked(true);
@@ -107,7 +105,7 @@ MainWindow::MainWindow(QWidget *parent)
         break;
     }
     //cuting material  
-    switch (Settings::cutMat()) {
+    switch (Settings::cutMat()){
     case 2:
         ui->SchnKeramikTpc->setChecked(true);
         ui->SchnKeramikNut->setChecked(true);
@@ -131,7 +129,7 @@ MainWindow::MainWindow(QWidget *parent)
         break;
     }
     //drill angle
-    switch (Settings::angleDrill()) {
+    switch (Settings::angleDrill()){
     case 2:
         ui->SpitzenWinkel140->setChecked(true);
         break;
@@ -143,7 +141,7 @@ MainWindow::MainWindow(QWidget *parent)
         break;
     }
     //cooling solution
-    switch (Settings::cooling()) {
+    switch (Settings::cooling()){
     case 2:
         ui->OilTpc->setChecked(true);
         ui->OilNut->setChecked(true);
@@ -275,8 +273,6 @@ void MainWindow::on_btnCreateAll_clicked()
     createDatabase::createPlan45();
     createDatabase::createTurn();
     createDatabase::createThread();
-
-    createDatabase::createSettings();
 
     setCursor(Qt::CursorShape::ArrowCursor);
 }
@@ -1077,12 +1073,12 @@ void MainWindow::on_btnSettingsWrite_clicked()
 {
     setCursor(Qt::CursorShape::WaitCursor);
 
-    bool dis = ui->DisclaimerIn->currentIndex();
+    int dis = ui->DisclaimerIn->currentIndex();
     int FrN = ui->maxMillSpeedIn->text().toInt();
     double FrPc = ui->MaxMillPcIn->value();
     int bed = ui->conditionIn->currentIndex();
     int cutMat = ui->cutMatIn->currentIndex();
-    int BoWinkel = ui->drillAngleIn->currentText().toInt();
+    int BoWinkel = ui->drillAngleIn->currentIndex();
     int cooling = ui->coolingTypeIn->currentIndex();
     int TurN = ui->maxTurnSpeedIn->text().toInt();
     double TurPc = ui->maxTurnPcIn->value();
