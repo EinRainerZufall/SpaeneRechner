@@ -11,65 +11,52 @@ const std::string settingsName = "Daten.xlsx";
 #endif
 }
 /*
- * showDis      <- muss noch neu werden
- * maxKw        <- muss noch neu werden
- * maxKwDr      <- muss noch neu werden
- * condition    <- muss noch neu werden
- * cutMat       <- muss noch neu werden
- * angleDrill   <- muss noch neu werden
- * angleDrill   <- muss noch neu werden
  * xlsxCheck    <- muss noch neu werden
  * write        <- muss noch neu werden
  * INIcheck     <- neu, pruefen ob die .ini existiert
- * create       <- neu jetzt hier und nicht mehr in createDatabase
+ * create       <- neu, jetzt hier und nicht mehr in createDatabase
 */
 
 class Settings {
 public:
     static void showDis(){
-        QString temp;
-        size_t index;
-        int row = 2;
-        int OSX;
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        int temp = true;    // 0=false(nicht anzeigen) | 1=true(anzeigen) | 2=error
+        bool OSX;
 
         if(QSysInfo::productType() == "osx") {
-            OSX = 1;
+            OSX = true;
         }else {
-            OSX = 0;
-        }        
-
-
-        xlnt::workbook wb;
-        wb.load(settingsPath);
-        index = (wb.sheet_count() - 1);
-        xlnt::worksheet ws = wb.sheet_by_index(index);
-
-        while (ws.cell(1, row).to_string() != "disclaimer") {
-            row++;
-            if(row == maxRow) {
-                QMessageBox msg;             
-                QString title = QObject::tr("Kritischer Fehler");
-                QString text = QObject::tr("Es konnte keine abfrage für den Disclaimer in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!");
-                if(OSX) {
-                    msg.setText(title);
-                    msg.setInformativeText(text);
-                }else {
-                    msg.setText(text);
-                    msg.setWindowTitle(title);
-                }
-                msg.setIcon(QMessageBox::Critical);
-                msg.setStandardButtons(QMessageBox::Close);
-                msg.setDefaultButton(QMessageBox::Close);
-                msg.exec();
-                exit(2);
-            }
+            OSX = false;
         }
 
-        temp = QString::fromStdString(ws.cell(2, row).to_string());
+        file.open(QIODevice::ReadOnly);
 
-        if(temp == "Nein") {
+        QTextStream in(&file);
+        QString line = in.readLine();
+        QString lineOut = line;
+        while(!line.isNull()){
+            if(line.remove(10,99) == "disclaimer"){
+                if(lineOut.remove("disclaimer=") == "true"){
+                    temp = 1;
+                    break;
+                }else if(lineOut == "false"){
+                    temp = 0;
+                    break;
+                }else{
+                    temp = 2;
+                    // hier die Fehlermeldung einpflegen
+                    break;
+                }
+            }
+            line = in.readLine();
+            lineOut = line;
+        }
+
+        if(temp == 0){
             return;
-        } else {
+        }else if(temp == 1){
             QMessageBox disBox;
             QString title = QObject::tr("Disclaimer");
             QString text = QObject::tr("Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung "
@@ -97,7 +84,24 @@ public:
             case QMessageBox::No:
                 exit(0);
             }
+        }else{
+            QMessageBox msg;
+            QString title = QObject::tr("Kritischer Fehler");
+            QString text = QObject::tr("Es konnte keine gültige abfrage für den Disclaimer in der 'config.ini' Datei gefunden werden!");
+            if(OSX) {
+                msg.setText(title);
+                msg.setInformativeText(text);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setDefaultButton(QMessageBox::Close);
+            msg.exec();
+            exit(2);
         }
+
         return;
     }
 
@@ -121,6 +125,7 @@ public:
         while(!line.isNull()){
             if(line.remove(8,99) == "maxRpmFr"){
                 rpm = (lineOut.remove("maxRpmFr=")).toInt();
+                break;
             }
             line = in.readLine();
             lineOut = line;
@@ -167,6 +172,7 @@ public:
         while(!line.isNull()){
             if(line.remove(8,99) == "maxRpmDr"){
                 rpm = (lineOut.remove("maxRpmDr=")).toInt();
+                break;
             }
             line = in.readLine();
             lineOut = line;
@@ -194,213 +200,285 @@ public:
     }
 
     static double maxKw(){
-        double pc;
-        size_t index;
-        int row = 2;
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        double pc = 0;
+        bool OSX;
 
-        xlnt::workbook wb;
-        wb.load(settingsPath);
-        index = (wb.sheet_count() - 1);
-        xlnt::worksheet ws = wb.sheet_by_index(index);
-
-        while (ws.cell(1, row).to_string() != "maxPc") {
-            row++;
-            if(row == maxRow) {
-                QMessageBox msg;
-                msg.setText(QObject::tr("Es konnte keine abfrage für die Spindelleistung der Fraesmaschine in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
-                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
-                msg.setIcon(QMessageBox::Critical);
-                msg.setStandardButtons(QMessageBox::Close);
-                msg.setDefaultButton(QMessageBox::Close);
-                msg.exec();
-                exit(2);
-            }
+        if(QSysInfo::productType() == "osx") {
+            OSX = true;
+        }else {
+            OSX = false;
         }
 
-        pc = ws.cell(2, row).value<double>();
+        file.open(QIODevice::ReadOnly);
+
+        QTextStream in(&file);
+        QString line = in.readLine();
+        QString lineOut = line;
+        while(!line.isNull()){
+            if(line.remove(7,99) == "maxPcFr"){
+                pc = (lineOut.remove("maxPcFr=")).toDouble();
+                break;
+            }
+            line = in.readLine();
+            lineOut = line;
+        }
+
+        if(pc == 0){
+            QMessageBox msg;
+            QString title = QObject::tr("Kritischer Fehler");
+            QString text = QObject::tr("Es konnte keine gültige abfrage für die Spindelleistung der Fräsmaschine in der Datei 'config.ini' gefunden werden!");
+            if(OSX) {
+                msg.setText(title);
+                msg.setInformativeText(text);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setDefaultButton(QMessageBox::Close);
+            msg.exec();
+            exit(2);
+        }
 
         return pc;
     }
 
     static double maxKwDr(){
-        double pc;
-        size_t index;
-        int row = 2;
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        double pc = 0;
+        bool OSX;
 
-        xlnt::workbook wb;
-        wb.load(settingsPath);
-        index = (wb.sheet_count() - 1);
-        xlnt::worksheet ws = wb.sheet_by_index(index);
-
-        while (ws.cell(1, row).to_string() != "maxPcDr") {
-            row++;
-            if(row == maxRow) {
-                QMessageBox msg;
-                msg.setText(QObject::tr("Es konnte keine abfrage für die Spindelleistung der Drehmaschine in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
-                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
-                msg.setIcon(QMessageBox::Critical);
-                msg.setStandardButtons(QMessageBox::Close);
-                msg.setDefaultButton(QMessageBox::Close);
-                msg.exec();
-                exit(2);
-            }
+        if(QSysInfo::productType() == "osx") {
+            OSX = true;
+        }else {
+            OSX = false;
         }
 
-        pc = ws.cell(2, row).value<double>();
+        file.open(QIODevice::ReadOnly);
+
+        QTextStream in(&file);
+        QString line = in.readLine();
+        QString lineOut = line;
+        while(!line.isNull()){
+            if(line.remove(7,99) == "maxPcDr"){
+                pc = (lineOut.remove("maxPcDr=")).toDouble();
+                break;
+            }
+            line = in.readLine();
+            lineOut = line;
+        }
+
+        if(pc == 0){
+            QMessageBox msg;
+            QString title = QObject::tr("Kritischer Fehler");
+            QString text = QObject::tr("Es konnte keine gültige abfrage für die Spindelleistung der Drehmaschine in der Datei 'config.ini' gefunden werden!");
+            if(OSX) {
+                msg.setText(title);
+                msg.setInformativeText(text);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setDefaultButton(QMessageBox::Close);
+            msg.exec();
+            exit(2);
+        }
 
         return pc;
     }
 
     static int condition(){
-        std::string temp;
-        int con;
-        size_t index;
-        int row = 2;
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        int con = 3;    // 3=error
+        bool OSX;
 
-        xlnt::workbook wb;
-        wb.load(settingsPath);
-        index = (wb.sheet_count() - 1);
-        xlnt::worksheet ws = wb.sheet_by_index(index);
-
-        while (ws.cell(1, row).to_string() != "bed") {
-            row++;
-            if(row == maxRow) {
-                QMessageBox msg;
-                msg.setText(QObject::tr("Es konnte keine abfrage für die standart Bedingung in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
-                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
-                msg.setIcon(QMessageBox::Critical);
-                msg.setStandardButtons(QMessageBox::Close);
-                msg.setDefaultButton(QMessageBox::Close);
-                msg.exec();
-                exit(2);
-            }
+        if(QSysInfo::productType() == "osx") {
+            OSX = true;
+        }else {
+            OSX = false;
         }
 
-        temp = ws.cell(2, row).to_string();
+        file.open(QIODevice::ReadOnly);
 
-        if(temp == "stabil" or temp == "stable") {
-            con = 2;
-        }else if(temp == "normal") {
-            con = 1;
-        }else {
-            con = 0; //instabil
+        QTextStream in(&file);
+        QString line = in.readLine();
+        QString lineOut = line;
+        while(!line.isNull()){
+            if(line.remove(3,99) == "con"){
+                con = (lineOut.remove("con=")).toInt();
+                break;
+            }
+            line = in.readLine();
+            lineOut = line;
+        }
+
+        if(con == 3){
+            QMessageBox msg;
+            QString title = QObject::tr("Kritischer Fehler");
+            QString text = QObject::tr("Es konnte keine gültige abfrage für die standart Bedingung in der 'config.ini' Datei gefunden werden!");
+            if(OSX) {
+                msg.setInformativeText(text);
+                msg.setText(title);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setDefaultButton(QMessageBox::Close);
+            msg.exec();
+            exit(2);
         }
 
         return con;
     }
 
     static int cutMat(){
-        std::string temp;
-        int mat;
-        size_t index;
-        int row = 2;
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        int cutMat = 3;    // 3=error
+        bool OSX;
 
-        xlnt::workbook wb;
-        wb.load(settingsPath);
-        index = (wb.sheet_count() - 1);
-        xlnt::worksheet ws = wb.sheet_by_index(index);
+        if(QSysInfo::productType() == "osx") {
+            OSX = true;
+        }else {
+            OSX = false;
+        }
 
-        while (ws.cell(1, row).to_string() != "schn") {
-            row++;
-            if(row == maxRow) {
-                QMessageBox msg;
-                msg.setText(QObject::tr("Es konnte keine abfrage für den standart Schneidstoff in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
-                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
-                msg.setIcon(QMessageBox::Critical);
-                msg.setStandardButtons(QMessageBox::Close);
-                msg.setDefaultButton(QMessageBox::Close);
-                msg.exec();
-                exit(2);
+        file.open(QIODevice::ReadOnly);
+
+        QTextStream in(&file);
+        QString line = in.readLine();
+        QString lineOut = line;
+        while(!line.isNull()){
+            if(line.remove(6,99) == "cutMat"){
+                cutMat = (lineOut.remove("cutMat=")).toInt();
+                break;
             }
+            line = in.readLine();
+            lineOut = line;
         }
 
-        temp = ws.cell(2, row).to_string();
-
-        if(temp == "Keramik") {
-            mat = 2;
-        } else if(temp == "VHM") {
-            mat = 1;
-        } else {
-            mat = 0; //HSS
+        if(cutMat == 3){
+            QMessageBox msg;
+            QString title = QObject::tr("Kritischer Fehler");
+            QString text = QObject::tr("Es konnte keine gültige abfrage für den standart Schneidstoff in der 'config.ini' Datei gefunden werden!");
+            if(OSX) {
+                msg.setInformativeText(text);
+                msg.setText(title);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setDefaultButton(QMessageBox::Close);
+            msg.exec();
+            exit(2);
         }
 
-        return mat;
+        return cutMat;
     }
 
     static int angleDrill(){
-        std::string temp;
-        int angle;
-        size_t index;
-        int row = 2;
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        int spiWi = 3;    // 3=error
+        bool OSX;
 
-        xlnt::workbook wb;
-        wb.load(settingsPath);
-        index = (wb.sheet_count() - 1);
-        xlnt::worksheet ws = wb.sheet_by_index(index);
+        if(QSysInfo::productType() == "osx") {
+            OSX = true;
+        }else {
+            OSX = false;
+        }
 
-        while (ws.cell(1, row).to_string() != "spiWi") {
-            row++;
-            if(row == maxRow) {
-                QMessageBox msg;
-                msg.setText(QObject::tr("Es konnte keine abfrage für den standart Spitzenwinkel an Bohrern in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
-                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
-                msg.setIcon(QMessageBox::Critical);
-                msg.setStandardButtons(QMessageBox::Close);
-                msg.setDefaultButton(QMessageBox::Close);
-                msg.exec();
-                exit(2);
+        file.open(QIODevice::ReadOnly);
+
+        QTextStream in(&file);
+        QString line = in.readLine();
+        QString lineOut = line;
+        while(!line.isNull()){
+            if(line.remove(5,99) == "spiWi"){
+                spiWi = (lineOut.remove("spiWi=")).toInt();
+                break;
             }
+            line = in.readLine();
+            lineOut = line;
         }
 
-        temp = ws.cell(2, row).to_string();
-
-        if(temp == "140") {
-            angle = 2;
-        } else if(temp == "130") {
-            angle = 1;
-        } else {
-            angle = 0;
+        if(spiWi == 3){
+            QMessageBox msg;
+            QString title = QObject::tr("Kritischer Fehler");
+            QString text = QObject::tr("Es konnte keine gültige abfrage für den standart Spitzenwinkel in der 'config.ini' Datei gefunden werden!");
+            if(OSX) {
+                msg.setInformativeText(text);
+                msg.setText(title);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setDefaultButton(QMessageBox::Close);
+            msg.exec();
+            exit(2);
         }
 
-        return angle;
+        return spiWi;
     }
 
     static int cooling(){
-        std::string temp;
-        int cool;
-        size_t index;
-        int row = 2;
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        int cooling = 3;    // 3=error
+        bool OSX;
 
-        xlnt::workbook wb;
-        wb.load(settingsPath);
-        index = (wb.sheet_count() - 1);
-        xlnt::worksheet ws = wb.sheet_by_index(index);
+        if(QSysInfo::productType() == "osx") {
+            OSX = true;
+        }else {
+            OSX = false;
+        }
 
-        while (ws.cell(1, row).to_string() != "cooling") {
-            row++;
-            if(row == maxRow) {
-                QMessageBox msg;
-                msg.setText(QObject::tr("Es konnte keine abfrage für die standart Kuehlung in der Datei 'Daten.xlsx' unter dem Einstellungs Tab gefunden werden!"));
-                msg.setWindowTitle(QObject::tr("Kritischer Fehler"));
-                msg.setIcon(QMessageBox::Critical);
-                msg.setStandardButtons(QMessageBox::Close);
-                msg.setDefaultButton(QMessageBox::Close);
-                msg.exec();
-                exit(2);
+        file.open(QIODevice::ReadOnly);
+
+        QTextStream in(&file);
+        QString line = in.readLine();
+        QString lineOut = line;
+        while(!line.isNull()){
+            if(line.remove(7,99) == "cooling"){
+                cooling = (lineOut.remove("cooling=")).toInt();
+                break;
             }
+            line = in.readLine();
+            lineOut = line;
         }
 
-        temp = ws.cell(2, row).to_string();
-
-        if(temp == "Oel") {
-            cool = 2;
-        } else if(temp == "KSS") {
-            cool = 1;
-        } else {
-            cool = 0; //Trocken
+        if(cooling == 3){
+            QMessageBox msg;
+            QString title = QObject::tr("Kritischer Fehler");
+            QString text = QObject::tr("Es konnte keine gültige abfrage für die standart Kühlung in der 'config.ini' Datei gefunden werden!");
+            if(OSX) {
+                msg.setInformativeText(text);
+                msg.setText(title);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setDefaultButton(QMessageBox::Close);
+            msg.exec();
+            exit(2);
         }
 
-        return cool;
+        return cooling;
     }
 
     static bool xlsxCheck(){
@@ -604,9 +682,9 @@ public:
         const QDir dir;
         const char data[] = "disclaimer=true\n" // ob am Anfang der Disclaimer angezeigt werden soll
                             "maxRpmFr=24000\n"  // die max Drehzahl der Fraes Spindel
-                            "maxPc=2.2\n"       // die max leistung der Fraes Spindel
-                            "bed=1\n"           // die Zerspanbedingung                     (0=instabiel|1=normal|2=stabil)
-                            "schn=1\n"          // der standard Schneidstoff von Bohrern    (0=HSS|1=VHM|2=Keramik)
+                            "maxPcFr=2.2\n"     // die max leistung der Fraes Spindel
+                            "con=1\n"           // die Zerspanbedingung                     (0=instabiel|1=normal|2=stabil)
+                            "cutMat=1\n"        // der standard Schneidstoff von Bohrern    (0=HSS|1=VHM|2=Keramik)
                             "spiWi=0\n"         // der Spitzenwinkel von Bohrern            (0=188G|1=130G|2=140G)
                             "cooling=0\n"       // die Kuehlungsart                         (0=trocken|1=KSS|2=Oel)
                             "maxRpmDr=5000\n"   // die max Drehzahl der Dreh Spindel
@@ -624,47 +702,14 @@ public:
     }
 
     static void test(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
-        int rpm = 0;
-        bool OSX;
+        QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        xlnt::path test = xlnt::path(path.toStdString() + "/" + settingsName);
 
-        if(QSysInfo::productType() == "osx") {
-            OSX = true;
-        }else {
-            OSX = false;
-        }
+        xlnt::workbook wb;
+        wb.abs_path(path.toStdString());
+        wb.empty();
 
-        file.open(QIODevice::ReadOnly);
-
-        QTextStream in(&file);
-        QString line = in.readLine();
-        QString lineOut = line;
-        while(!line.isNull()){
-            if(line.remove(8,99) == "maxRpmFr"){
-                rpm = (lineOut.remove("maxRpmFr=")).toInt();
-            }
-            line = in.readLine();
-            lineOut = line;
-        }
-
-        if(rpm == 0){
-            QMessageBox msg;
-            QString title = QObject::tr("Kritischer Fehler");
-            QString text = QObject::tr("Es konnte keine maximale Drehzahl in der Datei 'config.ini' gefunden werden!");
-            if(OSX) {
-                msg.setText(title);
-                msg.setInformativeText(text);
-            }else {
-                msg.setText(text);
-                msg.setWindowTitle(title);
-            }
-            msg.setIcon(QMessageBox::Critical);
-            msg.setStandardButtons(QMessageBox::Close);
-            msg.setDefaultButton(QMessageBox::Close);
-            msg.exec();
-            exit(2);
-        }
+        wb.save(test);
 
         return;
     }
