@@ -1,7 +1,6 @@
 #include "Modules/module.h"
 
 namespace  {
-std::filesystem::path threadPath = std::filesystem::current_path() / "Daten.xlsx";
 int threadIndex = 7;
 }
 
@@ -9,11 +8,12 @@ int threadIndex = 7;
 class Thread {
 public:
     static QStringList matList() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         QStringList mat;
         int row = 3;
 
         xlnt::workbook wb;
-        wb.load(threadPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
 
         while (ws.cell(1, row).to_string() != "") {
@@ -25,6 +25,7 @@ public:
     }
 
     static double Vc(int mat, int Dindex) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double Vc;
 
         int column = Dindex + 1;
@@ -32,7 +33,7 @@ public:
         mat = mat + 3;
 
         xlnt::workbook wb;
-        wb.load(threadPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
 
         Vc = ws.cell(column, mat).value<double>();
@@ -41,11 +42,12 @@ public:
     }
 
     static QStringList dList() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         QStringList D;
         int column = 2;
 
         xlnt::workbook wb;
-        wb.load(threadPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
 
         while (ws.cell(column, 1).to_string() != "") {
@@ -57,13 +59,14 @@ public:
     }
 
     static double threadPitch(int Dindex) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double pitch;
         int column;
 
         column = Dindex + 2;
 
         xlnt::workbook wb;
-        wb.load(threadPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
 
         pitch = ws.cell(column,2).value<double>();
@@ -72,6 +75,7 @@ public:
     }
 
     static double Diameter(int Dindex) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double D;
         int column;
         std::string temp;
@@ -79,7 +83,7 @@ public:
         column = Dindex + 2;
 
         xlnt::workbook wb;
-        wb.load(threadPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
 
         temp = ws.cell(column,1).value<std::string>();

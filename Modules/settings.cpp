@@ -8,8 +8,8 @@ const std::string settingsName = "Test.xlsx";
 const std::string settingsName = "Daten.xlsx";
 #endif
 }
+
 /*
- * write        <- muss noch neu werden
  * INIcheck     <- neu, pruefen ob die .ini existiert
  * create       <- neu, jetzt hier und nicht mehr in createDatabase
 */

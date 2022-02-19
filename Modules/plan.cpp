@@ -1,7 +1,6 @@
 #include "Modules/module.h"
 
 namespace  {
-std::filesystem::path planPath = std::filesystem::current_path() / "Daten.xlsx";
 int planIndex;
 int plan90Index = 4;
 int plan45Index = 5;
@@ -11,6 +10,7 @@ int plan45Index = 5;
 class Plan {
 public:
     static QStringList matList(int schnForm) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         QStringList mat;
         int row = 2;
 
@@ -21,7 +21,7 @@ public:
         }
 
         xlnt::workbook wb;
-        wb.load(planPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(planIndex);
 
         while (ws.cell(1, row).to_string() != "") {
@@ -33,6 +33,7 @@ public:
     }
 
     static double Vc(int mat, int bed, int schnForm) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double Vc;
 
         mat = mat + 2;
@@ -46,7 +47,7 @@ public:
         }
 
         xlnt::workbook wb;
-        wb.load(planPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(planIndex);
 
         Vc = ws.cell(bed, mat).value<double>();
@@ -55,6 +56,7 @@ public:
     }
 
     static double fz(int mat, int bed, int schnForm, double D, double Ae) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double fz;
         int column = 5;
 
@@ -81,7 +83,7 @@ public:
         }
 
         xlnt::workbook wb;
-        wb.load(planPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(planIndex);
 
         fz = ws.cell(column, mat).value<double>();
@@ -90,6 +92,7 @@ public:
     }
 
     static int Kc(int mat, int schnForm) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         int Kc;
         int column;
 
@@ -104,7 +107,7 @@ public:
         }
 
         xlnt::workbook wb;
-        wb.load(planPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(planIndex);
 
         Kc = ws.cell(column, mat).value<int>();
@@ -113,6 +116,7 @@ public:
     }
 
     static double Mc(int mat, int schnForm) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double Mc;
         int column;
 
@@ -127,7 +131,7 @@ public:
         }
 
         xlnt::workbook wb;
-        wb.load(planPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(planIndex);
 
         Mc = ws.cell(column, mat).value<double>();
