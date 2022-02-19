@@ -340,8 +340,15 @@ void MainWindow::on_BtnCalcTpc_clicked(){
     int eTool;
     double Fcut;
     int N;
+    bool OSX;
 
     setCursor(Qt::CursorShape::WaitCursor);
+
+    if(QSysInfo::productType() == "osx") {
+        OSX = true;
+    }else {
+        OSX = false;
+    }
 
     if(ui->BeStabilTpc->isChecked()) {
         Vc = Dynamic::Vc(ui->MaterialAuswahlTpc->currentIndex(), 2);
@@ -401,13 +408,30 @@ void MainWindow::on_BtnCalcTpc_clicked(){
     ui->VorschubOutTpc->setText(QString::number(N * z * fz) + " mm/min");
     ui->AeOutTpc->setText(QString::number(ae) + " mm");
     ui->QOutTpc->setText(QString::number(ap * ae * (N * z * fz) / 1000) + " cm³/min");
-    ui->PcOutTpc->setText(QString::number(Pc, 'g', 3) + " kW");
-    ui->DeflevtionOutTpc->setText(QString::number(def, 'g', 3) + " mm");
+    Pc = round(Pc * 1000) / 1000;
+    ui->PcOutTpc->setText(QString::number(Pc) + " kW");
+    def = round(def * 1000) / 1000;
+    ui->DeflevtionOutTpc->setText(QString::number(def) + " mm");
 
     ui->progressBarTpc->setMaximum((maxKw * 1.25) * 1000);
 
     if(Pc > (maxKw * 1.25)) {
         Pc = maxKw * 1.25;
+    }
+
+    if(D <= 4.5){
+        QMessageBox msg;
+        QString title(tr("Info"));
+        QString text(tr("Die aktuelle Berechnung der Deflection ist erst \nab einem Fräserdurchmesser von > 4,5 mm gültig!"));
+        if(OSX) {
+            msg.setInformativeText(text);
+            msg.setText(title);
+        }else {
+            msg.setText(text);
+            msg.setWindowTitle(title);
+        }
+        msg.setIcon(QMessageBox::Information);
+        msg.exec();
     }
 
     ui->progressBarTpc->setValue(Pc * 1000);
@@ -430,6 +454,12 @@ void MainWindow::on_BtnCalcNut_clicked(){
     double C3;        //Vc
     double Pc;
     double Q;
+    double phi;
+    double K;
+    double Kc = Slot::Kc(ui->MaterialAuswahlNut->currentIndex());
+    double Mc = Slot::Mc(ui->MaterialAuswahlNut->currentIndex());
+    double h;
+    double y;
 
     setCursor(Qt::CursorShape::WaitCursor);
 
@@ -461,6 +491,7 @@ void MainWindow::on_BtnCalcNut_clicked(){
     }else {
         C3 = 1.15;
     }
+    C3 = round(C3 * 1000) / 1000;
 
     if(ui->BeStabilNut->isChecked()) {
         fz = fz * 1.25;
@@ -470,16 +501,20 @@ void MainWindow::on_BtnCalcNut_clicked(){
         fz = fz * 0.75;
     }
 
-    Pc = C1 * C2 * C3 * C4 * 1;
     Q = (D * (ui->ApAuswahlNut->value()) * (fz * N * z)) / 1000;
+
+    phi = 2 * asin(D / D);
+    h = (114.7 * fz * sin(90) * (D / D)) / phi;
+    y = D - (D / 2);
+    K = (1 - (0.01 * y)) / ( pow(h, Mc)) * Kc * C1 * C2 * C3 * C4;
+    Pc = (Q * K) / (60000 * 0.85); //Pc = C1 * C2 * C3 * C4 * 1;
 
     ui->RealVcOutNut->setText(QString::number(round((N * pi * D) / 1000)) + " m/min");
 
     ui->DrehzahlOutNut->setText(QString::number(N));
     ui->VorschubOutNut->setText(QString::number(N * z * fz) + " mm/min");
     ui->QOutNut->setText(QString::number(Q) + " cm³/min");
-    //ui->PcOutNut->setText(QString::number(Pc, 'g', 1) + " kW");
-    Pc = round(Pc*100)/100;
+    Pc = round(Pc * 1000) / 1000;
     ui->PcOutNut->setText(QString::number(Pc)+" kW");
 
     ui->progressBarNut->setMaximum((maxKw * 1.25) * 1000);
@@ -587,7 +622,9 @@ void MainWindow::on_BtnCalcPlan_clicked(){
 
     ui->VorschubOutPlan->setText(QString::number(fz * N * z) + " mm/min");
     ui->DrehzahlOutPlan->setText(QString::number(N));
-    ui->PcOutPlan->setText(QString::number(Pc, 'g', 3) + " kW");
+    Pc = round(Pc * 1000) / 1000;
+    ui->PcOutPlan->setText(QString::number(Pc) + " kW");
+    Q = round(Q * 1000) / 1000;
     ui->QOutPlan->setText(QString::number(Q) + " cm³/min");
 
     ui->progressBarPlan->setMaximum((maxKw * 1.25) * 1000);
@@ -680,7 +717,8 @@ void MainWindow::on_BtnCalcBohren_clicked(){
     ui->VorschubOutBohren->setText(QString::number(fu * N) + " mm/min");
     ui->VorschubUOutBohren->setText(QString::number(fu) + " mm/U");
     ui->DrehzahlOutBohren->setText(QString::number(N));
-    ui->PcOutBohren->setText(QString::number(Pc, 'g', 3) + " kW");
+    Pc = round(Pc * 1000) / 1000;
+    ui->PcOutBohren->setText(QString::number(Pc) + " kW");
 
     ui->progressBarBohren->setMaximum((maxKw * 1.25) * 1000);
 
@@ -766,9 +804,11 @@ void MainWindow::on_BtnCalcTurn_clicked(){
     ui->RealVcOutTurn->setText(QString::number(round((N * pi * D) / 1000)) + " m/min");
 
     ui->DrehzahlOutTurn->setText(QString::number(N));
-    ui->VorschubOutTurn->setText(QString::number(N * fu) + " mm/min");
+    ui->VorschubOutTurn->setText(QString::number(N * fu) + " mm/min");    
+    Q = round(Q * 1000) / 1000;
     ui->QOutTurn->setText(QString::number(Q) + " cm³/min");
-    ui->PcOutTurn->setText(QString::number(Pc, 'g', 1) + " kW");
+    Pc = round(Pc * 1000) / 1000;
+    ui->PcOutTurn->setText(QString::number(Pc) + " kW");
 
     ui->progressBarTurn->setMaximum((maxKw * 1.25) * 1000);
 
@@ -806,6 +846,7 @@ void MainWindow::on_BtnCalcGewinde_clicked(){
     setCursor(Qt::CursorShape::ArrowCursor);
 }
 
+
 void MainWindow::on_SchneidenGeometryPlan_currentIndexChanged(int index){
     int bed;
     int mat = ui->MaterialAuswahlPlan->currentIndex();
@@ -820,7 +861,6 @@ void MainWindow::on_SchneidenGeometryPlan_currentIndexChanged(int index){
 
     ui->VcOutPlan->setText(QString::number(Plan::Vc(mat, bed, index)) + " m/min");
 }
-
 
 void MainWindow::on_turnstyle_currentIndexChanged(int index){
     int bed;
@@ -1164,5 +1204,8 @@ void MainWindow::on_btnSettingsWrite_clicked(){
 
 void MainWindow::on_btnOpenXLSX_clicked(){
     // Hier jetzt die .xlsx Datei oeffnen
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    QDesktopServices::openUrl(path);
+
 }
 

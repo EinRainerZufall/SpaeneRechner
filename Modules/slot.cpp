@@ -27,7 +27,7 @@ public:
     static QStringList dList() {
         const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         QStringList D;
-        int column = 3;
+        int column = 5;
 
         xlnt::workbook wb;
         wb.load(file);
@@ -51,7 +51,7 @@ public:
         wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(slotIndex);
 
-        Vc = ws.cell(2, row).value<double>();
+        Vc = ws.cell(4, row).value<double>();
 
         return Vc;
     }
@@ -60,7 +60,7 @@ public:
         const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double fz;
 
-        column = column + 3;
+        column = column + 5;
         row = row + 2;
 
         xlnt::workbook wb;
@@ -71,4 +71,35 @@ public:
 
         return fz;
     }
+
+    static double Kc(int row){
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+        double Kc;
+
+        row = row + 2;
+
+        xlnt::workbook wb;
+        wb.load(file);
+        xlnt::worksheet ws = wb.sheet_by_index(slotIndex);
+
+        Kc = ws.cell(2, row).value<double>();
+
+        return Kc;
+    }
+
+    static double Mc(int row){
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+        double Mc;
+
+        row = row + 2;
+
+        xlnt::workbook wb;
+        wb.load(file);
+        xlnt::worksheet ws = wb.sheet_by_index(slotIndex);
+
+        Mc = ws.cell(3, row).value<double>();
+
+        return Mc;
+    }
+
 };

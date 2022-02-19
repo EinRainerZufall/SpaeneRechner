@@ -66,7 +66,8 @@ FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
-    SpaeneRechner_de_DE.ts
+    SpaeneRechner_de_DE.ts \
+    SpaeneRechner_en_EN.ts
 
 CONFIG += lrelease
 CONFIG += embed_translations

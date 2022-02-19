@@ -277,15 +277,15 @@ public:
 
         const std::string mat[1][8] = {{"Material","Stahl","Al Knetlegierung","Al Guss","Weichholz","Hartholz","Kunststoff","Messing"}};
 
-        const double numbers[8][10] = {
-            {77,    1,      2,      3,      4,      5,      6,      8,      10,     12},
-            {90,    0.01,   0.01,   0.012,  0.025,  0.03,   0.038,  0.045,  0.05,   0.08},
-            {500,   0.01,   0.02,   0.025,  0.05,   0.05,   0.05,   0.064,  0.08,   0.1},
-            {200,   0.01,   0.01,   0.01,   0.015,  0.015,  0.025,  0.03,   0.038,  0.05},
-            {500,   0.025,  0.03,   0.035,  0.06,   0.07,   0.09,   0.1,    0.11,   0.16},
-            {450,   0.02,   0.025,  0.03,   0.055,  0.065,  0.085,  0.095,  0.095,  0.155},
-            {550,   0.02,   0.025,  0.03,   0.045,  0.06,   0.085,  0.09,   0.15,   0.25},
-            {350,   0.015,  0.02,   0.025,  0.025,  0.03,   0.05,   0.056,  0.065,  0.08}
+        const double numbers[8][12] = {
+            {77,   77,    77,    1,      2,      3,      4,      5,      6,      8,      10,     12},
+            {1200, 0.18,  90,    0.01,   0.01,   0.012,  0.025,  0.03,   0.038,  0.045,  0.05,   0.08},
+            {830,  0.23,  500,   0.01,   0.02,   0.025,  0.05,   0.05,   0.05,   0.064,  0.08,   0.1},
+            {830,  0.23,  200,   0.01,   0.01,   0.01,   0.015,  0.015,  0.025,  0.03,   0.038,  0.05},
+            {1,    0.1,   500,   0.025,  0.03,   0.035,  0.06,   0.07,   0.09,   0.1,    0.11,   0.16},
+            {1,    0.1,   450,   0.02,   0.025,  0.03,   0.055,  0.065,  0.085,  0.095,  0.095,  0.155},
+            {1,    0.1,   550,   0.02,   0.025,  0.03,   0.045,  0.06,   0.085,  0.09,   0.15,   0.25},
+            {640,  0.25,  350,   0.015,  0.02,   0.025,  0.025,  0.03,   0.05,   0.056,  0.065,  0.08}
 
         };
 
@@ -301,7 +301,7 @@ public:
         }
 
         row = 1;
-        while (column <= 11) {
+        while (column <= 13) {
             while (row <= 8) {
                 ws.cell(column, row).value(numbers[row-1][column-2]);
                 ws.cell(column, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
@@ -312,7 +312,9 @@ public:
             column++;
         }
 
-        ws.cell("B1").value("Vc");
+        ws.cell("B1").value("Kc");
+        ws.cell("C1").value("Mc");
+        ws.cell("D1").value("Vc");
         ws.title("Slot");
 
         ws.column_properties(1).width = 23.55;
@@ -320,7 +322,7 @@ public:
         row = 1;
         column = 1;
         while (row <= 8) {
-            while (column <= 11) {
+            while (column <= 13) {
                 ws.cell(column, row).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
                 column++;
             }
@@ -345,7 +347,7 @@ public:
         const std::string mat[1][32] = {{"Gusseisen mit Kugelgrafit <= 250 HB","Gusseisen mit Kugelgrafit > 250 HB","Gusseisen mit Lamellengrafit <= 200 HB","Gusseisen mit Lamellengrafit > 200 HB",
                                    "Temperguss <= 230 HB","Temperguss > 230 HB","Nichtrostenderstahl, austenitisch Rm <= 680","Nichtrostenderstahl, austenitisch Rm > 680",
                                    "Nichtrostenderstahl, ferritisch Rm <= 700","Nichtrostenderstahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
-                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuZn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
+                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuSn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
                                    "Faserverstärkte Kunststoffe","Thermoplast, Duroplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500",
                                    "Einsatzstahl Rm <= 570","Einsatzstahl Rm > 570","Stahlguss Rm <= 700","Stahlguss Rm > 700","Verguetungsstahl, legiert Rm <= 750","Verguetungsstahl, legiert Rm > 750",
                                    "Verguetungsstahl, unlegiert Rm <= 650","Verguetungsstahl, unlegiert Rm > 650","Werkzeugstahl Rm <= 750","Werkzeugstahl Rm > 750"}};
@@ -456,7 +458,7 @@ public:
         const std::string mat[1][32] = {{"Gusseisen mit Kugelgrafit <= 250 HB","Gusseisen mit Kugelgrafit > 250 HB","Gusseisen mit Lamellengrafit <= 200 HB","Gusseisen mit Lamellengrafit > 200 HB",
                                    "Temperguss <= 230 HB","Temperguss > 230 HB","Nichtrostenderstahl, austenitisch Rm <= 680","Nichtrostenderstahl, austenitisch Rm > 680",
                                    "Nichtrostenderstahl, ferritisch Rm <= 700","Nichtrostenderstahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
-                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuZn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
+                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuSn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
                                    "Faserverstärkte Kunststoffe","Thermoplast, Duroplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500",
                                    "Einsatzstahl Rm <= 570","Einsatzstahl Rm > 570","Stahlguss Rm <= 700","Stahlguss Rm > 700","Verguetungsstahl, legiert Rm <= 750",
                                    "Verguetungsstahl, legiert Rm > 750","Verguetungsstahl, unlegiert Rm <= 650","Verguetungsstahl, unlegiert Rm > 650","Werkzeugstahl Rm <= 750","Werkzeugstahl Rm > 750"}};
@@ -565,7 +567,7 @@ public:
         const std::string mat[1][32] = {{"Gusseisen mit Kugelgrafit <= 250 HB","Gusseisen mit Kugelgrafit > 250 HB","Gusseisen mit Lamellengrafit <= 200 HB","Gusseisen mit Lamellengrafit > 200 HB",
                                    "Temperguss <= 230 HB","Temperguss > 230 HB","Nichtrostenderstahl, austenitisch Rm <= 680","Nichtrostenderstahl, austenitisch Rm > 680",
                                    "Nichtrostenderstahl, ferritisch Rm <= 700","Nichtrostenderstahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
-                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuZn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
+                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuSn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
                                    "Faserverstärkte Kunststoffe","Thermoplast, Duroplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500",
                                    "Einsatzstahl Rm <= 570","Einsatzstahl Rm > 570","Stahlguss Rm <= 700","Stahlguss Rm > 700","Verguetungsstahl, legiert Rm <= 750","Verguetungsstahl, legiert Rm > 750",
                                    "Verguetungsstahl, unlegiert Rm <= 650","Verguetungsstahl, unlegiert Rm > 650","Werkzeugstahl Rm <= 750","Werkzeugstahl Rm > 750"}};
@@ -687,7 +689,7 @@ public:
 
         //create table
         while(row <= 8) {
-            ws.cell(1, row).value(mat[0][row]);
+            ws.cell(1, row).value(mat[0][row-1]);
             ws.cell(1, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
             row++;
         }
