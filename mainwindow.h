@@ -117,6 +117,8 @@ private slots:
 
     void on_BtnCalcGewinde_clicked();
 
+    void on_btnOpenXLSX_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

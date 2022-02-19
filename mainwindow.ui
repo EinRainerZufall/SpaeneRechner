@@ -5068,7 +5068,7 @@ background: #dfdfdf;
         <string>Daten Tabelle neu erstellen</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="btnCreateAll_2">
+      <widget class="QPushButton" name="btnOpenXLSX">
        <property name="geometry">
         <rect>
          <x>25</x>
