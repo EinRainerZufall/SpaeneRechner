@@ -26,7 +26,7 @@
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${installdir}/SpaeneRechner.exe</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon></windowsIcon>
+                    <windowsIcon>${installdir}/SpaeneRechner.exe</windowsIcon>
                     <windowsPath>${installdir}/</windowsPath>
                 </shortcut>
             </desktopShortcutList>
@@ -42,6 +42,7 @@
                             <exec>${installdir}/${uninstallerName}</exec>
                             <icon></icon>
                             <name>Uninstall ${product_fullname}</name>
+                            <noPinToStart>0</noPinToStart>
                             <path>${installdir}</path>
                             <platforms>all</platforms>
                             <runAsAdmin>0</runAsAdmin>
@@ -146,16 +147,17 @@
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${installdir}/SpaeneRechner.exe</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon></windowsIcon>
+                    <windowsIcon>${installdir}/SpaeneRechner.exe</windowsIcon>
                     <windowsPath>${installdir}/</windowsPath>
                 </startMenuShortcut>
             </startMenuShortcutList>
         </component>
     </componentList>
     <initializationActionList>
-        <exit>
-            <explanation>Mindestanforderung ist Windows 10</explanation>
-            <progressText>Mindestanforderung ist Windows 10</progressText>
+        <throwError>
+            <explanation>Der Späne Rechner ist im moment erst ab Windows 10 verfügbar.
+Sie benutzen aber noch Windows ${windows_os_version_number}.</explanation>
+            <text>Der SpäneRechener ist im moment erst ab Windows 10 verfügbar!</text>
             <ruleList>
                 <compareValues>
                     <logic>less_or_equal</logic>
@@ -163,8 +165,25 @@
                     <value2>7</value2>
                 </compareValues>
             </ruleList>
-        </exit>
+        </throwError>
     </initializationActionList>
+    <postInstallationActionList>
+        <runProgram>
+            <program>${installdir}/VC_redist.x64.exe</program>
+            <programArguments></programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>windows</type>
+                </platformTest>
+                <registryTest>
+                    <key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64\</key>
+                    <logic>exists</logic>
+                    <name>Version</name>
+                    <negate>1</negate>
+                </registryTest>
+            </ruleList>
+        </runProgram>
+    </postInstallationActionList>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <licenseFileEncoding>utf-8</licenseFileEncoding>
@@ -195,7 +214,6 @@
     </parameterList>
     <platformOptionsList>
         <platformOptions>
-            <postInstallationScript>${installdir}/VC_redist.x64.exe</postInstallationScript>
             <platform>windows</platform>
         </platformOptions>
     </platformOptionsList>
