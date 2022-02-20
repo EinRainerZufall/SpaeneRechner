@@ -1,10 +1,9 @@
 <project>
     <shortName>SpaeneRechner</shortName>
     <fullName>Spaene Rechner</fullName>
-    <version>0.5.4</version>
+    <version>0.5.6</version>
     <installerFilename>${product_shortname}-v${product_version}-${platform_name}-installer.${platform_exec_suffix}</installerFilename>
     <licenseFile>LICENSE</licenseFile>
-    <wrapLicenseFileText>0</wrapLicenseFileText>
     <logoImage>endmill_altin.png</logoImage>
     <splashImage>endmill_altin.png</splashImage>
     <defaultLanguage>de</defaultLanguage>
@@ -73,43 +72,46 @@
                     <platforms>windows</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <origin>../../../../../release/iconengines</origin>
+                            <origin>release/iconengines</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>../../../../../release/imageformats</origin>
+                            <origin>release/imageformats</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>../../../../../release/platforms</origin>
+                            <origin>release/platforms</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>../../../../../release/styles</origin>
+                            <origin>release/styles</origin>
                         </distributionDirectory>
                         <distributionDirectory>
-                            <origin>../../../../../release/translations</origin>
+                            <origin>release/translations</origin>
                         </distributionDirectory>
                         <distributionFile>
-                            <origin>../../../../../release/D3Dcompiler_47.dll</origin>
+                            <origin>release/D3Dcompiler_47.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../../../../../release/opengl32sw.dll</origin>
+                            <origin>release/opengl32sw.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../../../../../release/Qt6Core.dll</origin>
+                            <origin>release/Qt6Core.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../../../../../release/Qt6Gui.dll</origin>
+                            <origin>release/Qt6Gui.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../../../../../release/Qt6Svg.dll</origin>
+                            <origin>release/Qt6Svg.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../../../../../release/Qt6Widgets.dll</origin>
+                            <origin>release/Qt6Widgets.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../../../../../release/SpaeneRechner.exe</origin>
+                            <origin>release/SpaeneRechner.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../../../../../release/xlnt.dll</origin>
+                            <origin>release/xlnt.dll</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>release/VC_redist.x64.exe</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -138,8 +140,8 @@
                     <windowsPath>${installdir}/</windowsPath>
                 </startMenuShortcut>
                 <startMenuShortcut>
-                    <comment>${product_fullname}</comment>
-                    <name>${product_fullname}</name>
+                    <comment>SpaeneRechner</comment>
+                    <name>SpaeneRechner</name>
                     <runAsAdmin>0</runAsAdmin>
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${installdir}/SpaeneRechner.exe</windowsExec>
@@ -150,16 +152,11 @@
             </startMenuShortcutList>
         </component>
     </componentList>
-    <postInstallationActionList>
-        <runProgram>
-            <program>\release\VC_redist.x64.exe</program>
-            <programArguments></programArguments>
-        </runProgram>
-    </postInstallationActionList>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <licenseFileEncoding>utf-8</licenseFileEncoding>
     <readmeFileEncoding>utf-8</readmeFileEncoding>
+    <requireInstallationByRootUser>1</requireInstallationByRootUser>
     <saveRelativePaths>1</saveRelativePaths>
     <vendor></vendor>
     <licenseFileList>
@@ -175,7 +172,7 @@
             <description>Installer.Parameter.installdir.description</description>
             <explanation>Installer.Parameter.installdir.explanation</explanation>
             <value></value>
-            <default>${platform_install_prefix}/${product_shortname}-v ${product_version}</default>
+            <default>${platform_install_prefix}/${product_shortname}-v${product_version}</default>
             <allowEmptyValue>0</allowEmptyValue>
             <cliOptionName>prefix</cliOptionName>
             <mustBeWritable>1</mustBeWritable>
@@ -185,6 +182,7 @@
     </parameterList>
     <platformOptionsList>
         <platformOptions>
+            <postInstallationScript>${installdir}/VC_redist.x64.exe</postInstallationScript>
             <platform>windows</platform>
         </platformOptions>
     </platformOptionsList>
