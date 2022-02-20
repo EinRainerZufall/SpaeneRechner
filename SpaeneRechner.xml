@@ -1,10 +1,9 @@
 <project>
     <shortName>SpaeneRechner</shortName>
     <fullName>Spaene Rechner</fullName>
-    <version>0.5.4</version>
+    <version>0.5.6</version>
     <installerFilename>${product_shortname}-v${product_version}-${platform_name}-installer.${platform_exec_suffix}</installerFilename>
     <licenseFile>LICENSE</licenseFile>
-    <wrapLicenseFileText>0</wrapLicenseFileText>
     <logoImage>endmill_altin.png</logoImage>
     <splashImage>endmill_altin.png</splashImage>
     <defaultLanguage>de</defaultLanguage>
@@ -27,7 +26,7 @@
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${installdir}/SpaeneRechner.exe</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon></windowsIcon>
+                    <windowsIcon>${installdir}/SpaeneRechner.exe</windowsIcon>
                     <windowsPath>${installdir}/</windowsPath>
                 </shortcut>
             </desktopShortcutList>
@@ -43,6 +42,7 @@
                             <exec>${installdir}/${uninstallerName}</exec>
                             <icon></icon>
                             <name>Uninstall ${product_fullname}</name>
+                            <noPinToStart>0</noPinToStart>
                             <path>${installdir}</path>
                             <platforms>all</platforms>
                             <runAsAdmin>0</runAsAdmin>
@@ -141,28 +141,54 @@
                     <windowsPath>${installdir}/</windowsPath>
                 </startMenuShortcut>
                 <startMenuShortcut>
-                    <comment>${product_fullname}</comment>
-                    <name>${product_fullname}</name>
+                    <comment>SpaeneRechner</comment>
+                    <name>SpaeneRechner</name>
                     <runAsAdmin>0</runAsAdmin>
                     <runInTerminal>0</runInTerminal>
                     <windowsExec>${installdir}/SpaeneRechner.exe</windowsExec>
                     <windowsExecArgs></windowsExecArgs>
-                    <windowsIcon></windowsIcon>
+                    <windowsIcon>${installdir}/SpaeneRechner.exe</windowsIcon>
                     <windowsPath>${installdir}/</windowsPath>
                 </startMenuShortcut>
             </startMenuShortcutList>
         </component>
     </componentList>
+    <initializationActionList>
+        <throwError>
+            <explanation>Der Späne Rechner ist im moment erst ab Windows 10 verfügbar.
+Sie benutzen aber noch Windows ${windows_os_version_number}.</explanation>
+            <text>Der SpäneRechener ist im moment erst ab Windows 10 verfügbar!</text>
+            <ruleList>
+                <compareValues>
+                    <logic>less_or_equal</logic>
+                    <value1>${windows_os_version_number}</value1>
+                    <value2>7</value2>
+                </compareValues>
+            </ruleList>
+        </throwError>
+    </initializationActionList>
     <postInstallationActionList>
         <runProgram>
             <program>${installdir}/VC_redist.x64.exe</program>
             <programArguments></programArguments>
+            <ruleList>
+                <platformTest>
+                    <type>windows</type>
+                </platformTest>
+                <registryTest>
+                    <key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64\</key>
+                    <logic>exists</logic>
+                    <name>Version</name>
+                    <negate>1</negate>
+                </registryTest>
+            </ruleList>
         </runProgram>
     </postInstallationActionList>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <licenseFileEncoding>utf-8</licenseFileEncoding>
     <readmeFileEncoding>utf-8</readmeFileEncoding>
+    <requireInstallationByRootUser>1</requireInstallationByRootUser>
     <saveRelativePaths>1</saveRelativePaths>
     <vendor></vendor>
     <licenseFileList>
@@ -178,7 +204,7 @@
             <description>Installer.Parameter.installdir.description</description>
             <explanation>Installer.Parameter.installdir.explanation</explanation>
             <value></value>
-            <default>${platform_install_prefix}/${product_shortname}-v ${product_version}</default>
+            <default>${platform_install_prefix}/${product_shortname}-v${product_version}</default>
             <allowEmptyValue>0</allowEmptyValue>
             <cliOptionName>prefix</cliOptionName>
             <mustBeWritable>1</mustBeWritable>

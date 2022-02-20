@@ -1,7 +1,6 @@
 #include "Modules/module.h"
 
 namespace  {
-std::filesystem::path turnPath = std::filesystem::current_path() / "Daten.xlsx";
 int turnIndex = 6;
 }
 
@@ -9,11 +8,12 @@ int turnIndex = 6;
 class Turn {
 public:
     static QStringList matList() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         QStringList mat;
         int row = 2;
 
         xlnt::workbook wb;
-        wb.load(turnPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(turnIndex);
 
         while (ws.cell(1, row).to_string() != "") {
@@ -25,6 +25,7 @@ public:
     }
 
     static double Vc(int mat, int bed, int typ) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double Vc;
         int column = 2;
 
@@ -44,7 +45,7 @@ public:
         }
 
         xlnt::workbook wb;
-        wb.load(turnPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(turnIndex);
 
         Vc = ws.cell(column, mat).value<double>();
@@ -53,12 +54,13 @@ public:
     }
 
     static int Kc(int mat) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         int Kc;
 
         mat = mat + 2;
 
         xlnt::workbook wb;
-        wb.load(turnPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(turnIndex);
 
         Kc = ws.cell(11, mat).value<int>();
@@ -67,12 +69,13 @@ public:
     }
 
     static double Mc(int mat) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double Mc;
 
         mat = mat + 2;
 
         xlnt::workbook wb;
-        wb.load(turnPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(turnIndex);
 
         Mc = ws.cell(12, mat).value<double>();

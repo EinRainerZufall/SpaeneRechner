@@ -1,7 +1,6 @@
 #include "Modules/module.h"
 
 namespace  {
-std::filesystem::path drillPath = std::filesystem::current_path() / "Daten.xlsx";
 int drillIndex = 2;
 }
 
@@ -9,11 +8,12 @@ int drillIndex = 2;
 class Drill {
 public:
     static QStringList matList() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         QStringList mat;
         int row = 2;
 
         xlnt::workbook wb;
-        wb.load(drillPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(drillIndex);
 
         while (ws.cell(1, row).to_string() != "") {
@@ -25,6 +25,7 @@ public:
     }
 
     static double Vc(int mat, int bed, int schn) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double Vc;
         int column = 2;
 
@@ -52,7 +53,7 @@ public:
         }
 
         xlnt::workbook wb;
-        wb.load(drillPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(drillIndex);
 
         Vc = ws.cell(column, mat).value<double>();
@@ -61,6 +62,7 @@ public:
     }
 
     static double fu(int mat, double D) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double fu;
         int column;
 
@@ -79,7 +81,7 @@ public:
         }
 
         xlnt::workbook wb;
-        wb.load(drillPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(drillIndex);
 
         fu = ws.cell(column, mat).value<double>();
@@ -88,12 +90,13 @@ public:
     }
 
     static int Kc(int mat) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         int Kc;
 
         mat = mat + 2;
 
         xlnt::workbook wb;
-        wb.load(drillPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(drillIndex);
 
         Kc = ws.cell(13, mat).value<int>();
@@ -102,12 +105,13 @@ public:
     }
 
     static double Mc(int mat) {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double Kc;
 
         mat = mat + 2;
 
         xlnt::workbook wb;
-        wb.load(drillPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(drillIndex);
 
         Kc = ws.cell(14, mat).value<double>();

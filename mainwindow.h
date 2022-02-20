@@ -13,6 +13,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QCursor>
+#include <QProcess>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -116,6 +117,8 @@ private slots:
     void on_MaterialAuswahlGewinde_currentIndexChanged(int index);
 
     void on_BtnCalcGewinde_clicked();
+
+    void on_btnOpenXLSX_clicked();
 
 private:
     Ui::MainWindow *ui;

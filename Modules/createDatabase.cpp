@@ -1,17 +1,16 @@
 #include "Modules/module.h"
 
 #ifdef QT_DEBUG
-const std::string name = "Test.xlsx";
+const std::string name = "/Test.xlsx";
 #else
-const std::string name = "Daten.xlsx";
+const std::string name = "/Daten.xlsx";
 #endif
-
-const std::filesystem::path createPath = std::filesystem::current_path() / name;
 
 
 class createDatabase {
 public:
     static void createSimple() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 2;
         int row = 1;
         int color = 191;
@@ -81,12 +80,13 @@ public:
             column++;
         }
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createDynamic() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 1;
         int row = 2;
         int color = 191;
@@ -107,7 +107,7 @@ public:
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(1);
 
         //create table
@@ -161,12 +161,13 @@ public:
         }
 
         ws.title("Dynamic");
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createDrill() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 1;
         int row = 2;
         int color = 191;
@@ -211,7 +212,7 @@ public:
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(2);
 
         //create table
@@ -263,32 +264,33 @@ public:
         ws.column_properties(14).width = 10;
 
         ws.title("Drill");
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createSlot() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 2;
         int row = 1;
         int color = 191;
 
         const std::string mat[1][8] = {{"Material","Stahl","Al Knetlegierung","Al Guss","Weichholz","Hartholz","Kunststoff","Messing"}};
 
-        const double numbers[8][10] = {
-            {77,    1,      2,      3,      4,      5,      6,      8,      10,     12},
-            {90,    0.01,   0.01,   0.012,  0.025,  0.03,   0.038,  0.045,  0.05,   0.08},
-            {500,   0.01,   0.02,   0.025,  0.05,   0.05,   0.05,   0.064,  0.08,   0.1},
-            {200,   0.01,   0.01,   0.01,   0.015,  0.015,  0.025,  0.03,   0.038,  0.05},
-            {500,   0.025,  0.03,   0.035,  0.06,   0.07,   0.09,   0.1,    0.11,   0.16},
-            {450,   0.02,   0.025,  0.03,   0.055,  0.065,  0.085,  0.095,  0.095,  0.155},
-            {550,   0.02,   0.025,  0.03,   0.045,  0.06,   0.085,  0.09,   0.15,   0.25},
-            {350,   0.015,  0.02,   0.025,  0.025,  0.03,   0.05,   0.056,  0.065,  0.08}
+        const double numbers[8][12] = {
+            {77,   77,    77,    1,      2,      3,      4,      5,      6,      8,      10,     12},
+            {1200, 0.18,  90,    0.01,   0.01,   0.012,  0.025,  0.03,   0.038,  0.045,  0.05,   0.08},
+            {830,  0.23,  500,   0.01,   0.02,   0.025,  0.05,   0.05,   0.05,   0.064,  0.08,   0.1},
+            {830,  0.23,  200,   0.01,   0.01,   0.01,   0.015,  0.015,  0.025,  0.03,   0.038,  0.05},
+            {1,    0.1,   500,   0.025,  0.03,   0.035,  0.06,   0.07,   0.09,   0.1,    0.11,   0.16},
+            {1,    0.1,   450,   0.02,   0.025,  0.03,   0.055,  0.065,  0.085,  0.095,  0.095,  0.155},
+            {1,    0.1,   550,   0.02,   0.025,  0.03,   0.045,  0.06,   0.085,  0.09,   0.15,   0.25},
+            {640,  0.25,  350,   0.015,  0.02,   0.025,  0.025,  0.03,   0.05,   0.056,  0.065,  0.08}
 
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(3);
 
         //create table
@@ -299,7 +301,7 @@ public:
         }
 
         row = 1;
-        while (column <= 11) {
+        while (column <= 13) {
             while (row <= 8) {
                 ws.cell(column, row).value(numbers[row-1][column-2]);
                 ws.cell(column, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
@@ -310,7 +312,9 @@ public:
             column++;
         }
 
-        ws.cell("B1").value("Vc");
+        ws.cell("B1").value("Kc");
+        ws.cell("C1").value("Mc");
+        ws.cell("D1").value("Vc");
         ws.title("Slot");
 
         ws.column_properties(1).width = 23.55;
@@ -318,7 +322,7 @@ public:
         row = 1;
         column = 1;
         while (row <= 8) {
-            while (column <= 11) {
+            while (column <= 13) {
                 ws.cell(column, row).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
                 column++;
             }
@@ -327,12 +331,13 @@ public:
             color = 242;
         }
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createPlan90() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 1;
         int row = 2;
         int color = 191;
@@ -342,7 +347,7 @@ public:
         const std::string mat[1][32] = {{"Gusseisen mit Kugelgrafit <= 250 HB","Gusseisen mit Kugelgrafit > 250 HB","Gusseisen mit Lamellengrafit <= 200 HB","Gusseisen mit Lamellengrafit > 200 HB",
                                    "Temperguss <= 230 HB","Temperguss > 230 HB","Nichtrostenderstahl, austenitisch Rm <= 680","Nichtrostenderstahl, austenitisch Rm > 680",
                                    "Nichtrostenderstahl, ferritisch Rm <= 700","Nichtrostenderstahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
-                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuZn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
+                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuSn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
                                    "Faserverstärkte Kunststoffe","Thermoplast, Duroplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500",
                                    "Einsatzstahl Rm <= 570","Einsatzstahl Rm > 570","Stahlguss Rm <= 700","Stahlguss Rm > 700","Verguetungsstahl, legiert Rm <= 750","Verguetungsstahl, legiert Rm > 750",
                                    "Verguetungsstahl, unlegiert Rm <= 650","Verguetungsstahl, unlegiert Rm > 650","Werkzeugstahl Rm <= 750","Werkzeugstahl Rm > 750"}};
@@ -382,7 +387,7 @@ public:
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(4);
 
         //create table
@@ -437,12 +442,13 @@ public:
         ws.column_properties(11).width = 10;
         ws.column_properties(12).width = 10;
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createPlan45() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 1;
         int row = 2;
         int color = 191;
@@ -452,7 +458,7 @@ public:
         const std::string mat[1][32] = {{"Gusseisen mit Kugelgrafit <= 250 HB","Gusseisen mit Kugelgrafit > 250 HB","Gusseisen mit Lamellengrafit <= 200 HB","Gusseisen mit Lamellengrafit > 200 HB",
                                    "Temperguss <= 230 HB","Temperguss > 230 HB","Nichtrostenderstahl, austenitisch Rm <= 680","Nichtrostenderstahl, austenitisch Rm > 680",
                                    "Nichtrostenderstahl, ferritisch Rm <= 700","Nichtrostenderstahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
-                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuZn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
+                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuSn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
                                    "Faserverstärkte Kunststoffe","Thermoplast, Duroplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500",
                                    "Einsatzstahl Rm <= 570","Einsatzstahl Rm > 570","Stahlguss Rm <= 700","Stahlguss Rm > 700","Verguetungsstahl, legiert Rm <= 750",
                                    "Verguetungsstahl, legiert Rm > 750","Verguetungsstahl, unlegiert Rm <= 650","Verguetungsstahl, unlegiert Rm > 650","Werkzeugstahl Rm <= 750","Werkzeugstahl Rm > 750"}};
@@ -492,7 +498,7 @@ public:
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(5);
 
         //create table
@@ -545,12 +551,13 @@ public:
         ws.column_properties(11).width = 10;
         ws.column_properties(12).width = 10;
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createTurn() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 1;
         int row = 2;
         int color = 191;
@@ -560,7 +567,7 @@ public:
         const std::string mat[1][32] = {{"Gusseisen mit Kugelgrafit <= 250 HB","Gusseisen mit Kugelgrafit > 250 HB","Gusseisen mit Lamellengrafit <= 200 HB","Gusseisen mit Lamellengrafit > 200 HB",
                                    "Temperguss <= 230 HB","Temperguss > 230 HB","Nichtrostenderstahl, austenitisch Rm <= 680","Nichtrostenderstahl, austenitisch Rm > 680",
                                    "Nichtrostenderstahl, ferritisch Rm <= 700","Nichtrostenderstahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
-                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuZn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
+                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuSn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
                                    "Faserverstärkte Kunststoffe","Thermoplast, Duroplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500",
                                    "Einsatzstahl Rm <= 570","Einsatzstahl Rm > 570","Stahlguss Rm <= 700","Stahlguss Rm > 700","Verguetungsstahl, legiert Rm <= 750","Verguetungsstahl, legiert Rm > 750",
                                    "Verguetungsstahl, unlegiert Rm <= 650","Verguetungsstahl, unlegiert Rm > 650","Werkzeugstahl Rm <= 750","Werkzeugstahl Rm > 750"}};
@@ -599,7 +606,7 @@ public:
             {60,  110, 160, 40,  80,  120, 100, 140, 180, 1820, 0.26}
         };
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(6);
 
         //create table
@@ -650,12 +657,13 @@ public:
         ws.column_properties(11).width = 10;
         ws.column_properties(12).width = 10;
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
     static void createThread() {
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
         int column = 2;
         int row = 1;
         int color = 191;
@@ -676,12 +684,12 @@ public:
         };
 
         xlnt::workbook wb;
-        wb.load(createPath);
+        wb.load(file);
         xlnt::worksheet ws = wb.create_sheet(7);
 
         //create table
         while(row <= 8) {
-            ws.cell(1, row).value(mat[0][row]);
+            ws.cell(1, row).value(mat[0][row-1]);
             ws.cell(1, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
             row++;
         }
@@ -720,71 +728,9 @@ public:
 
         ws.column_properties(1).width = 23.55;
 
-        wb.save(name);
+        wb.save(file);
 
         return;
     }
 
-    static void createSettings() {
-        int column = 1;
-        int row = 1;
-        int color = 191;
-
-        const std::string array[10][3] = {
-            {"Name",            "Wert",     "Hilfe"},
-            {"disclaimer",      "Ja",       "Ob beim Programm start der Disclaimer angezeigt werden soll (Ja|Nein)"},
-            {"maxRpmFr",        "77",       "Die maximale Drehzal der Fraesmachine"},
-            {"maxPc",           "77",       "Die maximale Spindelleistung der Fraesmaschine (in kW)"},
-            {"bed",             "normal",   "die Bedingungen der Bearbeitung (auspanung, Werkzeuglaenge und Stabilitaet der Maschine) (instabil|normal|stabil)"},
-            {"schn",            "VHM",      "Der standart Schneidstoff für Werkzeuge (HSS|VHM|Keramik)"},
-            {"spiWi",           "77",       "Der standart Spitzenwinkel fuer Bohrer (118|130|140)"},
-            {"cooling",         "Trocken",  "Die standart Kuehlung der Werkzeuge (Trocken|KSS|Oel)"},
-            {"maxRpmDr",        "77",       "Die maximale Drehzal der Drehmachine"},
-            {"maxPcDr",         "77",       "Die maximale Spindelleistung der Drehmaschine (in kW)"}
-        };
-
-        xlnt::workbook wb;
-        wb.load(createPath);
-        xlnt::worksheet ws = wb.create_sheet(wb.sheet_count());
-
-        //create table
-        while (row <= 10) {
-            while (column <= 3) {
-                ws.cell(column, row).value(array[row-1][column-1]);
-                ws.cell(column, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
-                ws.column_properties(column).width = 10;
-                column++;
-            }
-            column = 1;
-            row++;
-        }
-
-        column = 1;
-        row = 1;
-        while (row <= 10) {
-            while (column <= 3) {
-                ws.cell(column, row).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
-                column++;
-            }
-            row = row + 2;
-            color = 242;
-            column = 1;
-        }
-
-        ws.cell(2, 3).value(24000);
-        ws.cell(2, 4).value(2.2);
-        ws.cell(2, 7).value(118);
-        ws.cell(2, 9).value(5000);
-        ws.cell(2, 10).value(2.2);
-
-        ws.title("Einstellungen");
-
-        ws.column_properties(1).width = 25;
-        ws.column_properties(2).width = 8;
-        ws.column_properties(3).width = 100;
-
-        wb.save(name);
-
-        return;
-    }
 };

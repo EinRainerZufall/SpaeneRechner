@@ -331,6 +331,7 @@ public:
     QPushButton *btnSettingsWrite;
     QGroupBox *groupBox_20;
     QPushButton *btnCreateAll;
+    QPushButton *btnOpenXLSX;
     QWidget *tab_info;
     QGroupBox *groupBox_14;
     QLabel *label_19;
@@ -1678,10 +1679,13 @@ public:
         btnSettingsWrite->setGeometry(QRect(10, 390, 210, 25));
         groupBox_20 = new QGroupBox(tab_settings);
         groupBox_20->setObjectName(QString::fromUtf8("groupBox_20"));
-        groupBox_20->setGeometry(QRect(10, 580, 201, 71));
+        groupBox_20->setGeometry(QRect(10, 550, 250, 100));
         btnCreateAll = new QPushButton(groupBox_20);
         btnCreateAll->setObjectName(QString::fromUtf8("btnCreateAll"));
-        btnCreateAll->setGeometry(QRect(10, 30, 180, 25));
+        btnCreateAll->setGeometry(QRect(25, 30, 200, 25));
+        btnOpenXLSX = new QPushButton(groupBox_20);
+        btnOpenXLSX->setObjectName(QString::fromUtf8("btnOpenXLSX"));
+        btnOpenXLSX->setGeometry(QRect(25, 65, 200, 25));
         mainTabWidget->addTab(tab_settings, QString());
         tab_info = new QWidget();
         tab_info->setObjectName(QString::fromUtf8("tab_info"));
@@ -1738,7 +1742,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(6);
+        mainTabWidget->setCurrentIndex(2);
         BtnCalcEinfach->setDefault(true);
 
 
@@ -2029,7 +2033,8 @@ public:
         label_57->setText(QCoreApplication::translate("MainWindow", "Die maximale Spindelleistung der Drehmaschine (in kW)", nullptr));
         btnSettingsWrite->setText(QCoreApplication::translate("MainWindow", "Einstellungen \303\274bernehmen", nullptr));
         groupBox_20->setTitle(QCoreApplication::translate("MainWindow", "Tabelle", nullptr));
-        btnCreateAll->setText(QCoreApplication::translate("MainWindow", "Daten Tabelle erstellen", nullptr));
+        btnCreateAll->setText(QCoreApplication::translate("MainWindow", "Daten Tabelle neu erstellen", nullptr));
+        btnOpenXLSX->setText(QCoreApplication::translate("MainWindow", "Daten Tabelle \303\266ffnen", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_settings), QCoreApplication::translate("MainWindow", "Einstellungen", nullptr));
         groupBox_14->setTitle(QCoreApplication::translate("MainWindow", "Haftungsausschluss", nullptr));
         label_19->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler \303\274bernimmt keinerlei Garantie oder Gew\303\244hrleistung f\303\274r die Eignung des Programms sowie f\303\274r dessen vollst\303\244ndige Funktionsf\303\244higkeit, insbesondere die Richtigkeit der Berechnungen. Der Entwickler haftet nicht f\303\274r st\303\266rungs- oder fehlerfreien Einsatz des Programms. Der Anwender tr\303\244gt das Risiko. Jegliche Haftung des Entwicklers f\303\274r Sch\303\244den, Nachteile und Anwendungen aller Art, insbesondere auch f\303\274r Verm\303\266genssch\303\244den, Datenverlust o.\303\244., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes entstehen sollten, ist ausgeschlossen.</p><p><br/></p></body></html>", nullptr));

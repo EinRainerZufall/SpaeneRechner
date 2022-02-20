@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="de_DE">
+<TS version="2.1" language="en_US">
 <context>
     <name>MainWindow</name>
     <message>
@@ -602,7 +602,6 @@
     <message>
         <location filename="mainwindow.ui" line="5068"/>
         <source>Daten Tabelle neu erstellen</source>
-        <oldsource>Daten Tabelle erstellen</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -661,6 +660,16 @@ ab einem Fräserdurchmesser von &gt; 4,5 mm gültig!</source>
 <context>
     <name>QObject</name>
     <message>
+        <location filename="Modules/settings.cpp" line="58"/>
+        <source>Disclaimer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Modules/settings.cpp" line="59"/>
+        <source>Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Modules/settings.cpp" line="86"/>
         <location filename="Modules/settings.cpp" line="133"/>
         <location filename="Modules/settings.cpp" line="180"/>
@@ -671,16 +680,6 @@ ab einem Fräserdurchmesser von &gt; 4,5 mm gültig!</source>
         <location filename="Modules/settings.cpp" line="415"/>
         <location filename="Modules/settings.cpp" line="462"/>
         <source>Kritischer Fehler</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Modules/settings.cpp" line="59"/>
-        <source>Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Modules/settings.cpp" line="58"/>
-        <source>Disclaimer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -731,13 +730,13 @@ ab einem Fräserdurchmesser von &gt; 4,5 mm gültig!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="584"/>
-        <source>Die Datei &apos;config.ini&apos; wurde nicht gefunden soll sie erstellt werden?</source>
+        <location filename="Modules/settings.cpp" line="498"/>
+        <source>Die Datei &apos;Daten.xlsx&apos; wurde nicht gefunden soll sie erstellt werden?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="498"/>
-        <source>Die Datei &apos;Daten.xlsx&apos; wurde nicht gefunden soll sie erstellt werden?</source>
+        <location filename="Modules/settings.cpp" line="584"/>
+        <source>Die Datei &apos;config.ini&apos; wurde nicht gefunden soll sie erstellt werden?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

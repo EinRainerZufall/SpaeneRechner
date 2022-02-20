@@ -10,5 +10,9 @@
 #include <filesystem>
 #include <array>
 #include <QSysInfo>
+#include <QStandardPaths>
+#include <QDebug>
+#include <QDir>
+#include <QTextStream>
 
 #endif // MODULE_H
