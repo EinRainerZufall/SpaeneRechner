@@ -13,10 +13,10 @@ Sowie weitere nützliche Features.
 ---
 zum selber Compilieren:
 - Windows
-  - Win 10 x64 *(Win 7 im Moment nicht)*
+  - Win 10 **x64** *(Win 7 wird nicht unterstützt)*
   - [Ms Visual C++ Redistributable x64](https://support.microsoft.com/de-de/topic/aktuelle-unterst%C3%BCtzte-downloads-f%C3%BCr-visual-c-2647da03-1eea-4433-9aff-95f26a218cc0)
   - [qt Creator](https://www.qt.io/)
-  - kein Shadow build
+  - kein shadow build
   - KIT: Desktop Qt 6.2.2 MSVC2019 64bit
   - [xlnt lib](https://github.com/tfussell/xlnt)
   - nach dem Release build in der MSVC Konsole `windeployqt` eingeben
