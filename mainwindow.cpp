@@ -20,6 +20,7 @@
  *  - Einstellungen verbessern
  *  - Lizens hinzufuegen
  *  - Tabelle verbessern
+ *  - Tooltips hinzufuegen
  *  - Komentare hinzufuegen
  *  - MacOS kompatibilität pruefen
  *  - Linux kompatibilität pruefen
