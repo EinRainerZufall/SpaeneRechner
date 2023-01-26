@@ -19,7 +19,7 @@
                     <comment>SpaeneRechner</comment>
                     <exec></exec>
                     <icon></icon>
-                    <name>SpaeneRechner</name>
+                    <name>SpaeneRechner ${product_version}</name>
                     <path></path>
                     <platforms>all</platforms>
                     <runAsAdmin>0</runAsAdmin>
@@ -157,7 +157,7 @@
         <throwError>
             <explanation>Der Späne Rechner ist im moment erst ab Windows 10 verfügbar.
 Sie benutzen aber noch Windows ${windows_os_version_number}.</explanation>
-            <text>Der SpäneRechener ist im moment erst ab Windows 10 verfügbar!</text>
+            <text>Der SpäneRechener ist erst ab Windows 10 verfügbar!</text>
             <ruleList>
                 <compareValues>
                     <logic>less_or_equal</logic>
