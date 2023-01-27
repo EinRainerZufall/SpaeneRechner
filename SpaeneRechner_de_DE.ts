@@ -126,7 +126,8 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="292"/>
-        <source>Ap und Ae empfehlungen:</source>
+        <source>Ap und Ae Empfehlungen:</source>
+        <oldsource>Ap und Ae empfehlungen:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -566,22 +567,26 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="4977"/>
-        <source>Der standart Schneidstoff für Werkzeuge</source>
+        <source>Der standard Schneidstoff für Werkzeuge</source>
+        <oldsource>Der standart Schneidstoff für Werkzeuge</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="4990"/>
-        <source>Der standart Spitzenwinkel für Bohrer</source>
+        <source>Der standard Spitzenwinkel für Bohrer</source>
+        <oldsource>Der standart Spitzenwinkel für Bohrer</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="5003"/>
-        <source>Die standart Kühlung der Werkzeuge</source>
+        <source>Die standard Kühlung der Werkzeuge</source>
+        <oldsource>Die standart Kühlung der Werkzeuge</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="5016"/>
-        <source>Die maximale Drehzal der Drehmachine</source>
+        <source>Die maximale Drehzahl der Drehmachine</source>
+        <oldsource>Die maximale Drehzal der Drehmachine</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -612,7 +617,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="5088"/>
-        <location filename="mainwindow.cpp" line="424"/>
+        <location filename="mainwindow.cpp" line="425"/>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
@@ -652,7 +657,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="425"/>
+        <location filename="mainwindow.cpp" line="426"/>
         <source>Die aktuelle Berechnung der Deflection ist erst 
 ab einem Fräserdurchmesser von &gt; 4,5 mm gültig!</source>
         <translation type="unfinished"></translation>
@@ -675,7 +680,8 @@ ab einem Fräserdurchmesser von &gt; 4,5 mm gültig!</source>
     </message>
     <message>
         <location filename="Modules/settings.cpp" line="59"/>
-        <source>Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?</source>
+        <source>Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt allein das Risiko. Jegliche Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?</source>
+        <oldsource>Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -685,7 +691,8 @@ ab einem Fräserdurchmesser von &gt; 4,5 mm gültig!</source>
     </message>
     <message>
         <location filename="Modules/settings.cpp" line="87"/>
-        <source>Es konnte keine gültige abfrage für den Disclaimer in der &apos;config.ini&apos; Datei gefunden werden!</source>
+        <source>Es konnte keine gültige Abfrage für den Disclaimer in der &apos;config.ini&apos; Datei gefunden werden!</source>
+        <oldsource>Es konnte keine gültige abfrage für den Disclaimer in der &apos;config.ini&apos; Datei gefunden werden!</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -696,32 +703,38 @@ ab einem Fräserdurchmesser von &gt; 4,5 mm gültig!</source>
     </message>
     <message>
         <location filename="Modules/settings.cpp" line="228"/>
-        <source>Es konnte keine gültige abfrage für die Spindelleistung der Fräsmaschine in der Datei &apos;config.ini&apos; gefunden werden!</source>
+        <source>Es konnte keine gültige Abfrage für die Spindelleistung der Fräsmaschine in der Datei &apos;config.ini&apos; gefunden werden!</source>
+        <oldsource>Es konnte keine gültige abfrage für die Spindelleistung der Fräsmaschine in der Datei &apos;config.ini&apos; gefunden werden!</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Modules/settings.cpp" line="275"/>
-        <source>Es konnte keine gültige abfrage für die Spindelleistung der Drehmaschine in der Datei &apos;config.ini&apos; gefunden werden!</source>
+        <source>Es konnte keine gültige Abfrage für die Spindelleistung der Drehmaschine in der Datei &apos;config.ini&apos; gefunden werden!</source>
+        <oldsource>Es konnte keine gültige abfrage für die Spindelleistung der Drehmaschine in der Datei &apos;config.ini&apos; gefunden werden!</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Modules/settings.cpp" line="322"/>
-        <source>Es konnte keine gültige abfrage für die standart Bedingung in der &apos;config.ini&apos; Datei gefunden werden!</source>
+        <source>Es konnte keine gültige Abfrage für die standard Bedingung in der &apos;config.ini&apos; Datei gefunden werden!</source>
+        <oldsource>Es konnte keine gültige abfrage für die standart Bedingung in der &apos;config.ini&apos; Datei gefunden werden!</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Modules/settings.cpp" line="369"/>
-        <source>Es konnte keine gültige abfrage für den standart Schneidstoff in der &apos;config.ini&apos; Datei gefunden werden!</source>
+        <source>Es konnte keine gültige Abfrage für den standard Schneidstoff in der &apos;config.ini&apos; Datei gefunden werden!</source>
+        <oldsource>Es konnte keine gültige abfrage für den standart Schneidstoff in der &apos;config.ini&apos; Datei gefunden werden!</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Modules/settings.cpp" line="416"/>
-        <source>Es konnte keine gültige abfrage für den standart Spitzenwinkel in der &apos;config.ini&apos; Datei gefunden werden!</source>
+        <source>Es konnte keine gültige Abfrage für den standard Spitzenwinkel in der &apos;config.ini&apos; Datei gefunden werden!</source>
+        <oldsource>Es konnte keine gültige abfrage für den standart Spitzenwinkel in der &apos;config.ini&apos; Datei gefunden werden!</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Modules/settings.cpp" line="463"/>
-        <source>Es konnte keine gültige abfrage für die standart Kühlung in der &apos;config.ini&apos; Datei gefunden werden!</source>
+        <source>Es konnte keine gültige Abfrage für die standard Kühlung in der &apos;config.ini&apos; Datei gefunden werden!</source>
+        <oldsource>Es konnte keine gültige abfrage für die standart Kühlung in der &apos;config.ini&apos; Datei gefunden werden!</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -732,12 +745,14 @@ ab einem Fräserdurchmesser von &gt; 4,5 mm gültig!</source>
     </message>
     <message>
         <location filename="Modules/settings.cpp" line="584"/>
-        <source>Die Datei &apos;config.ini&apos; wurde nicht gefunden soll sie erstellt werden?</source>
+        <source>Die Datei &apos;config.ini&apos; wurde nicht gefunden. Soll sie erstellt werden?</source>
+        <oldsource>Die Datei &apos;config.ini&apos; wurde nicht gefunden soll sie erstellt werden?</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Modules/settings.cpp" line="498"/>
-        <source>Die Datei &apos;Daten.xlsx&apos; wurde nicht gefunden soll sie erstellt werden?</source>
+        <source>Die Datei &apos;Daten.xlsx&apos; wurde nicht gefunden. Soll sie erstellt werden?</source>
+        <oldsource>Die Datei &apos;Daten.xlsx&apos; wurde nicht gefunden soll sie erstellt werden?</oldsource>
         <translation type="unfinished"></translation>
     </message>
 </context>

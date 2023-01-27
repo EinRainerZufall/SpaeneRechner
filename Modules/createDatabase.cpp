@@ -174,9 +174,9 @@ public:
 
         const std::string header[1][14] = {{"Material","Vc min HSS","Vc typ HSS","Vc max HSS","Vc min VHM","Vc typ VHM","Vc max VHM","f in mm/U (D2)",
                                       "f in mm/U (D5)","f in mm/U (D8)","f in mm/U (D12)","f in mm/U (D16)","Kc","Mc"}};
-        const std::string mat[1][28] = {{"Gusseisen mit Kugelgrafit <= 250 HB","Gusseisen mit Kugelgrafit > 250 HB","Gusseisen mit Lamellengrafit <= 200 HB","Nichtrostenderstahl, austenitisch Rm <= 680",
-                                   "Nichtrostenderstahl, austenitisch Rm > 680","Nichtrostenderstahl, mertensitisch Rm > 500","CuZn - Legierung (Messing) Langspanend","Al - Gusslegierung",
-                                   "CuSn - Legierung (Bronze) Kurzspanend","Al - Knetlegierung","Al - Legierung, Kurzspanend","CuSn - Legierung (Bronze) Langspanend","CuZn - Legierung (Messing) Kurzspanend",
+        const std::string mat[1][28] = {{"Gusseisen mit Kugelgrafit <= 250 HB","Gusseisen mit Kugelgrafit > 250 HB","Gusseisen mit Lamellengrafit <= 200 HB","nichtrostender Stahl, austenitisch Rm <= 680",
+                                   "nichtrostender Stahl, austenitisch Rm > 680","nichtrostender Stahl, mertensitisch Rm > 500","CuZn - Legierung (Messing) langspanend","Al - Gusslegierung",
+                                   "CuSn - Legierung (Bronze) kurzspanend","Al - Knetlegierung","Al - Legierung, kurzspanend","CuSn - Legierung (Bronze) langspanend","CuZn - Legierung (Messing) kurzspanend",
                                    "Duroplast","Thermoplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500","Einsatzstahl, unlegiert Rm <= 550",
                                    "Einsatzstahl, legiert Rm <= 750","Einsatzstahl, legiert Rm > 750","Verguetungsstahl, legiert Rm <= 750","Verguetungsstahl, legiert Rm > 750",
                                    "Verguetungsstahl, unlegiert Rm <= 650","Verguetungsstahl, unlegiert Rm > 650","Werkzeugstahl Rm <= 750","Werkzeugstahl Rm > 750"}};
@@ -345,9 +345,9 @@ public:
         const std::string header[1][12] = {{"Material","Vc min","Vc typ","Vc max","fz (bei ae 0,1 * D) min","fz (bei ae 0,1 * D) typ","fz (bei ae 0,1 * D) max",
                                       "fz (bei ae 0,5 bis 1) * D min","fz (bei ae 0,5 bis 1) * D typ","fz (bei ae 0,5 bis 1) * D max","Kc","Mc"}};
         const std::string mat[1][32] = {{"Gusseisen mit Kugelgrafit <= 250 HB","Gusseisen mit Kugelgrafit > 250 HB","Gusseisen mit Lamellengrafit <= 200 HB","Gusseisen mit Lamellengrafit > 200 HB",
-                                   "Temperguss <= 230 HB","Temperguss > 230 HB","Nichtrostenderstahl, austenitisch Rm <= 680","Nichtrostenderstahl, austenitisch Rm > 680",
-                                   "Nichtrostenderstahl, ferritisch Rm <= 700","Nichtrostenderstahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
-                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuSn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
+                                   "Temperguss <= 230 HB","Temperguss > 230 HB","nichtrostender Stahl, austenitisch Rm <= 680","nichtrostender Stahl, austenitisch Rm > 680",
+                                   "nichtrostender Stahl, ferritisch Rm <= 700","nichtrostender Stahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
+                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, ausgehärtet Rm > 300","CuSn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
                                    "Faserverstärkte Kunststoffe","Thermoplast, Duroplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500",
                                    "Einsatzstahl Rm <= 570","Einsatzstahl Rm > 570","Stahlguss Rm <= 700","Stahlguss Rm > 700","Verguetungsstahl, legiert Rm <= 750","Verguetungsstahl, legiert Rm > 750",
                                    "Verguetungsstahl, unlegiert Rm <= 650","Verguetungsstahl, unlegiert Rm > 650","Werkzeugstahl Rm <= 750","Werkzeugstahl Rm > 750"}};
@@ -456,10 +456,10 @@ public:
         const std::string header[1][12] = {{"Material","Vc min","Vc typ","Vc max","fz (bei ae 0,1 * D) min","fz (bei ae 0,1 * D) typ","fz (bei ae 0,1 * D) max",
                                       "fz (bei ae 0,5 bis 1) * D min","fz (bei ae 0,5 bis 1) * D typ","fz (bei ae 0,5 bis 1) * D max","Kc","Mc"}};
         const std::string mat[1][32] = {{"Gusseisen mit Kugelgrafit <= 250 HB","Gusseisen mit Kugelgrafit > 250 HB","Gusseisen mit Lamellengrafit <= 200 HB","Gusseisen mit Lamellengrafit > 200 HB",
-                                   "Temperguss <= 230 HB","Temperguss > 230 HB","Nichtrostenderstahl, austenitisch Rm <= 680","Nichtrostenderstahl, austenitisch Rm > 680",
-                                   "Nichtrostenderstahl, ferritisch Rm <= 700","Nichtrostenderstahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
-                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuSn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
-                                   "Faserverstärkte Kunststoffe","Thermoplast, Duroplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500",
+                                   "Temperguss <= 230 HB","Temperguss > 230 HB","nichtrostender Stahl, austenitisch Rm <= 680","nichtrostender Stahl, austenitisch Rm > 680",
+                                   "nichtrostender Stahl, ferritisch Rm <= 700","nichtrostender Stahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
+                                   "Al - Knetlegierung Rm <= 300","Al - Legierung, ausgehärtet Rm > 300","CuSn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
+                                   "faserverstärkte Kunststoffe","Thermoplast, Duroplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500",
                                    "Einsatzstahl Rm <= 570","Einsatzstahl Rm > 570","Stahlguss Rm <= 700","Stahlguss Rm > 700","Verguetungsstahl, legiert Rm <= 750",
                                    "Verguetungsstahl, legiert Rm > 750","Verguetungsstahl, unlegiert Rm <= 650","Verguetungsstahl, unlegiert Rm > 650","Werkzeugstahl Rm <= 750","Werkzeugstahl Rm > 750"}};
         const double numbers[32][11] = {
@@ -565,10 +565,10 @@ public:
         std::string header[1][12] = {{"Material","Plan Vc min","Plan Vc typ","Plan Vc max","Laengs Vc min SR","Laengs Vc typ SR","Laengs Vc max SR",
                                       "Laengs Vc min SL","Laengs Vc typ SL","Laengs Vc max SL","Kc","Mc"}};
         const std::string mat[1][32] = {{"Gusseisen mit Kugelgrafit <= 250 HB","Gusseisen mit Kugelgrafit > 250 HB","Gusseisen mit Lamellengrafit <= 200 HB","Gusseisen mit Lamellengrafit > 200 HB",
-                                   "Temperguss <= 230 HB","Temperguss > 230 HB","Nichtrostenderstahl, austenitisch Rm <= 680","Nichtrostenderstahl, austenitisch Rm > 680",
-                                   "Nichtrostenderstahl, ferritisch Rm <= 700","Nichtrostenderstahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
+                                   "Temperguss <= 230 HB","Temperguss > 230 HB","nichtrostender Stahl, austenitisch Rm <= 680","nichtrostender Stahl, austenitisch Rm > 680",
+                                   "nichtrostender Stahl, ferritisch Rm <= 700","nichtrostender Stahl, mertensitisch Rm > 500","Al - Gusslegierung <= 75 HB","Al - Gusslegierung > 75 HB",
                                    "Al - Knetlegierung Rm <= 300","Al - Legierung, Ausgehärtet Rm > 300","CuSn - Legierung (Bronze) Rm <= 700","CuZn - Legierung (Messing) Rm <= 600",
-                                   "Faserverstärkte Kunststoffe","Thermoplast, Duroplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500",
+                                   "faserverstärkte Kunststoffe","Thermoplast, Duroplast","Automatenstahl Rm <= 570","Automatenstahl Rm > 570","Baustahl Rm <= 500","Baustahl Rm > 500",
                                    "Einsatzstahl Rm <= 570","Einsatzstahl Rm > 570","Stahlguss Rm <= 700","Stahlguss Rm > 700","Verguetungsstahl, legiert Rm <= 750","Verguetungsstahl, legiert Rm > 750",
                                    "Verguetungsstahl, unlegiert Rm <= 650","Verguetungsstahl, unlegiert Rm > 650","Werkzeugstahl Rm <= 750","Werkzeugstahl Rm > 750"}};
         double numbers[32][11] = {
@@ -712,7 +712,7 @@ public:
             column++;
         }
 
-        ws.title("Gewinde Metrisch");
+        ws.title("Gewinde metrisch");
 
         ws.range(xlnt::range_reference(1,1,12,2)).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
 

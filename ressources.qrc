@@ -3,6 +3,9 @@
         <file>endmill_altin.ico</file>
         <file>Built_with_Qt_logos_final-2.jpeg</file>
         <file>xlnt_logo.png</file>
+        <file>position_img.png</file>
+        <file>symbol_no.svg</file>
+        <file>symbol_ok.svg</file>
     </qresource>
     <qresource prefix="/cursor"/>
 </RCC>

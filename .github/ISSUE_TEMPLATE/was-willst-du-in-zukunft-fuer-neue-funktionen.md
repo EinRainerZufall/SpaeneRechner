@@ -7,8 +7,8 @@ assignees: EinRainerZufall
 
 ---
 
-**Bezieht sich deine Feature anfrage auf ein Problem? Bitte beschreibe es.
-Eine klare und genaue Beschreibung des Problems. Beispiel. Mich kotzt es immer an, wenn [...]
+**Bezieht sich deine Feature-Anfrage auf ein Problem? Bitte beschreibe es.
+Eine klare und genaue Beschreibung des Problems. Beispiel: Mich kotzt es immer an, wenn [...]
 
 **Beschreibe eine mögliche Lösung, die du gerne sehen würden**.
 Eine klare und genaue Beschreibung dessen, was du erreichen willst.

@@ -29,7 +29,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>8</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -289,7 +289,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Ap und Ae empfehlungen:</string>
+       <string>Ap und Ae Empfehlungen:</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_11">
@@ -4675,6 +4675,107 @@ background: #dfdfdf;
      <attribute name="title">
       <string>Extra</string>
      </attribute>
+     <widget class="QGroupBox" name="groupBox_21">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>511</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Positionsrechner</string>
+      </property>
+      <widget class="QLabel" name="Bild">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>491</width>
+         <height>251</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="ressources.qrc">:/img/position_img.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="SollPosX">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>130</y>
+         <width>114</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="SollPosY">
+       <property name="geometry">
+        <rect>
+         <x>187</x>
+         <y>254</y>
+         <width>113</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="IstPosX">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>160</y>
+         <width>114</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="IstPosY">
+       <property name="geometry">
+        <rect>
+         <x>187</x>
+         <y>284</y>
+         <width>113</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="GeoTolPos">
+       <property name="geometry">
+        <rect>
+         <x>388</x>
+         <y>31</y>
+         <width>112</width>
+         <height>24</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="PosIcon">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>260</y>
+         <width>50</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="ressources.qrc">:/img/symbol_no.svg</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_settings">
      <attribute name="title">
@@ -4974,7 +5075,7 @@ background: #dfdfdf;
         </rect>
        </property>
        <property name="text">
-        <string>Der standart Schneidstoff für Werkzeuge</string>
+        <string>Der standard Schneidstoff für Werkzeuge</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_54">
@@ -4987,7 +5088,7 @@ background: #dfdfdf;
         </rect>
        </property>
        <property name="text">
-        <string>Der standart Spitzenwinkel für Bohrer</string>
+        <string>Der standard Spitzenwinkel für Bohrer</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_55">
@@ -5000,7 +5101,7 @@ background: #dfdfdf;
         </rect>
        </property>
        <property name="text">
-        <string>Die standart Kühlung der Werkzeuge</string>
+        <string>Die standard Kühlung der Werkzeuge</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_56">
@@ -5013,7 +5114,7 @@ background: #dfdfdf;
         </rect>
        </property>
        <property name="text">
-        <string>Die maximale Drehzal der Drehmachine</string>
+        <string>Die maximale Drehzahl der Drehmachine</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_57">
@@ -5163,7 +5264,7 @@ background: #dfdfdf;
 text-align: left;</string>
        </property>
        <property name="text">
-        <string>support@spaenerechner.de</string>
+        <string>contact@spaenerechner.de</string>
        </property>
        <property name="flat">
         <bool>true</bool>

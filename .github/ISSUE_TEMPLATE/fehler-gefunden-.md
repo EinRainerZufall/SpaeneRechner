@@ -26,4 +26,4 @@ Füge gegebenenfalls Screenshots hinzu, um das Problem besser zu erklären.
 z.B. Win10
 
 **Zusätzlicher Kontext**
-Füge hier weitere Informationen zu Ihrem Problem hinzu.
+Füge hier weitere Informationen zum Problem hinzu.

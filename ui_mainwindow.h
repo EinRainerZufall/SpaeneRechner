@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 6.2.2
+** Created by: Qt User Interface Compiler version 6.2.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -308,6 +308,14 @@ public:
     QLabel *SteigungGewinde;
     QLabel *label_127;
     QWidget *tab_extra;
+    QGroupBox *groupBox_21;
+    QLabel *Bild;
+    QLineEdit *SollPosX;
+    QLineEdit *SollPosY;
+    QLineEdit *IstPosX;
+    QLineEdit *IstPosY;
+    QLineEdit *GeoTolPos;
+    QLabel *PosIcon;
     QWidget *tab_settings;
     QGroupBox *groupBox_19;
     QComboBox *DisclaimerIn;
@@ -1580,6 +1588,34 @@ public:
         mainTabWidget->addTab(tab_gewinde, QString());
         tab_extra = new QWidget();
         tab_extra->setObjectName(QString::fromUtf8("tab_extra"));
+        groupBox_21 = new QGroupBox(tab_extra);
+        groupBox_21->setObjectName(QString::fromUtf8("groupBox_21"));
+        groupBox_21->setGeometry(QRect(10, 20, 511, 321));
+        Bild = new QLabel(groupBox_21);
+        Bild->setObjectName(QString::fromUtf8("Bild"));
+        Bild->setGeometry(QRect(10, 30, 491, 251));
+        Bild->setPixmap(QPixmap(QString::fromUtf8(":/img/position_img.png")));
+        Bild->setScaledContents(true);
+        SollPosX = new QLineEdit(groupBox_21);
+        SollPosX->setObjectName(QString::fromUtf8("SollPosX"));
+        SollPosX->setGeometry(QRect(9, 130, 114, 27));
+        SollPosY = new QLineEdit(groupBox_21);
+        SollPosY->setObjectName(QString::fromUtf8("SollPosY"));
+        SollPosY->setGeometry(QRect(187, 254, 113, 27));
+        IstPosX = new QLineEdit(groupBox_21);
+        IstPosX->setObjectName(QString::fromUtf8("IstPosX"));
+        IstPosX->setGeometry(QRect(9, 160, 114, 27));
+        IstPosY = new QLineEdit(groupBox_21);
+        IstPosY->setObjectName(QString::fromUtf8("IstPosY"));
+        IstPosY->setGeometry(QRect(187, 284, 113, 27));
+        GeoTolPos = new QLineEdit(groupBox_21);
+        GeoTolPos->setObjectName(QString::fromUtf8("GeoTolPos"));
+        GeoTolPos->setGeometry(QRect(388, 31, 112, 24));
+        PosIcon = new QLabel(groupBox_21);
+        PosIcon->setObjectName(QString::fromUtf8("PosIcon"));
+        PosIcon->setGeometry(QRect(450, 260, 50, 50));
+        PosIcon->setPixmap(QPixmap(QString::fromUtf8(":/img/symbol_no.svg")));
+        PosIcon->setScaledContents(true);
         mainTabWidget->addTab(tab_extra, QString());
         tab_settings = new QWidget();
         tab_settings->setObjectName(QString::fromUtf8("tab_settings"));
@@ -1742,7 +1778,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(2);
+        mainTabWidget->setCurrentIndex(8);
         BtnCalcEinfach->setDefault(true);
 
 
@@ -1764,7 +1800,7 @@ public:
         VorschubOutEinfach->setText(QCoreApplication::translate("MainWindow", "0 mm/min", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "Eintauchvorschub", nullptr));
         EintauchVorschubOutEinfach->setText(QCoreApplication::translate("MainWindow", "0 mm/min", nullptr));
-        label_10->setText(QCoreApplication::translate("MainWindow", "Ap und Ae empfehlungen:", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "Ap und Ae Empfehlungen:", nullptr));
         label_11->setText(QCoreApplication::translate("MainWindow", "Tiefenzustellung Nut (Alu)", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "Tiefenzustellung Nut (Holz)", nullptr));
         label_13->setText(QCoreApplication::translate("MainWindow", "Tiefenzustellung Nut (Kunststoffe)", nullptr));
@@ -2001,6 +2037,9 @@ public:
         SteigungGewinde->setText(QCoreApplication::translate("MainWindow", "0 mm", nullptr));
         label_127->setText(QCoreApplication::translate("MainWindow", "Steigung", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_gewinde), QCoreApplication::translate("MainWindow", "Gewinde", nullptr));
+        groupBox_21->setTitle(QCoreApplication::translate("MainWindow", "Positionsrechner", nullptr));
+        Bild->setText(QString());
+        PosIcon->setText(QString());
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_extra), QCoreApplication::translate("MainWindow", "Extra", nullptr));
         groupBox_19->setTitle(QCoreApplication::translate("MainWindow", "Einstellungen", nullptr));
         DisclaimerIn->setItemText(0, QCoreApplication::translate("MainWindow", "Ja", nullptr));
@@ -2026,10 +2065,10 @@ public:
         label_50->setText(QCoreApplication::translate("MainWindow", "Die maximale Drehzal der Fr\303\244smachine", nullptr));
         label_51->setText(QCoreApplication::translate("MainWindow", "Die maximale Spindelleistung der Fr\303\244smaschine (in kW)", nullptr));
         label_52->setText(QCoreApplication::translate("MainWindow", "die Bedingungen der Bearbeitung (Auspanung, Werkzeugl\303\244nge und Stabilit\303\244t der Maschine)", nullptr));
-        label_53->setText(QCoreApplication::translate("MainWindow", "Der standart Schneidstoff f\303\274r Werkzeuge", nullptr));
-        label_54->setText(QCoreApplication::translate("MainWindow", "Der standart Spitzenwinkel f\303\274r Bohrer", nullptr));
-        label_55->setText(QCoreApplication::translate("MainWindow", "Die standart K\303\274hlung der Werkzeuge", nullptr));
-        label_56->setText(QCoreApplication::translate("MainWindow", "Die maximale Drehzal der Drehmachine", nullptr));
+        label_53->setText(QCoreApplication::translate("MainWindow", "Der standard Schneidstoff f\303\274r Werkzeuge", nullptr));
+        label_54->setText(QCoreApplication::translate("MainWindow", "Der standard Spitzenwinkel f\303\274r Bohrer", nullptr));
+        label_55->setText(QCoreApplication::translate("MainWindow", "Die standard K\303\274hlung der Werkzeuge", nullptr));
+        label_56->setText(QCoreApplication::translate("MainWindow", "Die maximale Drehzahl der Drehmachine", nullptr));
         label_57->setText(QCoreApplication::translate("MainWindow", "Die maximale Spindelleistung der Drehmaschine (in kW)", nullptr));
         btnSettingsWrite->setText(QCoreApplication::translate("MainWindow", "Einstellungen \303\274bernehmen", nullptr));
         groupBox_20->setTitle(QCoreApplication::translate("MainWindow", "Tabelle", nullptr));
@@ -2040,7 +2079,7 @@ public:
         label_19->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler \303\274bernimmt keinerlei Garantie oder Gew\303\244hrleistung f\303\274r die Eignung des Programms sowie f\303\274r dessen vollst\303\244ndige Funktionsf\303\244higkeit, insbesondere die Richtigkeit der Berechnungen. Der Entwickler haftet nicht f\303\274r st\303\266rungs- oder fehlerfreien Einsatz des Programms. Der Anwender tr\303\244gt das Risiko. Jegliche Haftung des Entwicklers f\303\274r Sch\303\244den, Nachteile und Anwendungen aller Art, insbesondere auch f\303\274r Verm\303\266genssch\303\244den, Datenverlust o.\303\244., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes entstehen sollten, ist ausgeschlossen.</p><p><br/></p></body></html>", nullptr));
         groupBox_15->setTitle(QCoreApplication::translate("MainWindow", "Vorschl\303\244ge oder Fehler gefunden:", nullptr));
         label_48->setText(QCoreApplication::translate("MainWindow", "Email:", nullptr));
-        btnEmail->setText(QCoreApplication::translate("MainWindow", "support@spaenerechner.de", nullptr));
+        btnEmail->setText(QCoreApplication::translate("MainWindow", "contact@spaenerechner.de", nullptr));
         label_49->setText(QCoreApplication::translate("MainWindow", "Bugs auf github melden:", nullptr));
         btnGit->setText(QCoreApplication::translate("MainWindow", "Git issues", nullptr));
         btnXlnt->setText(QString());

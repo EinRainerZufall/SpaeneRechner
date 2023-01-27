@@ -6,17 +6,17 @@
 
 # SpaeneRechner
 
-Das ist ein Schnittdaten Rechner zum berrechnen aller wichtigen Daten beim Fräsen und Drehen.
-Sowie weitere nützliche Features.
+Das ist ein Schnittdaten Rechner zum Berechnen aller wichtigen Daten beim Fräsen und Drehen,
+sowie weitere nützliche Features.
 
 
 ---
 zum selber Compilieren:
 - Windows
-  - Win 10 **x64** *(Win 7 wird nicht unterstützt)*
+  - min Win 10 x64
   - [Ms Visual C++ Redistributable x64](https://support.microsoft.com/de-de/topic/aktuelle-unterst%C3%BCtzte-downloads-f%C3%BCr-visual-c-2647da03-1eea-4433-9aff-95f26a218cc0)
   - [qt Creator](https://www.qt.io/)
-  - kein shadow build
+  - kein Shadow build
   - KIT: Desktop Qt 6.2.2 MSVC2019 64bit
   - [xlnt lib](https://github.com/tfussell/xlnt)
   - nach dem Release build in der MSVC Konsole `windeployqt` eingeben

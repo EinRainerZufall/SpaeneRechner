@@ -58,7 +58,7 @@ public:
             QString title = QObject::tr("Disclaimer");
             QString text = QObject::tr("Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung "
                                        "für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. "
-                                       "Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt das Risiko. Jegliche "
+                                       "Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt allein das Risiko. Jegliche "
                                        "Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust "
                                        "o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes "
                                        "entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?");
@@ -84,7 +84,7 @@ public:
         }else{
             QMessageBox msg;
             QString title = QObject::tr("Kritischer Fehler");
-            QString text = QObject::tr("Es konnte keine gültige abfrage für den Disclaimer in der 'config.ini' Datei gefunden werden!");
+            QString text = QObject::tr("Es konnte keine gültige Abfrage für den Disclaimer in der 'config.ini' Datei gefunden werden!");
             if(OSX) {
                 msg.setText(title);
                 msg.setInformativeText(text);
@@ -100,6 +100,36 @@ public:
         }
 
         return;
+    }
+
+    static bool readDis(){
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        bool temp = true;
+
+        file.open(QIODevice::ReadOnly);
+
+        QTextStream in(&file);
+        QString line = in.readLine();
+        QString lineOut = line;
+        while(!line.isNull()){
+            if(line.remove(10,99) == "disclaimer"){
+                if(lineOut.remove("disclaimer=") == "true"){
+                    temp = true;
+                    break;
+                }else if(lineOut == "false"){
+                    temp = false;
+                    break;
+                }else{
+                    exit(2);
+                    break;
+                }
+            }
+            line = in.readLine();
+            lineOut = line;
+        }
+
+        return temp;
     }
 
     static int maxRpmFr(){
@@ -225,7 +255,7 @@ public:
         if(pc == 0){
             QMessageBox msg;
             QString title = QObject::tr("Kritischer Fehler");
-            QString text = QObject::tr("Es konnte keine gültige abfrage für die Spindelleistung der Fräsmaschine in der Datei 'config.ini' gefunden werden!");
+            QString text = QObject::tr("Es konnte keine gültige Abfrage für die Spindelleistung der Fräsmaschine in der Datei 'config.ini' gefunden werden!");
             if(OSX) {
                 msg.setText(title);
                 msg.setInformativeText(text);
@@ -272,7 +302,7 @@ public:
         if(pc == 0){
             QMessageBox msg;
             QString title = QObject::tr("Kritischer Fehler");
-            QString text = QObject::tr("Es konnte keine gültige abfrage für die Spindelleistung der Drehmaschine in der Datei 'config.ini' gefunden werden!");
+            QString text = QObject::tr("Es konnte keine gültige Abfrage für die Spindelleistung der Drehmaschine in der Datei 'config.ini' gefunden werden!");
             if(OSX) {
                 msg.setText(title);
                 msg.setInformativeText(text);
@@ -319,7 +349,7 @@ public:
         if(con == 3){
             QMessageBox msg;
             QString title = QObject::tr("Kritischer Fehler");
-            QString text = QObject::tr("Es konnte keine gültige abfrage für die standart Bedingung in der 'config.ini' Datei gefunden werden!");
+            QString text = QObject::tr("Es konnte keine gültige Abfrage für die standard Bedingung in der 'config.ini' Datei gefunden werden!");
             if(OSX) {
                 msg.setInformativeText(text);
                 msg.setText(title);
@@ -366,7 +396,7 @@ public:
         if(cutMat == 3){
             QMessageBox msg;
             QString title = QObject::tr("Kritischer Fehler");
-            QString text = QObject::tr("Es konnte keine gültige abfrage für den standart Schneidstoff in der 'config.ini' Datei gefunden werden!");
+            QString text = QObject::tr("Es konnte keine gültige Abfrage für den standard Schneidstoff in der 'config.ini' Datei gefunden werden!");
             if(OSX) {
                 msg.setInformativeText(text);
                 msg.setText(title);
@@ -413,7 +443,7 @@ public:
         if(spiWi == 3){
             QMessageBox msg;
             QString title = QObject::tr("Kritischer Fehler");
-            QString text = QObject::tr("Es konnte keine gültige abfrage für den standart Spitzenwinkel in der 'config.ini' Datei gefunden werden!");
+            QString text = QObject::tr("Es konnte keine gültige Abfrage für den standard Spitzenwinkel in der 'config.ini' Datei gefunden werden!");
             if(OSX) {
                 msg.setInformativeText(text);
                 msg.setText(title);
@@ -460,7 +490,7 @@ public:
         if(cooling == 3){
             QMessageBox msg;
             QString title = QObject::tr("Kritischer Fehler");
-            QString text = QObject::tr("Es konnte keine gültige abfrage für die standart Kühlung in der 'config.ini' Datei gefunden werden!");
+            QString text = QObject::tr("Es konnte keine gültige Abfrage für die standard Kühlung in der 'config.ini' Datei gefunden werden!");
             if(OSX) {
                 msg.setInformativeText(text);
                 msg.setText(title);
@@ -491,11 +521,12 @@ public:
         }
 
         if(file.exists()) {
+            temp = true;
             return temp;
         }else {
             QMessageBox msg;
             QString title = QObject::tr("Fehler");
-            QString text = QObject::tr("Die Datei 'Daten.xlsx' wurde nicht gefunden soll sie erstellt werden?");
+            QString text = QObject::tr("Die Datei 'Daten.xlsx' wurde nicht gefunden. Soll sie erstellt werden?");
             if(OSX) {
                 msg.setInformativeText(text);
                 msg.setText(title);
@@ -511,7 +542,6 @@ public:
 
             switch (x) {
             case QMessageBox::Yes:
-                temp = true;
                 return temp;
             case QMessageBox::No:
                 exit(0);
@@ -521,7 +551,7 @@ public:
         return temp;
     }
 
-    static void write(int dis, int maxRpmFr, double maxKw, int con, int cutMat, int spiWi, int cooling, int maxRpmDr, double maxKwDr){
+    static void write(int dis, int maxRpmFr, double maxKw, int con, int cutMat, int spiWi, int cooling, int maxRpmDr, double maxKwDr, int index){
         const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
         QFile file = (path + "/config.ini");
         const QDir dir;
@@ -558,6 +588,8 @@ public:
         file.write(line.toUtf8());
         line = "maxPcDr=" + QString::number(maxKwDr) + "\n";
         file.write(line.toUtf8());
+        line = "lastTab=" + QString::number(index) + "\n";
+        file.write(line.toUtf8());
 
         file.close();
 
@@ -577,11 +609,12 @@ public:
 
         QFile file = (path + "/config.ini");
         if(file.exists()){
+            temp = true;
             return temp;
         }else{
             QMessageBox msg;
             QString title = QObject::tr("Fehler");
-            QString text = QObject::tr("Die Datei 'config.ini' wurde nicht gefunden soll sie erstellt werden?");
+            QString text = QObject::tr("Die Datei 'config.ini' wurde nicht gefunden. Soll sie erstellt werden?");
             if(OSX) {
                 msg.setText(title);
                 msg.setInformativeText(text);
@@ -597,7 +630,7 @@ public:
 
             switch (x) {
             case QMessageBox::Yes:
-                temp = true;
+                temp = false;
                 return temp;
             case QMessageBox::No:
                 exit(2);
@@ -619,7 +652,8 @@ public:
                             "spiWi=0\n"         // der Spitzenwinkel von Bohrern            (0=188G|1=130G|2=140G)
                             "cooling=0\n"       // die Kuehlungsart                         (0=trocken|1=KSS|2=Oel)
                             "maxRpmDr=5000\n"   // die max Drehzahl der Dreh Spindel
-                            "maxPcDr=2.2\n";    // die max leistung der Dreh Spindel
+                            "maxPcDr=2.2\n"     // die max leistung der Dreh Spindel
+                            "lastTab=0\n";      // der letzte index vom mainTab
 
         if (!dir.exists(path)){
             dir.mkpath(path);
@@ -630,6 +664,53 @@ public:
         file.write(data);
 
         return;
+    }
+
+    static int readIndex(){
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QFile file = (path + "/config.ini");
+        int index = -1;
+        bool OSX;
+
+        if(QSysInfo::productType() == "osx") {
+            OSX = true;
+        }else {
+            OSX = false;
+        }
+
+        file.open(QIODevice::ReadOnly);
+
+        QTextStream in(&file);
+        QString line = in.readLine();
+        QString lineOut = line;
+        while(!line.isNull()){
+            if(line.remove(7,99) == "lastTab"){
+                index = (lineOut.remove("lastTab=")).toInt();
+                break;
+            }
+            line = in.readLine();
+            lineOut = line;
+        }
+
+        if(index == -1){
+            QMessageBox msg;
+            QString title = QObject::tr("Kritischer Fehler");
+            QString text = QObject::tr("Es konnte keine gültige Abfrage für den letzen Index in der Datei 'config.ini' gefunden werden!");
+            if(OSX) {
+                msg.setText(title);
+                msg.setInformativeText(text);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setDefaultButton(QMessageBox::Close);
+            msg.exec();
+            exit(2);
+        }
+
+        return index;
     }
 
     static void test(){

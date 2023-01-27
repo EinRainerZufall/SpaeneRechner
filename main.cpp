@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     }
 
     a.setApplicationName("SpaeneRechner");
-    a.setApplicationVersion("v0.5.4");
+    a.setApplicationVersion("v0.5.6");
 
     return a.exec();
 }

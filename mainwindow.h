@@ -120,6 +120,10 @@ private slots:
 
     void on_btnOpenXLSX_clicked();
 
+    void closeEvent(QCloseEvent *event);
+
+
+
 private:
     Ui::MainWindow *ui;
 };

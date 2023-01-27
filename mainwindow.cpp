@@ -15,7 +15,7 @@
 
 
 /*
- *  todo
+ *  todo:
  *  - Extras komplett
  *  - Einstellungen verbessern
  *  - Lizens hinzufuegen
@@ -31,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow){
 
+    setCursor(Qt::CursorShape::WaitCursor);
+
     ui->setupUi(this);
     this->setFixedSize(1000, 700);
     this->setCentralWidget(ui->mainTabWidget);
@@ -39,23 +41,17 @@ MainWindow::MainWindow(QWidget *parent)
     //Debug things
 #else
     //Release things
-//    ui->mainTabWidget->setTabVisible(1, false);   //Dynamisch
-//    ui->mainTabWidget->setTabVisible(2, false);   //Nutfraesen
-//    ui->mainTabWidget->setTabVisible(3, false);   //Planfraesen
-//    ui->mainTabWidget->setTabVisible(4, false);   //Bohren
-//    ui->mainTabWidget->setTabVisible(5, false);   //Drehen
-//    ui->mainTabWidget->setTabVisible(6, false);   //Gewinde
     ui->mainTabWidget->setTabVisible(7, false);   //Extras
-    ui->mainTabWidget->setCurrentIndex(0);
+    //ui->mainTabWidget->setCurrentIndex(Settings::readIndex());
 #endif
 
     //check ob die .ini da ist
-    if(Settings::INIcheck()){
+    if(!Settings::INIcheck()){
         Settings::create();
     };
 
     //check ob die .xlsx da ist
-    if(Settings::xlsxCheck()) {
+    if(!Settings::xlsxCheck()) {
         createDatabase::createSimple();
         createDatabase::createDynamic();
         createDatabase::createDrill();
@@ -70,6 +66,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Disclaimer
     Settings::showDis();
+    if(Settings::readDis()){
+        ui->DisclaimerIn->setCurrentIndex(0);
+    }else{
+        ui->DisclaimerIn->setCurrentIndex(1);
+    }
+
     //Einstellungen Lesen
     //max RPM
     ui->MaxDrehzahlAuswahlEinfach->setValue(Settings::maxRpmFr());
@@ -79,6 +81,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->MaxDrehzahlAuswahlPlan->setValue(Settings::maxRpmFr());
     ui->MaxDrehzahlAuswahlTurn->setValue(Settings::maxRpmDr());
     ui->MaxDrehzahlAuswahlGewinde->setValue(Settings::maxRpmFr());
+    ui->maxMillSpeedIn->setValue(Settings::maxRpmFr());
+    ui->maxTurnSpeedIn->setValue(Settings::maxRpmDr());
 
     //mashine condition
     switch (Settings::condition()){
@@ -88,6 +92,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->BeStabilPlan->setChecked(true);
         ui->BeStabilBohren->setChecked(true);
         ui->BeStabilTurn->setChecked(true);
+        ui->conditionIn->setCurrentIndex(2);
         break;
     case 1:
         ui->BeNormalTpc->setChecked(true);
@@ -95,6 +100,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->BeNormalPlan->setChecked(true);
         ui->BeNormalBohren->setChecked(true);
         ui->BeNormalTurn->setChecked(true);
+        ui->conditionIn->setCurrentIndex(1);
         break;
     case 0:
         ui->BeInstabilTpc->setChecked(true);
@@ -102,6 +108,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->BeInstabilPlan->setChecked(true);
         ui->BeInstabilBohren->setChecked(true);
         ui->BeInstabilTurn->setChecked(true);
+        ui->conditionIn->setCurrentIndex(0);
         break;
     }
     //cuting material  
@@ -110,8 +117,8 @@ MainWindow::MainWindow(QWidget *parent)
         ui->SchnKeramikTpc->setChecked(true);
         ui->SchnKeramikNut->setChecked(true);
         ui->SchnKeramikPlan->setChecked(true);
-        ui->SchnVhmBohren->setChecked(true);
-        ui->SchnVhmTurn->setChecked(true);
+        ui->SchnKeramikTurn->setChecked(true);
+        ui->cutMatIn->setCurrentIndex(2);
         break;
     case 1:
         ui->SchnVhmTpc->setChecked(true);
@@ -119,6 +126,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->SchnVhmPlan->setChecked(true);
         ui->SchnVhmBohren->setChecked(true);
         ui->SchnVhmTurn->setChecked(true);
+        ui->cutMatIn->setCurrentIndex(1);
         break;
     case 0:
         ui->SchnHssTpc->setChecked(true);
@@ -126,18 +134,22 @@ MainWindow::MainWindow(QWidget *parent)
         ui->SchnHssPlan->setChecked(true);
         ui->SchnHssBohren->setChecked(true);
         ui->SchnHssTurn->setChecked(true);
+        ui->cutMatIn->setCurrentIndex(0);
         break;
     }
     //drill angle
     switch (Settings::angleDrill()){
     case 2:
         ui->SpitzenWinkel140->setChecked(true);
+        ui->drillAngleIn->setCurrentIndex(2);
         break;
     case 1:
         ui->SpitzenWinkel130->setChecked(true);
+        ui->drillAngleIn->setCurrentIndex(1);
         break;
     case 0:
         ui->SpitzenWinkel118->setChecked(true);
+        ui->drillAngleIn->setCurrentIndex(0);
         break;
     }
     //cooling solution
@@ -148,6 +160,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->OilPlan->setChecked(true);
         ui->OilBohren->setChecked(true);
         ui->OilTurn->setChecked(true);
+        ui->coolingTypeIn->setCurrentIndex(2);
         break;
     case 1:
         ui->KssTpc->setChecked(true);
@@ -155,6 +168,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->KssPlan->setChecked(true);
         ui->KssBohren->setChecked(true);
         ui->KssTurn->setChecked(true);
+        ui->coolingTypeIn->setCurrentIndex(1);
         break;
     case 0:
         ui->TrockenTpc->setChecked(true);
@@ -162,6 +176,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->TrockenPlan->setChecked(true);
         ui->TrockenBohren->setChecked(true);
         ui->TrockenTurn->setChecked(true);
+        ui->coolingTypeIn->setCurrentIndex(0);
         break;
     }
 
@@ -189,6 +204,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->MaterialAuswahlGewinde->addItems(Thread::matList());
     ui->DurchmesserAuswahlGewinde->addItems(Thread::dList());
 
+    //einstellungen uebernehmen
+    ui->MaxMillPcIn->setValue(Settings::maxKw());
+    ui->maxTurnPcIn->setValue(Settings::maxKwDr());
+
+    setCursor(Qt::CursorShape::ArrowCursor);
 }
 
 MainWindow::~MainWindow(){
@@ -878,60 +898,40 @@ void MainWindow::on_turnstyle_currentIndexChanged(int index){
 }
 
 
+// Btn Infolinks
 void MainWindow::on_btnEmail_clicked(){
     QDesktopServices::openUrl(QUrl("mailto:?to=contact@spaenerechner.de&subject=Betreff&body=Hi, \nich habe folgendes Problem...", QUrl::TolerantMode));
     //this->setStyleSheet("color: hotpink");
 }
 
-
 void MainWindow::on_btnGit_clicked(){
     QDesktopServices::openUrl(QUrl("https://github.com/EinRainerZufall/SpaeneRechner/issues", QUrl::TolerantMode));
 }
 
-
 void MainWindow::on_btnXlnt_clicked(){
     QDesktopServices::openUrl(QUrl("https://github.com/tfussell/xlnt", QUrl::TolerantMode));
 }
-
 
 void MainWindow::on_btnQT_clicked(){
     QDesktopServices::openUrl(QUrl("https://www.qt.io/", QUrl::TolerantMode));
 }
 
 
-void MainWindow::on_btnCreateAll_clicked(){
-    setCursor(Qt::CursorShape::WaitCursor);
-
-    createDatabase::createSimple();
-    createDatabase::createDynamic();
-    createDatabase::createDrill();
-    createDatabase::createSlot();
-    createDatabase::createPlan90();
-    createDatabase::createPlan45();
-    createDatabase::createTurn();
-    createDatabase::createThread();
-
-    setCursor(Qt::CursorShape::ArrowCursor);
-}
-
-
+// Bedingungen Auswahl
 void MainWindow::on_BeInstabilTpc_clicked(){
     int index = ui->MaterialAuswahlTpc->currentIndex();
     ui->VcOutTpc->setText(QString::number(Dynamic::Vc(index, 0)) + " m/min");
 }
-
 
 void MainWindow::on_BeNormalTpc_clicked(){
     int index = ui->MaterialAuswahlTpc->currentIndex();
     ui->VcOutTpc->setText(QString::number(Dynamic::Vc(index, 1)) + " m/min");
 }
 
-
 void MainWindow::on_BeStabilTpc_clicked(){
     int index = ui->MaterialAuswahlTpc->currentIndex();
     ui->VcOutTpc->setText(QString::number(Dynamic::Vc(index, 2)) + " m/min");
 }
-
 
 void MainWindow::on_BeInstabilBohren_clicked(){
     int bed;
@@ -954,7 +954,6 @@ void MainWindow::on_BeInstabilBohren_clicked(){
     ui->VcOutBohren->setText(QString::number(Drill::Vc(ui->MaterialAuswahlBohren->currentIndex(), bed, schn)) + " m/min");
 }
 
-
 void MainWindow::on_BeNormalBohren_clicked(){
     int bed;
     int schn;
@@ -975,7 +974,6 @@ void MainWindow::on_BeNormalBohren_clicked(){
 
     ui->VcOutBohren->setText(QString::number(Drill::Vc(ui->MaterialAuswahlBohren->currentIndex(), bed, schn)) + " m/min");
 }
-
 
 void MainWindow::on_BeStabilBohren_clicked(){
     int bed;
@@ -998,7 +996,6 @@ void MainWindow::on_BeStabilBohren_clicked(){
     ui->VcOutBohren->setText(QString::number(Drill::Vc(ui->MaterialAuswahlBohren->currentIndex(), bed, schn)) + " m/min");
 }
 
-
 void MainWindow::on_SchnHssBohren_clicked(){
     int bed;
     int schn;
@@ -1019,7 +1016,6 @@ void MainWindow::on_SchnHssBohren_clicked(){
 
     ui->VcOutBohren->setText(QString::number(Drill::Vc(ui->MaterialAuswahlBohren->currentIndex(), bed, schn)) + " m/min");
 }
-
 
 void MainWindow::on_SchnVhmBohren_clicked(){
     int bed;
@@ -1042,7 +1038,6 @@ void MainWindow::on_SchnVhmBohren_clicked(){
     ui->VcOutBohren->setText(QString::number(Drill::Vc(ui->MaterialAuswahlBohren->currentIndex(), bed, schn)) + " m/min");
 }
 
-
 void MainWindow::on_BeInstabilPlan_clicked(){
     int bed;
     int mat = ui->MaterialAuswahlPlan->currentIndex();
@@ -1058,7 +1053,6 @@ void MainWindow::on_BeInstabilPlan_clicked(){
 
     ui->VcOutPlan->setText(QString::number(Plan::Vc(mat, bed, schn)) + " m/min");
 }
-
 
 void MainWindow::on_BeNormalPlan_clicked(){
     int bed;
@@ -1076,7 +1070,6 @@ void MainWindow::on_BeNormalPlan_clicked(){
     ui->VcOutPlan->setText(QString::number(Plan::Vc(mat, bed, schn)) + " m/min");
 }
 
-
 void MainWindow::on_BeStabilPlan_clicked(){
     int bed;
     int mat = ui->MaterialAuswahlPlan->currentIndex();
@@ -1093,7 +1086,6 @@ void MainWindow::on_BeStabilPlan_clicked(){
     ui->VcOutPlan->setText(QString::number(Plan::Vc(mat, bed, schn)) + " m/min");
 }
 
-
 void MainWindow::on_BeInstabilTurn_clicked(){
     int bed;
 
@@ -1108,7 +1100,6 @@ void MainWindow::on_BeInstabilTurn_clicked(){
     ui->VcOutTurn->setText(QString::number(Turn::Vc(ui->MaterialAuswahlTurn->currentIndex(), bed, ui->turnstyle->currentIndex())) + " m/min");
 }
 
-
 void MainWindow::on_BeNormalTurn_clicked(){
     int bed;
 
@@ -1122,7 +1113,6 @@ void MainWindow::on_BeNormalTurn_clicked(){
 
     ui->VcOutTurn->setText(QString::number(Turn::Vc(ui->MaterialAuswahlTurn->currentIndex(), bed, ui->turnstyle->currentIndex())) + " m/min");
 }
-
 
 void MainWindow::on_BeStabilTurn_clicked(){
     int bed;
@@ -1139,6 +1129,7 @@ void MainWindow::on_BeStabilTurn_clicked(){
 }
 
 
+// Progressbar update
 void MainWindow::on_progressBarTpc_valueChanged(int value){
     if(value >= (Settings::maxKw() * 1000)) {
         ui->progressBarTpc->setStyleSheet("QProgressBar::chunk {background-color: rgb(179, 0, 0);}");
@@ -1146,7 +1137,6 @@ void MainWindow::on_progressBarTpc_valueChanged(int value){
         ui->progressBarTpc->setStyleSheet("QProgressBar::chunk {background-color: rgb(0, 179, 0);}");
     }
 }
-
 
 void MainWindow::on_progressBarNut_valueChanged(int value){
     if(value >= (Settings::maxKw() * 1000)) {
@@ -1156,7 +1146,6 @@ void MainWindow::on_progressBarNut_valueChanged(int value){
     }
 }
 
-
 void MainWindow::on_progressBarPlan_valueChanged(int value){
     if(value >= (Settings::maxKw() * 1000)) {
         ui->progressBarPlan->setStyleSheet("QProgressBar::chunk {background-color: rgb(179, 0, 0);}");
@@ -1164,7 +1153,6 @@ void MainWindow::on_progressBarPlan_valueChanged(int value){
         ui->progressBarPlan->setStyleSheet("QProgressBar::chunk {background-color: rgb(0, 179, 0);}");
     }
 }
-
 
 void MainWindow::on_progressBarBohren_valueChanged(int value){
     if(value >= (Settings::maxKw() * 1000)) {
@@ -1174,7 +1162,6 @@ void MainWindow::on_progressBarBohren_valueChanged(int value){
     }
 }
 
-
 void MainWindow::on_progressBarTurn_valueChanged(int value){
     if(value >= (Settings::maxKw() * 1000)) {
         ui->progressBarTurn->setStyleSheet("QProgressBar::chunk {background-color: rgb(179, 0, 0);}");
@@ -1183,6 +1170,22 @@ void MainWindow::on_progressBarTurn_valueChanged(int value){
     }
 }
 
+
+// btn settings
+void MainWindow::on_btnCreateAll_clicked(){
+    setCursor(Qt::CursorShape::WaitCursor);
+
+    createDatabase::createSimple();
+    createDatabase::createDynamic();
+    createDatabase::createDrill();
+    createDatabase::createSlot();
+    createDatabase::createPlan90();
+    createDatabase::createPlan45();
+    createDatabase::createTurn();
+    createDatabase::createThread();
+
+    setCursor(Qt::CursorShape::ArrowCursor);
+}
 
 void MainWindow::on_btnSettingsWrite_clicked(){
     setCursor(Qt::CursorShape::WaitCursor);
@@ -1196,12 +1199,12 @@ void MainWindow::on_btnSettingsWrite_clicked(){
     int cooling = ui->coolingTypeIn->currentIndex();
     int TurN = ui->maxTurnSpeedIn->text().toInt();
     double TurPc = ui->maxTurnPcIn->value();
+    int index = ui->mainTabWidget->currentIndex();
 
-    Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc);
+    Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index);
 
     setCursor(Qt::CursorShape::ArrowCursor);
 }
-
 
 void MainWindow::on_btnOpenXLSX_clicked(){
     // Hier jetzt die .xlsx Datei oeffnen
@@ -1210,3 +1213,25 @@ void MainWindow::on_btnOpenXLSX_clicked(){
 
 }
 
+
+// close event
+void MainWindow::closeEvent(QCloseEvent *event){
+    setCursor(Qt::CursorShape::WaitCursor);
+
+    int dis = ui->DisclaimerIn->currentIndex();
+    int FrN = ui->maxMillSpeedIn->text().toInt();
+    double FrPc = ui->MaxMillPcIn->value();
+    int bed = ui->conditionIn->currentIndex();
+    int cutMat = ui->cutMatIn->currentIndex();
+    int BoWinkel = ui->drillAngleIn->currentIndex();
+    int cooling = ui->coolingTypeIn->currentIndex();
+    int TurN = ui->maxTurnSpeedIn->text().toInt();
+    double TurPc = ui->maxTurnPcIn->value();
+    int index = ui->mainTabWidget->currentIndex();
+
+    Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index);
+
+    setCursor(Qt::CursorShape::ArrowCursor);
+
+    QWidget::closeEvent(event);
+}
