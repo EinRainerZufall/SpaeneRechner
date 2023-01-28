@@ -78,7 +78,13 @@ public:
         const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double D;
         int column;
-        std::string temp;
+        std::string metrisch;
+        std::string zoll1;
+        std::string zoll2;
+        std::string zoll3;
+        std::string zollTest1;
+        std::string zollTest2;
+        std::string type;
 
         column = Dindex + 2;
 
@@ -86,9 +92,56 @@ public:
         wb.load(file);
         xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
 
-        temp = ws.cell(column,1).value<std::string>();
-        temp = temp.erase(0,1);
-        D = std::stod(temp);
+        metrisch = ws.cell(column,1).value<std::string>();
+
+        type = metrisch;
+        type = type.erase(1,999);
+
+        if(type == "M"){
+            metrisch = metrisch.erase(0,1);
+            D = std::stod(metrisch);
+        }else if(type == "G" & (metrisch.length() > 2)){
+            zoll1 = metrisch;
+            zoll2 = metrisch;
+            zoll3 = metrisch;
+
+            // Test 1
+            zollTest1 = metrisch;
+            zollTest1 = zollTest1.erase(0,2);
+            zollTest1 = zollTest1.erase(1,99);
+
+            // Test 2
+            zollTest2 = metrisch;
+            zollTest2 = zollTest2.erase(0,3);
+            zollTest2 = zollTest2.erase(1,99);
+
+            if(zollTest1 == "/"){
+                zoll1 = zoll1.erase(0,1);
+                zoll1 = zoll1.erase(1,99);
+
+                zoll2 = zoll2.erase(0,3);
+
+                D = (std::stod(zoll1) / std::stod(zoll2)) * 2.54;
+            }else if(zollTest2 == "/"){
+                zoll1 = zoll1.erase(0,1);
+                zoll1 = zoll1.erase(1,99);
+
+                zoll2 = zoll2.erase(0,2);
+                zoll2 = zoll2.erase(1,99);
+
+                zoll3 = zoll3.erase(0,4);
+
+                D = (std::stod(zoll1) + (std::stod(zoll2) / std::stod(zoll3))) * 2.54;
+            }else{
+                D = -1;
+            }
+        }else if(type == "G" & (metrisch.length() == 2)){
+            zoll1 = metrisch;
+            zoll1 = zoll1.erase(0,1);
+            D = std::stod(zoll1) * 2.54;
+        }else{
+            D = -1;
+        }
 
         return D;
     }

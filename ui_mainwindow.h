@@ -316,7 +316,6 @@ public:
     QDoubleSpinBox *SollPosY;
     QDoubleSpinBox *IstPosY;
     QDoubleSpinBox *GeoTolPos;
-    QLabel *TollOut;
     QWidget *tab_settings;
     QGroupBox *groupBox_19;
     QComboBox *DisclaimerIn;
@@ -1553,7 +1552,7 @@ public:
         label_124->setGeometry(QRect(850, 135, 50, 25));
         DurchmesserAuswahlGewinde = new QComboBox(tab_gewinde);
         DurchmesserAuswahlGewinde->setObjectName(QString::fromUtf8("DurchmesserAuswahlGewinde"));
-        DurchmesserAuswahlGewinde->setGeometry(QRect(450, 70, 65, 25));
+        DurchmesserAuswahlGewinde->setGeometry(QRect(450, 70, 75, 25));
         MaxDrehzahlAuswahlGewinde = new QSpinBox(tab_gewinde);
         MaxDrehzahlAuswahlGewinde->setObjectName(QString::fromUtf8("MaxDrehzahlAuswahlGewinde"));
         MaxDrehzahlAuswahlGewinde->setGeometry(QRect(10, 160, 70, 25));
@@ -1633,10 +1632,6 @@ public:
         GeoTolPos->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         GeoTolPos->setDecimals(4);
         GeoTolPos->setMaximum(99999.000000000000000);
-        TollOut = new QLabel(groupBox_21);
-        TollOut->setObjectName(QString::fromUtf8("TollOut"));
-        TollOut->setGeometry(QRect(389, 60, 111, 20));
-        TollOut->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         mainTabWidget->addTab(tab_extra, QString());
         tab_settings = new QWidget();
         tab_settings->setObjectName(QString::fromUtf8("tab_settings"));
@@ -1799,7 +1794,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(7);
+        mainTabWidget->setCurrentIndex(6);
         BtnCalcEinfach->setDefault(true);
 
 
@@ -2076,7 +2071,6 @@ public:
 #if QT_CONFIG(tooltip)
         GeoTolPos->setToolTip(QCoreApplication::translate("MainWindow", "Das ist die Positionstolleranz", nullptr));
 #endif // QT_CONFIG(tooltip)
-        TollOut->setText(QCoreApplication::translate("MainWindow", "\303\230 0 mm", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_extra), QCoreApplication::translate("MainWindow", "Extra", nullptr));
         groupBox_19->setTitle(QCoreApplication::translate("MainWindow", "Einstellungen", nullptr));
         DisclaimerIn->setItemText(0, QCoreApplication::translate("MainWindow", "Ja", nullptr));

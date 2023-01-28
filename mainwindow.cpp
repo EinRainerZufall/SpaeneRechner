@@ -19,7 +19,6 @@
  *  - Extras komplett
  *  - Tabelle verbessern
  *  - Tooltips hinzufuegen
- *  - Komentare hinzufuegen
  *  - MacOS kompatibilität pruefen
  *  - Linux kompatibilität pruefen
 */
@@ -1250,8 +1249,6 @@ void MainWindow::on_SollPosX_editingFinished(){
     }else{
         ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
     }
-    temp = round(temp*1000)/1000;
-    ui->TollOut->setText("Ø "+QString::number(temp*2)+" mm");
 }
 
 void MainWindow::on_IstPosX_editingFinished(){
@@ -1269,8 +1266,6 @@ void MainWindow::on_IstPosX_editingFinished(){
     }else{
         ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
     }
-    temp = round(temp*1000)/1000;
-    ui->TollOut->setText("Ø "+QString::number(temp*2)+" mm");
 }
 
 void MainWindow::on_SollPosY_editingFinished(){
@@ -1288,8 +1283,6 @@ void MainWindow::on_SollPosY_editingFinished(){
     }else{
         ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
     }
-    temp = round(temp*1000)/1000;
-    ui->TollOut->setText("Ø "+QString::number(temp*2)+" mm");
 }
 
 void MainWindow::on_IstPosY_editingFinished(){
@@ -1307,8 +1300,6 @@ void MainWindow::on_IstPosY_editingFinished(){
     }else{
         ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
     }
-    temp = round(temp*1000)/1000;
-    ui->TollOut->setText("Ø "+QString::number(temp*2)+" mm");
 }
 
 void MainWindow::on_GeoTolPos_editingFinished(){
@@ -1326,7 +1317,5 @@ void MainWindow::on_GeoTolPos_editingFinished(){
     }else{
         ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
     }
-    temp = round(temp*1000)/1000;
-    ui->TollOut->setText("Ø "+QString::number(temp*2)+" mm");
 }
 
