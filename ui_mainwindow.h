@@ -310,12 +310,13 @@ public:
     QWidget *tab_extra;
     QGroupBox *groupBox_21;
     QLabel *Bild;
-    QLineEdit *SollPosX;
-    QLineEdit *SollPosY;
-    QLineEdit *IstPosX;
-    QLineEdit *IstPosY;
-    QLineEdit *GeoTolPos;
     QLabel *PosIcon;
+    QDoubleSpinBox *SollPosX;
+    QDoubleSpinBox *IstPosX;
+    QDoubleSpinBox *SollPosY;
+    QDoubleSpinBox *IstPosY;
+    QDoubleSpinBox *GeoTolPos;
+    QLabel *TollOut;
     QWidget *tab_settings;
     QGroupBox *groupBox_19;
     QComboBox *DisclaimerIn;
@@ -494,8 +495,9 @@ public:
         BtnCalcEinfach = new QPushButton(tab_einfach);
         BtnCalcEinfach->setObjectName(QString::fromUtf8("BtnCalcEinfach"));
         BtnCalcEinfach->setGeometry(QRect(850, 625, 125, 25));
-        BtnCalcEinfach->setCheckable(false);
         BtnCalcEinfach->setChecked(false);
+        BtnCalcEinfach->setAutoDefault(false);
+        BtnCalcEinfach->setFlat(false);
         VcOutEinfach = new QLabel(tab_einfach);
         VcOutEinfach->setObjectName(QString::fromUtf8("VcOutEinfach"));
         VcOutEinfach->setGeometry(QRect(850, 160, 90, 25));
@@ -1596,26 +1598,45 @@ public:
         Bild->setGeometry(QRect(10, 30, 491, 251));
         Bild->setPixmap(QPixmap(QString::fromUtf8(":/img/position_img.png")));
         Bild->setScaledContents(true);
-        SollPosX = new QLineEdit(groupBox_21);
-        SollPosX->setObjectName(QString::fromUtf8("SollPosX"));
-        SollPosX->setGeometry(QRect(9, 130, 114, 27));
-        SollPosY = new QLineEdit(groupBox_21);
-        SollPosY->setObjectName(QString::fromUtf8("SollPosY"));
-        SollPosY->setGeometry(QRect(187, 254, 113, 27));
-        IstPosX = new QLineEdit(groupBox_21);
-        IstPosX->setObjectName(QString::fromUtf8("IstPosX"));
-        IstPosX->setGeometry(QRect(9, 160, 114, 27));
-        IstPosY = new QLineEdit(groupBox_21);
-        IstPosY->setObjectName(QString::fromUtf8("IstPosY"));
-        IstPosY->setGeometry(QRect(187, 284, 113, 27));
-        GeoTolPos = new QLineEdit(groupBox_21);
-        GeoTolPos->setObjectName(QString::fromUtf8("GeoTolPos"));
-        GeoTolPos->setGeometry(QRect(388, 31, 112, 24));
         PosIcon = new QLabel(groupBox_21);
         PosIcon->setObjectName(QString::fromUtf8("PosIcon"));
         PosIcon->setGeometry(QRect(450, 260, 50, 50));
         PosIcon->setPixmap(QPixmap(QString::fromUtf8(":/img/symbol_no.svg")));
         PosIcon->setScaledContents(true);
+        SollPosX = new QDoubleSpinBox(groupBox_21);
+        SollPosX->setObjectName(QString::fromUtf8("SollPosX"));
+        SollPosX->setGeometry(QRect(9, 130, 114, 27));
+        SollPosX->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        SollPosX->setDecimals(4);
+        SollPosX->setMaximum(99999.000000000000000);
+        IstPosX = new QDoubleSpinBox(groupBox_21);
+        IstPosX->setObjectName(QString::fromUtf8("IstPosX"));
+        IstPosX->setGeometry(QRect(9, 160, 114, 27));
+        IstPosX->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        IstPosX->setDecimals(4);
+        IstPosX->setMaximum(99999.000000000000000);
+        SollPosY = new QDoubleSpinBox(groupBox_21);
+        SollPosY->setObjectName(QString::fromUtf8("SollPosY"));
+        SollPosY->setGeometry(QRect(187, 254, 114, 27));
+        SollPosY->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        SollPosY->setDecimals(4);
+        SollPosY->setMaximum(99999.000000000000000);
+        IstPosY = new QDoubleSpinBox(groupBox_21);
+        IstPosY->setObjectName(QString::fromUtf8("IstPosY"));
+        IstPosY->setGeometry(QRect(187, 284, 114, 27));
+        IstPosY->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        IstPosY->setDecimals(4);
+        IstPosY->setMaximum(99999.000000000000000);
+        GeoTolPos = new QDoubleSpinBox(groupBox_21);
+        GeoTolPos->setObjectName(QString::fromUtf8("GeoTolPos"));
+        GeoTolPos->setGeometry(QRect(388, 31, 114, 27));
+        GeoTolPos->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        GeoTolPos->setDecimals(4);
+        GeoTolPos->setMaximum(99999.000000000000000);
+        TollOut = new QLabel(groupBox_21);
+        TollOut->setObjectName(QString::fromUtf8("TollOut"));
+        TollOut->setGeometry(QRect(389, 60, 111, 20));
+        TollOut->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         mainTabWidget->addTab(tab_extra, QString());
         tab_settings = new QWidget();
         tab_settings->setObjectName(QString::fromUtf8("tab_settings"));
@@ -1778,7 +1799,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(8);
+        mainTabWidget->setCurrentIndex(7);
         BtnCalcEinfach->setDefault(true);
 
 
@@ -2040,6 +2061,22 @@ public:
         groupBox_21->setTitle(QCoreApplication::translate("MainWindow", "Positionsrechner", nullptr));
         Bild->setText(QString());
         PosIcon->setText(QString());
+#if QT_CONFIG(tooltip)
+        SollPosX->setToolTip(QCoreApplication::translate("MainWindow", "Das ist die soll Position in X", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        IstPosX->setToolTip(QCoreApplication::translate("MainWindow", "Das ist die ist Position in X", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        SollPosY->setToolTip(QCoreApplication::translate("MainWindow", "Das ist die soll Position in Y", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        IstPosY->setToolTip(QCoreApplication::translate("MainWindow", "Das ist die ist Position in Y", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        GeoTolPos->setToolTip(QCoreApplication::translate("MainWindow", "Das ist die Positionstolleranz", nullptr));
+#endif // QT_CONFIG(tooltip)
+        TollOut->setText(QCoreApplication::translate("MainWindow", "\303\230 0 mm", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_extra), QCoreApplication::translate("MainWindow", "Extra", nullptr));
         groupBox_19->setTitle(QCoreApplication::translate("MainWindow", "Einstellungen", nullptr));
         DisclaimerIn->setItemText(0, QCoreApplication::translate("MainWindow", "Ja", nullptr));

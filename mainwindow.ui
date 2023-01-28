@@ -29,7 +29,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -534,14 +534,17 @@
       <property name="text">
        <string>Berechnen</string>
       </property>
-      <property name="checkable">
+      <property name="checked">
        <bool>false</bool>
       </property>
-      <property name="checked">
+      <property name="autoDefault">
        <bool>false</bool>
       </property>
       <property name="default">
        <bool>true</bool>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
       </property>
      </widget>
      <widget class="QLabel" name="VcOutEinfach">
@@ -4706,56 +4709,6 @@ background: #dfdfdf;
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLineEdit" name="SollPosX">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>130</y>
-         <width>114</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="SollPosY">
-       <property name="geometry">
-        <rect>
-         <x>187</x>
-         <y>254</y>
-         <width>113</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="IstPosX">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>160</y>
-         <width>114</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="IstPosY">
-       <property name="geometry">
-        <rect>
-         <x>187</x>
-         <y>284</y>
-         <width>113</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="GeoTolPos">
-       <property name="geometry">
-        <rect>
-         <x>388</x>
-         <y>31</y>
-         <width>112</width>
-         <height>24</height>
-        </rect>
-       </property>
-      </widget>
       <widget class="QLabel" name="PosIcon">
        <property name="geometry">
         <rect>
@@ -4773,6 +4726,132 @@ background: #dfdfdf;
        </property>
        <property name="scaledContents">
         <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="SollPosX">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>130</y>
+         <width>114</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Das ist die soll Position in X</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="decimals">
+        <number>4</number>
+       </property>
+       <property name="maximum">
+        <double>99999.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="IstPosX">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>160</y>
+         <width>114</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Das ist die ist Position in X</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="decimals">
+        <number>4</number>
+       </property>
+       <property name="maximum">
+        <double>99999.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="SollPosY">
+       <property name="geometry">
+        <rect>
+         <x>187</x>
+         <y>254</y>
+         <width>114</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Das ist die soll Position in Y</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="decimals">
+        <number>4</number>
+       </property>
+       <property name="maximum">
+        <double>99999.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="IstPosY">
+       <property name="geometry">
+        <rect>
+         <x>187</x>
+         <y>284</y>
+         <width>114</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Das ist die ist Position in Y</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="decimals">
+        <number>4</number>
+       </property>
+       <property name="maximum">
+        <double>99999.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="GeoTolPos">
+       <property name="geometry">
+        <rect>
+         <x>388</x>
+         <y>31</y>
+         <width>114</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Das ist die Positionstolleranz</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="decimals">
+        <number>4</number>
+       </property>
+       <property name="maximum">
+        <double>99999.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="TollOut">
+       <property name="geometry">
+        <rect>
+         <x>389</x>
+         <y>60</y>
+         <width>111</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ø 0 mm</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </widget>

@@ -122,7 +122,15 @@ private slots:
 
     void closeEvent(QCloseEvent *event);
 
+    void on_SollPosX_editingFinished();
 
+    void on_IstPosX_editingFinished();
+
+    void on_SollPosY_editingFinished();
+
+    void on_IstPosY_editingFinished();
+
+    void on_GeoTolPos_editingFinished();
 
 private:
     Ui::MainWindow *ui;

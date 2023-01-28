@@ -17,8 +17,6 @@
 /*
  *  todo:
  *  - Extras komplett
- *  - Einstellungen verbessern
- *  - Lizens hinzufuegen
  *  - Tabelle verbessern
  *  - Tooltips hinzufuegen
  *  - Komentare hinzufuegen
@@ -286,8 +284,7 @@ void MainWindow::on_MaterialAuswahlTurn_currentIndexChanged(int index){
 }
 
 void MainWindow::on_MaterialAuswahlGewinde_currentIndexChanged(int index){
-    //ui->VcOutGewinde->setText(QString::number(Thread::Vc(index,ui->DurchmesserAuswahlGewinde->currentIndex()))+" m/min");
-    // Im Moment nicht Möglich -> Warum? mögliche Loesungen?
+    ui->VcOutGewinde->setText(QString::number(Thread::Vc(index,ui->DurchmesserAuswahlGewinde->currentIndex()))+" m/min");
 }
 
 
@@ -1235,3 +1232,101 @@ void MainWindow::closeEvent(QCloseEvent *event){
 
     QWidget::closeEvent(event);
 }
+
+
+// Positionstolleranzrechner
+void MainWindow::on_SollPosX_editingFinished(){
+    double sollX = ui->SollPosX->value();
+    double sollY = ui->SollPosY->value();
+    double istX = ui->IstPosX->value();
+    double istY = ui->IstPosY->value();
+    double tol = ui->GeoTolPos->value();
+    double temp = 999999;
+
+    temp = sqrt(pow((istX-sollX),2)+pow((istY-sollY),2));
+
+    if(temp <= (tol/2)){
+        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_ok.svg"));
+    }else{
+        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
+    }
+    temp = round(temp*1000)/1000;
+    ui->TollOut->setText("Ø "+QString::number(temp*2)+" mm");
+}
+
+void MainWindow::on_IstPosX_editingFinished(){
+    double sollX = ui->SollPosX->value();
+    double sollY = ui->SollPosY->value();
+    double istX = ui->IstPosX->value();
+    double istY = ui->IstPosY->value();
+    double tol = ui->GeoTolPos->value();
+    double temp = 999999;
+
+    temp = sqrt(pow((istX-sollX),2)+pow((istY-sollY),2));
+
+    if(temp <= (tol/2)){
+        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_ok.svg"));
+    }else{
+        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
+    }
+    temp = round(temp*1000)/1000;
+    ui->TollOut->setText("Ø "+QString::number(temp*2)+" mm");
+}
+
+void MainWindow::on_SollPosY_editingFinished(){
+    double sollX = ui->SollPosX->value();
+    double sollY = ui->SollPosY->value();
+    double istX = ui->IstPosX->value();
+    double istY = ui->IstPosY->value();
+    double tol = ui->GeoTolPos->value();
+    double temp = 999999;
+
+    temp = sqrt(pow((istX-sollX),2)+pow((istY-sollY),2));
+
+    if(temp <= (tol/2)){
+        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_ok.svg"));
+    }else{
+        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
+    }
+    temp = round(temp*1000)/1000;
+    ui->TollOut->setText("Ø "+QString::number(temp*2)+" mm");
+}
+
+void MainWindow::on_IstPosY_editingFinished(){
+    double sollX = ui->SollPosX->value();
+    double sollY = ui->SollPosY->value();
+    double istX = ui->IstPosX->value();
+    double istY = ui->IstPosY->value();
+    double tol = ui->GeoTolPos->value();
+    double temp = 999999;
+
+    temp = sqrt(pow((istX-sollX),2)+pow((istY-sollY),2));
+
+    if(temp <= (tol/2)){
+        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_ok.svg"));
+    }else{
+        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
+    }
+    temp = round(temp*1000)/1000;
+    ui->TollOut->setText("Ø "+QString::number(temp*2)+" mm");
+}
+
+void MainWindow::on_GeoTolPos_editingFinished(){
+    double sollX = ui->SollPosX->value();
+    double sollY = ui->SollPosY->value();
+    double istX = ui->IstPosX->value();
+    double istY = ui->IstPosY->value();
+    double tol = ui->GeoTolPos->value();
+    double temp = 999999;
+
+    temp = sqrt(pow((istX-sollX),2)+pow((istY-sollY),2));
+
+    if(temp <= (tol/2)){
+        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_ok.svg"));
+    }else{
+        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
+    }
+    temp = round(temp*1000)/1000;
+    ui->TollOut->setText("Ø "+QString::number(temp*2)+" mm");
+}
+

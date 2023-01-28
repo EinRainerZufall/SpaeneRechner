@@ -28,7 +28,7 @@ public:
         const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
         double Vc;
 
-        int column = Dindex + 1;
+        int column = Dindex + 2;
 
         mat = mat + 3;
 
