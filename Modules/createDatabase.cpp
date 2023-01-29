@@ -670,16 +670,16 @@ public:
 
         const std::string mat[1][8] = {{"˅ Material ˅","Steigung ->","Aluminium Knetlegierung","Guss-Aluminium > 6% Si","Messing, Bronze, Kupfer","Stahl","INOX","Testmaterial 6"}};
 
-        const std::string gewD[1][11] = {{"M2","M2.5","M3","M4","M5","M6","M8","M10","M12","M14","M16"}};
+        const std::string gewD[1][14] = {{"M2","M2.5","M3","M4","M5","M6","M8","M10","M12","M14","M16","G1/8","G1","G13/9"}};
 
-        const double numbers[7][11] = {
-            {0.4, 0.45, 0.5, 0.7, 0.8, 1,  1.25, 1.5, 1.75, 2,  2},
-            {12,  12,   12,  12,  12,  12, 12,   12,  12,   12, 12},
-            {11,  11,   11,  11,  11,  11, 11,   11,  11,   11, 11},
-            {12,  12,   12,  12,  12,  12, 12,   12,  12,   12, 12},
-            {7,   7,    7,   7,   7,   7,  7,    7,   7,    7,  7},
-            {4,   4,    4,   4,   4,   4,  4,    4,   4,    4,  4},
-            {15,  15,   15,  15,  15,  15, 15,   15,  15,   15, 15}
+        const double numbers[7][14] = {
+            {0.4, 0.45, 0.5, 0.7, 0.8, 1,  1.25, 1.5, 1.75, 2,  2,  0.907, 2.309, 2.309},
+            {12,  12,   12,  12,  12,  12, 12,   12,  12,   12, 12, 12,    12,    12},
+            {11,  11,   11,  11,  11,  11, 11,   11,  11,   11, 11, 11,    11,    11},
+            {12,  12,   12,  12,  12,  12, 12,   12,  12,   12, 12, 12,    12,    12},
+            {7,   7,    7,   7,   7,   7,  7,    7,   7,    7,  7,  7,     7,     7},
+            {4,   4,    4,   4,   4,   4,  4,    4,   4,    4,  4,  4,     4,     4},
+            {15,  15,   15,  15,  15,  15, 15,   15,  15,   15, 15, 15,    15,    15}
 
         };
 
@@ -693,7 +693,7 @@ public:
             ws.cell(1, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
             row++;
         }
-        while(column <= 12) {
+        while(column <= 15) {
             ws.cell(column, 1).value(gewD[0][column-2]);
             ws.cell(column, 1).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
             ws.column_properties(column).width = 10;
@@ -702,7 +702,7 @@ public:
         }
         column = 2;
         row = 2;
-        while(column <= 12){
+        while(column <= 15){
             while(row <= 8){
                 ws.cell(column, row).value(numbers[row-2][column-2]);
                 ws.cell(column, row).alignment(xlnt::alignment().horizontal(xlnt::horizontal_alignment::center));
@@ -712,19 +712,19 @@ public:
             column++;
         }
 
-        ws.title("Gewinde metrisch");
+        ws.title("Gewinde");
 
-        ws.range(xlnt::range_reference(1,1,12,2)).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
+        ws.range(xlnt::range_reference(1,1,15,2)).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
 
         row = 4;
         color = 242;
         while(row <= 8){
-            ws.range(xlnt::range_reference(1,row,12,row)).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
+            ws.range(xlnt::range_reference(1,row,15,row)).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
             row = row + 2;
         }
 
         color = 217;
-        ws.range(xlnt::range_reference(2,2,12,2)).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
+        ws.range(xlnt::range_reference(2,2,15,2)).fill(xlnt::fill::solid(xlnt::rgb_color(color, color, color)));
 
         ws.column_properties(1).width = 23.55;
 
@@ -733,4 +733,11 @@ public:
         return;
     }
 
+    static void deleteWorkbook(){
+        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + name;
+
+        QFile::remove(QString::fromStdString(file));
+
+        return;
+    }
 };

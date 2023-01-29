@@ -14,5 +14,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QTextStream>
+#include <QSettings>
+#include <QVersionNumber>
 
 #endif // MODULE_H

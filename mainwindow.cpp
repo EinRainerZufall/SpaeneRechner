@@ -205,6 +205,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->MaxMillPcIn->setValue(Settings::maxKw());
     ui->maxTurnPcIn->setValue(Settings::maxKwDr());
 
+    //Update Check
+    Settings::updateCheck();
+
     setCursor(Qt::CursorShape::ArrowCursor);
 }
 
@@ -1170,6 +1173,8 @@ void MainWindow::on_progressBarTurn_valueChanged(int value){
 // btn settings
 void MainWindow::on_btnCreateAll_clicked(){
     setCursor(Qt::CursorShape::WaitCursor);
+
+    createDatabase::deleteWorkbook();
 
     createDatabase::createSimple();
     createDatabase::createDynamic();

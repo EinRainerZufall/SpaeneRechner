@@ -9,6 +9,10 @@
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setApplicationName("SpaeneRechner");
+    QCoreApplication::setApplicationVersion("0.5.6");
+    QCoreApplication::setOrganizationDomain("https://github.com/EinRainerZufall/SpaeneRechner");
+
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
@@ -22,9 +26,6 @@ int main(int argc, char *argv[])
             break;
         }
     }
-
-    a.setApplicationName("SpaeneRechner");
-    a.setApplicationVersion("v0.5.6");
 
     return a.exec();
 }

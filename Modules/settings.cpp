@@ -17,9 +17,8 @@ const std::string settingsName = "Daten.xlsx";
 class Settings {
 public:
     static void showDis(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
-        int temp = true;    // 0=false(nicht anzeigen) | 1=true(anzeigen) | 2=error
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
+        int temp = true;    // 0=false(nicht anzeigen) | 1=true(anzeigen) | -1=error
         bool OSX;
 
         if(QSysInfo::productType() == "osx") {
@@ -28,27 +27,14 @@ public:
             OSX = false;
         }
 
-        file.open(QIODevice::ReadOnly);
+        QSettings settings(path, QSettings::IniFormat);
 
-        QTextStream in(&file);
-        QString line = in.readLine();
-        QString lineOut = line;
-        while(!line.isNull()){
-            if(line.remove(10,99) == "disclaimer"){
-                if(lineOut.remove("disclaimer=") == "true"){
-                    temp = 1;
-                    break;
-                }else if(lineOut == "false"){
-                    temp = 0;
-                    break;
-                }else{
-                    temp = 2;
-                    // hier die Fehlermeldung einpflegen
-                    break;
-                }
-            }
-            line = in.readLine();
-            lineOut = line;
+        if(settings.value("disclaimer").toBool() == true){
+            temp = 1;
+        }else if(settings.value("disclaimer").toBool() == false){
+            temp = 0;
+        }else{
+            temp = -1;
         }
 
         if(temp == 0){
@@ -103,38 +89,18 @@ public:
     }
 
     static bool readDis(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
         bool temp = true;
 
-        file.open(QIODevice::ReadOnly);
+        QSettings settings(path, QSettings::IniFormat);
 
-        QTextStream in(&file);
-        QString line = in.readLine();
-        QString lineOut = line;
-        while(!line.isNull()){
-            if(line.remove(10,99) == "disclaimer"){
-                if(lineOut.remove("disclaimer=") == "true"){
-                    temp = true;
-                    break;
-                }else if(lineOut == "false"){
-                    temp = false;
-                    break;
-                }else{
-                    exit(2);
-                    break;
-                }
-            }
-            line = in.readLine();
-            lineOut = line;
-        }
+        temp = settings.value("disclaimer").toBool();
 
         return temp;
     }
 
     static int maxRpmFr(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
         int rpm = 0;
         bool OSX;
 
@@ -144,21 +110,10 @@ public:
             OSX = false;
         }
 
-        file.open(QIODevice::ReadOnly);
+        QSettings settings(path, QSettings::IniFormat);
+        rpm = settings.value("maxRpmFr").toInt();
 
-        QTextStream in(&file);
-        QString line = in.readLine();
-        QString lineOut = line;
-        while(!line.isNull()){
-            if(line.remove(8,99) == "maxRpmFr"){
-                rpm = (lineOut.remove("maxRpmFr=")).toInt();
-                break;
-            }
-            line = in.readLine();
-            lineOut = line;
-        }
-
-        if(rpm == 0){
+        if(rpm <= 0){
             QMessageBox msg;
             QString title = QObject::tr("Kritischer Fehler");
             QString text = QObject::tr("Es konnte keine maximale Drehzahl in der Datei 'config.ini' gefunden werden!");
@@ -180,8 +135,7 @@ public:
     }
 
     static int maxRpmDr(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
         int rpm = 0;
         bool OSX;
 
@@ -191,21 +145,10 @@ public:
             OSX = false;
         }
 
-        file.open(QIODevice::ReadOnly);
+        QSettings settings(path, QSettings::IniFormat);
+        rpm = settings.value("maxRpmDr").toInt();
 
-        QTextStream in(&file);
-        QString line = in.readLine();
-        QString lineOut = line;
-        while(!line.isNull()){
-            if(line.remove(8,99) == "maxRpmDr"){
-                rpm = (lineOut.remove("maxRpmDr=")).toInt();
-                break;
-            }
-            line = in.readLine();
-            lineOut = line;
-        }
-
-        if(rpm == 0){
+        if(rpm <= 0){
             QMessageBox msg;
             QString title = QObject::tr("Kritischer Fehler");
             QString text = QObject::tr("Es konnte keine maximale Drehzahl in der Datei 'config.ini' gefunden werden!");
@@ -227,8 +170,7 @@ public:
     }
 
     static double maxKw(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
         double pc = 0;
         bool OSX;
 
@@ -238,21 +180,10 @@ public:
             OSX = false;
         }
 
-        file.open(QIODevice::ReadOnly);
+        QSettings settings(path, QSettings::IniFormat);
+        pc = settings.value("maxPcFr").toDouble();
 
-        QTextStream in(&file);
-        QString line = in.readLine();
-        QString lineOut = line;
-        while(!line.isNull()){
-            if(line.remove(7,99) == "maxPcFr"){
-                pc = (lineOut.remove("maxPcFr=")).toDouble();
-                break;
-            }
-            line = in.readLine();
-            lineOut = line;
-        }
-
-        if(pc == 0){
+        if(pc <= 0){
             QMessageBox msg;
             QString title = QObject::tr("Kritischer Fehler");
             QString text = QObject::tr("Es konnte keine gültige Abfrage für die Spindelleistung der Fräsmaschine in der Datei 'config.ini' gefunden werden!");
@@ -274,8 +205,7 @@ public:
     }
 
     static double maxKwDr(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
         double pc = 0;
         bool OSX;
 
@@ -285,21 +215,10 @@ public:
             OSX = false;
         }
 
-        file.open(QIODevice::ReadOnly);
+        QSettings settings(path, QSettings::IniFormat);
+        pc = settings.value("maxPcDr").toDouble();
 
-        QTextStream in(&file);
-        QString line = in.readLine();
-        QString lineOut = line;
-        while(!line.isNull()){
-            if(line.remove(7,99) == "maxPcDr"){
-                pc = (lineOut.remove("maxPcDr=")).toDouble();
-                break;
-            }
-            line = in.readLine();
-            lineOut = line;
-        }
-
-        if(pc == 0){
+        if(pc <= 0){
             QMessageBox msg;
             QString title = QObject::tr("Kritischer Fehler");
             QString text = QObject::tr("Es konnte keine gültige Abfrage für die Spindelleistung der Drehmaschine in der Datei 'config.ini' gefunden werden!");
@@ -321,8 +240,7 @@ public:
     }
 
     static int condition(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
         int con = 3;    // 3=error
         bool OSX;
 
@@ -332,19 +250,8 @@ public:
             OSX = false;
         }
 
-        file.open(QIODevice::ReadOnly);
-
-        QTextStream in(&file);
-        QString line = in.readLine();
-        QString lineOut = line;
-        while(!line.isNull()){
-            if(line.remove(3,99) == "con"){
-                con = (lineOut.remove("con=")).toInt();
-                break;
-            }
-            line = in.readLine();
-            lineOut = line;
-        }
+        QSettings settings(path, QSettings::IniFormat);
+        con = settings.value("con").toInt();
 
         if(con == 3){
             QMessageBox msg;
@@ -368,8 +275,7 @@ public:
     }
 
     static int cutMat(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
         int cutMat = 3;    // 3=error
         bool OSX;
 
@@ -379,19 +285,8 @@ public:
             OSX = false;
         }
 
-        file.open(QIODevice::ReadOnly);
-
-        QTextStream in(&file);
-        QString line = in.readLine();
-        QString lineOut = line;
-        while(!line.isNull()){
-            if(line.remove(6,99) == "cutMat"){
-                cutMat = (lineOut.remove("cutMat=")).toInt();
-                break;
-            }
-            line = in.readLine();
-            lineOut = line;
-        }
+        QSettings settings(path, QSettings::IniFormat);
+        cutMat = settings.value("cutMat").toInt();
 
         if(cutMat == 3){
             QMessageBox msg;
@@ -415,8 +310,7 @@ public:
     }
 
     static int angleDrill(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
         int spiWi = 3;    // 3=error
         bool OSX;
 
@@ -426,19 +320,8 @@ public:
             OSX = false;
         }
 
-        file.open(QIODevice::ReadOnly);
-
-        QTextStream in(&file);
-        QString line = in.readLine();
-        QString lineOut = line;
-        while(!line.isNull()){
-            if(line.remove(5,99) == "spiWi"){
-                spiWi = (lineOut.remove("spiWi=")).toInt();
-                break;
-            }
-            line = in.readLine();
-            lineOut = line;
-        }
+        QSettings settings(path, QSettings::IniFormat);
+        spiWi = settings.value("spiWi").toInt();
 
         if(spiWi == 3){
             QMessageBox msg;
@@ -462,8 +345,7 @@ public:
     }
 
     static int cooling(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
         int cooling = 3;    // 3=error
         bool OSX;
 
@@ -473,19 +355,8 @@ public:
             OSX = false;
         }
 
-        file.open(QIODevice::ReadOnly);
-
-        QTextStream in(&file);
-        QString line = in.readLine();
-        QString lineOut = line;
-        while(!line.isNull()){
-            if(line.remove(7,99) == "cooling"){
-                cooling = (lineOut.remove("cooling=")).toInt();
-                break;
-            }
-            line = in.readLine();
-            lineOut = line;
-        }
+        QSettings settings(path, QSettings::IniFormat);
+        cooling = settings.value("cooling").toInt();
 
         if(cooling == 3){
             QMessageBox msg;
@@ -552,11 +423,8 @@ public:
     }
 
     static void write(int dis, int maxRpmFr, double maxKw, int con, int cutMat, int spiWi, int cooling, int maxRpmDr, double maxKwDr, int index){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
-        const QDir dir;
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
         QString tempDis;
-        QString line;
 
         if(dis == 0){
             tempDis = "true";
@@ -564,34 +432,17 @@ public:
             tempDis = "false";
         }
 
-        if (!dir.exists(path)){
-            dir.mkpath(path);
-        }
-
-        file.open(QIODevice::WriteOnly);
-
-        line = "disclaimer=" + tempDis + "\n";
-        file.write(line.toUtf8());
-        line = "maxRpmFr=" + QString::number(maxRpmFr) + "\n";
-        file.write(line.toUtf8());
-        line = "maxPcFr=" + QString::number(maxKw) + "\n";
-        file.write(line.toUtf8());
-        line = "con=" + QString::number(con) + "\n";
-        file.write(line.toUtf8());
-        line = "cutMat=" + QString::number(cutMat) + "\n";
-        file.write(line.toUtf8());
-        line = "spiWi=" + QString::number(spiWi) + "\n";
-        file.write(line.toUtf8());
-        line = "cooling=" + QString::number(cooling) + "\n";
-        file.write(line.toUtf8());
-        line = "maxRpmDr=" + QString::number(maxRpmDr) + "\n";
-        file.write(line.toUtf8());
-        line = "maxPcDr=" + QString::number(maxKwDr) + "\n";
-        file.write(line.toUtf8());
-        line = "lastTab=" + QString::number(index) + "\n";
-        file.write(line.toUtf8());
-
-        file.close();
+        QSettings settings(path, QSettings::IniFormat);
+        settings.setValue("disclaimer", tempDis);
+        settings.setValue("maxRpmFr", maxRpmFr);
+        settings.setValue("maxPcFr", maxKw);
+        settings.setValue("con", con);
+        settings.setValue("cutMat", cutMat);
+        settings.setValue("spiWi", spiWi);
+        settings.setValue("cooling", cooling);
+        settings.setValue("maxRpmDr", maxRpmDr);
+        settings.setValue("maxPcDr", maxKwDr);
+        settings.setValue("lastTab", index);
 
         return;
     }
@@ -641,34 +492,25 @@ public:
     }
 
     static void create(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
-        const QDir dir;
-        const char data[] = "disclaimer=true\n" // ob am Anfang der Disclaimer angezeigt werden soll
-                            "maxRpmFr=24000\n"  // die max Drehzahl der Fraes Spindel
-                            "maxPcFr=2.2\n"     // die max leistung der Fraes Spindel
-                            "con=1\n"           // die Zerspanbedingung                     (0=instabiel|1=normal|2=stabil)
-                            "cutMat=1\n"        // der standard Schneidstoff von Bohrern    (0=HSS|1=VHM|2=Keramik)
-                            "spiWi=0\n"         // der Spitzenwinkel von Bohrern            (0=188G|1=130G|2=140G)
-                            "cooling=0\n"       // die Kuehlungsart                         (0=trocken|1=KSS|2=Oel)
-                            "maxRpmDr=5000\n"   // die max Drehzahl der Dreh Spindel
-                            "maxPcDr=2.2\n"     // die max leistung der Dreh Spindel
-                            "lastTab=0\n";      // der letzte index vom mainTab
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
 
-        if (!dir.exists(path)){
-            dir.mkpath(path);
-        }
-
-        file.open(QIODevice::WriteOnly);
-
-        file.write(data);
+        QSettings settings(path, QSettings::IniFormat);
+        settings.setValue("disclaimer", true);  // ob am Anfang der Disclaimer angezeigt werden soll
+        settings.setValue("maxRpmFr", 24000);   // die max Drehzahl der Fraes Spindel
+        settings.setValue("maxPcFr", 2.2);      // die max leistung der Fraes Spindel
+        settings.setValue("con", 1);            // die Zerspanbedingung                     (0=instabiel|1=normal|2=stabil)
+        settings.setValue("cutMat", 1);         // der standard Schneidstoff von Bohrern    (0=HSS|1=VHM|2=Keramik)
+        settings.setValue("spiWi", 0);          // der Spitzenwinkel von Bohrern            (0=188G|1=130G|2=140G)
+        settings.setValue("cooling", 0);        // die Kuehlungsart                         (0=trocken|1=KSS|2=Oel)
+        settings.setValue("maxRpmDr", 5000);    // die max Drehzahl der Dreh Spindel
+        settings.setValue("maxPcDr", 2.2);      // die max leistung der Dreh Spindel
+        settings.setValue("lastTab", 0);        // der letzte index vom mainTab
 
         return;
     }
 
     static int readIndex(){
-        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QFile file = (path + "/config.ini");
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
         int index = -1;
         bool OSX;
 
@@ -678,19 +520,8 @@ public:
             OSX = false;
         }
 
-        file.open(QIODevice::ReadOnly);
-
-        QTextStream in(&file);
-        QString line = in.readLine();
-        QString lineOut = line;
-        while(!line.isNull()){
-            if(line.remove(7,99) == "lastTab"){
-                index = (lineOut.remove("lastTab=")).toInt();
-                break;
-            }
-            line = in.readLine();
-            lineOut = line;
-        }
+        QSettings settings(path, QSettings::IniFormat);
+        index = settings.value("lastTab").toInt();
 
         if(index == -1){
             QMessageBox msg;
@@ -713,15 +544,62 @@ public:
         return index;
     }
 
+    static bool updateCheck(){
+        bool OSX;
+        int updateAvailable;
+        QString aVer = QCoreApplication::applicationVersion();
+        QString nVer = "0.4.6";
+
+        if(QSysInfo::productType() == "osx") {
+            OSX = true;
+        }else {
+            OSX = false;
+        }
+
+        QVersionNumber av = QVersionNumber::fromString(aVer);
+        QVersionNumber nv = QVersionNumber::fromString(nVer);
+
+        updateAvailable = QVersionNumber::compare(nv,av);
+
+        if(updateAvailable >= 1){
+            QMessageBox msg;
+            QString title = QObject::tr("Update verfügbar");
+            QString text = QObject::tr("Es gibt eine neue Version vom SpäneRechner!\nAktuell installiert V%0, verfügbar ist V%1.\nSoll das Update durchgeführt werden?").arg(aVer, nVer);
+            if(OSX) {
+                msg.setInformativeText(text);
+                msg.setText(title);
+            }else {
+                msg.setText(text);
+                msg.setWindowTitle(title);
+            }
+            msg.setIcon(QMessageBox::Question);
+            msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            msg.setDefaultButton(QMessageBox::Yes);
+            msg.setEscapeButton(QMessageBox::No);
+            int x = msg.exec();
+
+            switch (x) {
+            case QMessageBox::Yes:
+                return true;
+            case QMessageBox::No:
+                return false;;
+            }
+        }
+
+        return false;
+    }
+
+    static void UPDATE(){
+        return;
+    }
+
     static void test(){
-        //const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);// + "/";
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+        const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
 
-        xlnt::workbook wb;
+        QSettings settings(path + "/test.ini", QSettings::IniFormat);
 
-        wb.empty();
+        settings.setValue("test1/test2", 100);
 
-        wb.save(file);
         return;
     }
 };
