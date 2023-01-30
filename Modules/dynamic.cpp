@@ -1,116 +1,113 @@
-#include "Modules/module.h"
+#include "Modules/dynamic.h"
 
 namespace  {
 int dynamicIndex = 1;
 }
 
 
-class Dynamic {
-public:
-    static QStringList matList() {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        QStringList mat;
-        int row = 2;
+QStringList Dynamic::matList() {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    QStringList mat;
+    int row = 2;
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
 
-        while (ws.cell(1, row).to_string() != "") {
-            mat.append(QString::fromStdString(ws.cell(1, row).to_string()));
-            row++;
-        }
-
-        return mat;
+    while (ws.cell(1, row).to_string() != "") {
+        mat.append(QString::fromStdString(ws.cell(1, row).to_string()));
+        row++;
     }
 
-    static double Vc(int mat, int bed) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        double Vc;
-        int column = bed + 2;
+    return mat;
+}
 
-        mat = mat + 2;
+double Dynamic::Vc(int mat, int bed) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    double Vc;
+    int column = bed + 2;
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
+    mat = mat + 2;
 
-        Vc = ws.cell(column, mat).value<double>();
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
 
-        return Vc;
+    Vc = ws.cell(column, mat).value<double>();
+
+    return Vc;
+}
+
+double Dynamic::fz(int mat, int bed, double D) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    double fz;
+    int column = 5;
+
+    mat = mat + 2;
+
+    column = column + bed;
+
+    if(D > 15) {
+        column = column + 3;
     }
 
-    static double fz(int mat, int bed, double D) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        double fz;
-        int column = 5;
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
 
-        mat = mat + 2;
+    fz = ws.cell(column, mat).value<double>();
 
-        column = column + bed;
+    return fz;
+}
 
-        if(D > 15) {
-            column = column + 3;
-        }
+double Dynamic::ae(int mat, int bed, double D) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    double ae;
+    int column = 11;
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
+    mat = mat + 2;
 
-        fz = ws.cell(column, mat).value<double>();
+    column = column + bed;
 
-        return fz;
+    if(D > 15) {
+        column = column + 3;
     }
 
-    static double ae(int mat, int bed, double D) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        double ae;
-        int column = 11;
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
 
-        mat = mat + 2;
+    ae = ws.cell(column, mat).value<double>();
 
-        column = column + bed;
+    return ae;
+}
 
-        if(D > 15) {
-            column = column + 3;
-        }
+int Dynamic::Kc(int mat) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    int Kc;
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
+    mat = mat + 2;
 
-        ae = ws.cell(column, mat).value<double>();
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
 
-        return ae;
-    }
+    Kc = ws.cell(17, mat).value<int>();
 
-    static int Kc(int mat) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        int Kc;
+    return Kc;
+}
 
-        mat = mat + 2;
+double Dynamic::Mc(int mat) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    double Mc;
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
+    mat = mat + 2;
 
-        Kc = ws.cell(17, mat).value<int>();
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
 
-        return Kc;
-    }
+    Mc = ws.cell(18, mat).value<double>();
 
-    static double Mc(int mat) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        double Mc;
-
-        mat = mat + 2;
-
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(dynamicIndex);
-
-        Mc = ws.cell(18, mat).value<double>();
-
-        return Mc;
-    }
-};
+    return Mc;
+}

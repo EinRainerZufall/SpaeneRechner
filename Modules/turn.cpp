@@ -1,85 +1,81 @@
-#include "Modules/module.h"
+#include "Modules/turn.h"
 
 namespace  {
 int turnIndex = 6;
 }
 
+QStringList Turn::matList() {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    QStringList mat;
+    int row = 2;
 
-class Turn {
-public:
-    static QStringList matList() {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        QStringList mat;
-        int row = 2;
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(turnIndex);
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(turnIndex);
-
-        while (ws.cell(1, row).to_string() != "") {
-            mat.append(QString::fromStdString(ws.cell(1, row).to_string()));
-            row++;
-        }
-
-        return mat;
+    while (ws.cell(1, row).to_string() != "") {
+        mat.append(QString::fromStdString(ws.cell(1, row).to_string()));
+        row++;
     }
 
-    static double Vc(int mat, int bed, int typ) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        double Vc;
-        int column = 2;
+    return mat;
+}
 
-        mat = mat + 2;
+double Turn::Vc(int mat, int bed, int typ) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    double Vc;
+    int column = 2;
 
-        column = column + bed;
+    mat = mat + 2;
 
-        switch (typ) {
-        case 2:
-            column = column + 6;
-            break;
-        case 1:
-            column = column + 3;
-            break;
-        default:
-            column = column + 0;
-        }
+    column = column + bed;
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(turnIndex);
-
-        Vc = ws.cell(column, mat).value<double>();
-
-        return Vc;
+    switch (typ) {
+    case 2:
+        column = column + 6;
+        break;
+    case 1:
+        column = column + 3;
+        break;
+    default:
+        column = column + 0;
     }
 
-    static int Kc(int mat) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        int Kc;
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(turnIndex);
 
-        mat = mat + 2;
+    Vc = ws.cell(column, mat).value<double>();
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(turnIndex);
+    return Vc;
+}
 
-        Kc = ws.cell(11, mat).value<int>();
+int Turn::Kc(int mat) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    int Kc;
 
-        return Kc;
-    }
+    mat = mat + 2;
 
-    static double Mc(int mat) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        double Mc;
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(turnIndex);
 
-        mat = mat + 2;
+    Kc = ws.cell(11, mat).value<int>();
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(turnIndex);
+    return Kc;
+}
 
-        Mc = ws.cell(12, mat).value<double>();
+double Turn::Mc(int mat) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    double Mc;
 
-        return Mc;
-    }
-};
+    mat = mat + 2;
+
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(turnIndex);
+
+    Mc = ws.cell(12, mat).value<double>();
+
+    return Mc;
+}

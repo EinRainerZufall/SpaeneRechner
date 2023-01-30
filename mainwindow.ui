@@ -29,7 +29,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -4703,7 +4703,7 @@ background: #dfdfdf;
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="ressources.qrc">:/img/position_img.png</pixmap>
+        <pixmap resource="ressources.qrc">:/img/src/position_img.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -4722,7 +4722,7 @@ background: #dfdfdf;
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="ressources.qrc">:/img/symbol_no.svg</pixmap>
+        <pixmap resource="ressources.qrc">:/img/src/symbol_no.svg</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -4743,8 +4743,14 @@ background: #dfdfdf;
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="suffix">
+        <string> mm</string>
+       </property>
        <property name="decimals">
         <number>4</number>
+       </property>
+       <property name="minimum">
+        <double>-99999.000000000000000</double>
        </property>
        <property name="maximum">
         <double>99999.000000000000000</double>
@@ -4765,8 +4771,14 @@ background: #dfdfdf;
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="suffix">
+        <string> mm</string>
+       </property>
        <property name="decimals">
         <number>4</number>
+       </property>
+       <property name="minimum">
+        <double>-99999.000000000000000</double>
        </property>
        <property name="maximum">
         <double>99999.000000000000000</double>
@@ -4787,8 +4799,14 @@ background: #dfdfdf;
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="suffix">
+        <string> mm</string>
+       </property>
        <property name="decimals">
         <number>4</number>
+       </property>
+       <property name="minimum">
+        <double>-99999.000000000000000</double>
        </property>
        <property name="maximum">
         <double>99999.000000000000000</double>
@@ -4809,8 +4827,14 @@ background: #dfdfdf;
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="suffix">
+        <string> mm</string>
+       </property>
        <property name="decimals">
         <number>4</number>
+       </property>
+       <property name="minimum">
+        <double>-99999.000000000000000</double>
        </property>
        <property name="maximum">
         <double>99999.000000000000000</double>
@@ -4830,6 +4854,12 @@ background: #dfdfdf;
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="prefix">
+        <string>⌀  </string>
+       </property>
+       <property name="suffix">
+        <string> mm</string>
        </property>
        <property name="decimals">
         <number>4</number>
@@ -5389,7 +5419,7 @@ text-align: left;</string>
       </property>
       <property name="icon">
        <iconset resource="ressources.qrc">
-        <normaloff>:/img/xlnt_logo.png</normaloff>:/img/xlnt_logo.png</iconset>
+        <normaloff>:/img/src/xlnt_logo.png</normaloff>:/img/src/xlnt_logo.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -5415,7 +5445,7 @@ text-align: left;</string>
       </property>
       <property name="icon">
        <iconset resource="ressources.qrc">
-        <normaloff>:/img/Built_with_Qt_logos_final-2.jpeg</normaloff>:/img/Built_with_Qt_logos_final-2.jpeg</iconset>
+        <normaloff>:/img/src/Built_with_Qt_logos_final-2.jpeg</normaloff>:/img/src/Built_with_Qt_logos_final-2.jpeg</iconset>
       </property>
       <property name="iconSize">
        <size>

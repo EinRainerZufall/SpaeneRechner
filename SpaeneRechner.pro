@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,7 +25,7 @@ CONFIG(debug, debug|release) {
 
 win32 {
     #Icon unter Win
-    RC_ICONS = endmill_altin.ico
+    RC_ICONS = src/endmill_altin.ico
     message("building for Windows")
 
     #die xlnt.dll in den release Ordner kopieren
@@ -59,7 +59,15 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
-    Modules/module.h \
+    Modules/createDatabase.h \
+    Modules/drill.h \
+    Modules/dynamic.h \
+    Modules/plan.h \
+    Modules/settings.h \
+    Modules/simple.h \
+    Modules/slot.h \
+    Modules/thread.h \
+    Modules/turn.h \
     mainwindow.h
 
 FORMS += \

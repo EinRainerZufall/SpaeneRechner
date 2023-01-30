@@ -3,15 +3,15 @@
 
 
 //Module Laden
-#include "Modules/settings.cpp"
-#include "Modules/simple.cpp"
-#include "Modules/dynamic.cpp"
-#include "Modules/slot.cpp"
-#include "Modules/plan.cpp"
-#include "Modules/drill.cpp"
-#include "Modules/createDatabase.cpp"
-#include "Modules/turn.cpp"
-#include "Modules/thread.cpp"
+#include "Modules/settings.h"
+#include "Modules/simple.h"
+#include "Modules/dynamic.h"
+#include "Modules/slot.h"
+#include "Modules/plan.h"
+#include "Modules/drill.h"
+#include "Modules/createDatabase.h"
+#include "Modules/turn.h"
+#include "Modules/thread.h"
 
 
 /*
@@ -38,8 +38,8 @@ MainWindow::MainWindow(QWidget *parent)
     //Debug things
 #else
     //Release things
-    ui->mainTabWidget->setTabVisible(7, false);   //Extras
-    //ui->mainTabWidget->setCurrentIndex(Settings::readIndex());
+    //ui->mainTabWidget->setTabVisible(7, false);   //Extras
+    ui->mainTabWidget->setCurrentIndex(Settings::readIndex());
 #endif
 
     //check ob die .ini da ist
@@ -1250,9 +1250,9 @@ void MainWindow::on_SollPosX_editingFinished(){
     temp = sqrt(pow((istX-sollX),2)+pow((istY-sollY),2));
 
     if(temp <= (tol/2)){
-        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_ok.svg"));
+        ui->PosIcon->setPixmap(QPixmap(":/img/src/symbol_ok.svg"));
     }else{
-        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
+        ui->PosIcon->setPixmap(QPixmap(":/img/src/symbol_no.svg"));
     }
 }
 
@@ -1267,9 +1267,9 @@ void MainWindow::on_IstPosX_editingFinished(){
     temp = sqrt(pow((istX-sollX),2)+pow((istY-sollY),2));
 
     if(temp <= (tol/2)){
-        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_ok.svg"));
+        ui->PosIcon->setPixmap(QPixmap(":/img/src/symbol_ok.svg"));
     }else{
-        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
+        ui->PosIcon->setPixmap(QPixmap(":/img/src/symbol_no.svg"));
     }
 }
 
@@ -1284,9 +1284,9 @@ void MainWindow::on_SollPosY_editingFinished(){
     temp = sqrt(pow((istX-sollX),2)+pow((istY-sollY),2));
 
     if(temp <= (tol/2)){
-        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_ok.svg"));
+        ui->PosIcon->setPixmap(QPixmap(":/img/src/symbol_ok.svg"));
     }else{
-        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
+        ui->PosIcon->setPixmap(QPixmap(":/img/src/symbol_no.svg"));
     }
 }
 
@@ -1301,9 +1301,9 @@ void MainWindow::on_IstPosY_editingFinished(){
     temp = sqrt(pow((istX-sollX),2)+pow((istY-sollY),2));
 
     if(temp <= (tol/2)){
-        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_ok.svg"));
+        ui->PosIcon->setPixmap(QPixmap(":/img/src/symbol_ok.svg"));
     }else{
-        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
+        ui->PosIcon->setPixmap(QPixmap(":/img/src/symbol_no.svg"));
     }
 }
 
@@ -1318,9 +1318,9 @@ void MainWindow::on_GeoTolPos_editingFinished(){
     temp = sqrt(pow((istX-sollX),2)+pow((istY-sollY),2));
 
     if(temp <= (tol/2)){
-        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_ok.svg"));
+        ui->PosIcon->setPixmap(QPixmap(":/img/src/symbol_ok.svg"));
     }else{
-        ui->PosIcon->setPixmap(QPixmap(":/img/symbol_no.svg"));
+        ui->PosIcon->setPixmap(QPixmap(":/img/src/symbol_no.svg"));
     }
 }
 

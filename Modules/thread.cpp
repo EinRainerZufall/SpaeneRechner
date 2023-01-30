@@ -1,148 +1,144 @@
-#include "Modules/module.h"
+#include "Modules/thread.h"
 
 namespace  {
-int threadIndex = 7;
+    int threadIndex = 7;
 }
 
+QStringList Thread::matList() {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    QStringList mat;
+    int row = 3;
 
-class Thread {
-public:
-    static QStringList matList() {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        QStringList mat;
-        int row = 3;
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
-
-        while (ws.cell(1, row).to_string() != "") {
-            mat.append(QString::fromStdString(ws.cell(1, row).to_string()));
-            row++;
-        }
-
-        return mat;
+    while (ws.cell(1, row).to_string() != "") {
+        mat.append(QString::fromStdString(ws.cell(1, row).to_string()));
+        row++;
     }
 
-    static double Vc(int mat, int Dindex) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        double Vc;
+    return mat;
+}
 
-        int column = Dindex + 2;
+double Thread::Vc(int mat, int Dindex) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    double Vc;
 
-        mat = mat + 3;
+    int column = Dindex + 2;
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
+    mat = mat + 3;
 
-        Vc = ws.cell(column, mat).value<double>();
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
 
-        return Vc;
+    Vc = ws.cell(column, mat).value<double>();
+
+    return Vc;
+}
+
+QStringList Thread::dList() {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    QStringList D;
+    int column = 2;
+
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
+
+    while (ws.cell(column, 1).to_string() != "") {
+        D.append(QString::fromStdString(ws.cell(column, 1).to_string()));
+        column++;
     }
 
-    static QStringList dList() {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        QStringList D;
-        int column = 2;
+    return D;
+}
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
+double Thread::threadPitch(int Dindex) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    double pitch;
+    int column;
 
-        while (ws.cell(column, 1).to_string() != "") {
-            D.append(QString::fromStdString(ws.cell(column, 1).to_string()));
-            column++;
-        }
+    column = Dindex + 2;
 
-        return D;
-    }
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
 
-    static double threadPitch(int Dindex) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        double pitch;
-        int column;
+    pitch = ws.cell(column,2).value<double>();
 
-        column = Dindex + 2;
+    return pitch;
+}
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
+double Thread::Diameter(int Dindex) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    double D;
+    int column;
+    std::string metrisch;
+    std::string zoll1;
+    std::string zoll2;
+    std::string zoll3;
+    std::string zollTest1;
+    std::string zollTest2;
+    std::string type;
 
-        pitch = ws.cell(column,2).value<double>();
+    column = Dindex + 2;
 
-        return pitch;
-    }
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
 
-    static double Diameter(int Dindex) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        double D;
-        int column;
-        std::string metrisch;
-        std::string zoll1;
-        std::string zoll2;
-        std::string zoll3;
-        std::string zollTest1;
-        std::string zollTest2;
-        std::string type;
+    metrisch = ws.cell(column,1).value<std::string>();
 
-        column = Dindex + 2;
+    type = metrisch;
+    type = type.erase(1,999);
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
+    if(type == "M"){
+        metrisch = metrisch.erase(0,1);
+        D = std::stod(metrisch);
+    }else if(type == "G" & (metrisch.length() > 2)){
+        zoll1 = metrisch;
+        zoll2 = metrisch;
+        zoll3 = metrisch;
 
-        metrisch = ws.cell(column,1).value<std::string>();
+        // Test 1
+        zollTest1 = metrisch;
+        zollTest1 = zollTest1.erase(0,2);
+        zollTest1 = zollTest1.erase(1,99);
 
-        type = metrisch;
-        type = type.erase(1,999);
+        // Test 2
+        zollTest2 = metrisch;
+        zollTest2 = zollTest2.erase(0,3);
+        zollTest2 = zollTest2.erase(1,99);
 
-        if(type == "M"){
-            metrisch = metrisch.erase(0,1);
-            D = std::stod(metrisch);
-        }else if(type == "G" & (metrisch.length() > 2)){
-            zoll1 = metrisch;
-            zoll2 = metrisch;
-            zoll3 = metrisch;
-
-            // Test 1
-            zollTest1 = metrisch;
-            zollTest1 = zollTest1.erase(0,2);
-            zollTest1 = zollTest1.erase(1,99);
-
-            // Test 2
-            zollTest2 = metrisch;
-            zollTest2 = zollTest2.erase(0,3);
-            zollTest2 = zollTest2.erase(1,99);
-
-            if(zollTest1 == "/"){
-                zoll1 = zoll1.erase(0,1);
-                zoll1 = zoll1.erase(1,99);
-
-                zoll2 = zoll2.erase(0,3);
-
-                D = (std::stod(zoll1) / std::stod(zoll2)) * 2.54;
-            }else if(zollTest2 == "/"){
-                zoll1 = zoll1.erase(0,1);
-                zoll1 = zoll1.erase(1,99);
-
-                zoll2 = zoll2.erase(0,2);
-                zoll2 = zoll2.erase(1,99);
-
-                zoll3 = zoll3.erase(0,4);
-
-                D = (std::stod(zoll1) + (std::stod(zoll2) / std::stod(zoll3))) * 2.54;
-            }else{
-                D = -1;
-            }
-        }else if(type == "G" & (metrisch.length() == 2)){
-            zoll1 = metrisch;
+        if(zollTest1 == "/"){
             zoll1 = zoll1.erase(0,1);
-            D = std::stod(zoll1) * 2.54;
+            zoll1 = zoll1.erase(1,99);
+
+            zoll2 = zoll2.erase(0,3);
+
+            D = (std::stod(zoll1) / std::stod(zoll2)) * 2.54;
+        }else if(zollTest2 == "/"){
+            zoll1 = zoll1.erase(0,1);
+            zoll1 = zoll1.erase(1,99);
+
+            zoll2 = zoll2.erase(0,2);
+            zoll2 = zoll2.erase(1,99);
+
+            zoll3 = zoll3.erase(0,4);
+
+            D = (std::stod(zoll1) + (std::stod(zoll2) / std::stod(zoll3))) * 2.54;
         }else{
             D = -1;
         }
-
-        return D;
+    }else if(type == "G" & (metrisch.length() == 2)){
+        zoll1 = metrisch;
+        zoll1 = zoll1.erase(0,1);
+        D = std::stod(zoll1) * 2.54;
+    }else{
+        D = -1;
     }
-};
+
+    return D;
+}

@@ -1,11 +1,13 @@
 <RCC>
     <qresource prefix="/img">
-        <file>endmill_altin.ico</file>
-        <file>Built_with_Qt_logos_final-2.jpeg</file>
-        <file>xlnt_logo.png</file>
-        <file>position_img.png</file>
-        <file>symbol_no.svg</file>
-        <file>symbol_ok.svg</file>
+        <file>src/Built_with_Qt_logos_final-2.jpeg</file>
+        <file>src/endmill_altin.ico</file>
+        <file>src/endmill_altin.png</file>
+        <file>src/position_img.png</file>
+        <file>src/position_img.svg</file>
+        <file>src/symbol_no.svg</file>
+        <file>src/symbol_ok.svg</file>
+        <file>src/xlnt_logo.png</file>
     </qresource>
     <qresource prefix="/cursor"/>
 </RCC>

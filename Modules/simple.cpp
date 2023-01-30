@@ -1,74 +1,70 @@
-#include "Modules/module.h"
+#include "Modules/simple.h"
 
 namespace  {
 int simpleIndex = 0;
 }
 
+QStringList Simple::matList() {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    QStringList mat;
+    int row = 2;
 
-class Simple {
-public:
-    static QStringList matList() {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        QStringList mat;
-        int row = 2;
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(simpleIndex);
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(simpleIndex);
-
-        while (ws.cell(1, row).to_string() != "") {
-            mat.append(QString::fromStdString(ws.cell(1, row).to_string()));
-            row++;
-        }
-
-        return mat;
+    while (ws.cell(1, row).to_string() != "") {
+        mat.append(QString::fromStdString(ws.cell(1, row).to_string()));
+        row++;
     }
 
-    static QStringList dList() {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        QStringList D;
-        int column = 3;
+    return mat;
+}
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(simpleIndex);
+QStringList Simple::dList() {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    QStringList D;
+    int column = 3;
 
-        while (ws.cell(column, 1).to_string() != "") {
-            D.append(QString::fromStdString(ws.cell(column, 1).to_string()));
-            column++;
-        }
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(simpleIndex);
 
-        return D;
+    while (ws.cell(column, 1).to_string() != "") {
+        D.append(QString::fromStdString(ws.cell(column, 1).to_string()));
+        column++;
     }
 
-    static double Vc(int row) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        double Vc;
+    return D;
+}
 
-        row = row + 2;
+double Simple::Vc(int row) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    double Vc;
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(simpleIndex);
+    row = row + 2;
 
-        Vc = ws.cell(2, row).value<double>();
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(simpleIndex);
 
-        return Vc;
-    }
+    Vc = ws.cell(2, row).value<double>();
 
-    static double fz(int column, int row) {
-        const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
-        double fz;
+    return Vc;
+}
 
-        column = column + 3;
-        row = row + 2;
+double Simple::fz(int column, int row) {
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
+    double fz;
 
-        xlnt::workbook wb;
-        wb.load(file);
-        xlnt::worksheet ws = wb.sheet_by_index(simpleIndex);
+    column = column + 3;
+    row = row + 2;
 
-        fz = ws.cell(column, row).value<double>();
+    xlnt::workbook wb;
+    wb.load(file);
+    xlnt::worksheet ws = wb.sheet_by_index(simpleIndex);
 
-        return fz;
-    }
-};
+    fz = ws.cell(column, row).value<double>();
+
+    return fz;
+}
