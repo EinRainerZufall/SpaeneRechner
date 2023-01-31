@@ -14,6 +14,7 @@
 #include "Modules/thread.h"
 #include "Modules/misc.h"
 
+#error "WICHTIG 'osx' MUSS IN macos' IM GANZEN PROJEKT GEAENDERT WERDEN !!!!!!!!!!!!!!!!!!!!!!!!!!"
 
 /*
  *  todo:
