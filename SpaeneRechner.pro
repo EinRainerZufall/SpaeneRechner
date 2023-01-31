@@ -49,6 +49,7 @@ SOURCES += \
     Modules/createDatabase.cpp \
     Modules/drill.cpp \
     Modules/dynamic.cpp \
+    Modules/misc.cpp \
     Modules/plan.cpp \
     Modules/settings.cpp \
     Modules/simple.cpp \
@@ -62,6 +63,7 @@ HEADERS += \
     Modules/createDatabase.h \
     Modules/drill.h \
     Modules/dynamic.h \
+    Modules/misc.h \
     Modules/plan.h \
     Modules/settings.h \
     Modules/simple.h \

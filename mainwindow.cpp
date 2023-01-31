@@ -12,6 +12,7 @@
 #include "Modules/createDatabase.h"
 #include "Modules/turn.h"
 #include "Modules/thread.h"
+#include "Modules/misc.h"
 
 
 /*
@@ -206,7 +207,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->maxTurnPcIn->setValue(Settings::maxKwDr());
 
     //Update Check
-    Settings::updateCheck();
+    if(Settings::autoUpdate()){
+        qDebug() << "Automatische Updatesuche ist eingeschaltet";
+        ui->autoUpdateIn->setCurrentIndex(0);
+        if(Misc::updateCheck()){
+            Misc::UPDATE();
+        }
+    }else{
+        qDebug() << "Automatische Updatesuche ist ausgeschaltet";
+        ui->autoUpdateIn->setCurrentIndex(1);
+    }
 
     setCursor(Qt::CursorShape::ArrowCursor);
 }
@@ -1190,6 +1200,7 @@ void MainWindow::on_btnCreateAll_clicked(){
 
 void MainWindow::on_btnSettingsWrite_clicked(){
     setCursor(Qt::CursorShape::WaitCursor);
+    qDebug() << "Einstellungen per Button gespeichert!";
 
     int dis = ui->DisclaimerIn->currentIndex();
     int FrN = ui->maxMillSpeedIn->text().toInt();
@@ -1201,8 +1212,12 @@ void MainWindow::on_btnSettingsWrite_clicked(){
     int TurN = ui->maxTurnSpeedIn->text().toInt();
     double TurPc = ui->maxTurnPcIn->value();
     int index = ui->mainTabWidget->currentIndex();
+    bool update = true;
+    if(ui->autoUpdateIn->currentIndex() == 1){
+        update = false;
+    }
 
-    Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index);
+    Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index, update);
 
     setCursor(Qt::CursorShape::ArrowCursor);
 }
@@ -1218,6 +1233,7 @@ void MainWindow::on_btnOpenXLSX_clicked(){
 // close event
 void MainWindow::closeEvent(QCloseEvent *event){
     setCursor(Qt::CursorShape::WaitCursor);
+    qDebug() << "Einstellungen automatisch gespeichert!";
 
     int dis = ui->DisclaimerIn->currentIndex();
     int FrN = ui->maxMillSpeedIn->text().toInt();
@@ -1229,8 +1245,12 @@ void MainWindow::closeEvent(QCloseEvent *event){
     int TurN = ui->maxTurnSpeedIn->text().toInt();
     double TurPc = ui->maxTurnPcIn->value();
     int index = ui->mainTabWidget->currentIndex();
+    bool update = true;
+    if(ui->autoUpdateIn->currentIndex() == 1){
+        update = false;
+    }
 
-    Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index);
+    Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index, update);
 
     setCursor(Qt::CursorShape::ArrowCursor);
 

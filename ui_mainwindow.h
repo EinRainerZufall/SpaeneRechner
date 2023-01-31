@@ -337,6 +337,8 @@ public:
     QLabel *label_56;
     QLabel *label_57;
     QPushButton *btnSettingsWrite;
+    QComboBox *autoUpdateIn;
+    QLabel *label_64;
     QGroupBox *groupBox_20;
     QPushButton *btnCreateAll;
     QPushButton *btnOpenXLSX;
@@ -1641,7 +1643,7 @@ public:
         tab_settings->setObjectName(QString::fromUtf8("tab_settings"));
         groupBox_19 = new QGroupBox(tab_settings);
         groupBox_19->setObjectName(QString::fromUtf8("groupBox_19"));
-        groupBox_19->setGeometry(QRect(10, 20, 975, 430));
+        groupBox_19->setGeometry(QRect(10, 20, 975, 470));
         DisclaimerIn = new QComboBox(groupBox_19);
         DisclaimerIn->addItem(QString());
         DisclaimerIn->addItem(QString());
@@ -1732,7 +1734,15 @@ public:
         label_57->setGeometry(QRect(115, 350, 855, 25));
         btnSettingsWrite = new QPushButton(groupBox_19);
         btnSettingsWrite->setObjectName(QString::fromUtf8("btnSettingsWrite"));
-        btnSettingsWrite->setGeometry(QRect(10, 390, 210, 25));
+        btnSettingsWrite->setGeometry(QRect(10, 430, 210, 25));
+        autoUpdateIn = new QComboBox(groupBox_19);
+        autoUpdateIn->addItem(QString());
+        autoUpdateIn->addItem(QString());
+        autoUpdateIn->setObjectName(QString::fromUtf8("autoUpdateIn"));
+        autoUpdateIn->setGeometry(QRect(10, 390, 90, 25));
+        label_64 = new QLabel(groupBox_19);
+        label_64->setObjectName(QString::fromUtf8("label_64"));
+        label_64->setGeometry(QRect(115, 390, 855, 25));
         groupBox_20 = new QGroupBox(tab_settings);
         groupBox_20->setObjectName(QString::fromUtf8("groupBox_20"));
         groupBox_20->setGeometry(QRect(10, 550, 250, 100));
@@ -1798,7 +1808,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(0);
+        mainTabWidget->setCurrentIndex(8);
         BtnCalcEinfach->setDefault(true);
 
 
@@ -2112,6 +2122,10 @@ public:
         label_56->setText(QCoreApplication::translate("MainWindow", "Die maximale Drehzahl der Drehmachine", nullptr));
         label_57->setText(QCoreApplication::translate("MainWindow", "Die maximale Spindelleistung der Drehmaschine (in kW)", nullptr));
         btnSettingsWrite->setText(QCoreApplication::translate("MainWindow", "Einstellungen \303\274bernehmen", nullptr));
+        autoUpdateIn->setItemText(0, QCoreApplication::translate("MainWindow", "Ja", nullptr));
+        autoUpdateIn->setItemText(1, QCoreApplication::translate("MainWindow", "Nein", nullptr));
+
+        label_64->setText(QCoreApplication::translate("MainWindow", "Die maximale Spindelleistung der Drehmaschine (in kW)", nullptr));
         groupBox_20->setTitle(QCoreApplication::translate("MainWindow", "Tabelle", nullptr));
         btnCreateAll->setText(QCoreApplication::translate("MainWindow", "Daten Tabelle neu erstellen", nullptr));
         btnOpenXLSX->setText(QCoreApplication::translate("MainWindow", "Daten Tabelle \303\266ffnen", nullptr));

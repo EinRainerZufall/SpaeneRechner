@@ -8,7 +8,6 @@
 #include <QStandardPaths>
 #include <QSettings>
 #include <QFile>
-#include <QVersionNumber>
 
 class Settings{
 public:
@@ -23,12 +22,11 @@ public:
     static int angleDrill();
     static int cooling();
     static bool xlsxCheck();
-    static void write(int dis, int maxRpmFr, double maxKw, int con, int cutMat, int spiWi, int cooling, int maxRpmDr, double maxKwDr, int index);
+    static void write(int dis, int maxRpmFr, double maxKw, int con, int cutMat, int spiWi, int cooling, int maxRpmDr, double maxKwDr, int index, bool update);
     static bool INIcheck();
     static void create();
     static int readIndex();
-    static bool updateCheck();
-    static void UPDATE();
+    static bool autoUpdate();
     static void test();
 };
 

@@ -29,7 +29,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>8</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -4880,7 +4880,7 @@ background: #dfdfdf;
         <x>10</x>
         <y>20</y>
         <width>975</width>
-        <height>430</height>
+        <height>470</height>
        </rect>
       </property>
       <property name="title">
@@ -5227,13 +5227,46 @@ background: #dfdfdf;
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>390</y>
+         <y>430</y>
          <width>210</width>
          <height>25</height>
         </rect>
        </property>
        <property name="text">
         <string>Einstellungen übernehmen</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="autoUpdateIn">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>390</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Ja</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Nein</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_64">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>390</y>
+         <width>855</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Die maximale Spindelleistung der Drehmaschine (in kW)</string>
        </property>
       </widget>
      </widget>
