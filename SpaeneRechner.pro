@@ -37,7 +37,7 @@ win32 {
 
 macx {
     #Icon unter MacOS
-    #ICON = endmill_altin.icns <- noch nicht getestet
+    #ICON = src/endmill_altin.icns <- noch nicht getestet
     message("building for MacOS")
 }
 

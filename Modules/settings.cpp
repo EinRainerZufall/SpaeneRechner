@@ -17,12 +17,12 @@ const std::string settingsName = "Daten.xlsx";
 void Settings::showDis(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
     int temp = true;    // 0=false(nicht anzeigen) | 1=true(anzeigen) | -1=error
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QSettings settings(path, QSettings::IniFormat);
@@ -46,7 +46,7 @@ void Settings::showDis(){
                                    "Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust "
                                    "o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes "
                                    "entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?");
-        if(OSX) {
+        if(macos) {
             disBox.setInformativeText(text);
             disBox.setText(title);
         }else {
@@ -69,7 +69,7 @@ void Settings::showDis(){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für den Disclaimer in der 'config.ini' Datei gefunden werden!");
-        if(OSX) {
+        if(macos) {
             msg.setText(title);
             msg.setInformativeText(text);
         }else {
@@ -100,12 +100,12 @@ bool Settings::readDis(){
 int Settings::maxRpmFr(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
     int rpm = 0;
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QSettings settings(path, QSettings::IniFormat);
@@ -115,7 +115,7 @@ int Settings::maxRpmFr(){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine maximale Drehzahl in der Datei 'config.ini' gefunden werden!");
-        if(OSX) {
+        if(macos) {
             msg.setText(title);
             msg.setInformativeText(text);
         }else {
@@ -135,12 +135,12 @@ int Settings::maxRpmFr(){
 int Settings::maxRpmDr(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
     int rpm = 0;
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QSettings settings(path, QSettings::IniFormat);
@@ -150,7 +150,7 @@ int Settings::maxRpmDr(){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine maximale Drehzahl in der Datei 'config.ini' gefunden werden!");
-        if(OSX) {
+        if(macos) {
             msg.setText(title);
             msg.setInformativeText(text);
         }else {
@@ -170,12 +170,12 @@ int Settings::maxRpmDr(){
 double Settings::maxKw(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
     double pc = 0;
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QSettings settings(path, QSettings::IniFormat);
@@ -185,7 +185,7 @@ double Settings::maxKw(){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für die Spindelleistung der Fräsmaschine in der Datei 'config.ini' gefunden werden!");
-        if(OSX) {
+        if(macos) {
             msg.setText(title);
             msg.setInformativeText(text);
         }else {
@@ -205,12 +205,12 @@ double Settings::maxKw(){
 double Settings::maxKwDr(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
     double pc = 0;
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QSettings settings(path, QSettings::IniFormat);
@@ -220,7 +220,7 @@ double Settings::maxKwDr(){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für die Spindelleistung der Drehmaschine in der Datei 'config.ini' gefunden werden!");
-        if(OSX) {
+        if(macos) {
             msg.setText(title);
             msg.setInformativeText(text);
         }else {
@@ -240,12 +240,12 @@ double Settings::maxKwDr(){
 int Settings::condition(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
     int con = 3;    // 3=error
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QSettings settings(path, QSettings::IniFormat);
@@ -255,7 +255,7 @@ int Settings::condition(){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für die standard Bedingung in der 'config.ini' Datei gefunden werden!");
-        if(OSX) {
+        if(macos) {
             msg.setInformativeText(text);
             msg.setText(title);
         }else {
@@ -275,12 +275,12 @@ int Settings::condition(){
 int Settings::cutMat(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
     int cutMat = 3;    // 3=error
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QSettings settings(path, QSettings::IniFormat);
@@ -290,7 +290,7 @@ int Settings::cutMat(){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für den standard Schneidstoff in der 'config.ini' Datei gefunden werden!");
-        if(OSX) {
+        if(macos) {
             msg.setInformativeText(text);
             msg.setText(title);
         }else {
@@ -310,12 +310,12 @@ int Settings::cutMat(){
 int Settings::angleDrill(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
     int spiWi = 3;    // 3=error
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QSettings settings(path, QSettings::IniFormat);
@@ -325,7 +325,7 @@ int Settings::angleDrill(){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für den standard Spitzenwinkel in der 'config.ini' Datei gefunden werden!");
-        if(OSX) {
+        if(macos) {
             msg.setInformativeText(text);
             msg.setText(title);
         }else {
@@ -345,12 +345,12 @@ int Settings::angleDrill(){
 int Settings::cooling(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
     int cooling = 3;    // 3=error
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QSettings settings(path, QSettings::IniFormat);
@@ -360,7 +360,7 @@ int Settings::cooling(){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für die standard Kühlung in der 'config.ini' Datei gefunden werden!");
-        if(OSX) {
+        if(macos) {
             msg.setInformativeText(text);
             msg.setText(title);
         }else {
@@ -381,12 +381,12 @@ bool Settings::xlsxCheck(){
     QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
     QFile file = (path + "/Daten.xlsx");
     bool temp = false;
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     if(file.exists()) {
@@ -396,7 +396,7 @@ bool Settings::xlsxCheck(){
         QMessageBox msg;
         QString title = QObject::tr("Fehler");
         QString text = QObject::tr("Die Datei 'Daten.xlsx' wurde nicht gefunden. Soll sie erstellt werden?");
-        if(OSX) {
+        if(macos) {
             msg.setInformativeText(text);
             msg.setText(title);
         }else {
@@ -455,12 +455,12 @@ void Settings::write(int dis, int maxRpmFr, double maxKw, int con, int cutMat, i
 bool Settings::INIcheck(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
     bool temp = false;
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QFile file = (path + "/config.ini");
@@ -471,7 +471,7 @@ bool Settings::INIcheck(){
         QMessageBox msg;
         QString title = QObject::tr("Fehler");
         QString text = QObject::tr("Die Datei 'config.ini' wurde nicht gefunden. Soll sie erstellt werden?");
-        if(OSX) {
+        if(macos) {
             msg.setText(title);
             msg.setInformativeText(text);
         }else {
@@ -523,12 +523,12 @@ void Settings::create(){
 int Settings::readIndex(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
     int index = -1;
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QSettings settings(path, QSettings::IniFormat);
@@ -538,7 +538,7 @@ int Settings::readIndex(){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für den letzen Index in der Datei 'config.ini' gefunden werden!");
-        if(OSX) {
+        if(macos) {
             msg.setText(title);
             msg.setInformativeText(text);
         }else {
@@ -558,12 +558,12 @@ int Settings::readIndex(){
 bool Settings::autoUpdate(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
     int out = true;
-    bool OSX;
+    bool macos;
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QSettings settings(path, QSettings::IniFormat);
@@ -573,7 +573,7 @@ bool Settings::autoUpdate(){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für die autoUpdate Funktion in der Datei 'config.ini' gefunden werden!");
-        if(OSX) {
+        if(macos) {
             msg.setText(title);
             msg.setInformativeText(text);
         }else {

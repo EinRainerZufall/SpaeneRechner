@@ -5266,7 +5266,7 @@ background: #dfdfdf;
         </rect>
        </property>
        <property name="text">
-        <string>Die maximale Spindelleistung der Drehmaschine (in kW)</string>
+        <string>Ob beim Programmstart automatisch nach Updates gesucht werden soll</string>
        </property>
       </widget>
      </widget>

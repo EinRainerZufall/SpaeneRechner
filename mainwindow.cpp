@@ -14,7 +14,6 @@
 #include "Modules/thread.h"
 #include "Modules/misc.h"
 
-#error "WICHTIG 'osx' MUSS IN macos' IM GANZEN PROJEKT GEAENDERT WERDEN !!!!!!!!!!!!!!!!!!!!!!!!!!"
 
 /*
  *  todo:
@@ -211,7 +210,7 @@ MainWindow::MainWindow(QWidget *parent)
     if(Settings::autoUpdate()){
         qDebug() << "Automatische Updatesuche ist eingeschaltet";
         ui->autoUpdateIn->setCurrentIndex(0);
-        if(Misc::updateCheck()){
+        if(!Misc::updateCheck()){
             Misc::UPDATE();
         }
     }else{
@@ -371,14 +370,14 @@ void MainWindow::on_BtnCalcTpc_clicked(){
     int eTool;
     double Fcut;
     int N;
-    bool OSX;
+    bool macos;
 
     setCursor(Qt::CursorShape::WaitCursor);
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     if(ui->BeStabilTpc->isChecked()) {
@@ -405,13 +404,13 @@ void MainWindow::on_BtnCalcTpc_clicked(){
 
     if(ui->SchnKeramikTpc->isChecked()) {
         C2 = 0.9;
-        eTool = 300; //???
+        eTool = 400; // 400 - 500
     }else if (ui->SchnVhmTpc->isChecked()) {
         C2 = 1;
-        eTool = 300;
+        eTool = 000; // 400 - 500
     }else {
         C2 = 1.2;
-        eTool = 200;
+        eTool = 200; // 200 - 210
     }
 
     if(Vc > 250) {
@@ -431,6 +430,12 @@ void MainWindow::on_BtnCalcTpc_clicked(){
     Pc = z * (90 + asin((ae - (D / 2)) / (D / 2))) / 360 * (Kc / pow(fz, Mc) * (ap * fz) * C1 * C2 * C3 * C4) * Vc / 60 / 85 / 1000;
 
     Fcut = Pc * ((2 * (maxKw * 1000)) / (D * N));
+
+
+    // Neue Formel mal testen
+    // nach Bernard Euler
+    // def = (Fcut * pow(ae,3)) / (3 * eTool * (((π / 4) * pow(D,4))*0.6666))
+
     def = (Fcut * pow((ap + 10), 3)) / (3 * eTool * 0.66 * (pow(D, 4) / 64));
 
     ui->RealVcOutTpc->setText(QString::number(round((N * pi * D) / 1000)) + " m/min");
@@ -454,7 +459,7 @@ void MainWindow::on_BtnCalcTpc_clicked(){
         QMessageBox msg;
         QString title(tr("Info"));
         QString text(tr("Die aktuelle Berechnung der Deflection ist erst \nab einem Fräserdurchmesser von > 4,5 mm gültig!"));
-        if(OSX) {
+        if(macos) {
             msg.setInformativeText(text);
             msg.setText(title);
         }else {

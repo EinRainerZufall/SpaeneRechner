@@ -2125,7 +2125,7 @@ public:
         autoUpdateIn->setItemText(0, QCoreApplication::translate("MainWindow", "Ja", nullptr));
         autoUpdateIn->setItemText(1, QCoreApplication::translate("MainWindow", "Nein", nullptr));
 
-        label_64->setText(QCoreApplication::translate("MainWindow", "Die maximale Spindelleistung der Drehmaschine (in kW)", nullptr));
+        label_64->setText(QCoreApplication::translate("MainWindow", "Ob beim Programmstart automatisch nach Updates gesucht werden soll", nullptr));
         groupBox_20->setTitle(QCoreApplication::translate("MainWindow", "Tabelle", nullptr));
         btnCreateAll->setText(QCoreApplication::translate("MainWindow", "Daten Tabelle neu erstellen", nullptr));
         btnOpenXLSX->setText(QCoreApplication::translate("MainWindow", "Daten Tabelle \303\266ffnen", nullptr));

@@ -11,7 +11,7 @@ void Misc::waitForResponse(){
 }
 
 bool Misc::updateCheck(){
-    bool OSX;
+    bool macos;
     int updateAvailable;
     QString aVer = QCoreApplication::applicationVersion();
 
@@ -46,10 +46,10 @@ bool Misc::updateCheck(){
         qDebug() << "Die Version: " << nVer << " hat ein ungültiges Format!";
     }
 
-    if(QSysInfo::productType() == "osx") {
-        OSX = true;
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
     }else {
-        OSX = false;
+        macos = false;
     }
 
     QVersionNumber av = QVersionNumber::fromString(aVer);
@@ -61,7 +61,7 @@ bool Misc::updateCheck(){
         QMessageBox msg;
         QString title = QObject::tr("Update verfügbar");
         QString text = QObject::tr("Es gibt eine neue Version vom SpäneRechner!\nAktuell installiert V%0, verfügbar ist V%1.\nSoll das Update durchgeführt werden?").arg(aVer, nVer);
-        if(OSX) {
+        if(macos) {
             msg.setInformativeText(text);
             msg.setText(title);
         }else {
@@ -86,5 +86,12 @@ bool Misc::updateCheck(){
 }
 
 void Misc::UPDATE(){
+    QString type;
+    QString filter;
+
+    type = QSysInfo::productType();
+
+    if(type.isEmpty())
+
     return;
 }
