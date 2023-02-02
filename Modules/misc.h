@@ -16,6 +16,7 @@ class Misc: public QObject{
 public:
     static bool updateCheck();
     static void UPDATE();
+    static int MSGbox(QString title, QString text, int error, int type, int buttonStyle);
     void waitForResponse();
 signals:
     void responseReceived();

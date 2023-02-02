@@ -36,19 +36,21 @@ MainWindow::MainWindow(QWidget *parent)
     this->setCentralWidget(ui->mainTabWidget);
 
 #ifdef QT_DEBUG
-    //Debug things
+    // Debug Sachen
 #else
-    //Release things
-    //ui->mainTabWidget->setTabVisible(7, false);   //Extras
+    // Release Sachen
+    ui->mainTabWidget->setTabVisible(7, false);   //Extras
     ui->mainTabWidget->setCurrentIndex(Settings::readIndex());
 #endif
 
-    //check ob die .ini da ist
+    // https://waltertools.blaetterkatalog.de/blaetterkatalog/catalogs/catalog/de/2017/html/berechnungsformeln_fraesen_drehz.html
+
+    // Prüffen ob die .ini da ist, sonst wird sie erstellt
     if(!Settings::INIcheck()){
         Settings::create();
     };
 
-    //check ob die .xlsx da ist
+    // Prüffen ob die .xlsx da ist, sonst wird sie erstellt
     if(!Settings::xlsxCheck()) {
         createDatabase::createSimple();
         createDatabase::createDynamic();
@@ -60,9 +62,9 @@ MainWindow::MainWindow(QWidget *parent)
         createDatabase::createThread();
     }
 
-    //Settings::test();   // zum Testen
+    //Misc::MSGbox("Title", "Text", -1, 5, 1);   // zum Testen
 
-    //Disclaimer
+    // Disclaimer anzeige und UI aktualisierung
     Settings::showDis();
     if(Settings::readDis()){
         ui->DisclaimerIn->setCurrentIndex(0);
@@ -70,8 +72,11 @@ MainWindow::MainWindow(QWidget *parent)
         ui->DisclaimerIn->setCurrentIndex(1);
     }
 
-    //Einstellungen Lesen
-    //max RPM
+    //
+    // Einstellungen Lesen
+    //
+
+    // maximale Drehzahl in UI uebernehmen
     ui->MaxDrehzahlAuswahlEinfach->setValue(Settings::maxRpmFr());
     ui->MaxDrehzahlAuswahlTpc->setValue(Settings::maxRpmFr());
     ui->MaxDrehzahlAuswahlBohren->setValue(Settings::maxRpmFr());
@@ -82,7 +87,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->maxMillSpeedIn->setValue(Settings::maxRpmFr());
     ui->maxTurnSpeedIn->setValue(Settings::maxRpmDr());
 
-    //mashine condition
+    // Bedingung in UI uebernehmen
     switch (Settings::condition()){
     case 2:
         ui->BeStabilTpc->setChecked(true);
@@ -109,7 +114,8 @@ MainWindow::MainWindow(QWidget *parent)
         ui->conditionIn->setCurrentIndex(0);
         break;
     }
-    //cuting material  
+
+    // Schneidstoff in UI uebernehmen
     switch (Settings::cutMat()){
     case 2:
         ui->SchnKeramikTpc->setChecked(true);
@@ -135,7 +141,8 @@ MainWindow::MainWindow(QWidget *parent)
         ui->cutMatIn->setCurrentIndex(0);
         break;
     }
-    //drill angle
+
+    // Spitzenwinkel in UI uebernehmen
     switch (Settings::angleDrill()){
     case 2:
         ui->SpitzenWinkel140->setChecked(true);
@@ -150,7 +157,8 @@ MainWindow::MainWindow(QWidget *parent)
         ui->drillAngleIn->setCurrentIndex(0);
         break;
     }
-    //cooling solution
+
+    // Standard Kuehlung in UI uebernehmen
     switch (Settings::cooling()){
     case 2:
         ui->OilTpc->setChecked(true);
@@ -178,39 +186,39 @@ MainWindow::MainWindow(QWidget *parent)
         break;
     }
 
-    //simple mat
+    // Simple Materialliste und Durchmesserliste in UI schreiben
     ui->MaterialAuswahlEinfach->addItems(Simple::matList());
     ui->FraeserDurchmesserAuswahlEinfach->addItems(Simple::dList());
 
-    //dynamic mat
+    // Dynamic Materialliste in UI schreiben
     ui->MaterialAuswahlTpc->addItems(Dynamic::matList());
 
-    //Slot mat
+    // Slot Materialliste in UI schreiben
     ui->MaterialAuswahlNut->addItems(Slot::matList());
 
-    //Plan90 mat
+    // Plan Materialliste in UI schreiben
     ui->MaterialAuswahlPlan->addItems(Plan::matList(ui->SchneidenGeometryPlan->currentIndex()));
 
-    //Drill mat
+    // Dirll Materialliste in UI schreiben
     ui->MaterialAuswahlBohren->addItems(Drill::matList());
 
-    //Turn mat
+    // Turn Materialliste in UI schreiben
     ui->MaterialAuswahlTurn->addItems(Turn::matList());
     ui->FraeserDurchmesserAuswahlNut->addItems(Slot::dList());
 
-    //Thread mat
+    // Thread Materialliste in UI schreiben
     ui->MaterialAuswahlGewinde->addItems(Thread::matList());
     ui->DurchmesserAuswahlGewinde->addItems(Thread::dList());
 
-    //einstellungen uebernehmen
+    // maximale Spindelleistung in UI uebernehmen
     ui->MaxMillPcIn->setValue(Settings::maxKw());
     ui->maxTurnPcIn->setValue(Settings::maxKwDr());
 
-    //Update Check
+    // Update Check
     if(Settings::autoUpdate()){
         qDebug() << "Automatische Updatesuche ist eingeschaltet";
         ui->autoUpdateIn->setCurrentIndex(0);
-        if(!Misc::updateCheck()){
+        if(Misc::updateCheck()){
             Misc::UPDATE();
         }
     }else{
@@ -226,7 +234,7 @@ MainWindow::~MainWindow(){
 }
 
 
-// Material Auswahl
+// mit Material Auswahl verschiedene DInge verstlegen
 void MainWindow::on_MaterialAuswahlEinfach_currentIndexChanged(int index){
     ui->VcOutEinfach->setText(QString::number(Simple::Vc(index)) + " m/min");
 }
@@ -300,7 +308,7 @@ void MainWindow::on_MaterialAuswahlGewinde_currentIndexChanged(int index){
 }
 
 
-// Durchmesser Auswahl
+// mit Durchmesser Auswahl verschiedene DInge verstlegen
 void MainWindow::on_FraeserdurchmesserAuswahlTpc_valueChanged(double arg1){
     ui->ApAuswahlTpc->setValue(arg1 * 2);
 }
@@ -353,32 +361,25 @@ void MainWindow::on_BtnCalcTpc_clicked(){
     const double pi = M_PI;
     double D = ui->FraeserdurchmesserAuswahlTpc->value();
     double ap = ui->ApAuswahlTpc->value();
+    int N;
     int maxN = ui->MaxDrehzahlAuswahlTpc->value();
     int z = ui->SchneidenAuswahlTpc->value();
     int Kc = Dynamic::Kc(ui->MaterialAuswahlTpc->currentIndex());
     double Mc = Dynamic::Mc(ui->MaterialAuswahlTpc->currentIndex());
     double maxKw = Settings::maxKw();
-    double C4 = 1.5;  //Verschleiss
-    double C1;        //Kuehlung
-    double C2;        //Schneidstoff
-    double C3;        //Vc
+    double C4 = 1.5;    // Verschleiss
+    double C1;          // Kuehlung
+    double C2;          // Schneidstoff
+    double C3;          // Vc
     double Vc;
     double fz;
     double ae;
-    double Pc;
-    double def;
-    int eTool;
-    double Fcut;
-    int N;
-    bool macos;
+    double Pc;          // Schnittleistung
+    double def;         // deflection
+    int eTool;          // E-Modul des Werkzeuges
+    double Fcut;        // Spindelleistung
 
     setCursor(Qt::CursorShape::WaitCursor);
-
-    if(QSysInfo::productType() == "macos") {
-        macos = true;
-    }else {
-        macos = false;
-    }
 
     if(ui->BeStabilTpc->isChecked()) {
         Vc = Dynamic::Vc(ui->MaterialAuswahlTpc->currentIndex(), 2);
@@ -407,7 +408,7 @@ void MainWindow::on_BtnCalcTpc_clicked(){
         eTool = 400; // 400 - 500
     }else if (ui->SchnVhmTpc->isChecked()) {
         C2 = 1;
-        eTool = 000; // 400 - 500
+        eTool = 400; // 400 - 500
     }else {
         C2 = 1.2;
         eTool = 200; // 200 - 210
@@ -434,7 +435,7 @@ void MainWindow::on_BtnCalcTpc_clicked(){
 
     // Neue Formel mal testen
     // nach Bernard Euler
-    // def = (Fcut * pow(ae,3)) / (3 * eTool * (((π / 4) * pow(D,4))*0.6666))
+    //def = (Fcut * pow(ae,3)) / (3 * eTool * (((pi / 4) * pow(D,4))*0.6666));
 
     def = (Fcut * pow((ap + 10), 3)) / (3 * eTool * 0.66 * (pow(D, 4) / 64));
 
@@ -456,18 +457,7 @@ void MainWindow::on_BtnCalcTpc_clicked(){
     }
 
     if(D <= 4.5){
-        QMessageBox msg;
-        QString title(tr("Info"));
-        QString text(tr("Die aktuelle Berechnung der Deflection ist erst \nab einem Fräserdurchmesser von > 4,5 mm gültig!"));
-        if(macos) {
-            msg.setInformativeText(text);
-            msg.setText(title);
-        }else {
-            msg.setText(text);
-            msg.setWindowTitle(title);
-        }
-        msg.setIcon(QMessageBox::Information);
-        msg.exec();
+        Misc::MSGbox(tr("Info"), tr("Die aktuelle Berechnung der Deflection ist erst \nab einem Fräserdurchmesser von > 4,5 mm gültig!"), -1, 2, 1);
     }
 
     ui->progressBarTpc->setValue(Pc * 1000);
@@ -484,18 +474,18 @@ void MainWindow::on_BtnCalcNut_clicked(){
     double Vc = Slot::Vc(ui->MaterialAuswahlNut->currentIndex());
     double fz = Slot::fz(ui->FraeserDurchmesserAuswahlNut->currentIndex(),ui->MaterialAuswahlNut->currentIndex());
     double maxKw = Settings::maxKwDr();
-    double C4 = 1.3;  //Verschleiss
-    double C1;        //Kuehlung
-    double C2;        //Schneidstoff
-    double C3;        //Vc
-    double Pc;
-    double Q;
-    double phi;
-    double K;
+    double C4 = 1.3;    // Verschleiss faktor
+    double C1;          // Kuehlung faktor
+    double C2;          // Schneidstoff faktor
+    double C3;          // Vc faktor
+    double Pc;          // Schnittleistung
+    double Q;           // Zeitspanvolumen
+    double phi;         // Eingriffwinkel
+    double K;           // Spezifische Schnittkraft
     double Kc = Slot::Kc(ui->MaterialAuswahlNut->currentIndex());
     double Mc = Slot::Mc(ui->MaterialAuswahlNut->currentIndex());
-    double h;
-    double y;
+    double h;           // mittlere Spanungsdicke
+    double y;           // Gegenlaufeingriff
 
     setCursor(Qt::CursorShape::WaitCursor);
 
@@ -543,7 +533,7 @@ void MainWindow::on_BtnCalcNut_clicked(){
     h = (114.7 * fz * sin(90) * (D / D)) / phi;
     y = D - (D / 2);
     K = (1 - (0.01 * y)) / ( pow(h, Mc)) * Kc * C1 * C2 * C3 * C4;
-    Pc = (Q * K) / (60000 * 0.85); //Pc = C1 * C2 * C3 * C4 * 1;
+    Pc = (Q * K) / (60000 * 0.85);
 
     ui->RealVcOutNut->setText(QString::number(round((N * pi * D) / 1000)) + " m/min");
 
@@ -567,6 +557,7 @@ void MainWindow::on_BtnCalcNut_clicked(){
 void MainWindow::on_BtnCalcPlan_clicked(){
     const double pi = M_PI;
     double D = ui->FraeserdurchmesserAuswahlPlan->value();
+    int N;
     int maxN = ui->MaxDrehzahlAuswahlPlan->value();
     int schnGeo = ui->SchneidenGeometryPlan->currentIndex();
     int z = ui->SchneidenAuswahlPlan->value();
@@ -575,19 +566,18 @@ void MainWindow::on_BtnCalcPlan_clicked(){
     double ae = ui->AeAuswahlPlan->value();
     double ap = ui->ApAuswahlPlan->value();
     double maxKw = Settings::maxKw();
-    double C4 = 1.3;  //Verschleiss
-    double C1;        //Kuehlung
-    double C2;        //Schneidstoff
-    double C3;        //Vc
+    double C4 = 1.3;        //Verschleiss faktor
+    double C1;              //Kuehlung faktor
+    double C2;              //Schneidstoff faktor
+    double C3;              //Vc faktor
     double Vc;
-    double Pc;
-    double K;
-    double Q;
-    double h;
-    double y;
-    double einstellWinkel;
-    double phi;
-    int N;
+    double Pc;              // Schnittleistung
+    double K;               // Spezifische Schnittkraft
+    double Q;               // Zeitspanvolumen
+    double h;               // mittlere Spanungsdicke
+    double y;               // Gegenlaufeingriff
+    double einstellWinkel;  // 90 oder 45
+    double phi;             // Eingriffwinkel
     int bed;
 
     setCursor(Qt::CursorShape::WaitCursor);
@@ -677,21 +667,21 @@ void MainWindow::on_BtnCalcPlan_clicked(){
 void MainWindow::on_BtnCalcBohren_clicked(){
     const double pi = M_PI;
     double D = ui->FraeserdurchmesserAuswahlBohren->value();
+    int N;
     int maxN = ui->MaxDrehzahlAuswahlBohren->value();
     double fu = Drill::fu(ui->MaterialAuswahlBohren->currentIndex(), D);
     int Kc = Drill::Kc(ui->MaterialAuswahlBohren->currentIndex());
     double Mc = Drill::Mc(ui->MaterialAuswahlBohren->currentIndex());
     double maxKw = Settings::maxKw();
-    double C4 = 1.3;  //Verschleiss
-    double C1;        //Kuehlung
-    double C2;        //Schneidstoff
-    double C3;        //Vc
+    double C4 = 1.3;    //Verschleiss faktor
+    double C1;          //Kuehlung faktor
+    double C2;          //Schneidstoff faktor
+    double C3;          //Vc faktor
     double Vc;
-    double Pc;
-    double h;
-    int N;
-    int spWi;
-    int schn;
+    double Pc;          // Schnittleistung
+    double h;           // Spanungsdicke
+    int spWi;           // Spitzenwinkel
+    int schn;           // Schneidstoff
     int bed;
 
     setCursor(Qt::CursorShape::WaitCursor);
@@ -770,22 +760,22 @@ void MainWindow::on_BtnCalcBohren_clicked(){
 void MainWindow::on_BtnCalcTurn_clicked(){
     const double pi = M_PI;
     double D = ui->WerkstueckDurchmesserAuswahl->value();
+    int N;
     int maxN = ui->MaxDrehzahlAuswahlTurn->value();
     int Kc = Turn::Kc(ui->MaterialAuswahlTurn->currentIndex());
     double Mc = Turn::Mc(ui->MaterialAuswahlTurn->currentIndex());
     double ap = ui->ApAuswahlTurn->value();
     double fu = ui->FuAuswahlTurn->value();
     double maxKw = Settings::maxKwDr();
-    double C4 = 1.3;  //Verschleiss
-    double C1;        //Kuehlung
-    double C2;        //Schneidstoff
-    double C3;        //Vc
+    double C4 = 1.3;    // Verschleiss faktor
+    double C1;          // Kuehlung faktor
+    double C2;          // Schneidstoff faktor
+    double C3;          // Vc faktor
     double Vc;
-    double Pc;
-    double K;
-    double Q;
-    double h;
-    int N;
+    double Pc;          // Schnittleistung
+    double K;           // Spezifische Schnittkraft
+    double Q;           // Zeitspanvolumen
+    double h;           // Spanungsdicke
     int bed;
 
     setCursor(Qt::CursorShape::WaitCursor);
@@ -883,6 +873,7 @@ void MainWindow::on_BtnCalcGewinde_clicked(){
 }
 
 
+// Sonder Sachen
 void MainWindow::on_SchneidenGeometryPlan_currentIndexChanged(int index){
     int bed;
     int mat = ui->MaterialAuswahlPlan->currentIndex();

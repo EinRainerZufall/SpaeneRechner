@@ -78,7 +78,7 @@ bool Misc::updateCheck(){
         case QMessageBox::Yes:
             return true;
         case QMessageBox::No:
-            return false;;
+            return false;
         }
     }
 
@@ -94,4 +94,79 @@ void Misc::UPDATE(){
     if(type.isEmpty())
 
     return;
+}
+
+int Misc::MSGbox(QString title, QString text, int error, int type, int buttonStyle){
+    /*
+     * error -> den Fehlercode der uebergeben werden soll, wenn kein Fehlercode uebergeben werden soll dann -1
+     *
+     * type -> welche Art von MessageBox es sein soll   - 1 = Frage
+     *                                                  - 2 = Info
+     *                                                  - 3 = Warnung
+     *                                                  - 4 = Criticat error
+     *                                                  - sonst ohne Bild
+     *
+     * buttonStyle  - 1 = ok Button
+     *              - 2 = Ja und Nein Button
+     *
+     *
+     * gibt den INT Wert des Button zurueck
+    */
+
+    bool macos;
+
+    if(QSysInfo::productType() == "macos") {
+        macos = true;
+    }else {
+        macos = false;
+    }
+
+    QMessageBox msg;
+    if(macos){
+        msg.setInformativeText(text);
+        msg.setText(title);
+    }else {
+        msg.setText(text);
+        msg.setWindowTitle(title);
+    }
+
+    if(error > 0){
+        msg.setInformativeText(QObject::tr("Fehlercode: ") + QString::number(error));
+    }
+
+    switch(type){
+    case 1:
+        msg.setIcon(QMessageBox::Question);
+        break;
+    case 2:
+        msg.setIcon(QMessageBox::Information);
+        break;
+    case 3:
+        msg.setIcon(QMessageBox::Warning);
+        break;
+    case 4:
+        msg.setIcon(QMessageBox::Critical);
+        break;
+    default:
+        msg.setIcon(QMessageBox::NoIcon);
+        break;
+    }
+
+    switch(buttonStyle){
+    case 1:
+        msg.setStandardButtons(QMessageBox::Ok);
+        break;
+    case 2:
+        msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        msg.setDefaultButton(QMessageBox::Yes);
+        msg.setEscapeButton(QMessageBox::No);
+        break;
+    default:
+        msg.setStandardButtons(QMessageBox::Ok);
+        break;
+    }
+
+    int x = msg.exec();
+
+    return x;
 }

@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     MainWindow w;
-    w.show();
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
@@ -26,6 +25,8 @@ int main(int argc, char *argv[])
             break;
         }
     }
+
+    w.show();
 
     return a.exec();
 }
