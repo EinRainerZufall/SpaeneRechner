@@ -2,21 +2,26 @@ name: Build and deploy Qt application
 
 on:
   push:
-    branches: [main]
+    branches:
+      - master
 
 jobs:
   build:
-    
-    steps:
-      - name: checkout code
-      - uses: actions/checkout@v2
-      
-      - name: Setup Qt
-        uses: thomaslorentsen/setup-qt@v1
-        with:
-          qt-version: 6.2.3
-      
-      - name: Build for Windows
-        if: runner.os == 'Windows'
-        run: qmake && MSVC2019-make
+    runs-on: windows-latest
 
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Visual Studio
+      uses: actions/setup-visual-studio@v1
+      with:
+        visual-studio-version: 2019
+
+    - name: Setup Qt
+      uses: mattia46/actions-qt/setup-qt@v1
+      with:
+        qt-version: 6.2.3
+
+    - name: Build project
+      run: qmake && nmake
