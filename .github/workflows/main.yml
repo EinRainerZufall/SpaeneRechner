@@ -19,5 +19,5 @@ jobs:
       
       - name: Build for Windows
         if: runner.os == 'Windows'
-        run: qmake && MSVC2019
+        run: qmake && MSVC2019-make
 
