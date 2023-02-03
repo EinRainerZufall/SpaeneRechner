@@ -7,21 +7,26 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
-
+    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: checkout code
+      - uses: actions/checkout@v2
+      
+      - name: Build for Windows
+        if: runner.os == 'Windows'
+        run: qmake && MSVC2019-make
 
-    - name: Setup Visual Studio
-      uses: actions/setup-visual-studio@v1
-      with:
-        visual-studio-version: 2019
+        - name: Install Visual Studio 2019
+          uses: microsoft/setup-visual-studio@v1
+          with:
+            vs-version: 2019
 
-    - name: Setup Qt
-      uses: mattia46/actions-qt/setup-qt@v1
-      with:
-        qt-version: 5.15
+        - name: Setup Qt
+          uses: mattia46/actions-qt/setup-qt@v1
+          with:
+            qt-version: 6.2.3
+            vs-version: 2019
 
-    - name: Build project
-      run: qmake && nmake
+        - name: Build project
+          run: qmake && nmake
+
