@@ -2,7 +2,7 @@ name: Build and deploy Qt application
 
 on:
   push:
-    branches: [actions-test]
+    branches: [main]
 
 jobs:
   build:
