@@ -10,16 +10,23 @@
 #include <QNetworkReply>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
+#include <QStandardPaths>
+#include <QDir>
+#include <QProcess>
+#include <QDebug>
 
 class Misc: public QObject{
     Q_OBJECT
 public:
     static bool updateCheck();
     static void UPDATE();
-    static int MSGbox(QString title, QString text, int error, int type, int buttonStyle);
-    void waitForResponse();
+    static int MSGbox(QString title, QString text, int type, int buttonStyle, QString error = "");
+    void waitForResponseVer();
+    void waitForResponseUrl();
 signals:
-    void responseReceived();
+    void responseReceivedVer();
+    void responseReceivedUrl();
 };
 
 #endif // MISC_H

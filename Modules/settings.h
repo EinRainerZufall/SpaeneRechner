@@ -27,6 +27,7 @@ public:
     static void create();
     static int readIndex();
     static bool autoUpdate();
+    static void deleteAll();
     static void test();
 };
 

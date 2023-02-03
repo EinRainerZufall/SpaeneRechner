@@ -2,11 +2,18 @@
 
 namespace{
 QString nVer = QCoreApplication::applicationVersion();
+QString downloadUrl = "";
 }
 
-void Misc::waitForResponse(){
+void Misc::waitForResponseVer(){
     QEventLoop loop;
-    QAbstractSocket::connect(this, &Misc::responseReceived, &loop, &QEventLoop::quit);
+    QAbstractSocket::connect(this, &Misc::responseReceivedVer, &loop, &QEventLoop::quit);
+    loop.exec();
+}
+
+void Misc::waitForResponseUrl(){
+    QEventLoop loop;
+    QAbstractSocket::connect(this, &Misc::responseReceivedUrl, &loop, &QEventLoop::quit);
     loop.exec();
 }
 
@@ -21,6 +28,7 @@ bool Misc::updateCheck(){
     QNetworkAccessManager *manager = new QNetworkAccessManager();
     QNetworkRequest request;
     request.setUrl(QUrl("https://api.github.com/repos/EinRainerZufall/SpaeneRechner/releases/latest"));
+    request.setRawHeader("User-Agent", "application/vnd.github+json");
     QNetworkReply *reply = manager->get(request);
 
     Misc misc;
@@ -34,10 +42,10 @@ bool Misc::updateCheck(){
             nVer = jsonObject["tag_name"].toString();
         }
         reply->deleteLater();;
-        emit misc.responseReceived();
+        emit misc.responseReceivedVer();
     });
 
-    misc.waitForResponse();
+    misc.waitForResponseVer();
 
     if(nVer.at(0).digitValue()){
         nVer.remove(0,1);
@@ -86,19 +94,83 @@ bool Misc::updateCheck(){
 }
 
 void Misc::UPDATE(){
-    QString type;
+    QDir dir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp");
+    QString type = QSysInfo::productType();
     QString filter;
+    QString DateiName;
 
-    type = QSysInfo::productType();
+    qDebug() << "Update wird gestartet";
 
-    if(type.isEmpty())
+    if(type == "windows"){
+        filter = "windows-installer";
+        DateiName = "installer.exe";
+    }else{
+        qDebug() << "Bestimmung des Systems Fehlgeschlagen";
+        return;
+    }
 
+    QNetworkAccessManager *manager = new QNetworkAccessManager();
+    QNetworkRequest request;
+    request.setUrl(QUrl("https://api.github.com/repos/EinRainerZufall/SpaeneRechner/releases/latest"));
+    request.setRawHeader("User-Agent", "application/vnd.github+json");
+    QNetworkReply *reply = manager->get(request);
+
+    Misc misc;
+    QObject context;
+    connect(reply, &QNetworkReply::finished, &context, [reply, &misc, filter]() {
+        if (reply->error()){
+            qDebug() << "Fehler beim abrufen der Download url, mit Fehler:" << reply->errorString();
+        }else{
+            QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
+                QJsonArray assets = jsonResponse.object()["assets"].toArray();
+                for (const auto &asset : assets) {
+                    downloadUrl = asset.toObject()["browser_download_url"].toString();
+                    if(downloadUrl.contains(filter)) {
+                        // ... do something with downloadUrl ...
+                        qDebug() << "Download url:" << downloadUrl;
+                    }
+                }
+        }
+        emit misc.responseReceivedUrl();
+    });
+
+    misc.waitForResponseUrl();
+
+    if(dir.exists()){
+        qDebug() << "Der 'temp' Ordner ist vorhanden und wird gelöscht!";
+        dir.removeRecursively();
+    }
+    dir.mkdir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp");
+
+    reply = manager->get(QNetworkRequest(QUrl(downloadUrl)));
+    QEventLoop download;
+    connect(reply, &QNetworkReply::finished, &download, &QEventLoop::quit);
+    qDebug() << "Download der Datei gestartet...";
+    download.exec();
+    if(reply->error()){
+        qDebug() << "Download der Datei fehlgeschlagen!";
+    }else{
+        QFile file(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp/"+DateiName);
+        file.open(QIODevice::WriteOnly);
+        file.write(reply->readAll());
+        file.close();
+        reply->deleteLater();
+    }
+
+    qDebug() << "Download der Datei erfolgreich!";
+
+    if(type == "windows"){
+        // @echo off
+        // taskkill /im me
+        // start installer.exe
+        QProcess process;
+        qDebug() << "Prozessname:" << process.objectName();
+    }
     return;
 }
 
-int Misc::MSGbox(QString title, QString text, int error, int type, int buttonStyle){
+int Misc::MSGbox(QString title, QString text, int type, int buttonStyle, QString error){
     /*
-     * error -> den Fehlercode der uebergeben werden soll, wenn kein Fehlercode uebergeben werden soll dann -1
      *
      * type -> welche Art von MessageBox es sein soll   - 1 = Frage
      *                                                  - 2 = Info
@@ -109,6 +181,8 @@ int Misc::MSGbox(QString title, QString text, int error, int type, int buttonSty
      * buttonStyle  - 1 = ok Button
      *              - 2 = Ja und Nein Button
      *
+     *
+     * error -> den genauen Fehler der uebergeben werden soll
      *
      * gibt den INT Wert des Button zurueck
     */
@@ -130,8 +204,8 @@ int Misc::MSGbox(QString title, QString text, int error, int type, int buttonSty
         msg.setWindowTitle(title);
     }
 
-    if(error > 0){
-        msg.setInformativeText(QObject::tr("Fehlercode: ") + QString::number(error));
+    if(!error.isEmpty()){
+        msg.setDetailedText(error);
     }
 
     switch(type){

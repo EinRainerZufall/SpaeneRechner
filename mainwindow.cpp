@@ -15,6 +15,8 @@
 #include "Modules/misc.h"
 
 
+// warum brauche ich die warumWisoWeshalb bool im thread modul ?????
+
 /*
  *  todo:
  *  - Extras komplett
@@ -62,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent)
         createDatabase::createThread();
     }
 
-    //Misc::MSGbox("Title", "Text", -1, 5, 1);   // zum Testen
+    //Misc::UPDATE();   // zum Testen
 
     // Disclaimer anzeige und UI aktualisierung
     Settings::showDis();
@@ -209,6 +211,18 @@ MainWindow::MainWindow(QWidget *parent)
     // Thread Materialliste in UI schreiben
     ui->MaterialAuswahlGewinde->addItems(Thread::matList());
     ui->DurchmesserAuswahlGewinde->addItems(Thread::dList());
+
+    // Start index setzen
+    ui->MaterialAuswahlEinfach->setCurrentIndex(0);
+    ui->FraeserDurchmesserAuswahlEinfach->setCurrentIndex(0);
+    ui->MaterialAuswahlTpc->setCurrentIndex(0);
+    ui->MaterialAuswahlNut->setCurrentIndex(0);
+    ui->MaterialAuswahlPlan->setCurrentIndex(0);
+    ui->MaterialAuswahlBohren->setCurrentIndex(0);
+    ui->MaterialAuswahlTurn->setCurrentIndex(0);
+    ui->FraeserDurchmesserAuswahlNut->setCurrentIndex(0);
+    ui->MaterialAuswahlGewinde->setCurrentIndex(0);
+    ui->DurchmesserAuswahlGewinde->setCurrentIndex(0);
 
     // maximale Spindelleistung in UI uebernehmen
     ui->MaxMillPcIn->setValue(Settings::maxKw());
@@ -457,7 +471,7 @@ void MainWindow::on_BtnCalcTpc_clicked(){
     }
 
     if(D <= 4.5){
-        Misc::MSGbox(tr("Info"), tr("Die aktuelle Berechnung der Deflection ist erst \nab einem Fräserdurchmesser von > 4,5 mm gültig!"), -1, 2, 1);
+        Misc::MSGbox(tr("Info"), tr("Die aktuelle Berechnung der Deflection ist erst \nab einem Fräserdurchmesser von > 4,5 mm gültig!"), 2, 1);
     }
 
     ui->progressBarTpc->setValue(Pc * 1000);
@@ -1182,6 +1196,7 @@ void MainWindow::on_btnCreateAll_clicked(){
     setCursor(Qt::CursorShape::WaitCursor);
 
     createDatabase::deleteWorkbook();
+    qDebug() << "XLSX Datei gelöscht!";
 
     createDatabase::createSimple();
     createDatabase::createDynamic();
@@ -1191,13 +1206,13 @@ void MainWindow::on_btnCreateAll_clicked(){
     createDatabase::createPlan45();
     createDatabase::createTurn();
     createDatabase::createThread();
+    qDebug() << "XLSX Datei neu erstellt!";
 
     setCursor(Qt::CursorShape::ArrowCursor);
 }
 
 void MainWindow::on_btnSettingsWrite_clicked(){
     setCursor(Qt::CursorShape::WaitCursor);
-    qDebug() << "Einstellungen per Button gespeichert!";
 
     int dis = ui->DisclaimerIn->currentIndex();
     int FrN = ui->maxMillSpeedIn->text().toInt();
@@ -1215,6 +1230,7 @@ void MainWindow::on_btnSettingsWrite_clicked(){
     }
 
     Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index, update);
+    qDebug() << "Einstellungen per Button gespeichert!";
 
     setCursor(Qt::CursorShape::ArrowCursor);
 }
@@ -1226,11 +1242,11 @@ void MainWindow::on_btnOpenXLSX_clicked(){
 
 }
 
-
-// close event
-void MainWindow::closeEvent(QCloseEvent *event){
+void MainWindow::on_btnCreateSettings_clicked(){
     setCursor(Qt::CursorShape::WaitCursor);
-    qDebug() << "Einstellungen automatisch gespeichert!";
+
+    Settings::deleteAll();
+    qDebug() << "Einstellungen gelöscht!";
 
     int dis = ui->DisclaimerIn->currentIndex();
     int FrN = ui->maxMillSpeedIn->text().toInt();
@@ -1248,6 +1264,43 @@ void MainWindow::closeEvent(QCloseEvent *event){
     }
 
     Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index, update);
+    qDebug() << "Einstellungen neu erstellt!";
+
+    setCursor(Qt::CursorShape::ArrowCursor);
+}
+
+void MainWindow::on_updateForce_clicked(){
+    if(!Misc::updateCheck()){
+        setCursor(Qt::CursorShape::WaitCursor);
+        Misc::UPDATE();
+        setCursor(Qt::CursorShape::ArrowCursor);
+    }else{
+        Misc::MSGbox(tr("Information"), tr("Es ist kein Update verfügbar"), 2, 1);
+    }
+}
+
+
+// close event
+void MainWindow::closeEvent(QCloseEvent *event){
+    setCursor(Qt::CursorShape::WaitCursor);
+
+    int dis = ui->DisclaimerIn->currentIndex();
+    int FrN = ui->maxMillSpeedIn->text().toInt();
+    double FrPc = ui->MaxMillPcIn->value();
+    int bed = ui->conditionIn->currentIndex();
+    int cutMat = ui->cutMatIn->currentIndex();
+    int BoWinkel = ui->drillAngleIn->currentIndex();
+    int cooling = ui->coolingTypeIn->currentIndex();
+    int TurN = ui->maxTurnSpeedIn->text().toInt();
+    double TurPc = ui->maxTurnPcIn->value();
+    int index = ui->mainTabWidget->currentIndex();
+    bool update = true;
+    if(ui->autoUpdateIn->currentIndex() == 1){
+        update = false;
+    }
+
+    Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index, update);
+    qDebug() << "Einstellungen automatisch gespeichert!";
 
     setCursor(Qt::CursorShape::ArrowCursor);
 
@@ -1340,4 +1393,3 @@ void MainWindow::on_GeoTolPos_editingFinished(){
         ui->PosIcon->setPixmap(QPixmap(":/img/src/symbol_no.svg"));
     }
 }
-

@@ -590,6 +590,14 @@ bool Settings::autoUpdate(){
     return out;
 }
 
+void Settings::deleteAll(){
+    const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/config.ini";
+
+    QFile::remove(QString::fromStdString(file));
+
+    return;
+}
+
 void Settings::test(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
 

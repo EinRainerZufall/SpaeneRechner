@@ -1,4 +1,5 @@
 #include "Modules/plan.h"
+#include "Modules/misc.h"
 
 namespace{
 int planIndex;
@@ -47,6 +48,19 @@ double Plan::Vc(int mat, int bed, int schnForm) {
     wb.load(file);
     xlnt::worksheet ws = wb.sheet_by_index(planIndex);
 
+    if(ws.cell(bed, mat).to_string().empty()){
+        Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
+                     QObject::tr("Die Zelle '%0' hat den Wert 'NULL' der nicht erlaubt ist."
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(bed, mat).reference().to_string()),
+                                                                              QString::fromStdString(ws.title())));
+    }else if(ws.cell(bed, mat).data_type() != xlnt::cell_type::number){
+        Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
+                     QObject::tr("Die Zelle '%0' hat den Wert '%1' der nicht erlaubt ist."
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(bed, mat).reference().to_string()),
+                                                                              QString::fromStdString(ws.cell(bed, mat).to_string()),
+                                                                              QString::fromStdString(ws.title())));
+    }
+
     Vc = ws.cell(bed, mat).value<double>();
 
     return Vc;
@@ -83,6 +97,19 @@ double Plan::fz(int mat, int bed, int schnForm, double D, double Ae) {
     wb.load(file);
     xlnt::worksheet ws = wb.sheet_by_index(planIndex);
 
+    if(ws.cell(column, mat).to_string().empty()){
+        Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
+                     QObject::tr("Die Zelle '%0' hat den Wert 'NULL' der nicht erlaubt ist."
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
+                                                                              QString::fromStdString(ws.title())));
+    }else if(ws.cell(column, mat).data_type() != xlnt::cell_type::number){
+        Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
+                     QObject::tr("Die Zelle '%0' hat den Wert '%1' der nicht erlaubt ist."
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
+                                                                              QString::fromStdString(ws.cell(column, mat).to_string()),
+                                                                              QString::fromStdString(ws.title())));
+    }
+
     fz = ws.cell(column, mat).value<double>();
 
     return fz;
@@ -107,6 +134,19 @@ int Plan::Kc(int mat, int schnForm) {
     wb.load(file);
     xlnt::worksheet ws = wb.sheet_by_index(planIndex);
 
+    if(ws.cell(column, mat).to_string().empty()){
+        Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
+                     QObject::tr("Die Zelle '%0' hat den Wert 'NULL' der nicht erlaubt ist."
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
+                                                                              QString::fromStdString(ws.title())));
+    }else if(ws.cell(column, mat).data_type() != xlnt::cell_type::number){
+        Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
+                     QObject::tr("Die Zelle '%0' hat den Wert '%1' der nicht erlaubt ist."
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
+                                                                              QString::fromStdString(ws.cell(column, mat).to_string()),
+                                                                              QString::fromStdString(ws.title())));
+    }
+
     Kc = ws.cell(column, mat).value<int>();
 
     return Kc;
@@ -130,6 +170,19 @@ double Plan::Mc(int mat, int schnForm) {
     xlnt::workbook wb;
     wb.load(file);
     xlnt::worksheet ws = wb.sheet_by_index(planIndex);
+
+    if(ws.cell(column, mat).to_string().empty()){
+        Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
+                     QObject::tr("Die Zelle '%0' hat den Wert 'NULL' der nicht erlaubt ist."
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
+                                                                              QString::fromStdString(ws.title())));
+    }else if(ws.cell(column, mat).data_type() != xlnt::cell_type::number){
+        Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
+                     QObject::tr("Die Zelle '%0' hat den Wert '%1' der nicht erlaubt ist."
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
+                                                                              QString::fromStdString(ws.cell(column, mat).to_string()),
+                                                                              QString::fromStdString(ws.title())));
+    }
 
     Mc = ws.cell(column, mat).value<double>();
 

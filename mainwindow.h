@@ -113,9 +113,9 @@ private slots:
 
     void on_MaterialAuswahlNut_currentIndexChanged(int index);
 
-    void on_DurchmesserAuswahlGewinde_currentIndexChanged(int index);
-
     void on_MaterialAuswahlGewinde_currentIndexChanged(int index);
+
+    void on_DurchmesserAuswahlGewinde_currentIndexChanged(int index);
 
     void on_BtnCalcGewinde_clicked();
 
@@ -132,6 +132,10 @@ private slots:
     void on_IstPosY_editingFinished();
 
     void on_GeoTolPos_editingFinished();
+
+    void on_btnCreateSettings_clicked();
+
+    void on_updateForce_clicked();
 
 private:
     Ui::MainWindow *ui;
