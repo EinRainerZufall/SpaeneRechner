@@ -21,7 +21,7 @@ jobs:
     - name: Setup Qt
       uses: mattia46/actions-qt/setup-qt@v1
       with:
-        qt-version: 6.2.3
+        qt-version: 5.15
 
     - name: Build project
       run: qmake && nmake
