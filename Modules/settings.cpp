@@ -499,17 +499,18 @@ void Settings::create(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
 
     QSettings settings(path, QSettings::IniFormat);
-    settings.setValue("disclaimer", true);  // ob am Anfang der Disclaimer angezeigt werden soll
-    settings.setValue("maxRpmFr", 24000);   // die max Drehzahl der Fraes Spindel
-    settings.setValue("maxPcFr", 2.2);      // die max leistung der Fraes Spindel
-    settings.setValue("con", 1);            // die Zerspanbedingung                     (0=instabiel|1=normal|2=stabil)
-    settings.setValue("cutMat", 1);         // der standard Schneidstoff von Bohrern    (0=HSS|1=VHM|2=Keramik)
-    settings.setValue("spiWi", 0);          // der Spitzenwinkel von Bohrern            (0=188G|1=130G|2=140G)
-    settings.setValue("cooling", 0);        // die Kuehlungsart                         (0=trocken|1=KSS|2=Oel)
-    settings.setValue("maxRpmDr", 5000);    // die max Drehzahl der Dreh Spindel
-    settings.setValue("maxPcDr", 2.2);      // die max leistung der Dreh Spindel
-    settings.setValue("lastTab", 0);        // der letzte index vom mainTab
-    settings.setValue("autoUpdate", true);  // ob beim Programmstart nach updates gesucht werden soll
+    settings.setValue("disclaimer", true);          // ob am Anfang der Disclaimer angezeigt werden soll
+    settings.setValue("maxRpmFr", 24000);           // die max Drehzahl der Fraes Spindel
+    settings.setValue("maxPcFr", 2.2);              // die max leistung der Fraes Spindel
+    settings.setValue("con", 1);                    // die Zerspanbedingung                     (0=instabiel|1=normal|2=stabil)
+    settings.setValue("cutMat", 1);                 // der standard Schneidstoff von Bohrern    (0=HSS|1=VHM|2=Keramik)
+    settings.setValue("spiWi", 0);                  // der Spitzenwinkel von Bohrern            (0=188G|1=130G|2=140G)
+    settings.setValue("cooling", 0);                // die Kuehlungsart                         (0=trocken|1=KSS|2=Oel)
+    settings.setValue("maxRpmDr", 5000);            // die max Drehzahl der Dreh Spindel
+    settings.setValue("maxPcDr", 2.2);              // die max leistung der Dreh Spindel
+    settings.setValue("lastTab", 0);                // der letzte index vom mainTab
+    settings.setValue("autoUpdate", true);          // ob beim Programmstart nach updates gesucht werden soll
+    settings.setValue("lastCloseOnUpdate", false);  // interne variable um nach einem Update alles aufzuraeumen
 
     settings.sync();
 
@@ -594,6 +595,24 @@ void Settings::deleteAll(){
     const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/config.ini";
 
     QFile::remove(QString::fromStdString(file));
+
+    return;
+}
+
+void Settings::lastCloseOnUpdate(){
+    QSettings settings(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini", QSettings::IniFormat);
+    QDir dir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp");
+
+    if(settings.value("lastCloseOnUpdate").isValid()){
+        if(settings.value("lastCloseOnUpdate").toBool()){
+            if(dir.exists()){
+                qDebug() << "Der 'temp' Ordner wird nach dem Update gelöscht!";
+                dir.removeRecursively();
+            }
+        }
+    }
+
+    settings.setValue("lastCloseOnUpdate", false);
 
     return;
 }

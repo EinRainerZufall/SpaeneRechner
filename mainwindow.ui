@@ -29,7 +29,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -4619,9 +4619,9 @@ background: #dfdfdf;
      <widget class="QLabel" name="DurchmesserGewinde">
       <property name="geometry">
        <rect>
-        <x>545</x>
+        <x>529</x>
         <y>70</y>
-        <width>55</width>
+        <width>95</width>
         <height>25</height>
        </rect>
       </property>
@@ -4641,9 +4641,9 @@ background: #dfdfdf;
      <widget class="QLabel" name="SteigungGewinde">
       <property name="geometry">
        <rect>
-        <x>710</x>
+        <x>700</x>
         <y>70</y>
-        <width>70</width>
+        <width>80</width>
         <height>25</height>
        </rect>
       </property>

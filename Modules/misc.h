@@ -14,7 +14,7 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QProcess>
-#include <QDebug>
+#include <QSettings>
 
 class Misc: public QObject{
     Q_OBJECT

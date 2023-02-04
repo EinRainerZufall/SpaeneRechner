@@ -102,10 +102,27 @@ void Misc::UPDATE(){
     qDebug() << "Update wird gestartet";
 
     if(type == "windows"){
-        filter = "windows-installer";
+        filter = "windows-x64-installer";
         DateiName = "installer.exe";
+        qDebug() << "Update wird für" << QSysInfo::prettyProductName() << "ausgeführt!";
+
+    }else if(type == "macos"){
+        //filter = "windows-installer";
+        //DateiName = "installer.exe";
+        qDebug() << "Update wird für" << QSysInfo::prettyProductName() << "ausgeführt!";
+        qDebug() << "Das automatische Update wird im moment nur unter Windows unterstützt!";
+        return;
+
+    }else if(type == ""){
+        //filter = "windows-installer";
+        //DateiName = "installer.exe";
+        qDebug() << "Update wird für" << QSysInfo::prettyProductName() << "ausgeführt!";
+        qDebug() << "Das automatische Update wird im moment nur unter Windows unterstützt!";
+        return;
+
     }else{
         qDebug() << "Bestimmung des Systems Fehlgeschlagen";
+        qDebug() << "Der Systemname ist:" << QSysInfo::productType();
         return;
     }
 
@@ -122,19 +139,23 @@ void Misc::UPDATE(){
             qDebug() << "Fehler beim abrufen der Download url, mit Fehler:" << reply->errorString();
         }else{
             QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
-                QJsonArray assets = jsonResponse.object()["assets"].toArray();
-                for (const auto &asset : assets) {
-                    downloadUrl = asset.toObject()["browser_download_url"].toString();
-                    if(downloadUrl.contains(filter)) {
-                        // ... do something with downloadUrl ...
-                        qDebug() << "Download url:" << downloadUrl;
-                    }
+            QJsonArray assets = jsonResponse.object()["assets"].toArray();
+            for (const auto &asset : assets) {
+                downloadUrl = asset.toObject()["browser_download_url"].toString();
+                if(downloadUrl.contains(filter)) {
+                    qDebug() << "Download url:" << downloadUrl;
                 }
+            }
         }
         emit misc.responseReceivedUrl();
     });
 
     misc.waitForResponseUrl();
+
+    if(downloadUrl.isEmpty()){
+        qDebug() << "Es ist ein Fehler beim Abrufen der url aufgetreten!";
+        return;
+    }
 
     if(dir.exists()){
         qDebug() << "Der 'temp' Ordner ist vorhanden und wird gelöscht!";
@@ -149,6 +170,7 @@ void Misc::UPDATE(){
     download.exec();
     if(reply->error()){
         qDebug() << "Download der Datei fehlgeschlagen!";
+        qDebug() << reply->errorString();
     }else{
         QFile file(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp/"+DateiName);
         file.open(QIODevice::WriteOnly);
@@ -160,11 +182,21 @@ void Misc::UPDATE(){
     qDebug() << "Download der Datei erfolgreich!";
 
     if(type == "windows"){
-        // @echo off
-        // taskkill /im me
-        // start installer.exe
-        QProcess process;
-        qDebug() << "Prozessname:" << process.objectName();
+        QSettings settings(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini", QSettings::IniFormat);
+
+        QFile autoUpdater(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp/"+"autoUpdater.bat");
+        if(autoUpdater.open(QIODevice::WriteOnly | QIODevice::Text)){
+            QTextStream stream(&autoUpdater);
+            stream << "@echo off\ntaskkill /im SpaeneRechner.exe\nstart " << QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp/"+DateiName;
+            autoUpdater.close();
+            qDebug() << "Auto Update script für" << QSysInfo::prettyProductName() << "erstellt!";
+        }
+
+        qDebug() << "Automatische installation gestartet!";
+        QProcess autoStart;
+        settings.setValue("lastCloseOnUpdate", true);
+        autoStart.start("cmd.exe", QStringList() << "/c" << QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp/"+"autoUpdater.bat");
+        autoStart.waitForFinished();
     }
     return;
 }

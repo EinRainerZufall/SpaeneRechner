@@ -10,8 +10,11 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setApplicationName("SpaeneRechner");
-    QCoreApplication::setApplicationVersion("0.5.6");
+    QCoreApplication::setApplicationVersion("0.7.4");
     QCoreApplication::setOrganizationDomain("https://github.com/EinRainerZufall/SpaeneRechner");
+
+    qDebug() << "Das Programm wurde mit QT Version:" << QT_VERSION_STR << "kompiliert!";
+    qDebug() << "Das Kompilierungsdatum ist der:" << __DATE__ << "um:" << __TIME__;
 
     QApplication a(argc, argv);
     MainWindow w;

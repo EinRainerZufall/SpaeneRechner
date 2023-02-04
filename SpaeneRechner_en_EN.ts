@@ -682,7 +682,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="5354"/>
-        <location filename="mainwindow.cpp" line="474"/>
+        <location filename="mainwindow.cpp" line="477"/>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
@@ -722,18 +722,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="474"/>
+        <location filename="mainwindow.cpp" line="477"/>
         <source>Die aktuelle Berechnung der Deflection ist erst 
 ab einem Fräserdurchmesser von &gt; 4,5 mm gültig!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1278"/>
+        <location filename="mainwindow.cpp" line="1281"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1278"/>
+        <location filename="mainwindow.cpp" line="1281"/>
         <source>Es ist kein Update verfügbar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -761,8 +761,8 @@ ab einem Fräserdurchmesser von &gt; 4,5 mm gültig!</source>
         <location filename="Modules/settings.cpp" line="291"/>
         <location filename="Modules/settings.cpp" line="326"/>
         <location filename="Modules/settings.cpp" line="361"/>
-        <location filename="Modules/settings.cpp" line="539"/>
-        <location filename="Modules/settings.cpp" line="574"/>
+        <location filename="Modules/settings.cpp" line="540"/>
+        <location filename="Modules/settings.cpp" line="575"/>
         <source>Kritischer Fehler</source>
         <translation type="unfinished"></translation>
     </message>
@@ -833,184 +833,188 @@ ab einem Fräserdurchmesser von &gt; 4,5 mm gültig!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="540"/>
+        <location filename="Modules/settings.cpp" line="541"/>
         <source>Es konnte keine gültige Abfrage für den letzen Index in der Datei &apos;config.ini&apos; gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/settings.cpp" line="575"/>
+        <location filename="Modules/settings.cpp" line="576"/>
         <source>Es konnte keine gültige Abfrage für die autoUpdate Funktion in der Datei &apos;config.ini&apos; gefunden werden!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Modules/drill.cpp" line="59"/>
-        <location filename="Modules/drill.cpp" line="64"/>
-        <location filename="Modules/drill.cpp" line="100"/>
-        <location filename="Modules/drill.cpp" line="105"/>
-        <location filename="Modules/drill.cpp" line="128"/>
-        <location filename="Modules/drill.cpp" line="133"/>
-        <location filename="Modules/drill.cpp" line="156"/>
-        <location filename="Modules/drill.cpp" line="161"/>
+        <location filename="Modules/drill.cpp" line="66"/>
+        <location filename="Modules/drill.cpp" line="104"/>
+        <location filename="Modules/drill.cpp" line="111"/>
+        <location filename="Modules/drill.cpp" line="136"/>
+        <location filename="Modules/drill.cpp" line="143"/>
+        <location filename="Modules/drill.cpp" line="168"/>
+        <location filename="Modules/drill.cpp" line="175"/>
         <location filename="Modules/dynamic.cpp" line="38"/>
-        <location filename="Modules/dynamic.cpp" line="43"/>
-        <location filename="Modules/dynamic.cpp" line="73"/>
-        <location filename="Modules/dynamic.cpp" line="78"/>
-        <location filename="Modules/dynamic.cpp" line="108"/>
-        <location filename="Modules/dynamic.cpp" line="113"/>
-        <location filename="Modules/dynamic.cpp" line="136"/>
-        <location filename="Modules/dynamic.cpp" line="141"/>
-        <location filename="Modules/dynamic.cpp" line="164"/>
-        <location filename="Modules/dynamic.cpp" line="169"/>
+        <location filename="Modules/dynamic.cpp" line="45"/>
+        <location filename="Modules/dynamic.cpp" line="77"/>
+        <location filename="Modules/dynamic.cpp" line="84"/>
+        <location filename="Modules/dynamic.cpp" line="116"/>
+        <location filename="Modules/dynamic.cpp" line="123"/>
+        <location filename="Modules/dynamic.cpp" line="148"/>
+        <location filename="Modules/dynamic.cpp" line="155"/>
+        <location filename="Modules/dynamic.cpp" line="180"/>
+        <location filename="Modules/dynamic.cpp" line="187"/>
         <location filename="Modules/plan.cpp" line="52"/>
-        <location filename="Modules/plan.cpp" line="57"/>
-        <location filename="Modules/plan.cpp" line="101"/>
-        <location filename="Modules/plan.cpp" line="106"/>
-        <location filename="Modules/plan.cpp" line="138"/>
-        <location filename="Modules/plan.cpp" line="143"/>
-        <location filename="Modules/plan.cpp" line="175"/>
-        <location filename="Modules/plan.cpp" line="180"/>
+        <location filename="Modules/plan.cpp" line="59"/>
+        <location filename="Modules/plan.cpp" line="105"/>
+        <location filename="Modules/plan.cpp" line="112"/>
+        <location filename="Modules/plan.cpp" line="146"/>
+        <location filename="Modules/plan.cpp" line="153"/>
+        <location filename="Modules/plan.cpp" line="187"/>
+        <location filename="Modules/plan.cpp" line="194"/>
         <location filename="Modules/simple.cpp" line="36"/>
-        <location filename="Modules/simple.cpp" line="62"/>
-        <location filename="Modules/simple.cpp" line="67"/>
-        <location filename="Modules/simple.cpp" line="91"/>
-        <location filename="Modules/simple.cpp" line="96"/>
+        <location filename="Modules/simple.cpp" line="64"/>
+        <location filename="Modules/simple.cpp" line="71"/>
+        <location filename="Modules/simple.cpp" line="97"/>
+        <location filename="Modules/simple.cpp" line="104"/>
         <location filename="Modules/slot.cpp" line="36"/>
-        <location filename="Modules/slot.cpp" line="62"/>
-        <location filename="Modules/slot.cpp" line="67"/>
-        <location filename="Modules/slot.cpp" line="91"/>
-        <location filename="Modules/slot.cpp" line="96"/>
-        <location filename="Modules/slot.cpp" line="119"/>
-        <location filename="Modules/slot.cpp" line="124"/>
-        <location filename="Modules/slot.cpp" line="147"/>
-        <location filename="Modules/slot.cpp" line="152"/>
+        <location filename="Modules/slot.cpp" line="64"/>
+        <location filename="Modules/slot.cpp" line="71"/>
+        <location filename="Modules/slot.cpp" line="97"/>
+        <location filename="Modules/slot.cpp" line="104"/>
+        <location filename="Modules/slot.cpp" line="129"/>
+        <location filename="Modules/slot.cpp" line="136"/>
+        <location filename="Modules/slot.cpp" line="161"/>
+        <location filename="Modules/slot.cpp" line="168"/>
         <location filename="Modules/thread.cpp" line="40"/>
-        <location filename="Modules/thread.cpp" line="45"/>
-        <location filename="Modules/thread.cpp" line="89"/>
-        <location filename="Modules/thread.cpp" line="94"/>
-        <location filename="Modules/thread.cpp" line="125"/>
+        <location filename="Modules/thread.cpp" line="47"/>
+        <location filename="Modules/thread.cpp" line="93"/>
+        <location filename="Modules/thread.cpp" line="100"/>
+        <location filename="Modules/thread.cpp" line="133"/>
         <location filename="Modules/turn.cpp" line="50"/>
-        <location filename="Modules/turn.cpp" line="55"/>
-        <location filename="Modules/turn.cpp" line="78"/>
-        <location filename="Modules/turn.cpp" line="83"/>
-        <location filename="Modules/turn.cpp" line="106"/>
-        <location filename="Modules/turn.cpp" line="111"/>
+        <location filename="Modules/turn.cpp" line="57"/>
+        <location filename="Modules/turn.cpp" line="82"/>
+        <location filename="Modules/turn.cpp" line="89"/>
+        <location filename="Modules/turn.cpp" line="114"/>
+        <location filename="Modules/turn.cpp" line="121"/>
         <source>Ungültiges Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Modules/drill.cpp" line="59"/>
-        <location filename="Modules/drill.cpp" line="64"/>
-        <location filename="Modules/drill.cpp" line="100"/>
-        <location filename="Modules/drill.cpp" line="105"/>
-        <location filename="Modules/drill.cpp" line="128"/>
-        <location filename="Modules/drill.cpp" line="133"/>
-        <location filename="Modules/drill.cpp" line="156"/>
-        <location filename="Modules/drill.cpp" line="161"/>
+        <location filename="Modules/drill.cpp" line="66"/>
+        <location filename="Modules/drill.cpp" line="104"/>
+        <location filename="Modules/drill.cpp" line="111"/>
+        <location filename="Modules/drill.cpp" line="136"/>
+        <location filename="Modules/drill.cpp" line="143"/>
+        <location filename="Modules/drill.cpp" line="168"/>
+        <location filename="Modules/drill.cpp" line="175"/>
         <location filename="Modules/dynamic.cpp" line="38"/>
-        <location filename="Modules/dynamic.cpp" line="43"/>
-        <location filename="Modules/dynamic.cpp" line="73"/>
-        <location filename="Modules/dynamic.cpp" line="78"/>
-        <location filename="Modules/dynamic.cpp" line="108"/>
-        <location filename="Modules/dynamic.cpp" line="113"/>
-        <location filename="Modules/dynamic.cpp" line="136"/>
-        <location filename="Modules/dynamic.cpp" line="141"/>
-        <location filename="Modules/dynamic.cpp" line="164"/>
-        <location filename="Modules/dynamic.cpp" line="169"/>
+        <location filename="Modules/dynamic.cpp" line="45"/>
+        <location filename="Modules/dynamic.cpp" line="77"/>
+        <location filename="Modules/dynamic.cpp" line="84"/>
+        <location filename="Modules/dynamic.cpp" line="116"/>
+        <location filename="Modules/dynamic.cpp" line="123"/>
+        <location filename="Modules/dynamic.cpp" line="148"/>
+        <location filename="Modules/dynamic.cpp" line="155"/>
+        <location filename="Modules/dynamic.cpp" line="180"/>
+        <location filename="Modules/dynamic.cpp" line="187"/>
         <location filename="Modules/plan.cpp" line="52"/>
-        <location filename="Modules/plan.cpp" line="57"/>
-        <location filename="Modules/plan.cpp" line="101"/>
-        <location filename="Modules/plan.cpp" line="106"/>
-        <location filename="Modules/plan.cpp" line="138"/>
-        <location filename="Modules/plan.cpp" line="143"/>
-        <location filename="Modules/plan.cpp" line="175"/>
-        <location filename="Modules/plan.cpp" line="180"/>
+        <location filename="Modules/plan.cpp" line="59"/>
+        <location filename="Modules/plan.cpp" line="105"/>
+        <location filename="Modules/plan.cpp" line="112"/>
+        <location filename="Modules/plan.cpp" line="146"/>
+        <location filename="Modules/plan.cpp" line="153"/>
+        <location filename="Modules/plan.cpp" line="187"/>
+        <location filename="Modules/plan.cpp" line="194"/>
         <location filename="Modules/simple.cpp" line="36"/>
-        <location filename="Modules/simple.cpp" line="62"/>
-        <location filename="Modules/simple.cpp" line="67"/>
-        <location filename="Modules/simple.cpp" line="91"/>
-        <location filename="Modules/simple.cpp" line="96"/>
+        <location filename="Modules/simple.cpp" line="64"/>
+        <location filename="Modules/simple.cpp" line="71"/>
+        <location filename="Modules/simple.cpp" line="97"/>
+        <location filename="Modules/simple.cpp" line="104"/>
         <location filename="Modules/slot.cpp" line="36"/>
-        <location filename="Modules/slot.cpp" line="62"/>
-        <location filename="Modules/slot.cpp" line="67"/>
-        <location filename="Modules/slot.cpp" line="91"/>
-        <location filename="Modules/slot.cpp" line="96"/>
-        <location filename="Modules/slot.cpp" line="119"/>
-        <location filename="Modules/slot.cpp" line="124"/>
-        <location filename="Modules/slot.cpp" line="147"/>
-        <location filename="Modules/slot.cpp" line="152"/>
+        <location filename="Modules/slot.cpp" line="64"/>
+        <location filename="Modules/slot.cpp" line="71"/>
+        <location filename="Modules/slot.cpp" line="97"/>
+        <location filename="Modules/slot.cpp" line="104"/>
+        <location filename="Modules/slot.cpp" line="129"/>
+        <location filename="Modules/slot.cpp" line="136"/>
+        <location filename="Modules/slot.cpp" line="161"/>
+        <location filename="Modules/slot.cpp" line="168"/>
         <location filename="Modules/thread.cpp" line="40"/>
-        <location filename="Modules/thread.cpp" line="45"/>
-        <location filename="Modules/thread.cpp" line="89"/>
-        <location filename="Modules/thread.cpp" line="94"/>
-        <location filename="Modules/thread.cpp" line="125"/>
+        <location filename="Modules/thread.cpp" line="47"/>
+        <location filename="Modules/thread.cpp" line="93"/>
+        <location filename="Modules/thread.cpp" line="100"/>
+        <location filename="Modules/thread.cpp" line="133"/>
         <location filename="Modules/turn.cpp" line="50"/>
-        <location filename="Modules/turn.cpp" line="55"/>
-        <location filename="Modules/turn.cpp" line="78"/>
-        <location filename="Modules/turn.cpp" line="83"/>
-        <location filename="Modules/turn.cpp" line="106"/>
-        <location filename="Modules/turn.cpp" line="111"/>
+        <location filename="Modules/turn.cpp" line="57"/>
+        <location filename="Modules/turn.cpp" line="82"/>
+        <location filename="Modules/turn.cpp" line="89"/>
+        <location filename="Modules/turn.cpp" line="114"/>
+        <location filename="Modules/turn.cpp" line="121"/>
         <source>Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Modules/drill.cpp" line="60"/>
-        <location filename="Modules/drill.cpp" line="101"/>
-        <location filename="Modules/drill.cpp" line="129"/>
-        <location filename="Modules/drill.cpp" line="157"/>
+        <location filename="Modules/drill.cpp" line="105"/>
+        <location filename="Modules/drill.cpp" line="137"/>
+        <location filename="Modules/drill.cpp" line="169"/>
         <location filename="Modules/dynamic.cpp" line="39"/>
-        <location filename="Modules/dynamic.cpp" line="74"/>
-        <location filename="Modules/dynamic.cpp" line="109"/>
-        <location filename="Modules/dynamic.cpp" line="137"/>
-        <location filename="Modules/dynamic.cpp" line="165"/>
+        <location filename="Modules/dynamic.cpp" line="78"/>
+        <location filename="Modules/dynamic.cpp" line="117"/>
+        <location filename="Modules/dynamic.cpp" line="149"/>
+        <location filename="Modules/dynamic.cpp" line="181"/>
         <location filename="Modules/plan.cpp" line="53"/>
-        <location filename="Modules/plan.cpp" line="102"/>
-        <location filename="Modules/plan.cpp" line="139"/>
-        <location filename="Modules/plan.cpp" line="176"/>
-        <location filename="Modules/simple.cpp" line="63"/>
-        <location filename="Modules/simple.cpp" line="92"/>
-        <location filename="Modules/slot.cpp" line="63"/>
-        <location filename="Modules/slot.cpp" line="92"/>
-        <location filename="Modules/slot.cpp" line="120"/>
-        <location filename="Modules/slot.cpp" line="148"/>
+        <location filename="Modules/plan.cpp" line="106"/>
+        <location filename="Modules/plan.cpp" line="147"/>
+        <location filename="Modules/plan.cpp" line="188"/>
+        <location filename="Modules/simple.cpp" line="65"/>
+        <location filename="Modules/simple.cpp" line="98"/>
+        <location filename="Modules/slot.cpp" line="65"/>
+        <location filename="Modules/slot.cpp" line="98"/>
+        <location filename="Modules/slot.cpp" line="130"/>
+        <location filename="Modules/slot.cpp" line="162"/>
         <location filename="Modules/thread.cpp" line="41"/>
-        <location filename="Modules/thread.cpp" line="90"/>
-        <location filename="Modules/thread.cpp" line="126"/>
+        <location filename="Modules/thread.cpp" line="94"/>
+        <location filename="Modules/thread.cpp" line="134"/>
         <location filename="Modules/turn.cpp" line="51"/>
-        <location filename="Modules/turn.cpp" line="79"/>
-        <location filename="Modules/turn.cpp" line="107"/>
+        <location filename="Modules/turn.cpp" line="83"/>
+        <location filename="Modules/turn.cpp" line="115"/>
         <source>Die Zelle &apos;%0&apos; hat den Wert &apos;NULL&apos; der nicht erlaubt ist.
-Die Zelle ist im Arbeitsblatt &apos;%2&apos;.</source>
+Die Zelle ist im Arbeitsblatt &apos;%2&apos;.
+Der Feler ist in der &apos;%3&apos; Funktion aufgetreten.</source>
+        <oldsource>Die Zelle &apos;%0&apos; hat den Wert &apos;NULL&apos; der nicht erlaubt ist.
+Die Zelle ist im Arbeitsblatt &apos;%2&apos;.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Modules/drill.cpp" line="65"/>
-        <location filename="Modules/drill.cpp" line="106"/>
-        <location filename="Modules/drill.cpp" line="134"/>
-        <location filename="Modules/drill.cpp" line="162"/>
-        <location filename="Modules/dynamic.cpp" line="44"/>
-        <location filename="Modules/dynamic.cpp" line="79"/>
-        <location filename="Modules/dynamic.cpp" line="114"/>
-        <location filename="Modules/dynamic.cpp" line="142"/>
-        <location filename="Modules/dynamic.cpp" line="170"/>
-        <location filename="Modules/plan.cpp" line="58"/>
-        <location filename="Modules/plan.cpp" line="107"/>
-        <location filename="Modules/plan.cpp" line="144"/>
-        <location filename="Modules/plan.cpp" line="181"/>
+        <location filename="Modules/drill.cpp" line="67"/>
+        <location filename="Modules/drill.cpp" line="112"/>
+        <location filename="Modules/drill.cpp" line="144"/>
+        <location filename="Modules/drill.cpp" line="176"/>
+        <location filename="Modules/dynamic.cpp" line="46"/>
+        <location filename="Modules/dynamic.cpp" line="85"/>
+        <location filename="Modules/dynamic.cpp" line="124"/>
+        <location filename="Modules/dynamic.cpp" line="156"/>
+        <location filename="Modules/dynamic.cpp" line="188"/>
+        <location filename="Modules/plan.cpp" line="60"/>
+        <location filename="Modules/plan.cpp" line="113"/>
+        <location filename="Modules/plan.cpp" line="154"/>
+        <location filename="Modules/plan.cpp" line="195"/>
         <location filename="Modules/simple.cpp" line="37"/>
-        <location filename="Modules/simple.cpp" line="68"/>
-        <location filename="Modules/simple.cpp" line="97"/>
+        <location filename="Modules/simple.cpp" line="72"/>
+        <location filename="Modules/simple.cpp" line="105"/>
         <location filename="Modules/slot.cpp" line="37"/>
-        <location filename="Modules/slot.cpp" line="68"/>
-        <location filename="Modules/slot.cpp" line="97"/>
-        <location filename="Modules/slot.cpp" line="125"/>
-        <location filename="Modules/slot.cpp" line="153"/>
-        <location filename="Modules/thread.cpp" line="46"/>
-        <location filename="Modules/thread.cpp" line="95"/>
-        <location filename="Modules/turn.cpp" line="56"/>
-        <location filename="Modules/turn.cpp" line="84"/>
-        <location filename="Modules/turn.cpp" line="112"/>
+        <location filename="Modules/slot.cpp" line="72"/>
+        <location filename="Modules/slot.cpp" line="105"/>
+        <location filename="Modules/slot.cpp" line="137"/>
+        <location filename="Modules/slot.cpp" line="169"/>
+        <location filename="Modules/thread.cpp" line="48"/>
+        <location filename="Modules/thread.cpp" line="101"/>
+        <location filename="Modules/turn.cpp" line="58"/>
+        <location filename="Modules/turn.cpp" line="90"/>
+        <location filename="Modules/turn.cpp" line="122"/>
         <source>Die Zelle &apos;%0&apos; hat den Wert &apos;%1&apos; der nicht erlaubt ist.
-Die Zelle ist im Arbeitsblatt &apos;%2&apos;.</source>
+Die Zelle ist im Arbeitsblatt &apos;%2&apos;.
+Der Feler ist in der &apos;%3&apos; Funktion aufgetreten.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

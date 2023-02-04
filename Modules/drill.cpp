@@ -58,14 +58,18 @@ double Drill::Vc(int mat, int bed, int schn) {
     if(ws.cell(column, mat).to_string().empty()){
         Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                      QObject::tr("Die Zelle '%0' hat den Wert 'NULL' der nicht erlaubt ist."
-                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
-                                                                              QString::fromStdString(ws.title())));
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                     .arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
+                          QString::fromStdString(ws.title()),
+                          __FUNCTION__));
     }else if(ws.cell(column, mat).data_type() != xlnt::cell_type::number){
         Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                      QObject::tr("Die Zelle '%0' hat den Wert '%1' der nicht erlaubt ist."
-                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
-                                                                              QString::fromStdString(ws.cell(column, mat).to_string()),
-                                                                              QString::fromStdString(ws.title())));
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                     .arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
+                          QString::fromStdString(ws.cell(column, mat).to_string()),
+                          QString::fromStdString(ws.title()),
+                          __FUNCTION__));
     }
 
     Vc = ws.cell(column, mat).value<double>();
@@ -99,14 +103,18 @@ double Drill::fu(int mat, double D) {
     if(ws.cell(column, mat).to_string().empty()){
         Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                      QObject::tr("Die Zelle '%0' hat den Wert 'NULL' der nicht erlaubt ist."
-                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
-                                                                              QString::fromStdString(ws.title())));
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                     .arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
+                          QString::fromStdString(ws.title()),
+                          __FUNCTION__));
     }else if(ws.cell(column, mat).data_type() != xlnt::cell_type::number){
         Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                      QObject::tr("Die Zelle '%0' hat den Wert '%1' der nicht erlaubt ist."
-                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
-                                                                              QString::fromStdString(ws.cell(column, mat).to_string()),
-                                                                              QString::fromStdString(ws.title())));
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                     .arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
+                          QString::fromStdString(ws.cell(column, mat).to_string()),
+                          QString::fromStdString(ws.title()),
+                          __FUNCTION__));
     }
 
     fu = ws.cell(column, mat).value<double>();
@@ -127,14 +135,18 @@ int Drill::Kc(int mat) {
     if(ws.cell(13, mat).to_string().empty()){
         Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                      QObject::tr("Die Zelle '%0' hat den Wert 'NULL' der nicht erlaubt ist."
-                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(13, mat).reference().to_string()),
-                                                                              QString::fromStdString(ws.title())));
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                     .arg(QString::fromStdString(ws.cell(13, mat).reference().to_string()),
+                          QString::fromStdString(ws.title()),
+                          __FUNCTION__));
     }else if(ws.cell(13, mat).data_type() != xlnt::cell_type::number){
         Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                      QObject::tr("Die Zelle '%0' hat den Wert '%1' der nicht erlaubt ist."
-                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(13, mat).reference().to_string()),
-                                                                              QString::fromStdString(ws.cell(13, mat).to_string()),
-                                                                              QString::fromStdString(ws.title())));
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                     .arg(QString::fromStdString(ws.cell(13, mat).reference().to_string()),
+                          QString::fromStdString(ws.cell(13, mat).to_string()),
+                          QString::fromStdString(ws.title()),
+                          __FUNCTION__));
     }
 
     Kc = ws.cell(13, mat).value<int>();
@@ -155,14 +167,18 @@ double Drill::Mc(int mat) {
     if(ws.cell(14, mat).to_string().empty()){
         Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                      QObject::tr("Die Zelle '%0' hat den Wert 'NULL' der nicht erlaubt ist."
-                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(14, mat).reference().to_string()),
-                                                                              QString::fromStdString(ws.title())));
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                     .arg(QString::fromStdString(ws.cell(14, mat).reference().to_string()),
+                          QString::fromStdString(ws.title()),
+                          __FUNCTION__));
     }else if(ws.cell(14, mat).data_type() != xlnt::cell_type::number){
         Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                      QObject::tr("Die Zelle '%0' hat den Wert '%1' der nicht erlaubt ist."
-                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(14, mat).reference().to_string()),
-                                                                              QString::fromStdString(ws.cell(14, mat).to_string()),
-                                                                              QString::fromStdString(ws.title())));
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                     .arg(QString::fromStdString(ws.cell(14, mat).reference().to_string()),
+                          QString::fromStdString(ws.cell(14, mat).to_string()),
+                          QString::fromStdString(ws.title()),
+                          __FUNCTION__));
     }
 
     Kc = ws.cell(14, mat).value<double>();

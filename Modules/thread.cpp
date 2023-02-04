@@ -39,14 +39,18 @@ double Thread::Vc(int mat, int column) {
         if(ws.cell(column, mat).to_string().empty()){
             Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                          QObject::tr("Die Zelle '%0' hat den Wert 'NULL' der nicht erlaubt ist."
-                                     "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
-                                                                                  QString::fromStdString(ws.title())));
+                                     "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                         .arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
+                              QString::fromStdString(ws.title()),
+                              __FUNCTION__));
         }else if(ws.cell(column, mat).data_type() != xlnt::cell_type::number){
             Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                          QObject::tr("Die Zelle '%0' hat den Wert '%1' der nicht erlaubt ist."
-                                     "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
-                                                                                  QString::fromStdString(ws.cell(column, mat).to_string()),
-                                                                                  QString::fromStdString(ws.title())));
+                                     "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                         .arg(QString::fromStdString(ws.cell(column, mat).reference().to_string()),
+                              QString::fromStdString(ws.cell(column, mat).to_string()),
+                              QString::fromStdString(ws.title()),
+                              __FUNCTION__));
         }
     }
 
@@ -88,14 +92,18 @@ double Thread::threadPitch(int Dindex) {
     if(ws.cell(column, 2).to_string().empty()){
         Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                      QObject::tr("Die Zelle '%0' hat den Wert 'NULL' der nicht erlaubt ist."
-                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, 2).reference().to_string()),
-                                                                              QString::fromStdString(ws.title())));
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                     .arg(QString::fromStdString(ws.cell(column, 2).reference().to_string()),
+                          QString::fromStdString(ws.title()),
+                          __FUNCTION__));
     }else if(ws.cell(column, 2).data_type() != xlnt::cell_type::number){
         Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                      QObject::tr("Die Zelle '%0' hat den Wert '%1' der nicht erlaubt ist."
-                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, 2).reference().to_string()),
-                                                                              QString::fromStdString(ws.cell(column, 2).to_string()),
-                                                                              QString::fromStdString(ws.title())));
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                     .arg(QString::fromStdString(ws.cell(column, 2).reference().to_string()),
+                          QString::fromStdString(ws.cell(column, 2).to_string()),
+                          QString::fromStdString(ws.title()),
+                          __FUNCTION__));
     }
 
     pitch = ws.cell(column,2).value<double>();
@@ -124,8 +132,10 @@ double Thread::Diameter(int Dindex) {
     if(ws.cell(column, 1).to_string().empty()){
         Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
                      QObject::tr("Die Zelle '%0' hat den Wert 'NULL' der nicht erlaubt ist."
-                                 "\nDie Zelle ist im Arbeitsblatt '%2'.").arg(QString::fromStdString(ws.cell(column, 1).reference().to_string()),
-                                                                              QString::fromStdString(ws.title())));
+                                 "\nDie Zelle ist im Arbeitsblatt '%2'.\nDer Feler ist in der '%3' Funktion aufgetreten.")
+                     .arg(QString::fromStdString(ws.cell(column, 1).reference().to_string()),
+                          QString::fromStdString(ws.title()),
+                          __FUNCTION__));
     }
 
     metrisch = ws.cell(column,1).value<std::string>();

@@ -8,6 +8,7 @@
 #include <QStandardPaths>
 #include <QSettings>
 #include <QFile>
+#include <QDir>
 
 class Settings{
 public:
@@ -28,6 +29,7 @@ public:
     static int readIndex();
     static bool autoUpdate();
     static void deleteAll();
+    static void lastCloseOnUpdate();
     static void test();
 };
 

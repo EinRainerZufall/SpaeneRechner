@@ -52,6 +52,9 @@ MainWindow::MainWindow(QWidget *parent)
         Settings::create();
     };
 
+    // nach einem Update aufraeumen
+    Settings::lastCloseOnUpdate();
+
     // Prüffen ob die .xlsx da ist, sonst wird sie erstellt
     if(!Settings::xlsxCheck()) {
         createDatabase::createSimple();
@@ -1270,7 +1273,7 @@ void MainWindow::on_btnCreateSettings_clicked(){
 }
 
 void MainWindow::on_updateForce_clicked(){
-    if(!Misc::updateCheck()){
+    if(Misc::updateCheck()){
         setCursor(Qt::CursorShape::WaitCursor);
         Misc::UPDATE();
         setCursor(Qt::CursorShape::ArrowCursor);
