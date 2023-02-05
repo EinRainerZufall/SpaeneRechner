@@ -196,6 +196,7 @@ Sie benutzen aber noch Windows ${windows_os_version_number}.</explanation>
             </ruleList>
         </runProgram>
     </postInstallationActionList>
+    <enableGtkDarkThemesSupport>1</enableGtkDarkThemesSupport>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <licenseFileEncoding>utf-8</licenseFileEncoding>
@@ -203,6 +204,18 @@ Sie benutzen aber noch Windows ${windows_os_version_number}.</explanation>
     <requireInstallationByRootUser>1</requireInstallationByRootUser>
     <saveRelativePaths>1</saveRelativePaths>
     <vendor></vendor>
+    <finalPageActionList>
+        <runProgram>
+            <program>${installdir}/SpaeneRechner.${platform_exec_suffix}</program>
+            <programArguments></programArguments>
+            <progressText>Programm starten</progressText>
+            <ruleList>
+                <isTrue>
+                    <value>${startProgram}</value>
+                </isTrue>
+            </ruleList>
+        </runProgram>
+    </finalPageActionList>
     <licenseFileList>
         <licenseFile>
             <code>de</code>
@@ -223,6 +236,16 @@ Sie benutzen aber noch Windows ${windows_os_version_number}.</explanation>
             <mustExist>0</mustExist>
             <width>40</width>
         </directoryParameter>
+        <booleanParameter>
+            <name>startProgram</name>
+            <title>Programm starten</title>
+            <description></description>
+            <explanation></explanation>
+            <value>true</value>
+            <default>true</default>
+            <ask>0</ask>
+            <displayStyle>checkbox-left</displayStyle>
+        </booleanParameter>
     </parameterList>
     <platformOptionsList>
         <platformOptions>

@@ -6,6 +6,7 @@
     <licenseFile>LICENSE</licenseFile>
     <logoImage>src/endmill_altin.png</logoImage>
     <splashImage>src/endmill_altin.png</splashImage>
+    <wmImage>src/endmill_altin.png</wmImage>
     <defaultLanguage>de</defaultLanguage>
     <componentList>
         <component>
@@ -204,6 +205,7 @@ Sie benutzen aber noch Windows ${windows_os_version_number}.</explanation>
     <requireInstallationByRootUser>1</requireInstallationByRootUser>
     <saveRelativePaths>1</saveRelativePaths>
     <vendor></vendor>
+    <windowsExecutableIcon>src/endmill_altin.ico</windowsExecutableIcon>
     <finalPageActionList>
         <runProgram>
             <program>${installdir}/SpaeneRechner.${platform_exec_suffix}</program>
