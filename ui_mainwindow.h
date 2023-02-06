@@ -355,6 +355,13 @@ public:
     QPushButton *btnGit;
     QPushButton *btnXlnt;
     QPushButton *btnQT;
+    QGroupBox *groupBox_23;
+    QLabel *buildVer;
+    QLabel *qtVer;
+    QLabel *buildTime;
+    QLabel *label_120;
+    QLabel *label_121;
+    QLabel *label_122;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -1815,12 +1822,36 @@ public:
         btnQT->setIcon(icon1);
         btnQT->setIconSize(QSize(180, 100));
         btnQT->setFlat(true);
+        groupBox_23 = new QGroupBox(tab_info);
+        groupBox_23->setObjectName("groupBox_23");
+        groupBox_23->setGeometry(QRect(10, 580, 190, 90));
+        buildVer = new QLabel(groupBox_23);
+        buildVer->setObjectName("buildVer");
+        buildVer->setGeometry(QRect(130, 20, 50, 25));
+        buildVer->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        qtVer = new QLabel(groupBox_23);
+        qtVer->setObjectName("qtVer");
+        qtVer->setGeometry(QRect(130, 40, 50, 25));
+        qtVer->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        buildTime = new QLabel(groupBox_23);
+        buildTime->setObjectName("buildTime");
+        buildTime->setGeometry(QRect(90, 60, 90, 25));
+        buildTime->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        label_120 = new QLabel(groupBox_23);
+        label_120->setObjectName("label_120");
+        label_120->setGeometry(QRect(10, 20, 120, 25));
+        label_121 = new QLabel(groupBox_23);
+        label_121->setObjectName("label_121");
+        label_121->setGeometry(QRect(10, 40, 120, 25));
+        label_122 = new QLabel(groupBox_23);
+        label_122->setObjectName("label_122");
+        label_122->setGeometry(QRect(10, 60, 80, 25));
         mainTabWidget->addTab(tab_info, QString());
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(6);
+        mainTabWidget->setCurrentIndex(9);
         BtnCalcEinfach->setDefault(true);
 
 
@@ -2154,6 +2185,13 @@ public:
         btnGit->setText(QCoreApplication::translate("MainWindow", "Git issues", nullptr));
         btnXlnt->setText(QString());
         btnQT->setText(QString());
+        groupBox_23->setTitle(QCoreApplication::translate("MainWindow", "Info", nullptr));
+        buildVer->setText(QString());
+        qtVer->setText(QString());
+        buildTime->setText(QString());
+        label_120->setText(QCoreApplication::translate("MainWindow", "Build Version:", nullptr));
+        label_121->setText(QCoreApplication::translate("MainWindow", "QT Version:", nullptr));
+        label_122->setText(QCoreApplication::translate("MainWindow", "Buildtime:", nullptr));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_info), QCoreApplication::translate("MainWindow", "Info", nullptr));
     } // retranslateUi
 

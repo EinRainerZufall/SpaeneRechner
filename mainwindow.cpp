@@ -15,7 +15,7 @@
 #include "Modules/misc.h"
 
 
-// warum brauche ich die warumWisoWeshalb bool im thread modul ?????
+// warum brauche ich die 'warumWisoWeshalb' bool im thread modul ?????
 
 /*
  *  todo:
@@ -36,6 +36,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->setFixedSize(1000, 700);
     this->setCentralWidget(ui->mainTabWidget);
+
+    // Versionsinfos uebernehmen
+    ui->buildVer->setText(ui->buildVer->text() + QCoreApplication::applicationVersion());
+    ui->qtVer->setText(ui->qtVer->text() + QT_VERSION_STR);
+    ui->buildTime->setText(ui->buildTime->text() + __DATE__);
 
 #ifdef QT_DEBUG
     // Debug Sachen

@@ -19,6 +19,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 
+    w.setWindowTitle(w.windowTitle() +" "+ QCoreApplication::applicationVersion());
+    w.setWindowIcon(QIcon(":/img/src/endmill_altin.ico"));
+
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
     for (const QString &locale : uiLanguages) {
