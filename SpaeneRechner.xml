@@ -1,7 +1,7 @@
 <project>
     <shortName>SpaeneRechner</shortName>
     <fullName>Spaene Rechner</fullName>
-    <version>0.7.4</version>
+    <version>${softVer}</version>
     <installerFilename>${product_shortname}-v${product_version}-${platform_name}-installer.${platform_exec_suffix}</installerFilename>
     <licenseFile>LICENSE</licenseFile>
     <logoImage>src/endmill_altin.png</logoImage>
@@ -163,6 +163,13 @@
             </startMenuShortcutList>
         </component>
     </componentList>
+    <preBuildActionList>
+        <readFile>
+            <name>softVer</name>
+            <path>C:\Users\Tim\Documents\GitHub\SpaeneRechner\version.txt</path>
+            <show>0</show>
+        </readFile>
+    </preBuildActionList>
     <initializationActionList>
         <throwError>
             <explanation>Der Späne Rechner ist im moment erst ab Windows 10 verfügbar.
@@ -248,6 +255,17 @@ Sie benutzen aber noch Windows ${windows_os_version_number}.</explanation>
             <ask>0</ask>
             <displayStyle>checkbox-left</displayStyle>
         </booleanParameter>
+        <stringParameter>
+            <name>softVer</name>
+            <description></description>
+            <explanation></explanation>
+            <value>0.0.0</value>
+            <default>0.0.0</default>
+            <allowEmptyValue>0</allowEmptyValue>
+            <ask>0</ask>
+            <cliOptionShow>0</cliOptionShow>
+            <width>40</width>
+        </stringParameter>
     </parameterList>
     <platformOptionsList>
         <platformOptions>
