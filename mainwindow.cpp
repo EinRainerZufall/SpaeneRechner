@@ -37,15 +37,19 @@ MainWindow::MainWindow(QWidget *parent)
     this->setFixedSize(1000, 700);
     this->setCentralWidget(ui->mainTabWidget);
 
-    // Versionsinfos uebernehmen
+    // Versionsinfos in UI uebernehmen
     ui->buildVer->setText(ui->buildVer->text() + QCoreApplication::applicationVersion());
     ui->qtVer->setText(ui->qtVer->text() + QT_VERSION_STR);
     ui->buildTime->setText(ui->buildTime->text() + __DATE__);
-    QFile installerVer("version.txt");
-    installerVer.open(QIODevice::WriteOnly | QIODevice::Text);
-    QTextStream stream(&installerVer);
-    stream << QCoreApplication::applicationVersion();
-    installerVer.close();
+
+    // Build Version fuer installbuilder aufbereiten (nur in der IDE)
+    if(!qEnvironmentVariableIsEmpty("QTDIR")){
+        QFile installerVer("version.txt");
+        installerVer.open(QIODevice::WriteOnly | QIODevice::Text);
+        QTextStream stream(&installerVer);
+        stream << QCoreApplication::applicationVersion();
+        installerVer.close();
+    }
 
 #ifdef QT_DEBUG
     // Debug Sachen
