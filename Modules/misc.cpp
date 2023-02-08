@@ -189,7 +189,7 @@ void Misc::UPDATE(){
             QTextStream stream(&autoUpdater);
             stream << "@echo off\ntaskkill /im SpaeneRechner.exe\nstart " << QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp/"+DateiName;
             autoUpdater.close();
-            qDebug() << "Auto Update script für" << QSysInfo::prettyProductName() << "erstellt!";
+            qDebug() << "Auto Update script für " << type << " erstellt!";
         }
 
         qDebug() << "Automatische installation gestartet!";

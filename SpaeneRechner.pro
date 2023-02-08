@@ -1,6 +1,6 @@
 QT       += core gui network
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 5): QT += widgets
 
 CONFIG += c++14
 CONFIG += static
@@ -10,6 +10,7 @@ linux-clang:CONFIG += staticlib
 
 INCLUDEPATH += $$PWD/xlnt/
 
+DEFINES += LOG_FILE_NAME=\\\"debug.log\\\"
 
 #Debug / Release difference
 CONFIG(release, debug|release) {
@@ -24,9 +25,9 @@ CONFIG(debug, debug|release) {
 }
 
 win32 {
+    message("building for Windows")
     #Icon unter Win
     RC_ICONS = src/endmill_altin.ico
-    message("building for Windows")
 
     #die xlnt.dll in den release Ordner kopieren
     copydata.commands = $(COPY_FILE) \"$$shell_path($$PWD\\x64-Release\source\xlnt.dll)\" \"$$shell_path($$OUT_PWD\release)\"
@@ -36,9 +37,9 @@ win32 {
 }
 
 macx {
+    message("building for MacOS")
     #Icon unter MacOS
     #ICON = src/endmill_altin.icns <- noch nicht getestet
-    message("building for MacOS")
 }
 
 # You can make your code fail to compile if it uses deprecated APIs.

@@ -3,12 +3,47 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QTime>
+#include <QMutex>
 
 #include "Modules/createDatabase.cpp"
 #include "Modules/settings.cpp"
 
-int main(int argc, char *argv[])
-{
+const QString logFileName = "debug.log";
+
+void customeMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg){
+
+    static QMutex mutex;
+    QMutexLocker lock(&mutex);
+
+    QHash<QtMsgType, QString> msgLevelHash({{QtDebugMsg, "Debug"}, {QtInfoMsg, "Info"}, {QtWarningMsg, "Warning"}, {QtCriticalMsg, "Critical"}, {QtFatalMsg, "Fatal"}});
+    QByteArray localMsg = msg.toLocal8Bit();
+    QByteArray time = QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit();
+    QString logLevelName = msgLevelHash[type];
+    QByteArray logLevelMsg = logLevelName.toLocal8Bit();
+
+#ifdef QT_DEBUG
+    bool logToFile = false;
+#else
+    bool logToFile = true;
+#endif
+
+    if(logToFile){
+        QString txt = QString("%1 | %2: %3 (%4)").arg(time, logLevelName, msg,  context.file);
+        QFile out(LOG_FILE_NAME);
+        out.open(QIODevice::WriteOnly | QIODevice::Append);
+        QTextStream stream(&out);
+        stream << txt << Qt::endl;
+    }else{
+        fprintf(stderr, "%s | %s: %s (%s:%u, %s)\n", time.constData(), logLevelMsg.constData(), localMsg.constData(), context.file, context.line, context.function);
+        fflush(stderr);
+    }
+
+    if(type == QtFatalMsg){abort();}
+}
+
+int main(int argc, char *argv[]){
+    qInstallMessageHandler(customeMessageOutput);
     QCoreApplication::setApplicationName("SpaeneRechner");
     QCoreApplication::setApplicationVersion("0.7.4");
     QCoreApplication::setOrganizationDomain("https://github.com/EinRainerZufall/SpaeneRechner");

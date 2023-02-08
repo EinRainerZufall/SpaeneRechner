@@ -1319,6 +1319,11 @@ void MainWindow::closeEvent(QCloseEvent *event){
     Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index, update);
     qDebug() << "Einstellungen automatisch gespeichert!";
 
+    QFile out(LOG_FILE_NAME);
+    out.open(QIODevice::WriteOnly | QIODevice::Append);
+    QTextStream stream(&out);
+    stream << "-------------------------------------------------------------------------------------------" << Qt::endl;
+
     setCursor(Qt::CursorShape::ArrowCursor);
 
     QWidget::closeEvent(event);
