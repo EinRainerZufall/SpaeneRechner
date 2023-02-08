@@ -22,6 +22,7 @@
  *  - Extras komplett
  *  - Tabelle verbessern
  *  - Tooltips hinzufuegen
+ *  - Fehler Melungen und handling verbessern
  *  - MacOS kompatibilität pruefen
  *  - Linux kompatibilität pruefen
 */
@@ -50,6 +51,21 @@ MainWindow::MainWindow(QWidget *parent)
         stream << QCoreApplication::applicationVersion();
         installerVer.close();
     }
+
+    // Sicherheitscheck das Log Datei nicht zu groß wird
+    if(QFile(LOG_FILE_NAME).size() > 2e6){
+        int x = Misc::MSGbox(tr("Warnung"), tr("Die '%0' Datei ist größer als 2 Mb!\nSoll sie gelöscht werden?").arg(LOG_FILE_NAME), 3, 2);
+        QDir dir;
+
+        switch(x){
+        case QMessageBox::Yes:
+            dir.remove(LOG_FILE_NAME);
+            break;
+        default:
+            break;
+        }
+    }
+    qDebug() << "Die '" << LOG_FILE_NAME << "' Datei ist " << (QFile(LOG_FILE_NAME).size() / 1e6) << " Mb groß!";
 
 #ifdef QT_DEBUG
     // Debug Sachen
