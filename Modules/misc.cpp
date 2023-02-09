@@ -22,8 +22,8 @@ bool Misc::updateCheck(){
     int updateAvailable;
     QString aVer = QCoreApplication::applicationVersion();
 
-    qDebug() << "Update wird abgerufen...";
-    qDebug() << "Aktuell installiert ist:" << aVer;
+    qInfo() << "Aktuell installierte Version ist:" << aVer;
+    qInfo() << "Update Funktion wird gestartet...";
 
     QNetworkAccessManager *manager = new QNetworkAccessManager();
     QNetworkRequest request;
@@ -35,11 +35,12 @@ bool Misc::updateCheck(){
     QObject context;
     QObject::connect(reply, &QNetworkReply::finished, &context, [reply, &misc](){
         if (reply->error()){
-            qDebug() << "Fehler beim abrufen des Versionsnummer, mit Fehler:" << reply->errorString();
+            qWarning() << "Fehler beim abrufen der Versionsnummer! Mit Fehler:" << reply->errorString();
         }else{
             QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
             QJsonObject jsonObject = jsonResponse.object();
             nVer = jsonObject["tag_name"].toString();
+            qInfo() << "Versionsabfrage erfolgreich";
         }
         reply->deleteLater();;
         emit misc.responseReceivedVer();
@@ -49,9 +50,9 @@ bool Misc::updateCheck(){
 
     if(nVer.at(0).digitValue()){
         nVer.remove(0,1);
-        qDebug() << "Neuste Version ist:" << nVer;
+        qInfo() << "Neuste Version ist:" << nVer;
     }else{
-        qDebug() << "Die Version: " << nVer << " hat ein ungültiges Format!";
+        qWarning() << "Die Version:" << nVer << "hat ein ungültiges Format!";
     }
 
     if(QSysInfo::productType() == "macos") {
@@ -66,6 +67,7 @@ bool Misc::updateCheck(){
     updateAvailable = QVersionNumber::compare(nv,av);
 
     if(updateAvailable >= 1){
+        qInfo() << "Es ist ein Update verfügbar, Updateindex ist" << updateAvailable;
         QMessageBox msg;
         QString title = QObject::tr("Update verfügbar");
         QString text = QObject::tr("Es gibt eine neue Version vom SpäneRechner!\nAktuell installiert V%0, verfügbar ist V%1.\nSoll das Update durchgeführt werden?").arg(aVer, nVer);
@@ -89,6 +91,7 @@ bool Misc::updateCheck(){
             return false;
         }
     }
+    qInfo() << "Es ist kein Update verfügbar!";
 
     return false;
 }
@@ -99,29 +102,29 @@ void Misc::UPDATE(){
     QString filter;
     QString DateiName;
 
-    qDebug() << "Update wird gestartet";
+    qInfo() << "Update wird gestartet...";
 
     if(type == "windows"){
         filter = "windows-x64-installer";
         DateiName = "installer.exe";
-        qDebug() << "Update wird für" << QSysInfo::prettyProductName() << "ausgeführt!";
+        qInfo() << "Update wird für" << QSysInfo::prettyProductName() << "ausgeführt!";
 
     }else if(type == "macos"){
         //filter = "windows-installer";
         //DateiName = "installer.exe";
-        qDebug() << "Update wird für" << QSysInfo::prettyProductName() << "ausgeführt!";
-        qDebug() << "Das automatische Update wird im moment nur unter Windows unterstützt!";
+        qInfo() << "Update wird für" << QSysInfo::prettyProductName() << "ausgeführt!";
+        qWarning() << "Das automatische Update wird im moment nur unter Windows unterstützt!";
         return;
 
     }else if(type == ""){
         //filter = "windows-installer";
         //DateiName = "installer.exe";
-        qDebug() << "Update wird für" << QSysInfo::prettyProductName() << "ausgeführt!";
-        qDebug() << "Das automatische Update wird im moment nur unter Windows unterstützt!";
+        qInfo() << "Update wird für" << QSysInfo::prettyProductName() << "ausgeführt!";
+        qWarning() << "Das automatische Update wird im moment nur unter Windows unterstützt!";
         return;
 
     }else{
-        qDebug() << "Bestimmung des Systems Fehlgeschlagen";
+        qWarning() << "Bestimmung des Systems Fehlgeschlagen";
         qDebug() << "Der Systemname ist:" << QSysInfo::productType();
         return;
     }
@@ -136,14 +139,14 @@ void Misc::UPDATE(){
     QObject context;
     connect(reply, &QNetworkReply::finished, &context, [reply, &misc, filter]() {
         if (reply->error()){
-            qDebug() << "Fehler beim abrufen der Download url, mit Fehler:" << reply->errorString();
+            qWarning() << "Fehler beim abrufen der Download url, mit Fehler:" << reply->errorString();
         }else{
             QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
             QJsonArray assets = jsonResponse.object()["assets"].toArray();
             for (const auto &asset : assets) {
                 downloadUrl = asset.toObject()["browser_download_url"].toString();
                 if(downloadUrl.contains(filter)) {
-                    qDebug() << "Download url:" << downloadUrl;
+                    qInfo() << "Download url:" << downloadUrl;
                 }
             }
         }
@@ -153,24 +156,25 @@ void Misc::UPDATE(){
     misc.waitForResponseUrl();
 
     if(downloadUrl.isEmpty()){
-        qDebug() << "Es ist ein Fehler beim Abrufen der url aufgetreten!";
+        qWarning() << "Es ist ein Fehler beim Abrufen der url aufgetreten!";
         return;
     }
 
     if(dir.exists()){
-        qDebug() << "Der 'temp' Ordner ist vorhanden und wird gelöscht!";
+        qInfo() << "Der 'temp' Ordner ist vorhanden und wird gelöscht!";
         dir.removeRecursively();
     }
+
+    qInfo() << "Der 'temp' Ordner wird erstellt!";
     dir.mkdir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp");
 
     reply = manager->get(QNetworkRequest(QUrl(downloadUrl)));
     QEventLoop download;
     connect(reply, &QNetworkReply::finished, &download, &QEventLoop::quit);
-    qDebug() << "Download der Datei gestartet...";
+    qInfo() << "Download der Datei wird gestartet...";
     download.exec();
     if(reply->error()){
-        qDebug() << "Download der Datei fehlgeschlagen!";
-        qDebug() << reply->errorString();
+        qWarning() << "Fehler beim Download der Datei, mit Fehler:" << reply->errorString();
     }else{
         QFile file(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp/"+DateiName);
         file.open(QIODevice::WriteOnly);
@@ -179,7 +183,7 @@ void Misc::UPDATE(){
         reply->deleteLater();
     }
 
-    qDebug() << "Download der Datei erfolgreich!";
+    qInfo() << "Download der Datei erfolgreich!";
 
     if(type == "windows"){
         QSettings settings(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini", QSettings::IniFormat);
@@ -189,10 +193,10 @@ void Misc::UPDATE(){
             QTextStream stream(&autoUpdater);
             stream << "@echo off\ntaskkill /im SpaeneRechner.exe\nstart " << QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp/"+DateiName;
             autoUpdater.close();
-            qDebug() << "Auto Update script für " << type << " erstellt!";
+            qInfo() << "Auto Update script für" << type << "erstellt!";
         }
 
-        qDebug() << "Automatische installation gestartet!";
+        qInfo() << "Automatische installation gestartet!";
         QProcess autoStart;
         settings.setValue("lastCloseOnUpdate", true);
         autoStart.start("cmd.exe", QStringList() << "/c" << QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp/"+"autoUpdater.bat");
@@ -272,7 +276,32 @@ int Misc::MSGbox(QString title, QString text, int type, int buttonStyle, QString
         break;
     }
 
+    qInfo();
+    qInfo() << "Messagebox";
+    qInfo() << "Title:" << title;
+    qInfo() << "Message:" << text;
+    qInfo() << "Type:" << msg.icon();
+    qInfo() << "Buttonstyle:" << buttonStyle;
+    qInfo() << "Genaue Beschreibung:" << error;
+    qInfo();
+
     int x = msg.exec();
 
     return x;
+}
+
+void Misc::hostInfo(){
+    qInfo() << "Build CPU Architecture:" << QSysInfo::buildCpuArchitecture();
+    qInfo() << "Fullbuild ID:" << QSysInfo::buildAbi();
+    qInfo();
+    qInfo() << "Current CPU Architecture:" << QSysInfo::currentCpuArchitecture();
+    qInfo() << "Host Computer Name:" << QSysInfo::machineHostName();
+    qInfo() << "Betriebsystem:" << QSysInfo::prettyProductName();
+    qInfo() << "Betriebsystem Type:" << QSysInfo::productType();
+    qInfo() << "Betriebsystem Version:" << QSysInfo::productVersion();
+    qInfo() << "Kernel Type:" << QSysInfo::kernelType();
+    qInfo() << "Interne Version:" << QSysInfo::kernelVersion();
+    qInfo() << "Boot ID:" << QSysInfo::bootUniqueId();
+
+    return;
 }

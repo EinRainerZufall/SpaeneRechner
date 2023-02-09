@@ -10,8 +10,6 @@ linux-clang:CONFIG += staticlib
 
 INCLUDEPATH += $$PWD/xlnt/
 
-DEFINES += LOG_FILE_NAME=\\\"debug.log\\\"
-
 #Debug / Release difference
 CONFIG(release, debug|release) {
   message("building in release")
@@ -87,9 +85,6 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-DISTFILES += \
-    SpaeneRechner_de_DE.ts
 
 RESOURCES += \
     ressources.qrc

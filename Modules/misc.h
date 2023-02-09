@@ -22,6 +22,7 @@ public:
     static bool updateCheck();
     static void UPDATE();
     static int MSGbox(QString title, QString text, int type, int buttonStyle, QString error = "");
+    static void hostInfo();
     void waitForResponseVer();
     void waitForResponseUrl();
 signals:

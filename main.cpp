@@ -4,6 +4,7 @@
 #include <QLocale>
 #include <QTranslator>
 #include <QTime>
+#include <QDate>
 #include <QMutex>
 
 #include "Modules/createDatabase.cpp"
@@ -19,6 +20,7 @@ void customeMessageOutput(QtMsgType type, const QMessageLogContext &context, con
     QHash<QtMsgType, QString> msgLevelHash({{QtDebugMsg, "Debug"}, {QtInfoMsg, "Info"}, {QtWarningMsg, "Warning"}, {QtCriticalMsg, "Critical"}, {QtFatalMsg, "Fatal"}});
     QByteArray localMsg = msg.toLocal8Bit();
     QByteArray time = QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit();
+    QByteArray date = QDate::currentDate().toString("yyyy-MM-dd").toLocal8Bit();
     QString logLevelName = msgLevelHash[type];
     QByteArray logLevelMsg = logLevelName.toLocal8Bit();
 
@@ -29,13 +31,13 @@ void customeMessageOutput(QtMsgType type, const QMessageLogContext &context, con
 #endif
 
     if(logToFile){
-        QString txt = QString("%1 | %2: %3 (%4)").arg(time, logLevelName, msg,  context.file);
-        QFile out(LOG_FILE_NAME);
+        QString txt = QString("%0  %1 | %2: %3 (%4)").arg(date, time, logLevelName, msg,  context.file);
+        QFile out(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/.log");
         out.open(QIODevice::WriteOnly | QIODevice::Append);
         QTextStream stream(&out);
         stream << txt << Qt::endl;
     }else{
-        fprintf(stderr, "%s | %s: %s (%s:%u, %s)\n", time.constData(), logLevelMsg.constData(), localMsg.constData(), context.file, context.line, context.function);
+        fprintf(stderr, "%s  %s | %s: %s (%s:%u, %s)\n", date.constData(), time.constData(), logLevelMsg.constData(), localMsg.constData(), context.file, context.line, context.function);
         fflush(stderr);
     }
 
@@ -48,8 +50,8 @@ int main(int argc, char *argv[]){
     QCoreApplication::setApplicationVersion("0.7.4");
     QCoreApplication::setOrganizationDomain("https://github.com/EinRainerZufall/SpaeneRechner");
 
-    qDebug() << "Das Programm wurde mit QT Version:" << QT_VERSION_STR << "kompiliert!";
-    qDebug() << "Das Kompilierungsdatum ist der:" << __DATE__ << "um:" << __TIME__;
+    qInfo() << "Das Programm wurde mit QT Version:" << QT_VERSION_STR << "kompiliert!";
+    qInfo() << "Kompiliert wurde am:" << __DATE__ << "um:" << __TIME__ << "Uhr";
 
     QApplication a(argc, argv);
     MainWindow w;

@@ -52,20 +52,26 @@ MainWindow::MainWindow(QWidget *parent)
         installerVer.close();
     }
 
-    // Sicherheitscheck das Log Datei nicht zu groß wird
-    if(QFile(LOG_FILE_NAME).size() > 2e6){
-        int x = Misc::MSGbox(tr("Warnung"), tr("Die '%0' Datei ist größer als 2 Mb!\nSoll sie gelöscht werden?").arg(LOG_FILE_NAME), 3, 2);
+    // PC Info in .log Datei schreiben
+    Misc::hostInfo();
+
+    // Sicherheitscheck das Log Datei nicht zu groß wird QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/.log"
+    if(QFile(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/.log").size() > 5e6){
+        int x = Misc::MSGbox(tr("Warnung"), tr("Die '%0' Datei ist größer als 5 Mb!\nSoll sie gelöscht werden?")
+                             .arg(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/.log"), 3, 2);
         QDir dir;
 
         switch(x){
         case QMessageBox::Yes:
-            dir.remove(LOG_FILE_NAME);
+            dir.remove(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/.log");
             break;
         default:
             break;
         }
     }
-    qDebug() << "Die '" << LOG_FILE_NAME << "' Datei ist " << (QFile(LOG_FILE_NAME).size() / 1e6) << " Mb groß!";
+    qInfo() << "Die '.log' Datei ist "
+             << (QFile(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/.log").size() / 1e6)
+             << " Mb groß!";
 
 #ifdef QT_DEBUG
     // Debug Sachen
@@ -263,13 +269,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Update Check
     if(Settings::autoUpdate()){
-        qDebug() << "Automatische Updatesuche ist eingeschaltet";
+        qInfo() << "Die automatische Updatesuche ist eingeschaltet";
         ui->autoUpdateIn->setCurrentIndex(0);
         if(Misc::updateCheck()){
             Misc::UPDATE();
         }
     }else{
-        qDebug() << "Automatische Updatesuche ist ausgeschaltet";
+        qInfo() << "Die automatische Updatesuche ist ausgeschaltet";
         ui->autoUpdateIn->setCurrentIndex(1);
     }
 
@@ -1228,8 +1234,8 @@ void MainWindow::on_progressBarTurn_valueChanged(int value){
 void MainWindow::on_btnCreateAll_clicked(){
     setCursor(Qt::CursorShape::WaitCursor);
 
+    qInfo() << "Die .xlsx wird gelöscht!";
     createDatabase::deleteWorkbook();
-    qDebug() << "XLSX Datei gelöscht!";
 
     createDatabase::createSimple();
     createDatabase::createDynamic();
@@ -1239,7 +1245,7 @@ void MainWindow::on_btnCreateAll_clicked(){
     createDatabase::createPlan45();
     createDatabase::createTurn();
     createDatabase::createThread();
-    qDebug() << "XLSX Datei neu erstellt!";
+    qInfo() << "Die .xlsx Datei wird neu erstellt!";
 
     setCursor(Qt::CursorShape::ArrowCursor);
 }
@@ -1263,7 +1269,7 @@ void MainWindow::on_btnSettingsWrite_clicked(){
     }
 
     Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index, update);
-    qDebug() << "Einstellungen per Button gespeichert!";
+    qInfo() << "Einstellungen per Button gespeichert!";
 
     setCursor(Qt::CursorShape::ArrowCursor);
 }
@@ -1278,8 +1284,8 @@ void MainWindow::on_btnOpenXLSX_clicked(){
 void MainWindow::on_btnCreateSettings_clicked(){
     setCursor(Qt::CursorShape::WaitCursor);
 
+    qInfo() << "Die .ini Datei wird gelöscht!";
     Settings::deleteAll();
-    qDebug() << "Einstellungen gelöscht!";
 
     int dis = ui->DisclaimerIn->currentIndex();
     int FrN = ui->maxMillSpeedIn->text().toInt();
@@ -1297,7 +1303,7 @@ void MainWindow::on_btnCreateSettings_clicked(){
     }
 
     Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index, update);
-    qDebug() << "Einstellungen neu erstellt!";
+    qInfo() << "Die .ini Datei wird neu erstellt!";
 
     setCursor(Qt::CursorShape::ArrowCursor);
 }
@@ -1333,12 +1339,15 @@ void MainWindow::closeEvent(QCloseEvent *event){
     }
 
     Settings::write(dis, FrN, FrPc, bed, cutMat, BoWinkel, cooling, TurN, TurPc, index, update);
-    qDebug() << "Einstellungen automatisch gespeichert!";
+    qInfo() << "Einstellungen sind automatisch gespeichert worden!";
+    qInfo() << "Das Programm wird mit Code" << 0 << "beendet";
 
-    QFile out(LOG_FILE_NAME);
+#ifndef QT_DEBUG
+    QFile out(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/.log");
     out.open(QIODevice::WriteOnly | QIODevice::Append);
     QTextStream stream(&out);
     stream << "-------------------------------------------------------------------------------------------" << Qt::endl;
+#endif
 
     setCursor(Qt::CursorShape::ArrowCursor);
 
