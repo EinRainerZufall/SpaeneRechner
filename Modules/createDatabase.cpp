@@ -668,7 +668,7 @@ void createDatabase::createThread() {
 
     const std::string mat[1][8] = {{"˅ Material ˅","Steigung ->","Aluminium Knetlegierung","Guss-Aluminium > 6% Si","Messing, Bronze, Kupfer","Stahl","INOX","Testmaterial 6"}};
 
-    const std::string gewD[1][14] = {{"M2","M2.5","M3","M4","M5","M6","M8","M10","M12","M14","M16","G1/8","G1","G13/9"}};
+    const std::string gewD[1][14] = {{"M2","M2.5","M3","M4","M5","M6","M8","M10","M12","M14","M16","G1/8","G1","G1 3/9"}};
 
     const double numbers[7][14] = {
         {0.4, 0.45, 0.5, 0.7, 0.8, 1,  1.25, 1.5, 1.75, 2,  2,  0.907, 2.309, 2.309},

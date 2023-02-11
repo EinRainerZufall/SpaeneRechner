@@ -128,7 +128,7 @@
                             <origin>release/SpaeneRechner.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>release/VC_redist.x64.exe</origin>
+                            <origin>release/vc_redist.x64.exe</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>

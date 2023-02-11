@@ -224,20 +224,6 @@ Sie benutzen aber noch Windows ${windows_os_version_number}.</explanation>
                 </isTrue>
             </ruleList>
         </runProgram>
-        <if>
-            <explanation>delete ini</explanation>
-            <show>0</show>
-            <actionList>
-                <deleteFile>
-                    <path>${windows_folder_local_appdata}\SpaeneRechner\config.ini</path>
-                </deleteFile>
-            </actionList>
-            <conditionRuleList>
-                <fileExists>
-                    <path>${windows_folder_local_appdata}\SpaeneRechner\config.ini</path>
-                </fileExists>
-            </conditionRuleList>
-        </if>
     </finalPageActionList>
     <licenseFileList>
         <licenseFile>
