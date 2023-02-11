@@ -3,7 +3,6 @@
 
 namespace  {
 int threadIndex = 7;
-bool warumWisoWeshalb = false;
 }
 
 QStringList Thread::matList() {
@@ -35,6 +34,7 @@ double Thread::Vc(int mat, int column) {
     wb.load(file);
     xlnt::worksheet ws = wb.sheet_by_index(threadIndex);
 
+    static bool warumWisoWeshalb = false;
     if(warumWisoWeshalb){
         if(ws.cell(column, mat).to_string().empty()){
             Misc::MSGbox(QObject::tr("Ungültiges Format"), QObject::tr("Eine Zelle hat einen ungültigen / nicht erlaubten Inhalt"), 4, 1,
@@ -53,7 +53,6 @@ double Thread::Vc(int mat, int column) {
                               __FUNCTION__));
         }
     }
-
     warumWisoWeshalb = true;
 
     Vc = ws.cell(column, mat).value<double>();
@@ -115,13 +114,7 @@ double Thread::Diameter(int Dindex) {
     const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/Daten.xlsx";
     double D;
     int column;
-    std::string metrisch;
-    std::string zoll1;
-    std::string zoll2;
-    std::string zoll3;
-    std::string zollTest1;
-    std::string zollTest2;
-    std::string type;
+    QString rawRead;
 
     column = Dindex + 2;
 
@@ -138,54 +131,29 @@ double Thread::Diameter(int Dindex) {
                           __FUNCTION__));
     }
 
-    metrisch = ws.cell(column,1).value<std::string>();
+    rawRead = QString::fromStdString(ws.cell(column,1).value<std::string>());
 
-    type = metrisch;
-    type = type.erase(1,99);
-
-    if(type == "M"){
-        metrisch = metrisch.erase(0,1);
-        D = std::stod(metrisch);
-    }else if(type == "G" & (metrisch.length() > 2)){
-        zoll1 = metrisch;
-        zoll2 = metrisch;
-        zoll3 = metrisch;
-
-        // Test 1
-        zollTest1 = metrisch;
-        zollTest1 = zollTest1.erase(0,2);
-        zollTest1 = zollTest1.erase(1,99);
-
-        // Test 2
-        zollTest2 = metrisch;
-        zollTest2 = zollTest2.erase(0,3);
-        zollTest2 = zollTest2.erase(1,99);
-
-        if(zollTest1 == "/"){
-            zoll1 = zoll1.erase(0,1);
-            zoll1 = zoll1.erase(1,99);
-
-            zoll2 = zoll2.erase(0,3);
-
-            D = (std::stod(zoll1) / std::stod(zoll2)) * 2.54;
-        }else if(zollTest2 == "/"){
-            zoll1 = zoll1.erase(0,1);
-            zoll1 = zoll1.erase(1,99);
-
-            zoll2 = zoll2.erase(0,2);
-            zoll2 = zoll2.erase(1,99);
-
-            zoll3 = zoll3.erase(0,4);
-
-            D = (std::stod(zoll1) + (std::stod(zoll2) / std::stod(zoll3))) * 2.54;
+    if(rawRead.at(0) == 'M'){
+        // Normales Gewinde
+        D = rawRead.remove(0, 1).toDouble();
+    }else if(rawRead.at(0) == 'G' && (rawRead.length() == 2)){
+        // Zoelliges ganz zahliges Gewinde
+        D = rawRead.remove(0, 1).toDouble() * 2.54;
+    }else if(rawRead.at(0) == 'G' && (rawRead.length() > 2)){
+        if(rawRead.at(2) == '/'){
+            // Zoelliges Gewinde das kleiner als 1 Zoll ist (1/4, 1/8)
+            D = (QString(rawRead.at(1)).toDouble() / QString(rawRead.at(3)).toDouble()) * 2.54;
+            D = round(D * 1000) / 1000;
+        }else if(rawRead.at(2) == ' ' && rawRead.at(4) == '/'){
+            // Zoelliges Gewinde das groesser als 1 Zoll ist(1 1/2, 1 3/8)
+            D = (QString(rawRead.at(1)).toDouble() + (QString(rawRead.at(3)).toDouble() / QString(rawRead.at(5)).toDouble())) * 2.54;
+            D = round(D * 1000) / 1000;
         }else{
+            qWarning() << "Es ist kein gültiger Type für das Gewinde in Zelle" << ws.cell(column, 1).reference().to_string() << "im Arbeitsblatt" << ws.title() << "angegeben";
             D = -1;
         }
-    }else if(type == "G" & (metrisch.length() == 2)){
-        zoll1 = metrisch;
-        zoll1 = zoll1.erase(0,1);
-        D = std::stod(zoll1) * 2.54;
     }else{
+        qWarning() << "Es ist kein gültiger Type für das Gewinde in Zelle" << ws.cell(column, 1).reference().to_string() << "im Arbeitsblatt" << ws.title() << "angegeben";
         D = -1;
     }
 

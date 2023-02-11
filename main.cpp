@@ -47,7 +47,7 @@ void customeMessageOutput(QtMsgType type, const QMessageLogContext &context, con
 int main(int argc, char *argv[]){
     qInstallMessageHandler(customeMessageOutput);
     QCoreApplication::setApplicationName("SpaeneRechner");
-    QCoreApplication::setApplicationVersion("0.7.4");
+    QCoreApplication::setApplicationVersion("0.7.7");
     QCoreApplication::setOrganizationDomain("https://github.com/EinRainerZufall/SpaeneRechner");
 
     qInfo() << "Das Programm wurde mit QT Version:" << QT_VERSION_STR << "kompiliert!";

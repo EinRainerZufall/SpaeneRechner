@@ -1851,7 +1851,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(9);
+        mainTabWidget->setCurrentIndex(0);
         BtnCalcEinfach->setDefault(true);
 
 

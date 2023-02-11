@@ -280,16 +280,6 @@ Sie benutzen aber noch Windows ${windows_os_version_number}.</explanation>
             <cliOptionShow>0</cliOptionShow>
             <width>40</width>
         </stringParameter>
-        <stringParameter>
-            <name>benutzer</name>
-            <description></description>
-            <explanation></explanation>
-            <value>${windows_folder_local_appdata}\SpaeneRechner\config.ini</value>
-            <default></default>
-            <allowEmptyValue>1</allowEmptyValue>
-            <ask>0</ask>
-            <width>40</width>
-        </stringParameter>
     </parameterList>
     <platformOptionsList>
         <platformOptions>

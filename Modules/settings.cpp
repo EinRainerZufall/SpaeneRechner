@@ -1,22 +1,8 @@
 #include "Modules/settings.h"
 
-namespace  {
-
-#ifdef QT_DEBUG
-const std::string settingsName = "Test.xlsx";
-#else
-const std::string settingsName = "Daten.xlsx";
-#endif
-}
-
-/*
- * INIcheck     <- neu, pruefen ob die .ini existiert
- * create       <- neu, jetzt hier und nicht mehr in createDatabase
-*/
-
 void Settings::showDis(){
     const QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini";
-    int temp = true;    // 0=false(nicht anzeigen) | 1=true(anzeigen) | -1=error
+    bool temp = true;    // false=nicht anzeigen | true=anzeigen
     bool macos;
 
     if(QSysInfo::productType() == "macos") {
@@ -27,60 +13,42 @@ void Settings::showDis(){
 
     QSettings settings(path, QSettings::IniFormat);
 
-    if(settings.value("disclaimer").toBool() == true){
-        temp = 1;
-    }else if(settings.value("disclaimer").toBool() == false){
-        temp = 0;
-    }else{
-        temp = -1;
+    if(settings.value("disclaimer").isNull()){
+        qCritical() << "Es konnte 'disclaimer' in der 'config.ini' nicht gefunden werden und wird neu erstellt!";
+        settings.setValue("disclaimer", true);          // ob am Anfang der Disclaimer angezeigt werden soll
+
+        settings.sync();
     }
 
-    if(temp == 0){
-        return;
-    }else if(temp == 1){
-        QMessageBox disBox;
-        QString title = QObject::tr("Disclaimer");
-        QString text = QObject::tr("Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung "
-                                   "für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. "
-                                   "Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt allein das Risiko. Jegliche "
-                                   "Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust "
-                                   "o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes "
-                                   "entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?");
-        if(macos) {
-            disBox.setInformativeText(text);
-            disBox.setText(title);
-        }else {
-            disBox.setText(text);
-            disBox.setWindowTitle(title);
-        }
-        disBox.setIcon(QMessageBox::Information);
-        disBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-        disBox.setDefaultButton(QMessageBox::Yes);
-        disBox.setEscapeButton(QMessageBox::No);
-        int dis = disBox.exec();
+    temp = settings.value("disclaimer").toBool();
 
-        switch (dis) {
-        case QMessageBox::Yes:
-            return;
-        case QMessageBox::No:
-            exit(0);
-        }
-    }else{
-        QMessageBox msg;
-        QString title = QObject::tr("Kritischer Fehler");
-        QString text = QObject::tr("Es konnte keine gültige Abfrage für den Disclaimer in der 'config.ini' Datei gefunden werden!");
-        if(macos) {
-            msg.setText(title);
-            msg.setInformativeText(text);
-        }else {
-            msg.setText(text);
-            msg.setWindowTitle(title);
-        }
-        msg.setIcon(QMessageBox::Critical);
-        msg.setStandardButtons(QMessageBox::Close);
-        msg.setDefaultButton(QMessageBox::Close);
-        msg.exec();
-        exit(2);
+    if(!temp){
+        return;
+    }
+
+    QMessageBox disBox;
+    QString title = QObject::tr("Disclaimer");
+    QString text = QObject::tr("Die Nutzung erfolgt auf eigene Gefahr des Anwenders. Der Entwickler übernimmt keinerlei Garantie oder Gewährleistung "
+                               "für die Eignung des Programms sowie für dessen vollständige Funktionsfähigkeit, insbesondere die Richtigkeit der Berechnungen. "
+                               "Der Entwickler haftet nicht für störungs- oder fehlerfreien Einsatz des Programms. Der Anwender trägt allein das Risiko. Jegliche "
+                               "Haftung des Entwicklers für Schäden, Nachteile und Anwendungen aller Art, insbesondere auch für Vermögensschäden, Datenverlust "
+                               "o.ä., die dem Anwender oder Dritten aus oder im Zusammenhang mit der Verwendung oder der Nichtanwendbarkeit der Programmes "
+                               "entstehen sollten, ist ausgeschlossen. Sind sie damit einverstanden?");
+    if(macos) {
+        disBox.setInformativeText(text);
+        disBox.setText(title);
+    }else {
+        disBox.setText(text);
+        disBox.setWindowTitle(title);
+    }
+    disBox.setIcon(QMessageBox::Information);
+    disBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    disBox.setDefaultButton(QMessageBox::Yes);
+    disBox.setEscapeButton(QMessageBox::No);
+    int dis = disBox.exec();
+
+    if(dis == QMessageBox::No){
+        exit(0);
     }
 
     return;
@@ -109,12 +77,20 @@ int Settings::maxRpmFr(){
     }
 
     QSettings settings(path, QSettings::IniFormat);
+
+    if(settings.value("maxRpmFr").isNull()){
+        qCritical() << "Es konnte 'maxRpmFr' in der 'config.ini' nicht gefunden werden und wird neu erstellt!";
+        settings.setValue("maxRpmFr", 24000);
+
+        settings.sync();
+    }
+
     rpm = settings.value("maxRpmFr").toInt();
 
     if(rpm <= 0){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
-        QString text = QObject::tr("Es konnte keine maximale Drehzahl in der Datei 'config.ini' gefunden werden!");
+        QString text = QObject::tr("Die maximale Drehzahl in der Datei 'config.ini' hat keinen gültigen Wert!");
         if(macos) {
             msg.setText(title);
             msg.setInformativeText(text);
@@ -144,12 +120,20 @@ int Settings::maxRpmDr(){
     }
 
     QSettings settings(path, QSettings::IniFormat);
+
+    if(settings.value("maxRpmDr").isNull()){
+        qCritical() << "Es konnte 'maxRpmDr' in der 'config.ini' nicht gefunden werden und wird neu erstellt!";
+        settings.setValue("maxRpmDr", 5000);
+
+        settings.sync();
+    }
+
     rpm = settings.value("maxRpmDr").toInt();
 
     if(rpm <= 0){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
-        QString text = QObject::tr("Es konnte keine maximale Drehzahl in der Datei 'config.ini' gefunden werden!");
+        QString text = QObject::tr("Die maximale Drehzahl in der Datei 'config.ini' hat keinen gültigen Wert!");
         if(macos) {
             msg.setText(title);
             msg.setInformativeText(text);
@@ -179,12 +163,19 @@ double Settings::maxKw(){
     }
 
     QSettings settings(path, QSettings::IniFormat);
+
+    if(settings.value("maxPcFr").isNull()){
+        qCritical() << "Es konnte 'maxPcFr' in der 'config.ini' nicht gefunden werden und wird neu erstellt!";
+        settings.setValue("maxPcFr", 2.2);
+        settings.sync();
+    }
+
     pc = settings.value("maxPcFr").toDouble();
 
     if(pc <= 0){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
-        QString text = QObject::tr("Es konnte keine gültige Abfrage für die Spindelleistung der Fräsmaschine in der Datei 'config.ini' gefunden werden!");
+        QString text = QObject::tr("Die maximale fräs Spindelleistung in der Datei 'config.ini' hat keinen gültigen Wert!");
         if(macos) {
             msg.setText(title);
             msg.setInformativeText(text);
@@ -214,12 +205,20 @@ double Settings::maxKwDr(){
     }
 
     QSettings settings(path, QSettings::IniFormat);
+
+    if(settings.value("maxPcDr").isNull()){
+        qCritical() << "Es konnte 'maxPcDr' in der 'config.ini' nicht gefunden werden und wird neu erstellt!";
+        settings.setValue("maxPcDr", 2.2);
+
+        settings.sync();
+    }
+
     pc = settings.value("maxPcDr").toDouble();
 
     if(pc <= 0){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
-        QString text = QObject::tr("Es konnte keine gültige Abfrage für die Spindelleistung der Drehmaschine in der Datei 'config.ini' gefunden werden!");
+        QString text = QObject::tr("Die maximale dreh Spindelleistung in der Datei 'config.ini' hat keinen gültigen Wert!");
         if(macos) {
             msg.setText(title);
             msg.setInformativeText(text);
@@ -249,9 +248,17 @@ int Settings::condition(){
     }
 
     QSettings settings(path, QSettings::IniFormat);
+
+    if(settings.value("con").isNull()){
+        qCritical() << "Es konnte 'con' in der 'config.ini' nicht gefunden werden und wird neu erstellt!";
+        settings.setValue("con", 1);
+
+        settings.sync();
+    }
+
     con = settings.value("con").toInt();
 
-    if(con == 3){
+    if((con != 0) && (con != 1) && (con != 2)){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für die standard Bedingung in der 'config.ini' Datei gefunden werden!");
@@ -284,9 +291,17 @@ int Settings::cutMat(){
     }
 
     QSettings settings(path, QSettings::IniFormat);
+
+    if(settings.value("cutMat").isNull()){
+        qCritical() << "Es konnte 'cutMat' in der 'config.ini' nicht gefunden werden und wird neu erstellt!";
+        settings.setValue("cutMat", 1);
+
+        settings.sync();
+    }
+
     cutMat = settings.value("cutMat").toInt();
 
-    if(cutMat == 3){
+    if((cutMat != 0) && (cutMat != 1) && (cutMat != 2)){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für den standard Schneidstoff in der 'config.ini' Datei gefunden werden!");
@@ -319,9 +334,17 @@ int Settings::angleDrill(){
     }
 
     QSettings settings(path, QSettings::IniFormat);
+
+    if(settings.value("spiWi").isNull()){
+        qCritical() << "Es konnte 'spiWi' in der 'config.ini' nicht gefunden werden und wird neu erstellt!";
+        settings.setValue("spiWi", 0);
+
+        settings.sync();
+    }
+
     spiWi = settings.value("spiWi").toInt();
 
-    if(spiWi == 3){
+    if((spiWi != 0) && (spiWi != 1) && (spiWi != 2)){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für den standard Spitzenwinkel in der 'config.ini' Datei gefunden werden!");
@@ -354,9 +377,17 @@ int Settings::cooling(){
     }
 
     QSettings settings(path, QSettings::IniFormat);
+
+    if(settings.value("cooling").isNull()){
+        qCritical() << "Es konnte 'cooling' in der 'config.ini' nicht gefunden werden und wird neu erstellt!";
+        settings.setValue("cooling", 0);
+
+        settings.sync();
+    }
+
     cooling = settings.value("cooling").toInt();
 
-    if(cooling == 3){
+    if((cooling != 0) && (cooling != 1) && (cooling != 2)){
         QMessageBox msg;
         QString title = QObject::tr("Kritischer Fehler");
         QString text = QObject::tr("Es konnte keine gültige Abfrage für die standard Kühlung in der 'config.ini' Datei gefunden werden!");
@@ -568,6 +599,14 @@ bool Settings::autoUpdate(){
     }
 
     QSettings settings(path, QSettings::IniFormat);
+
+    if(settings.value("autoUpdate").isNull()){
+        qCritical() << "Es konnte 'autoUpdate' in der 'config.ini' nicht gefunden werden und wird neu erstellt!";
+        settings.setValue("autoUpdate", true);
+
+        settings.sync();
+    }
+
     out = settings.value("autoUpdate").toBool();
 
     if(!settings.value("autoUpdate").isValid()){
@@ -594,6 +633,7 @@ bool Settings::autoUpdate(){
 void Settings::deleteAll(){
     const std::string file = (QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).toStdString() + "/config.ini";
 
+    qInfo() << "Die 'config.ini' wird gelöscht!";
     QFile::remove(QString::fromStdString(file));
 
     return;
@@ -603,13 +643,9 @@ void Settings::lastCloseOnUpdate(){
     QSettings settings(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/config.ini", QSettings::IniFormat);
     QDir dir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/temp");
 
-    if(settings.value("lastCloseOnUpdate").isValid()){
-        if(settings.value("lastCloseOnUpdate").toBool()){
-            if(dir.exists()){
-                qDebug() << "Der 'temp' Ordner wird nach dem Update gelöscht!";
-                dir.removeRecursively();
-            }
-        }
+    if(!settings.value("lastCloseOnUpdate").isNull() && settings.value("lastCloseOnUpdate").isValid() && settings.value("lastCloseOnUpdate").toBool() && dir.exists()){
+        qInfo() << "Der 'temp' Ordner wird nach dem Update gelöscht!";
+        dir.removeRecursively();
     }
 
     settings.setValue("lastCloseOnUpdate", false);
