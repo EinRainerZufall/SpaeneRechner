@@ -9,16 +9,19 @@ gcc:CONFIG += staticlib
 linux-clang:CONFIG += staticlib
 
 INCLUDEPATH += $$PWD/xlnt/
+INCLUDEPATH += $$PWD/xlnt/include/
 
 #Debug / Release difference
 CONFIG(release, debug|release) {
   message("building in release")
   win32: LIBS += -L$$PWD/x64-Release/source
+  win32: LIBS += -L$$PWD/xlnt/source/Release
   win32: LIBS += -lxlnt
 }
 CONFIG(debug, debug|release) {
   message("building in debug")
   win32: LIBS += -L$$PWD/x64-Debug/source
+  win32: LIBS += -L$$PWD/xlnt/source/Debug
   win32: LIBS += -lxlntd
 }
 

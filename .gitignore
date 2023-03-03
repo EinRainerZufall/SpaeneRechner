@@ -9,6 +9,7 @@
 *.so.*
 *.dll
 *.dylib
+*.qrc
 
 # Qt-es
 object_script.*.Release
@@ -58,6 +59,7 @@ debug/**
 release/**
 x64-Debug/**
 x64-Release/**
+xlnt/
 xlnt/**
 Daten.xlsx
 ~$Daten.xlsx
@@ -67,3 +69,4 @@ Test.xlsx
 Test.xlsx
 .qtc_clangd/**
 version.txt
+SpaeneRechner.app/
