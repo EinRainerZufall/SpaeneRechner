@@ -1,0 +1,45 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'dev/**'
+
+jobs:
+  build:
+    name: Build Windows 
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v3
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.2.*'
+          tools: ''
+
+      - name: Set up Visual Studio shell
+        uses: egor-tensin/vs-shell@v2
+
+      - name: get xlnt
+        shell: cmd
+        run: 'curl -L https://github.com/tfussell/xlnt/archive/refs/tags/v1.5.0.zip -o xlnt.zip'
+      - name: unpack xlnt
+        shell: cmd
+        run: 'tar xvf xlnt.zip'
+      - name: rename xlnt
+        shell: cmd
+        run: 'rename xlnt-1.5.0 xlnt'
+      - name: build xlnt
+        shell: cmd
+        run: 'cd xlnt & cmake . & cmake --build . --config Release'
+
+      - name: Run qmake
+        shell: cmd
+        run: '%Qt6_DIR%\bin\qmake.exe -Wall -tp vc -o "SpaeneRechner.vcxproj" SpaeneRechner.pro'
+      - name: Build
+        shell: cmd
+        run: 'msbuild SpaeneRechner.vcxproj /p:Configuration=Release /p:Platform=x64'

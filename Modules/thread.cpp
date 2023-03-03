@@ -149,11 +149,13 @@ double Thread::Diameter(int Dindex) {
             D = (QString(rawRead.at(1)).toDouble() + (QString(rawRead.at(3)).toDouble() / QString(rawRead.at(5)).toDouble())) * 2.54;
             D = round(D * 1000) / 1000;
         }else{
-            qWarning() << "Es ist kein gültiger Type für das Gewinde in Zelle" << ws.cell(column, 1).reference().to_string() << "im Arbeitsblatt" << ws.title() << "angegeben";
+            qWarning() << "Es ist kein gültiger Type für das Gewinde in Zelle" << QString::fromStdString(ws.cell(column, 1).reference().to_string())
+                       << "im Arbeitsblatt" << QString::fromStdString(ws.title()) << "angegeben";
             D = -1;
         }
     }else{
-        qWarning() << "Es ist kein gültiger Type für das Gewinde in Zelle" << ws.cell(column, 1).reference().to_string() << "im Arbeitsblatt" << ws.title() << "angegeben";
+        qWarning() << "Es ist kein gültiger Type für das Gewinde in Zelle" << QString::fromStdString(ws.cell(column, 1).reference().to_string())
+                   << "im Arbeitsblatt" << QString::fromStdString(ws.title()) << "angegeben";
         D = -1;
     }
 
