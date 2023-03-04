@@ -70,3 +70,4 @@ Test.xlsx
 .qtc_clangd/**
 version.txt
 SpaeneRechner.app/
+*.tar.gz
