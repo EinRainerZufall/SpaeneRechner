@@ -25,6 +25,9 @@ CONFIG(debug, debug|release) {
   win32: LIBS += -lxlntd
 }
 
+macx: LIBS += -L$$PWD/xlnt/source
+macx: LIBS += -lxlnt
+
 win32 {
     message("building for Windows")
     #Icon unter Win
@@ -40,7 +43,7 @@ win32 {
 macx {
     message("building for MacOS")
     #Icon unter MacOS
-    #ICON = src/endmill_altin.icns <- noch nicht getestet
+    ICON = src/endmill_altin.icns
 }
 
 # You can make your code fail to compile if it uses deprecated APIs.

@@ -21,4 +21,9 @@ zum selber Compilieren:
   - [xlnt lib](https://github.com/tfussell/xlnt)
   - nach dem Release build in der MSVC Konsole `windeployqt` eingeben
 - macOS
+  - git clone git@github.com:EinRainerZufall/SpaeneRechner.github
+  - cd SpaeneRechner
+  - ./build-xlnt.sh (This builds the current master, 1.5.0 doesn't work on macOS)
+  - qmake -o Makefile .
+  - make
 - linux
