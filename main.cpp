@@ -10,7 +10,7 @@
 #include "Modules/createDatabase.cpp"
 #include "Modules/settings.cpp"
 
-const QString logFileName = "debug.log";
+
 
 void customeMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg){
 

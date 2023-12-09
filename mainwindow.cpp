@@ -70,8 +70,8 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
     qInfo() << "Die '.log' Datei ist "
-             << (QFile(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/.log").size() / 1e6)
-             << " Mb groß!";
+            << (QFile(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"/.log").size() / 1e6)
+            << " Mb groß!";
 
 #ifdef QT_DEBUG
     // Debug Sachen

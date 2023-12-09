@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 6.5.0
+** Created by: Qt User Interface Compiler version 6.6.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -623,6 +623,7 @@ public:
         QFont font2;
         font2.setPointSize(10);
         BeInstabilTpc->setFont(font2);
+        BeInstabilTpc->setCheckable(true);
         BeInstabilTpc->setChecked(true);
         BeNormalTpc = new QRadioButton(groupBox);
         BeNormalTpc->setObjectName("BeNormalTpc");
@@ -1851,7 +1852,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(0);
+        mainTabWidget->setCurrentIndex(1);
         BtnCalcEinfach->setDefault(true);
 
 

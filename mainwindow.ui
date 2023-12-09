@@ -29,7 +29,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_einfach">
      <attribute name="title">
@@ -973,6 +973,9 @@
        </property>
        <property name="text">
         <string>instabil</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
        </property>
        <property name="checked">
         <bool>true</bool>
